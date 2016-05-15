@@ -12,6 +12,17 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 alias lh='ls -d .*'
 
+# Functions
+# Auto complete for code directory
+c() { cd ~/code/$1; }
+_c() { _files -W ~/code -/; }
+compdef _c c
+
+# Auto complete for home directory
+h() { cd ~/$1; }
+_h() { _files -W ~/ -/; }
+compdef _h h
+
 # Node Version Manager
 export NVM_DIR="/Users/wassim/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
