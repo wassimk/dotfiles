@@ -1,5 +1,5 @@
 export ZSH=/Users/wassim/.oh-my-zsh
-ZSH_THEME="robbyrussell"
+ZSH_THEME="wassimk"
 plugins=(git rails bundler brew vagrant)
 
 # User configuration
