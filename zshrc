@@ -10,7 +10,8 @@ source $ZSH/oh-my-zsh.sh
 # Set personal aliases, overriding those provided by oh-my-zsh libs
 # plugins, and themes. Aliases can be placed here.
 # For a full list of active aliases, run `alias`.
-alias lh='ls -d .*'
+alias lsh='ls -d .*'
+alias lsa='ls -laF'
 
 # Functions
 # Auto complete for code directory
