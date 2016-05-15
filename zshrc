@@ -23,6 +23,16 @@ h() { cd ~/$1; }
 _h() { _files -W ~/ -/; }
 compdef _h h
 
+# Console based weather report, way cool
+function weather() {
+    if [ "$1" != "" ]
+    then
+        curl wttr.in/${1}
+    else
+        curl wttr.in/74041
+    fi
+}
+
 # Node Version Manager
 export NVM_DIR="/Users/wassim/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
