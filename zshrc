@@ -52,6 +52,17 @@ function tmk() {
     fi
 }
 
+# Make sure we are always in TMUX, uses ~/.bin/tat script
+_not_inside_tmux() { [[ -z "$TMUX" ]] }
+
+ensure_tmux_is_running() {
+  if _not_inside_tmux; then
+    tat
+  fi
+}
+
+ensure_tmux_is_running
+
 # Functions
 # Auto complete for code directory
 c() { cd ~/code/$1; }
