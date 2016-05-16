@@ -12,6 +12,41 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 alias lsh='ls -d .*'
 alias lsa='ls -laF'
+alias lsa='ls -laF'
+
+###
+# tmux
+###
+alias tml='tmux list-sessions'
+
+# Create new sessions
+function tmn() {
+    if [ "$1" != "" ]
+    then
+      tmux new -s $1
+    else
+      tmux new -s hacking
+    fi
+}
+
+# Attach to session
+function tma() {
+    if [ "$1" != "" ]
+    then
+        tmux attach -t $1
+    fi
+}
+
+# Kill session
+function tmk() {
+    if [ "$1" != "" ]
+    then
+        tmux kill-session -t $1
+    else
+     echo "Kill which session?"
+      tml
+    fi
+}
 
 # Functions
 # Auto complete for code directory
