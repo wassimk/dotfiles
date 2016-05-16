@@ -13,6 +13,7 @@ source $ZSH/oh-my-zsh.sh
 alias lsh='ls -d .*'
 alias lsa='ls -laF'
 alias lsa='ls -laF'
+alias zs='source ~/.zshrc'
 
 ###
 # tmux
