@@ -19,6 +19,7 @@ alias zs='source ~/.zshrc'
 # tmux
 ###
 alias tml='tmux list-sessions'
+alias tmka='tmux kill-server'
 
 # Create new sessions
 function tmn() {
@@ -34,7 +35,9 @@ function tmn() {
 function tma() {
     if [ "$1" != "" ]
     then
-        tmux attach -t $1
+      tmux attach -t $1
+    else
+      tmux attach
     fi
 }
 
