@@ -1,6 +1,6 @@
 [user]
-	name = Wassim Metallaoui
-	email = wassim@metallaoui.com
+  name = Wassim Metallaoui
+  email = wassim@metallaoui.com
 
 [github]
 	user = wassimk
@@ -22,6 +22,9 @@
 
 [push]
 	default = simple
+
+[credential]
+  helper = osxkeychain
 
 [merge]
   ff = only
