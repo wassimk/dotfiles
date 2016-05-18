@@ -19,5 +19,5 @@ export NVM_DIR="/Users/wassim/.nvm"
 
 # Show contents of directory after cd-ing into it
 chpwd() {
-  ls -lrthG
+  ll
 }
