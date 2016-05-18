@@ -32,12 +32,12 @@ let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts=1 " install fonts first, in the repo
 " vim-arline applies its theme to tmuxline plugin
 " these are preferred defaults, info at https://github.com/edkolev/tmuxline.vim
-" generate a new tmuxline.conf with any change via vim with :TmuxlineSnapshot ~/.tmuxline.conf"
+" generate a new tmuxline.conf with any change via vim with :TmuxlineSnapshot! ~/.tmuxline.conf
 " make sure and change terminal font to one of the powerline fonts
 let g:tmuxline_preset = {
       \'a'    : '#S',
       \'win'  : '#I #W',
-      \'cwin' : '#I #W',
+      \'cwin' : '#I #W #F',
       \'x'    : '#(battery -t)',
       \'y'    : ['%a, %b %d', '%I:%M %p'],
       \'z'    : '#h',
