@@ -10,8 +10,3 @@ alias zs='source ~/.zshrc'
 ###
 alias tml='tmux list-sessions'
 alias tmka='tmux kill-server'
-
-###
-# git
-###
-alias gd='git diff'
