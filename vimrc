@@ -60,6 +60,18 @@ let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 let mapleader = ","
 imap jj <esc>
 
-set laststatus=2 "always show status line
-set number
-set noswapfile
+set laststatus=2                " Always show status line
+set number                      " Display line numbers beside buffer
+set lazyredraw                  " Don't update while executing macros
+set backspace=indent,eol,start  " Sane backspace behavior
+set history=500                 " Remember last 500 commands
+set scrolloff=4                 " Keep at least 4 lines below cursor
+set noswapfile                  " Don't know why but I don't need it
+set expandtab                   " Convert <tab> to spaces (2 or 4)
+set tabstop=2                   " Two spaces per tab as default
+set shiftwidth=2                "     then override with per filteype
+set softtabstop=2               "     specific settings via autocmd
+set secure                      " Limit what modelines and autocmds can do
+set relativenumber              " Show line numbers relative to cursor position
+set autoread                    " Used when edting same file with vim, twice
+set autoindent                  " Always auto-indent
