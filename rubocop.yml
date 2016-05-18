@@ -20,9 +20,10 @@ AllCops:
   - "config/**/*"
   - "bin/**/*"
   - "app/views/**/*"
-  RunRailsCops: true
   DisplayCopNames: false
   StyleGuideCopsOnly: false
+Rails:
+  Enabled: true
 Metrics/ClassLength:
   Description: Avoid classes longer than 100 lines of code.
   Enabled: false
