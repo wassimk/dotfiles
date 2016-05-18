@@ -1,0 +1,87 @@
+####
+# tmux
+####
+# Create new sessions
+function tmn() {
+    if [ "$1" != "" ]
+    then
+      tmux new -s $1
+    else
+      tmux new -s hacking
+    fi
+}
+
+# Attach to session
+function tma() {
+    if [ "$1" != "" ]
+    then
+      tmux attach -t $1
+    else
+      tmux attach
+    fi
+}
+
+# Kill session
+function tmk() {
+    if [ "$1" != "" ]
+    then
+        tmux kill-session -t $1
+    else
+     echo "Kill which session?"
+      tml
+    fi
+}
+
+# Make sure we are always in TMUX, uses ~/.bin/tat script
+_not_inside_tmux() { [[ -z "$TMUX" ]] }
+
+ensure_tmux_is_running() {
+  if _not_inside_tmux; then
+    tat
+  fi
+}
+
+ensure_tmux_is_running
+
+####
+# git
+# g for git status
+# -or-
+# g anything else for git anything else
+####
+function g {
+  if [[ $# > 0 ]]; then
+    git $@
+  else
+    git status
+  fi
+}
+
+# Allows commit message without typing quotes (
+# can't have quotes in the commit msg though).
+function gc {
+  git commit -m "$*"
+}
+
+####
+# Other Functions
+####
+# Auto complete for code directory
+c() { cd ~/code/$1; }
+_c() { _files -W ~/code -/; }
+compdef _c c
+
+# Auto complete for home directory
+h() { cd ~/$1; }
+_h() { _files -W ~/ -/; }
+compdef _h h
+
+# Console based weather report, way cool
+function weather() {
+    if [ "$1" != "" ]
+    then
+        curl wttr.in/${1}
+    else
+        curl wttr.in/74041
+    fi
+}
