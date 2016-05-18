@@ -44,3 +44,8 @@ let g:tmuxline_preset = {
 \}
 
 let mapleader = ","
+imap jj <esc>
+
+set laststatus=2 "always show status line
+set number
+set noswapfile
