@@ -9,6 +9,7 @@ call plug#begin()
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-fugitive'
   Plug 'thoughtbot/vim-rspec'
   Plug 'scrooloose/nerdtree'
   Plug 'nanotech/jellybeans.vim'
@@ -44,7 +45,7 @@ let g:tmuxline_preset = {
       \ 'options': { 'status-justify': 'left' }
 \}
 
-" Syntas Checking with syntastic
+" Syntax Checking with syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*

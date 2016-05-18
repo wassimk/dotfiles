@@ -1,0 +1,13 @@
+
+
+############
+# - Present tense
+# - Separate subject from body with a blank line
+# - Limit the subject line to 50 - 69 characters
+# - Capitalize the subject line
+# - Do not end the subject line with a period
+# - Use the imperative mood in the subject line
+# - Wrap the body at 72 - 80 characters
+# - Use the body to explain what and why vs. how
+# - Reference tickets, issues, links at the bottom
+# - http://chris.beams.io/posts/git-commit/

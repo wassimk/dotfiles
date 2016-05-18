@@ -7,7 +7,7 @@
 
 [core]
 	excludesfile = ~/.gitignore
-	editor = vim --noplugin
+	editor = vim
 
 [alias]
 	co = checkout
@@ -31,3 +31,6 @@
 
 [fetch]
   prune = true
+
+[commit]
+  template = ~/.gitmessage
