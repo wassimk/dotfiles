@@ -15,6 +15,7 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'edkolev/tmuxline.vim'
+  Plug 'scrooloose/syntastic'
 call plug#end()
 
 " The Silver Searching command, use it for CtrlP
@@ -42,6 +43,18 @@ let g:tmuxline_preset = {
       \'z'    : '#h',
       \ 'options': { 'status-justify': 'left' }
 \}
+
+" Syntas Checking with syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 
 let mapleader = ","
 imap jj <esc>
