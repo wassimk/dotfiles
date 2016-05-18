@@ -1,4 +1,17 @@
 # Specifically for The Silver Searching (ag)
+# Used with control-p
 # https://github.com/ggreer/the_silver_searcher/wiki/Advanced-Usage
 
-.git/
+cookbooks
+log
+vendor
+tmp
+public/assets
+public/fonts
+
+/.bundle/
+/.git/
+/.vagrant/
+
+*.sql
+*.svg
