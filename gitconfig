@@ -22,7 +22,6 @@
 	lg = !git lg1
 	car = commit --amend --no-edit
 	unstage = reset
-	uncommit = reset --soft HEAD^
 
 [push]
 	default = simple
