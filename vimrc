@@ -1,3 +1,5 @@
+let mapleader = ","
+
 """"
 " vim-plug - https://github.com/junegunn/vim-plug
 """"
@@ -75,6 +77,7 @@ set secure                      " Limit what modelines and autocmds can do
 set relativenumber              " Show line numbers relative to cursor position
 set autoread                    " Used when edting same file with vim, twice
 set autoindent                  " Always auto-indent
+set showcmd                     " Show when leader is hit
 set ruler                       " Not sure, from sensible
 set complete-=i                 " Not sure, from sensible
 set smarttab                    " Not sure, from sensible
