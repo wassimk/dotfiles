@@ -1,10 +1,12 @@
 # Set personal aliases, overriding those provided by oh-my-zsh libs
 # plugins, and themes. For a full list of active aliases, run `alias`.
-alias ll='ls -lhF'    # Pretty listing
-alias la='ls -lahF'    # Show all files
-alias lh='ls -ldhF .*'  # Show dot files / folders
-alias l='ll'          # Override oh-my-zsh default
+alias ll='ls -lhF'      # Pretty listing
+alias l='ll'            # Override oh-my-zsh default
+alias lsl='ll'          # Because I keep typing it!
+alias la='ls -lahF'     # Show all files
 alias lsa='la'          # Override oh-my-zsh default
+alias lh='ls -ldhF .*'  # Show dot files / folders
+alias lsh='lh'          # Because I keep typing it!
 
 # Editor
 alias v=$EDITOR
