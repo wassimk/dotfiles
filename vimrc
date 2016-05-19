@@ -1,3 +1,7 @@
+# use vim as the visual editor
+export VISUAL='vim'
+export EDITOR=$VISUAL
+
 """"
 " vim-plug - https://github.com/junegunn/vim-plug
 """"
@@ -75,3 +79,9 @@ set secure                      " Limit what modelines and autocmds can do
 set relativenumber              " Show line numbers relative to cursor position
 set autoread                    " Used when edting same file with vim, twice
 set autoindent                  " Always auto-indent
+set ruler                       " Not sure, from sensible
+set complete-=i                 " Not sure, from sensible
+set smarttab                    " Not sure, from sensible
+set display+=lastline           " Not sure, from sensible
+set scrolloff=1                 " Not sure, from sensible
+set sidescrolloff=5             " Not sure, from sensible
