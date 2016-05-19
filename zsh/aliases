@@ -6,6 +6,10 @@ alias lh='ls -ldhF .*'  # Show dot files / folders
 alias l='ll'          # Override oh-my-zsh default
 alias lsa='la'          # Override oh-my-zsh default
 
+# Editor
+alias v=$EDITOR
+alias e=v
+
 # Reload zsh
 alias zs='source ~/.zshrc'
 

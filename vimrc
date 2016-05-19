@@ -1,7 +1,3 @@
-# use vim as the visual editor
-export VISUAL='vim'
-export EDITOR=$VISUAL
-
 """"
 " vim-plug - https://github.com/junegunn/vim-plug
 """"

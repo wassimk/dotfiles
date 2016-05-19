@@ -1,3 +1,7 @@
+# Use vim as the visual editor
+export VISUAL='vim'
+export EDITOR=$VISUAL
+
 # Load oh-my-zsh plugins, auto-completion, themes, etc.
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="wassimk"
