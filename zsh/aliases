@@ -12,6 +12,11 @@ alias lsh='lh'          # Because I keep typing it!
 alias v=$EDITOR
 alias e=v
 
+# Tmuxinator
+# tmuxinator gem makes this alias but it's broken in rubygems
+# https://github.com/rubygems/rubygems/issues/1577
+alias mux=tmuxinator
+
 # Reload zsh
 alias zs='source ~/.zshrc'
 
