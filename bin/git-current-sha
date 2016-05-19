@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+current_sha = `git rev-parse HEAD`.chomp
+
+puts "The current sha is: #{current_sha}"

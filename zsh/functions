@@ -57,11 +57,8 @@ function g {
   fi
 }
 
-# Allows commit message without typing quotes (
-# can't have quotes in the commit msg though).
-function gc {
-  git commit -m "$*"
-}
+# Complete g like git
+compdef g=git
 
 ####
 # Other Functions
