@@ -1,20 +1,12 @@
 #!/bin/sh
-
-# Git pre-commit hook to check all staged Ruby (*.rb/haml/coffee) files
-# for Pry binding references
-#
-# From https://gist.github.com/alexbevi/3436040
 #
 # Installation
 #
-#   ln -s ~/.dotfiles/bin/git-pre-commit-hook.sh /path/to/project/.git/hooks/pre-commit
-#
-# Based on
-#
-#   http://codeinthehole.com/writing/tips-for-using-a-git-pre-commit-hook/
-#   http://mark-story.com/posts/view/using-git-commit-hooks-to-prevent-stupid-mistakes
-#   https://gist.github.com/3266940
+#   ln -s ~/.bin/git-pre-commit-hook.sh /path/to/project/.git/hooks/pre-commit
 
+# Check all staged Ruby (*.rb/haml/coffee) files
+# for Pry binding references
+# https://gist.github.com/alexbevi/3436040
 FILES='(js|css|rb)'
 FORBIDDEN='(binding.pry|console.log|\!important)'
 GREP_COLOR='4;5;37;41'
@@ -26,4 +18,16 @@ if [[ $(git diff --cached --name-only | grep -E $FILES) ]]; then
   exit 1
 fi
 
+# Run Test Suite
+# If file exists and is executable
+if [ -x ./run_tests.sh ]; then
+  echo "Running tests via pre-commit hook"
+  git stash -q --keep-index
+  ./run_tests.sh
+  RESULT=$?
+  git stash pop -q
+  [ $RESULT -ne 0 ] && exit 1
+fi
+
+# Get this far then nothing failed so exit clean
 exit 0
