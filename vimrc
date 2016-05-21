@@ -135,7 +135,7 @@ map <silent> <C-n> :NERDTreeToggle<CR>
 let mapleader = "\<Space>"
 
 " Split edit vimrc
-nmap <leader>evr :sp $MYVIMRC<cr>
+nmap <leader>ev :sp $MYVIMRC<cr>
 
 " Source (reload) vimrc
-nmap <leader>svr :source $MYVIMRC<cr>
+nmap <leader>sv :source $MYVIMRC<cr>
