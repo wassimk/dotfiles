@@ -54,9 +54,6 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 
-" NERDTree Toggle
-map <silent> <C-n> :NERDTreeFocus<CR>
-
 " The Silver Searcher
 " brew install the_silver_searcher
 if executable('ag')
@@ -128,6 +125,9 @@ imap jj <esc>
 
 " bind K to grep the word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" NERDTree Toggle
+map <silent> <C-n> :NERDTreeToggle<CR>
 
 """"
 " Custom Leader Mappings
