@@ -1,11 +1,10 @@
-let mapleader = ","
-
 """"
 " vim-plug - https://github.com/junegunn/vim-plug
 """"
 call plug#begin()
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'mileszs/ack.vim'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-rails'
@@ -13,6 +12,7 @@ call plug#begin()
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-fugitive'
   Plug 'thoughtbot/vim-rspec'
+  Plug 'vim-ruby/vim-ruby'
   Plug 'scrooloose/nerdtree'
   Plug 'nanotech/jellybeans.vim'
   Plug 'vim-airline/vim-airline'
@@ -20,12 +20,6 @@ call plug#begin()
   Plug 'edkolev/tmuxline.vim'
   Plug 'scrooloose/syntastic'
 call plug#end()
-
-" The Silver Searching command, use it for CtrlP
-" Turn off CtrlP caching because it's now so much faster
-" Install first from https://github.com/ggreer/the_silver_searcher
-let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
-let g:ctrlp_use_caching = 0
 
 " Use the color scheme from Plugin
 colorscheme jellybeans
@@ -59,14 +53,24 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 
-let mapleader = ","
-imap jj <esc>
+" The Silver Searcher
+" brew install the_silver_searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
 
-" Split edit vimrc
-nmap <leader>evr :sp $MYVIMRC<cr>
+  " Use ag for ack
+  if executable('ag')
+    let g:ackprg = 'ag --vimgrep'
+  endif
 
-" Source (reload) vimrc
-nmap <leader>svr :source $MYVIMRC<cr>
+  " Use ag for CtrlP and turn off caching because it's now so much faster
+  let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+endif
+
+" Enable built-in matchit plugin
+runtime macros/matchit.vim
 
 syntax on
 filetype on
@@ -100,6 +104,10 @@ set sidescrolloff=5             " Not sure, from sensible
 
 " Break those bad habits
 " NO more arrow keys!
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
 inoremap <up> <nop>
 vnoremap <up> <nop>
 inoremap <down> <nop>
@@ -108,3 +116,22 @@ inoremap <left> <nop>
 vnoremap <right> <nop>
 vnoremap <left> <nop>
 inoremap <right> <nop>
+
+""""
+" Customer Key Mappings
+""""
+imap jj <esc>
+
+" bind K to grep the word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+""""
+" Custom Leader Mappings
+""""
+let mapleader = "\<Space>"
+
+" Split edit vimrc
+nmap <leader>evr :sp $MYVIMRC<cr>
+
+" Source (reload) vimrc
+nmap <leader>svr :source $MYVIMRC<cr>
