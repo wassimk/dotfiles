@@ -2,24 +2,33 @@
 " vim-plug - https://github.com/junegunn/vim-plug
 """"
 call plug#begin()
-  Plug 'christoomey/vim-tmux-navigator'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'mileszs/ack.vim'
+  " Code / Git
+  Plug 'scrooloose/syntastic'
   Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-repeat'
-  Plug 'tpope/vim-rails'
   Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-fugitive'
-  Plug 'thoughtbot/vim-rspec'
+
+  " Ruby / Rails
   Plug 'vim-ruby/vim-ruby'
+  Plug 'thoughtbot/vim-rspec'
+  Plug 'tpope/vim-rails'
+
+  " Files and Search
+  Plug 'ctrlpvim/ctrlp.vim'
   Plug 'scrooloose/nerdtree'
-  Plug 'nanotech/jellybeans.vim'
   Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'mileszs/ack.vim'
+
+  " Pretty much automatic
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-endwise'
+
+  " Theme / Status Line / Tmux
+  Plug 'nanotech/jellybeans.vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'edkolev/tmuxline.vim'
-  Plug 'scrooloose/syntastic'
+  Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 " Use the color scheme from Plugin
