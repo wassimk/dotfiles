@@ -62,6 +62,18 @@ let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 let mapleader = ","
 imap jj <esc>
 
+" Split edit vimrc
+nmap <leader>evr :sp $MYVIMRC<cr>
+
+" Source (reload) vimrc
+nmap <leader>svr :source $MYVIMRC<cr>
+
+syntax on
+filetype on
+filetype indent on
+filetype plugin on
+
+set nocompatible                " This is Vim not Vi
 set laststatus=2                " Always show status line
 set number                      " Display line numbers beside buffer
 set lazyredraw                  " Don't update while executing macros
@@ -78,9 +90,21 @@ set relativenumber              " Show line numbers relative to cursor position
 set autoread                    " Used when edting same file with vim, twice
 set autoindent                  " Always auto-indent
 set showcmd                     " Show when leader is hit
+set colorcolumn=97              " Show colored column at 97 chars"
 set ruler                       " Not sure, from sensible
 set complete-=i                 " Not sure, from sensible
 set smarttab                    " Not sure, from sensible
 set display+=lastline           " Not sure, from sensible
 set scrolloff=1                 " Not sure, from sensible
 set sidescrolloff=5             " Not sure, from sensible
+
+" Break those bad habits
+" NO more arrow keys!
+inoremap <up> <nop>
+vnoremap <up> <nop>
+inoremap <down> <nop>
+vnoremap <down> <nop>
+inoremap <left> <nop>
+vnoremap <right> <nop>
+vnoremap <left> <nop>
+inoremap <right> <nop>
