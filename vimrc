@@ -15,6 +15,7 @@ call plug#begin()
   Plug 'vim-ruby/vim-ruby'
   Plug 'scrooloose/nerdtree'
   Plug 'nanotech/jellybeans.vim'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'edkolev/tmuxline.vim'
@@ -52,6 +53,9 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+
+" NERDTree Toggle
+map <silent> <C-n> :NERDTreeFocus<CR>
 
 " The Silver Searcher
 " brew install the_silver_searcher
