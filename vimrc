@@ -128,7 +128,7 @@ vnoremap <left> <nop>
 inoremap <right> <nop>
 
 """"
-" Customer Key Mappings
+" Custom Key Mappings
 """"
 imap jj <esc>
 
