@@ -53,3 +53,7 @@ database.yml
 # Vagrant
 #############
 .vagrant
+
+# tmux - airline generated file
+.tmuxline.conf
+tmuxline.conf
