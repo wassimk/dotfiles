@@ -1,8 +1,4 @@
 function s:CheckColorScheme()
-
-  let g:base16colorspace=256
-  let g:airline_powerline_fonts=1
-
   let s:config_file = expand('~/.vim/.base16')
 
   if filereadable(s:config_file)
@@ -19,20 +15,17 @@ function s:CheckColorScheme()
 
       let g:airline_theme='base16_' . s:config[0]
 
-      "Write tmux powerline config so it works without vim next load
+      " Write tmux powerline config so it works without vim next load
       :TmuxlineSnapshot! ~/.tmuxline.conf
     else
       echoerr 'Bad scheme ' . s:config[0] . ' in ' . s:config_file
     endif
   else " default
     set background=dark
-    color base16-tomorrow
-    let g:airline_theme='base16_tomorrow'
+    color base16-default
+    :AirlineTheme base16_default
   endif
 
-  " Allow for overrides:
-  " - `statusline.vim` will re-set User1, User2 etc.
-  " - `after/plugin/loupe.vim` will override Search.
   doautocmd ColorScheme
 endfunction
 

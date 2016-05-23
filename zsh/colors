@@ -8,8 +8,8 @@
 # Usage
 # $ color help
 
-BASE16_DIR=~/.zsh/base16-shell
-BASE16_CONFIG=~/.vim/.base16
+BASE16_DIR=$HOME/.zsh/base16-shell
+BASE16_CONFIG=$HOME/.vim/.base16
 
 color() {
   BACKGROUND="$1"
@@ -74,5 +74,5 @@ if [[ -s "$BASE16_CONFIG" ]]; then
   fi
 else
   # Default.
-  dark tomorrow
+  dark default
 fi

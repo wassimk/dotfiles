@@ -31,9 +31,14 @@ call plug#begin()
   Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
-" vim-arline applies its theme to tmuxline plugin
+" vim-airline theme settings
+set t_cO=256
+let g:base16colorspace=256
+let g:airline_powerline_fonts=1
+
+" vim-airline applies its theme to tmuxline plugin
 " these are preferred defaults, info at https://github.com/edkolev/tmuxline.vim
-" generate a new tmuxline.conf with any change via vim with :TmuxlineSnapshot! ~/.tmuxline.conf
+" auto-generated via ~/.vim/after/plugin/color.vim"
 " make sure and change terminal font to one of the powerline fonts
 let g:tmuxline_preset = {
       \'a'    : '#S',
