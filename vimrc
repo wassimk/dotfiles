@@ -24,19 +24,13 @@ call plug#begin()
   Plug 'tpope/vim-endwise'
 
   " Theme / Status Line / Tmux
-  Plug 'nanotech/jellybeans.vim'
+  Plug 'chriskempson/base16-vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'edkolev/tmuxline.vim'
   Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
-" Use the color scheme from Plugin
-colorscheme jellybeans
-
-" vim-airline theme for fancy status bar
-let g:airline_theme='jellybeans'
-let g:airline_powerline_fonts=1 " install fonts first, in the repo
 " vim-arline applies its theme to tmuxline plugin
 " these are preferred defaults, info at https://github.com/edkolev/tmuxline.vim
 " generate a new tmuxline.conf with any change via vim with :TmuxlineSnapshot! ~/.tmuxline.conf
@@ -70,9 +64,8 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag for ack
-  if executable('ag')
-    let g:ackprg = 'ag --vimgrep'
-  endif
+  let g:ackprg = 'ag --vimgrep'
+
 
   " Use ag for CtrlP and turn off caching because it's now so much faster
   let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
@@ -82,10 +75,8 @@ endif
 " Enable built-in matchit plugin
 runtime macros/matchit.vim
 
+filetype indent plugin on
 syntax on
-filetype on
-filetype indent on
-filetype plugin on
 
 set nocompatible                " This is Vim not Vi
 set laststatus=2                " Always show status line
@@ -99,7 +90,7 @@ set expandtab                   " Convert <tab> to spaces (2 or 4)
 set tabstop=2                   " Two spaces per tab as default
 set shiftwidth=2                "     then override with per filteype
 set softtabstop=2               "     specific settings via autocmd
-set secure                      " Limit what modelines and autocmds can do
+" set secure                      " Limit what modelines and autocmds can do
 set relativenumber              " Show line numbers relative to cursor position
 set autoread                    " Used when edting same file with vim, twice
 set autoindent                  " Always auto-indent
