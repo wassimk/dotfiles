@@ -7,6 +7,7 @@ call plug#begin()
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
+  Plug 'Valloric/YouCompleteMe'
 
   " Ruby / Rails
   Plug 'vim-ruby/vim-ruby'
@@ -102,6 +103,7 @@ set autoread                    " Used when edting same file with vim, twice
 set autoindent                  " Always auto-indent
 set showcmd                     " Show when leader is hit
 set colorcolumn=97              " Show colored column at 97 chars"
+set wildmenu                    " Not sure, from sensible
 set ruler                       " Not sure, from sensible
 set complete-=i                 " Not sure, from sensible
 set smarttab                    " Not sure, from sensible
