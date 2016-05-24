@@ -13,6 +13,7 @@ call plug#begin()
   Plug 'vim-ruby/vim-ruby'
   Plug 'thoughtbot/vim-rspec'
   Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-bundler'
 
   " Files and Search
   Plug 'ctrlpvim/ctrlp.vim'
