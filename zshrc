@@ -16,8 +16,8 @@ export PATH=$PATH:$HOME/.dotfiles/bin
 # Sourcing of other files
 source $HOME/.dotfiles/zsh/aliases
 source $HOME/.dotfiles/zsh/functions
-source $HOME/.dotfiles/zsh/colors
 source $HOME/.bin/tmuxinator.zsh
+source $HOME/.dotfiles/zsh/colors
 
 # Node Version Manager
 export NVM_DIR="/Users/wassim/.nvm"

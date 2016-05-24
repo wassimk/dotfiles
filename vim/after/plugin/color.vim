@@ -31,7 +31,7 @@ endfunction
 
 if v:progname !=# 'vi'
   if has('autocmd')
-    augroup WincentAutocolor
+    augroup WamAutocolor
       autocmd!
       autocmd FocusGained * call s:CheckColorScheme()
     augroup END
