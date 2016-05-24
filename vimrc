@@ -117,6 +117,11 @@ set display+=lastline           " Not sure, from sensible
 set scrolloff=1                 " Not sure, from sensible
 set sidescrolloff=5             " Not sure, from sensible
 
+" (Hopefully) removes the delay when hitting esc in insert mode
+set noesckeys
+set ttimeout
+set ttimeoutlen=1
+
 " Break those bad habits
 " NO more arrow keys!
 noremap <up> <nop>
@@ -140,7 +145,7 @@ if has('autocmd')
     autocmd!
 
     autocmd VimResized * execute "normal! \<c-w>="
-  augroup END
+ augroup END
 endif
 
 """"
