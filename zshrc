@@ -22,8 +22,3 @@ source $HOME/.dotfiles/zsh/colors
 # Node Version Manager
 export NVM_DIR="/Users/wassim/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# Show contents of directory after cd-ing into it
-chpwd() {
-  ll
-}

@@ -82,3 +82,8 @@ function weather() {
         curl wttr.in/74041
     fi
 }
+
+# Show contents of directory after cd-ing into it
+chpwd() {
+  ll
+}
