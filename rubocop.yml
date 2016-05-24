@@ -1,4 +1,5 @@
 AllCops:
+  TargetRubyVersion: 2.3
   Include:
   - "**/*.gemspec"
   - "**/*.podspec"
@@ -20,10 +21,24 @@ AllCops:
   - "config/**/*"
   - "bin/**/*"
   - "app/views/**/*"
+  - "tmp/**/*"
   DisplayCopNames: false
   StyleGuideCopsOnly: false
 Rails:
   Enabled: true
+Style/Documentation:
+  Description: Document classes and non-namespace modules.
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Description: Use nested modules/class definitions instead of compact style.
+  Enabled: false
+Style/GuardClause:
+  Description: Check for conditionals that can be replaced with guard clauses
+  StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-nested-conditionals
+  Enabled: true
+  MinBodyLength: 1
+Style/FrozenStringLiteralComment:
+  Enabled: false
 Metrics/ClassLength:
   Description: Avoid classes longer than 100 lines of code.
   Enabled: false
@@ -33,12 +48,6 @@ Metrics/LineLength:
   Description: Limit lines to 100 characters.
   Enabled: false
   Max: 100
-Style/Documentation:
-  Description: Document classes and non-namespace modules.
-  Enabled: false
-Style/ClassAndModuleChildren:
-  Description: Use nested modules/class definitions instead of compact style.
-  Enabled: false
 Metrics/MethodLength:
   Description: Avoid methods longer than 10 lines of code.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#short-methods
@@ -57,8 +66,3 @@ Metrics/PerceivedComplexity:
   Description: A complexity metric geared towards measuring complexity for a human reader.
   Enabled: false
   Max: 7
-Style/GuardClause:
-  Description: Check for conditionals that can be replaced with guard clauses
-  StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-nested-conditionals
-  Enabled: false
-  MinBodyLength: 1
