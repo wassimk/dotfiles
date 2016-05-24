@@ -82,15 +82,20 @@ let g:airline_powerline_fonts=1
 
 " vim-airline applies its theme to tmuxline plugin
 " these are preferred defaults, info at https://github.com/edkolev/tmuxline.vim
-" auto-generated via ~/.vim/after/plugin/color.vim"
 " make sure and change terminal font to one of the powerline fonts
+
+" Automatically change the theme?
+let g:airline#extensions#tmuxline#enabled = 1
+
+" Update config file automatically
+let airline#extensions#tmuxline#snapshot_file = "~/.tmuxline.conf"
 let g:tmuxline_preset = {
       \'a'    : '#S',
       \'win'  : '#I #W',
       \'cwin' : '#I #W #F',
       \'x'    : '#(battery -t)',
       \'y'    : ['%a, %b %d', '%I:%M %p'],
-      \'z'    : '#h',
+      \'z'    : '',
       \ 'options': { 'status-justify': 'left' }
 \}
 
