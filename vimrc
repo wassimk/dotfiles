@@ -127,6 +127,17 @@ vnoremap <left> <nop>
 inoremap <right> <nop>
 
 """"
+" Autocmd's
+""""
+if has('autocmd')
+  augroup WamAutocmds
+    autocmd!
+
+    autocmd VimResized * execute "normal! \<c-w>="
+  augroup END
+endif
+
+""""
 " Custom Key Mappings
 """"
 imap jj <esc>
