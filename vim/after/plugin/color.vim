@@ -1,3 +1,12 @@
+""""
+" Automatic Theme Apply
+""""
+
+" This function runs anytime Vim is started or focus gained, it
+" matches the color scheme of the terminal that uses base16-shell
+" See zshrc for that configuration under the colors source
+" - Requires the base16-vim plugin"
+
 function s:CheckColorScheme()
   let s:config_file = expand('~/.vim/.base16')
 
