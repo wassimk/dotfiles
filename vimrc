@@ -118,9 +118,10 @@ set scrolloff=1                 " Not sure, from sensible
 set sidescrolloff=5             " Not sure, from sensible
 
 " (Hopefully) removes the delay when hitting esc in insert mode
-set noesckeys
-set ttimeout
-set ttimeoutlen=1
+" set noesckeys
+" set timeoutlen=5000
+" set ttimeout
+" set ttimeoutlen=1
 
 " Break those bad habits
 " NO more arrow keys!
@@ -151,7 +152,7 @@ endif
 """"
 " Custom Key Mappings
 """"
-imap jj <esc>
+inoremap jj <esc>
 
 " bind K to grep the word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
