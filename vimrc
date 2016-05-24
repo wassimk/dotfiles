@@ -8,6 +8,8 @@ call plug#begin()
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
   Plug 'Valloric/YouCompleteMe'
+  Plug 'xolox/vim-misc'
+  Plug 'xolox/vim-easytags'
 
   " Ruby / Rails
   Plug 'vim-ruby/vim-ruby'
