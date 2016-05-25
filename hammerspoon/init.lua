@@ -66,7 +66,7 @@ local layoutConfig = {
     end
   end),
 
-  -- Full screen single display or left half of primary 
+  -- Full screen single display or left half of primary
   ['com.googlecode.iterm2'] = (function(window, forceScreenCount)
     local count = forceScreenCount or screenCount
     if count == 1 then
@@ -94,6 +94,16 @@ local layoutConfig = {
       hs.grid.set(window, grid.rightHalf, hs.screen.primaryScreen())
     end
   end),
+
+  ['com.apple.iCal'] = (function(window, forceScreenCount)
+    local count = forceScreenCount or screenCount
+    if count == 1 then
+      hs.grid.set(window, grid.fullScreen)
+    else
+      hs.grid.set(window, grid.rightHalf, hs.screen.primaryScreen())
+    end
+  end),
+
 
   -- Always full screen internal or single display
   ['com.tinyspeck.slackmacgap'] = (function(window)
