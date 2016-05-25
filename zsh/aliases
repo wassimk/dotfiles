@@ -17,8 +17,11 @@ alias e=v
 # https://github.com/rubygems/rubygems/issues/1577
 alias mux=tmuxinator
 
-# Reload zsh
-alias zs='source ~/.zshrc'
+# Edit and vim and zsh, source zs
+alias sz='source ~/.zshrc'
+alias ez='e ~/.zshrc'
+alias eza='e ~/.zsh/aliases'
+alias ev='e ~/.vimrc'
 
 ###
 # tmux
