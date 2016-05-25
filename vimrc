@@ -7,6 +7,7 @@ call plug#begin()
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-eunuch'
   Plug 'Valloric/YouCompleteMe'
 
   " Ruby / Rails
