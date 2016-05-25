@@ -52,6 +52,7 @@ local layoutConfig = {
     end
   end),
 
+  -- Full screen single display or left half of primary 
   ['com.googlecode.iterm2'] = (function(window, forceScreenCount)
     local count = forceScreenCount or screenCount
     if count == 1 then
@@ -61,6 +62,17 @@ local layoutConfig = {
     end
   end),
 
+  -- Full screen single display or left half of primary 
+  ['com.apple.mail'] = (function(window, forceScreenCount)
+    local count = forceScreenCount or screenCount
+    if count == 1 then
+      hs.grid.set(window, grid.fullScreen)
+    else
+      hs.grid.set(window, grid.leftHalf, hs.screen.primaryScreen())
+    end
+  end),
+
+  -- Full screen single display or right half of primary
   ['com.github.atom'] = (function(window, forceScreenCount)
     local count = forceScreenCount or screenCount
     if count == 1 then
@@ -70,10 +82,12 @@ local layoutConfig = {
     end
   end),
 
+  -- Always full screen internal or single display
   ['com.tinyspeck.slackmacgap'] = (function(window)
     hs.grid.set(window, grid.fullScreen, internalDisplay())
   end),
 
+  -- Always right half of internal or single display
   ['com.skype.skype'] = (function(window)
     hs.grid.set(window, grid.rightHalf, internalDisplay())
   end)
