@@ -159,7 +159,10 @@ endif
 """"
 inoremap jj <esc>
 
-" bind K to grep the word under cursor
+" Copy into system clipboard
+vnoremap <C-c> "*y
+
+" Bind K to grep the word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " NERDTree Toggle
