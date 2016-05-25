@@ -40,6 +40,19 @@ local layoutConfig = {
   end),
 
   -- Full screen on single display or right half odd and left half even windows
+  ['com.apple.Safari'] = (function(window, forceScreenCount)
+    local count = forceScreenCount or screenCount
+    if count == 1 then
+      hs.grid.set(window, grid.fullScreen)
+    else
+      -- First/odd windows go on the RIGHT side of the screen.
+      -- Second/even windows go on the LEFT side.
+      local windows = windowCount(window:application())
+      local side = windows % 2 == 0 and grid.leftHalf or grid.rightHalf
+      hs.grid.set(window, side, hs.screen.primaryScreen())
+    end
+  end),
+
   ['com.google.Chrome'] = (function(window, forceScreenCount)
     local count = forceScreenCount or screenCount
     if count == 1 then
