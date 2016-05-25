@@ -8,6 +8,7 @@ call plug#begin()
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-eunuch'
+  Plug 'tpope/vim-dispatch'
   Plug 'Valloric/YouCompleteMe'
 
   " Ruby / Rails
@@ -34,6 +35,10 @@ call plug#begin()
   Plug 'wincent/terminus'
   Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
+
+" Run vim-rspec commands with dispatch
+" Zeus needs to be installed with gem install zeus first
+let g:rspec_command = "Dispatch rspec {spec}"
 
 " vim-airline theme settings
 set t_cO=256
@@ -173,8 +178,15 @@ map <silent> <C-n> :NERDTreeToggle<CR>
 """"
 let mapleader = "\<Space>"
 
-" Split edit vimrc
-nmap <leader>ev :sp $MYVIMRC<cr>
+" Split edit vimrc and zshrc
+nmap <leader>ev :vsplit $MYVIMRC<cr>
+nmap <leader>ez :vsplit ~/.zshrc<cr>
 
 " Source (reload) vimrc
 nmap <leader>sv :source $MYVIMRC<cr>
+
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
