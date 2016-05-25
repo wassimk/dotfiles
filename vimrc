@@ -110,6 +110,7 @@ set autoread                    " Used when edting same file with vim, twice
 set autoindent                  " Always auto-indent
 set showcmd                     " Show when leader is hit
 set colorcolumn=97              " Show colored column at 97 chars"
+set hlsearch                    " Highlight /search results
 set wildmenu                    " Not sure, from sensible
 set ruler                       " Not sure, from sensible
 set complete-=i                 " Not sure, from sensible
@@ -117,6 +118,9 @@ set smarttab                    " Not sure, from sensible
 set display+=lastline           " Not sure, from sensible
 set scrolloff=1                 " Not sure, from sensible
 set sidescrolloff=5             " Not sure, from sensible
+
+"This unsets the "last search pattern" register by hitting return
+nnoremap <silent> <CR> :noh<CR><CR>
 
 " (Hopefully) removes the delay when hitting esc in insert mode
 " set noesckeys
