@@ -452,4 +452,5 @@ function reloadConfig(files)
   end
 end
 
-hs.pathwatcher.new(os.getenv('HOME') .. '/.hammerspoon/', reloadConfig):start()
+-- Can't seem to follow the symlink, watch directly in .dotfiles/
+hs.pathwatcher.new(os.getenv('HOME') .. '/.dotfiles/hammerspoon/', reloadConfig):start()
