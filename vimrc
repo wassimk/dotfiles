@@ -16,6 +16,7 @@ call plug#begin()
   Plug 'thoughtbot/vim-rspec'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-bundler'
+  Plug 'tpope/vim-rake'
 
   " Files and Search
   Plug 'ctrlpvim/ctrlp.vim'
@@ -27,13 +28,13 @@ call plug#begin()
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-endwise'
 
-  " Theme / Status Line / Tmux
+  " Theme / Status Line / Tmux / Pretty Terminal
   Plug 'chriskempson/base16-vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'edkolev/tmuxline.vim'
-  Plug 'wincent/terminus'
   Plug 'christoomey/vim-tmux-navigator'
+  Plug 'wincent/terminus'
 call plug#end()
 
 " Run vim-rspec commands with dispatch
