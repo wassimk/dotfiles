@@ -23,6 +23,7 @@ call plug#begin()
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'mileszs/ack.vim'
+  Plug 'skwp/greplace.vim'
 
   " Pretty much automatic
   Plug 'tpope/vim-repeat'
