@@ -117,6 +117,9 @@ set autoindent                  " Always auto-indent
 set showcmd                     " Show when leader is hit
 set colorcolumn=97              " Show colored column at 97 chars"
 set hlsearch                    " Highlight /search results
+set incsearch                   " Incrementally highlight search while typing
+set ignorecase                  " Case insensitive searching
+set smartcase                   " Override ignorecase if pattern has upcase
 set wildmenu                    " Command line auto-complete feature
 set ruler                       " The status line feature of cursor position
 set smarttab                    " Handle tabs, spaces or not smartly
