@@ -129,9 +129,6 @@ set display+=lastline           " Not sure, from sensible
 set scrolloff=1                 " Not sure, from sensible
 set sidescrolloff=5             " Not sure, from sensible
 
-"This unsets the "last search pattern" register by hitting return
-nnoremap <silent> <CR> :noh<CR><CR>
-
 " (Hopefully) removes the delay when hitting esc in insert mode
 " set noesckeys
 " set timeoutlen=5000
@@ -168,6 +165,9 @@ endif
 " Custom Key Mappings
 """"
 inoremap jj <esc>
+
+"This unsets the "last search pattern" register by hitting return
+nnoremap <silent> <CR> :noh<CR><CR>
 
 " Copy into system clipboard
 vnoremap <C-c> "*y
