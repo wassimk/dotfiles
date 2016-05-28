@@ -7,6 +7,9 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="wassimk"
 source $ZSH/oh-my-zsh.sh
 
+# Upgrade oh-my-zsh without asking
+DISABLE_UPDATE_PROMPT=true
+
 # Add current directory bin
 export PATH=$PATH:bin
 
