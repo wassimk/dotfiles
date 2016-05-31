@@ -26,6 +26,8 @@ call plug#begin()
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'mileszs/ack.vim'
   Plug 'skwp/greplace.vim'
+  Plug 'wincent/ferret'
+  Plug 'tpope/vim-unimpaired'
 
   " Pretty much automatic
   Plug 'tpope/vim-repeat'
@@ -39,6 +41,14 @@ call plug#begin()
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'wincent/terminus'
 call plug#end()
+
+" Ferret Plugin
+" Don't map leader shortcuts
+let g:FerretQFMap=0
+
+" Terminus
+" Don't enable mouse support
+let g:TerminusMouse=0
 
 " Run vim-rspec commands with dispatch
 " Zeus needs to be installed with gem install zeus first
