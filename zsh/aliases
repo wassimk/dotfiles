@@ -22,6 +22,7 @@ alias sz='source ~/.zshrc'
 alias ez='e ~/.zshrc'
 alias eza='e ~/.zsh/aliases'
 alias ev='e ~/.vimrc'
+alias git='hub'
 
 ###
 # tmux
