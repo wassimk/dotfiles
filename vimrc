@@ -10,6 +10,8 @@ call plug#begin()
   Plug 'tpope/vim-eunuch'
   Plug 'tpope/vim-dispatch'
   Plug 'Valloric/YouCompleteMe'
+  Plug 'mattn/webapi-vim'
+  Plug 'mattn/gist-vim'
 
   " Ruby / Rails
   Plug 'vim-ruby/vim-ruby'
