@@ -141,6 +141,9 @@ set display+=lastline           " Not sure, from sensible
 set scrolloff=1                 " Not sure, from sensible
 set sidescrolloff=5             " Not sure, from sensible
 
+" Wrap markdown files at 100 characters
+au BufRead,BufNewFile *.md setlocal textwidth=100
+
 " (Hopefully) removes the delay when hitting esc in insert mode
 " set noesckeys
 " set timeoutlen=5000
