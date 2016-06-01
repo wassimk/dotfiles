@@ -136,6 +136,7 @@ set smartcase                   " Override ignorecase if pattern has upcase
 set wildmenu                    " Command line auto-complete feature
 set ruler                       " The status line feature of cursor position
 set smarttab                    " Handle tabs, spaces or not smartly
+set cursorline                  " Highlight current line
 set complete-=i                 " Not sure, from sensible
 set display+=lastline           " Not sure, from sensible
 set scrolloff=1                 " Not sure, from sensible
