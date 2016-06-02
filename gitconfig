@@ -10,7 +10,8 @@
   editor = vim
 
 [alias]
-  b = branch
+  br = branch
+  st = status
   co = checkout
   cl = clone
   df = diff --word-diff --color-words
@@ -40,5 +41,6 @@
 
 [commit]
   template = ~/.gitmessage
+
 [init]
   templatedir = ~/.git_template
