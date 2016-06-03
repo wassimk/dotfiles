@@ -128,7 +128,7 @@ set relativenumber              " Show line numbers relative to cursor position
 set autoread                    " Used when edting same file with vim, twice
 set autoindent                  " Always auto-indent
 set showcmd                     " Show when leader is hit
-set colorcolumn=97              " Show colored column at 97 chars"
+set colorcolumn=100             " Show colored column at 100 chars"
 set hlsearch                    " Highlight /search results
 set incsearch                   " Incrementally highlight search while typing
 set ignorecase                  " Case insensitive searching
