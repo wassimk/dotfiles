@@ -137,6 +137,10 @@ set wildmenu                    " Command line auto-complete feature
 set ruler                       " The status line feature of cursor position
 set smarttab                    " Handle tabs, spaces or not smartly
 set cursorline                  " Highlight current line
+set winwidth=100                " Set minimum width of current window
+set winheight=5                 " Windows all start at 5 lines tall
+set winminheight=5              " Windows always 5 lines tall
+set winheight=999               " Current window full height but preserve 5 lines for others
 set complete-=i                 " Not sure, from sensible
 set display+=lastline           " Not sure, from sensible
 set scrolloff=1                 " Not sure, from sensible
