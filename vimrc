@@ -93,6 +93,8 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 
+" NERDTree Settings
+let NERDTreeMinimalUI = 1
 " The Silver Searcher
 " brew install the_silver_searcher
 if executable('ag')
