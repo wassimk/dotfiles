@@ -42,6 +42,9 @@ call plug#begin()
   Plug 'wincent/terminus'
 call plug#end()
 
+" YouCompleteMe and Eclim working together
+let g:EclimCompletionMethod = 'omnifunc'
+
 " Ferret Plugin
 " Don't map leader shortcuts
 let g:FerretQFMap=0
