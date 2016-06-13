@@ -225,10 +225,10 @@ nmap <leader>ez :vsplit ~/.zshrc<cr>
 nmap <leader>sv :source $MYVIMRC<cr>
 
 " RSpec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+map <leader>tt :call RunCurrentSpecFile()<CR>
+map <leader>tn :call RunNearestSpec()<CR>
+map <leader>tl :call RunLastSpec()<CR>
+map <leader>ta :call RunAllSpecs()<CR>
 
 " Edit todo and notes
 map <Leader>nw :e! ~/Dropbox/docs/todo-work.md<cr>
