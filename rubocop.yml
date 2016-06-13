@@ -61,3 +61,6 @@ Metrics/CyclomaticComplexity:
   Description: A complexity metric that is strongly correlated to the number of test cases needed to validate a method.
   Enabled: false
   Max: 6
+Lint/Debugger:
+  Description: Warn on debugger entries
+  Enabled: False
