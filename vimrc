@@ -12,6 +12,7 @@ call plug#begin()
   Plug 'Valloric/YouCompleteMe'
   Plug 'mattn/webapi-vim'
   Plug 'mattn/gist-vim'
+  Plug 'christoomey/vim-titlecase'
 
   " Ruby / Rails
   Plug 'vim-ruby/vim-ruby'
