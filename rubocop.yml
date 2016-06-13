@@ -20,7 +20,6 @@ AllCops:
   - "db/**/*"
   - "config/**/*"
   - "bin/**/*"
-  - "app/views/**/*"
   - "tmp/**/*"
   DisplayCopNames: false
   StyleGuideCopsOnly: false
@@ -46,7 +45,7 @@ Metrics/ClassLength:
   Max: 100
 Metrics/LineLength:
   Description: Limit lines to 100 characters.
-  Enabled: false
+  Enabled: true
   Max: 100
 Metrics/MethodLength:
   Description: Avoid methods longer than 10 lines of code.
@@ -62,7 +61,3 @@ Metrics/CyclomaticComplexity:
   Description: A complexity metric that is strongly correlated to the number of test cases needed to validate a method.
   Enabled: false
   Max: 6
-Metrics/PerceivedComplexity:
-  Description: A complexity metric geared towards measuring complexity for a human reader.
-  Enabled: false
-  Max: 7
