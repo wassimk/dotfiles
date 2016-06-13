@@ -231,10 +231,10 @@ map <leader>tl :call RunLastSpec()<CR>
 map <leader>ta :call RunAllSpecs()<CR>
 
 " Edit todo and notes
-map <Leader>nw :e! ~/Dropbox/docs/todo-work.md<cr>
-map <Leader>np :e! ~/Dropbox/docs/todo-personal.md<cr>
-map <Leader>nn :e! ~/Dropbox/docs/notes.md<cr>
-map <Leader>nh :e! ~/Dropbox/docs/tiny-habits.md<cr>
+map <leader>nw :e! ~/Dropbox/docs/todo-work.md<cr>
+map <leader>np :e! ~/Dropbox/docs/todo-personal.md<cr>
+map <leader>nn :e! ~/Dropbox/docs/notes.md<cr>
+map <leader>nh :e! ~/Dropbox/docs/tiny-habits.md<cr>
 
 " Auto-indent the whole file
 map <Leader>i mmgg=G`m<CR>
