@@ -39,6 +39,7 @@ call plug#begin()
   Plug 'vim-airline/vim-airline-themes'
   Plug 'edkolev/tmuxline.vim'
   Plug 'christoomey/vim-tmux-navigator'
+  Plug 'christoomey/vim-tmux-runner'
   Plug 'wincent/terminus'
 call plug#end()
 
@@ -46,8 +47,9 @@ call plug#end()
 let g:EclimCompletionMethod = 'omnifunc'
 
 " Ferret Plugin
-" Don't map leader shortcuts
+" Don't map shortcuts
 let g:FerretQFMap=0
+let g:FerretMap=1
 
 " Terminus
 " Don't enable mouse support
@@ -229,3 +231,12 @@ map <Leader>nh :e! ~/Dropbox/docs/tiny-habits.md<cr>
 
 " Auto-indent the whole file
 map <Leader>i mmgg=G`m<CR>
+" Vim tmux runner mappings
+map <leader>rc :VtrSendCommandToRunner<cr>
+map <leader>rl :VtrSendLinesToRunner<cr>
+map <leader>ro :VtrOpenRunner<cr>
+map <leader>rk :VtrKillRunner<cr>
+map <leader>rd :VtrDetachRunner<cr>
+map <leader>ra :VtrReattachRunner<cr>
+map <leader>rf :VtrFlushCommand<cr>
+map <leader>rv :VtrSendSelectedToRunner<cr>
