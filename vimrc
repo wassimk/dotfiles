@@ -227,7 +227,7 @@ nmap <leader>ez :vsplit ~/.zshrc<cr>
 nmap <leader>sv :source $MYVIMRC<cr>
 
 " RSpec.vim mappings
-map <leader>tt :call RunCurrentSpecFile()<CR>
+map <leader>tf :call RunCurrentSpecFile()<CR>
 map <leader>tn :call RunNearestSpec()<CR>
 map <leader>tl :call RunLastSpec()<CR>
 map <leader>ta :call RunAllSpecs()<CR>
