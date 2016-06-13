@@ -219,10 +219,6 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " NERDTree Toggle
 map <silent> <C-n> :NERDTreeToggle<CR>
 
-" Moving Between Tabs
-nnoremap th :tabnext<CR>
-nnoremap tl :tabprev<CR>
-
 """"
 " Custom Leader Mappings
 """"
@@ -262,3 +258,9 @@ map <leader>rd :VtrDetachRunner<cr>
 map <leader>ra :VtrReattachRunner<cr>
 map <leader>rf :VtrFlushCommand<cr>
 map <leader>rv :VtrSendSelectedToRunner<cr>
+
+" title case motion mappings
+let g:titlecase_map_keys = 0
+nmap <leader>gtc <Plug>Titlecase
+vmap <leader>gtc <Plug>Titlecase
+nmap <leader>gTc <Plug>TitlecaseLine
