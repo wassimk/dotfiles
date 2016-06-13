@@ -237,7 +237,11 @@ map <leader>nn :e! ~/Dropbox/docs/notes.md<cr>
 map <leader>nh :e! ~/Dropbox/docs/tiny-habits.md<cr>
 
 " Auto-indent the whole file
-map <Leader>i mmgg=G`m<CR>
+map <leader>fi mmgg=G`m<CR>
+
+" Yank whole file
+map <leader>fy mmggyG`m<CR>
+
 " Vim tmux runner mappings
 map <leader>rc :VtrSendCommandToRunner<cr>
 map <leader>rl :VtrSendLinesToRunner<cr>
