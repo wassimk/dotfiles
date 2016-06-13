@@ -204,14 +204,15 @@ inoremap jj <esc>
 "This unsets the "last search pattern" register by hitting return
 nnoremap <silent> <CR> :noh<CR><CR>
 
-" Copy into system clipboard
-vnoremap <C-c> "*y
-
 " Bind K to grep the word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " NERDTree Toggle
 map <silent> <C-n> :NERDTreeToggle<CR>
+
+" Moving Between Tabs
+nnoremap th :tabnext<CR>
+nnoremap tl :tabprev<CR>
 
 """"
 " Custom Leader Mappings
