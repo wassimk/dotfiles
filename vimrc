@@ -62,7 +62,6 @@ let g:TerminusMouse=0
 " Zeus needs to be installed with gem install zeus first
 let g:rspec_command = "Dispatch rspec {spec}"
 
-" vim-airline theme settings
 set t_cO=256
 let g:base16colorspace=256
 let g:airline_powerline_fonts=1
@@ -109,11 +108,15 @@ if executable('ag')
   " Use ag for ack
   let g:ackprg = 'ag --vimgrep'
 
-
   " Use ag for CtrlP and turn off caching because it's now so much faster
   let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
   let g:ctrlp_use_caching = 0
 endif
+
+augroup quickfix
+  autocmd!
+  autocmd FileType qf setlocal wrap
+augroup END
 
 " Enable built-in matchit plugin
 runtime macros/matchit.vim
