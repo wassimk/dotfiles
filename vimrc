@@ -12,7 +12,6 @@ call plug#begin()
   Plug 'Valloric/YouCompleteMe'
   Plug 'mattn/webapi-vim'
   Plug 'mattn/gist-vim'
-  Plug 'christoomey/vim-titlecase'
 
   " Ruby / Rails
   Plug 'vim-ruby/vim-ruby'
@@ -21,7 +20,17 @@ call plug#begin()
   Plug 'tpope/vim-bundler'
   Plug 'tpope/vim-rake'
 
-  " Files and Search
+  " Vim Text Objects and Motions
+  Plug 'kana/vim-textobj-user'
+  Plug 'nelstrom/vim-textobj-rubyblock'
+  Plug 'kana/vim-textobj-line'
+  Plug 'kana/vim-textobj-entire'
+  Plug 'kana/vim-textobj-indent'
+  Plug 'christoomey/vim-system-copy'
+  Plug 'christoomey/vim-titlecase'
+  Plug 'christoomey/vim-sort-motion'
+
+  " Files And Search
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
