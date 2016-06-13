@@ -46,6 +46,9 @@ call plug#end()
 " YouCompleteMe and Eclim working together
 let g:EclimCompletionMethod = 'omnifunc'
 
+" Syntastic and Eclim working together
+let g:EclimFileTypeValidate = 0
+
 " Ferret Plugin
 " Don't map shortcuts
 let g:FerretQFMap=0
