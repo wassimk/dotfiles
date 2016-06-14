@@ -37,6 +37,7 @@ call plug#begin()
   Plug 'skwp/greplace.vim'
   Plug 'wincent/ferret'
   Plug 'tpope/vim-unimpaired'
+  Plug 'wincent/loupe'
 
   " Pretty much automatic
   Plug 'tpope/vim-repeat'
@@ -208,12 +209,6 @@ endif
 " Custom Key Mappings
 """"
 inoremap jj <esc>
-
-"This unsets the "last search pattern" register by hitting return
-nnoremap <silent> <CR> :noh<CR><CR>
-
-" Bind K to grep the word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " NERDTree Toggle
 map <silent> <C-n> :NERDTreeToggle<CR>
