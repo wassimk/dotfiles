@@ -27,7 +27,6 @@ call plug#begin()
   Plug 'kana/vim-textobj-entire'
   Plug 'kana/vim-textobj-indent'
   Plug 'christoomey/vim-system-copy'
-  Plug 'christoomey/vim-titlecase'
   Plug 'christoomey/vim-sort-motion'
 
   " Files And Search
@@ -258,9 +257,3 @@ map <leader>rd :VtrDetachRunner<cr>
 map <leader>ra :VtrReattachRunner<cr>
 map <leader>rf :VtrFlushCommand<cr>
 map <leader>rv :VtrSendSelectedToRunner<cr>
-
-" title case motion mappings
-let g:titlecase_map_keys = 0
-nmap <leader>gtc <Plug>Titlecase
-vmap <leader>gtc <Plug>Titlecase
-nmap <leader>gTc <Plug>TitlecaseLine
