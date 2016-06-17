@@ -13,6 +13,9 @@ call plug#begin()
   Plug 'mattn/webapi-vim'
   Plug 'mattn/gist-vim'
 
+  " Miscellaneous
+  Plug 'junegunn/vim-easy-align'
+
   " Ruby / Rails
   Plug 'vim-ruby/vim-ruby'
   Plug 'thoughtbot/vim-rspec'
@@ -122,6 +125,9 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
   let g:ctrlp_use_caching = 0
 endif
+
+" Align GitHub-flavored Markdown tables with vim-easy-align
+au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
 augroup quickfix
   autocmd!
