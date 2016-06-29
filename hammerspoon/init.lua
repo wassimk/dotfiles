@@ -435,10 +435,18 @@ hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'f2', (function()
 end))
 
 hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'f3', (function()
-  hs.alert('Hammerspoon console')
   hs.openConsole()
 end))
 
+hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'f4', (function()
+  hs.notify.new({title="Hammerspoon", informativeText="Menu toggled"}):send()
+  hs.menuIcon(not hs.menuIcon())
+end))
+
+hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'f5', (function()
+  hs.notify.new({title="Hammerspoon", informativeText="Config reloaded"}):send()
+  hs.reload()
+end))
 --
 -- Auto-reload config on change.
 --
