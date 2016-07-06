@@ -176,6 +176,8 @@ set complete-=i                 " Not sure, from sensible
 set display+=lastline           " Not sure, from sensible
 set scrolloff=1                 " Not sure, from sensible
 set sidescrolloff=5             " Not sure, from sensible
+set splitright                  " New veritcle splits to the right
+set splitbelow                  " New horizontal split below
 
 " Wrap markdown files at 100 characters
 au BufRead,BufNewFile *.md setlocal textwidth=100
