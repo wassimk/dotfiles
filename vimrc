@@ -76,6 +76,7 @@ let g:TerminusMouse=0
 " Zeus needs to be installed with gem install zeus first
 let g:rspec_command = "Dispatch rspec {spec}"
 
+" Terminal color support for base-16 themes
 set t_cO=256
 let g:base16colorspace=256
 let g:airline_powerline_fonts=1
@@ -113,6 +114,7 @@ let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 
 " NERDTree Settings
 let NERDTreeMinimalUI = 1
+
 " The Silver Searcher
 " brew install the_silver_searcher
 if executable('ag')
