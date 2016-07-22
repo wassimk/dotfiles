@@ -13,6 +13,8 @@ call plug#begin()
   Plug 'Valloric/YouCompleteMe'
   Plug 'mattn/webapi-vim'
   Plug 'mattn/gist-vim'
+  Plug 'yggdroot/indentline'
+  Plug 'ap/vim-css-color'
 
   " Miscellaneous
   Plug 'junegunn/vim-easy-align'
