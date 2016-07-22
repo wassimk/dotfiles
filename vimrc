@@ -186,9 +186,9 @@ au BufRead,BufNewFile *.md setlocal textwidth=100
 
 " (Hopefully) removes the delay when hitting esc in insert mode
 " set noesckeys
-" set timeoutlen=5000
-" set ttimeout
-" set ttimeoutlen=1
+set ttimeout
+set timeoutlen=1000
+set ttimeoutlen=0
 
 " Break those bad habits
 " NO more arrow keys!
