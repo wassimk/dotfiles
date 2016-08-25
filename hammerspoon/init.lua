@@ -207,6 +207,16 @@ local globalWatcher = nil
 local watchers = {}
 local events = hs.uielement.watcher
 
+-- Track the frontmost app that is NOT Hammerspoon
+-- Mainly so I can get bundle id's easier! frontmost:bundleID()
+frontmost = nil
+hs.application.watcher.new(function(_, event, app)
+  if (event == hs.application.watcher.activated
+      and app:bundleID() ~= "org.hammerspoon.Hammerspoon") then
+    frontmost = app
+  end
+end):start()
+
 function handleGlobalEvent(name, eventType, app)
   if eventType == hs.application.watcher.launched then
     log.df('[event] launched %s', app:bundleID())
