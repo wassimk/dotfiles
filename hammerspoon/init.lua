@@ -1,6 +1,7 @@
 --
 -- Hamerspoon Config
 -- Install it first from - http://www.hammerspoon.org/
+-- Most of this came directly from: github.com/wincent
 --
 
 hs.grid.setGrid('12x12') -- allows us to place on quarters, thirds and halves
