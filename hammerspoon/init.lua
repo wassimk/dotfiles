@@ -108,9 +108,12 @@ local layoutConfig = {
     end
   end),
 
-
   -- Always full screen internal or single display
   ['com.tinyspeck.slackmacgap'] = (function(window)
+    hs.grid.set(window, grid.fullScreen, internalDisplay())
+  end),
+
+  ['com.apple.dt.Xcode'] = (function(window)
     hs.grid.set(window, grid.fullScreen, internalDisplay())
   end),
 
