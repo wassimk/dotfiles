@@ -33,6 +33,10 @@ local grid = {
 }
 
 local layoutConfig = {
+  _before_ = (function()
+    hide('com.twitter.twitter-mac')
+  end),
+
   _after_ = (function()
     -- Make sure apps are in front of others
     activate('com.googlecode.iterm2')
