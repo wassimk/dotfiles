@@ -203,7 +203,6 @@ end
 -- (http://www.hammerspoon.org/docs/hs.window.filter.html) moves out of
 -- "experimental" status, but until then, using a manual approach as
 -- demonstrated at: https://gist.github.com/tmandry/a5b1ab6d6ea012c1e8c5
-
 local globalWatcher = nil
 local watchers = {}
 local events = hs.uielement.watcher
@@ -404,7 +403,6 @@ end
 --
 -- Key bindings.
 --
-
 hs.hotkey.bind({'ctrl', 'alt'}, 'up', chain({
   grid.topHalf,
   grid.topThird,
@@ -465,10 +463,10 @@ hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'f5', (function()
   hs.notify.new({title="Hammerspoon", informativeText="Config reloaded"}):send()
   hs.reload()
 end))
+
 --
 -- Auto-reload config on change.
 --
-
 function reloadConfig(files)
   for _, file in pairs(files) do
     if file:sub(-4) == '.lua' then
