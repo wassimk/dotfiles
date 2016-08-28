@@ -19,7 +19,9 @@ function s:CheckColorScheme()
       echoerr 'Bad background ' . s:config[1] . ' in ' . s:config_file
     endif
 
-    if filereadable(expand('~/.vim/plugged/base16-vim/colors/base16-' . s:config[0] . '.vim'))
+    if filereadable(expand('~/.vim/plugged/base16-vim/colors/base16-' . s:config[0] . '-' . s:config[1] . '.vim'))
+      execute 'color base16-' . s:config[0] . '-' . s:config[1]
+    elseif filereadable(expand('~/.vim/plugged/base16-vim/colors/base16-' . s:config[0] . '.vim'))
       execute 'color base16-' . s:config[0]
     else
       echoerr 'Bad scheme ' . s:config[0] . ' in ' . s:config_file

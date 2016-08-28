@@ -26,11 +26,16 @@ color() {
 
   case "$BACKGROUND" in
   dark|light)
-    FILE="$BASE16_DIR/base16-$SCHEME.$BACKGROUND.sh"
-    if [[ -x "$FILE" ]]; then
+    FILE1="$BASE16_DIR/scripts/base16-$SCHEME-$BACKGROUND.sh"
+    FILE2="$BASE16_DIR/scripts/base16-$SCHEME.sh"
+    if [[ -x "$FILE1" ]]; then
       echo "$SCHEME" >! "$BASE16_CONFIG"
       echo "$BACKGROUND" >> "$BASE16_CONFIG"
-      "$FILE"
+      "$FILE1"
+    elif [[ -x "$FILE2" ]]; then
+        echo "$SCHEME" >! "$BASE16_CONFIG"
+        echo "$BACKGROUND" >> "$BASE16_CONFIG"
+        "$FILE2"
     else
       echo "Scheme '$SCHEME' not found in $BASE16_DIR"
       return 1
@@ -41,9 +46,10 @@ color() {
     echo 'color light [grayscale|harmonic16|ocean|tomorrow|twilight|...]'
     echo
     echo 'Available schemes:'
-    find ~/.zsh/base16-shell -name 'base16-*.sh' | \
+    find  "$BASE16_DIR" -name 'base16-*.sh' | \
       sed -E 's|.+/base16-||' | \
-      sed -E 's/\.(dark|light)\.sh/ (\1)/' | \
+      sed -E 's/\-(dark|light)/ (\1)/' | \
+      sed -E 's/\.sh//' | \
       column
       ;;
 
