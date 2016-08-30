@@ -39,9 +39,9 @@ color() {
       echo "$BACKGROUND" >> "$BASE16_CONFIG"
       "$FILE1"
     elif [[ -x "$FILE2" ]]; then
-        echo "$SCHEME" >! "$BASE16_CONFIG"
-        echo "$BACKGROUND" >> "$BASE16_CONFIG"
-        "$FILE2"
+      echo "$SCHEME" >! "$BASE16_CONFIG"
+      echo "$BACKGROUND" >> "$BASE16_CONFIG"
+      "$FILE2"
     else
       echo "Scheme '$SCHEME' not found in $BASE16_DIR"
       return 1
