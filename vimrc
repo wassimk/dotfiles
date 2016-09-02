@@ -16,6 +16,9 @@ call plug#begin()
   Plug 'yggdroot/indentline'
   Plug 'ap/vim-css-color'
 
+  " JavaScript
+  Plug 'pangloss/vim-javascript'
+
   " Miscellaneous
   Plug 'junegunn/vim-easy-align'
 
