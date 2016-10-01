@@ -18,6 +18,7 @@ call plug#begin()
 
   " JavaScript
   Plug 'pangloss/vim-javascript'
+  Plug 'ternjs/tern_for_vim'
 
   " Miscellaneous
   Plug 'junegunn/vim-easy-align'
@@ -61,12 +62,6 @@ call plug#begin()
   Plug 'christoomey/vim-tmux-runner'
   Plug 'wincent/terminus'
 call plug#end()
-
-" YouCompleteMe and Eclim working together
-let g:EclimCompletionMethod = 'omnifunc'
-
-" Syntastic and Eclim working together
-let g:EclimFileTypeValidate = 0
 
 " Ferret Plugin
 " Don't map shortcuts
@@ -116,6 +111,10 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+let g:syntastic_javascript_checkers = ['standard']
+
+" Automatically fix formating errors in JS file using Stadard
+autocmd bufwritepost *.js silent !standard-format -w %
 
 " NERDTree Settings
 let NERDTreeMinimalUI = 1
