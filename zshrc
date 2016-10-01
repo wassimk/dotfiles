@@ -5,6 +5,7 @@ export EDITOR=$VISUAL
 # Load oh-my-zsh plugins, auto-completion, themes, etc.
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="wassimk"
+plugins=(rails bundler brew gem npm tmuxinator)
 source $ZSH/oh-my-zsh.sh
 
 # Upgrade oh-my-zsh without asking
@@ -21,10 +22,6 @@ source $HOME/.zsh/aliases
 source $HOME/.zsh/functions
 source $HOME/.bin/tmuxinator.zsh
 source $HOME/.zsh/colors
-
-# Node Version Manager
-export NVM_DIR="/Users/wassim/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Source ZSH Syntax Highlighting
 # First install with brew install zsh-syntax-highlighting
