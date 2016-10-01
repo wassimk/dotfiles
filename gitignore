@@ -57,3 +57,4 @@ database.yml
 # tmux - airline generated file
 .tmuxline.conf
 tmuxline.conf
+node_modules/
