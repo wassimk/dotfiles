@@ -23,6 +23,10 @@ source $HOME/.zsh/functions
 source $HOME/.bin/tmuxinator.zsh
 source $HOME/.zsh/colors
 
+# For NPM with Brew Node
+# https://gist.github.com/DanHerbert/9520689
+export PATH="$HOME/.npm-packages/bin:$PATH"
+
 # Source ZSH Syntax Highlighting
 # First install with brew install zsh-syntax-highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
