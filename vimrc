@@ -22,6 +22,7 @@ call plug#begin()
 
   " Miscellaneous
   Plug 'junegunn/vim-easy-align'
+  Plug 'keith/tmux.vim'
 
   " Ruby / Rails
   Plug 'vim-ruby/vim-ruby'
