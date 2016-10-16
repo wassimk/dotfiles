@@ -236,6 +236,7 @@ let mapleader = "\<Space>"
 " Split edit vimrc and zshrc
 nmap <leader>ev :vsplit $MYVIMRC<cr>
 nmap <leader>ez :vsplit ~/.zshrc<cr>
+nmap <leader>et :vsplit ~/.tmux.conf<cr>
 
 " Source (reload) vimrc
 nmap <leader>sv :source $MYVIMRC<cr>

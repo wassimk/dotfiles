@@ -23,6 +23,7 @@ alias ez='e ~/.zshrc'
 alias eza='e ~/.zsh/aliases'
 alias ezf='e ~/.zsh/functions'
 alias ev='e ~/.vimrc'
+alias et='e ~/.tmux.conf'
 alias git='hub'
 
 ###
