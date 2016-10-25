@@ -8,6 +8,7 @@ alias lsa='la'          # Override oh-my-zsh default
 alias lh='ls -ldhF .*'  # Show dot files / folders
 alias lsh='lh'          # Because I keep typing it!
 alias rm='trash'        # Send to trash (brew install trash)
+alias npm='yarn'        # Use yarn instead of npm (brew install yarn)
 
 # Editor
 alias v=$EDITOR
