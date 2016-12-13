@@ -5,7 +5,7 @@ export EDITOR=$VISUAL
 # Load oh-my-zsh plugins, auto-completion, themes, etc.
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="wassimk"
-plugins=(rails bundler brew gem npm tmuxinator)
+plugins=(rails bundler gem npm tmuxinator)
 source $ZSH/oh-my-zsh.sh
 
 # Upgrade oh-my-zsh without asking
@@ -30,3 +30,5 @@ export PATH="$HOME/.npm-packages/bin:$PATH"
 # Source ZSH Syntax Highlighting
 # First install with brew install zsh-syntax-highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
