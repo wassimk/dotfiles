@@ -36,6 +36,8 @@
 
 [merge]
   ff = only
+	tool = vimdiff
+	conflictstyle = diff3
 
 [fetch]
   prune = true
@@ -51,3 +53,5 @@
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
+[mergetool]
+	prompt = false
