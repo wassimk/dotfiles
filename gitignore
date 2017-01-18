@@ -58,3 +58,7 @@ database.yml
 .tmuxline.conf
 tmuxline.conf
 node_modules/
+
+# Ruby
+# ############
+.bundle
