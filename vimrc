@@ -15,10 +15,16 @@ call plug#begin()
   Plug 'mattn/gist-vim'
   Plug 'yggdroot/indentline'
   Plug 'ap/vim-css-color'
+  Plug 'ervandew/supertab'
+  Plug 'jiangmiao/auto-pairs'
+
+  " Snippets
+  Plug 'MarcWeber/vim-addon-mw-utils'
+  Plug 'honza/vim-snippets'
+  Plug 'garbas/vim-snipmate'
 
   " JavaScript
   Plug 'pangloss/vim-javascript'
-  Plug 'ternjs/tern_for_vim'
 
   " Miscellaneous
   Plug 'junegunn/vim-easy-align'
@@ -115,7 +121,7 @@ let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 let g:syntastic_javascript_checkers = ['standard']
 
 " Automatically fix formating errors in JS file using Stadard
-autocmd bufwritepost *.js silent !standard-format -w %
+" autocmd bufwritepost *.js silent !standard-format -w %
 
 " NERDTree Settings
 let NERDTreeMinimalUI = 1
