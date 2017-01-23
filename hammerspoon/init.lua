@@ -179,6 +179,10 @@ function internalDisplay()
   return hs.screen.find('1440x900')
 end
 
+function iMacDisplay()
+   return hs.screen.find('2560x1440')
+ end
+
 function activateLayout(forceScreenCount)
   layoutConfig._before_()
 
