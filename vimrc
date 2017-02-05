@@ -17,6 +17,9 @@ call plug#begin()
   Plug 'ap/vim-css-color'
   Plug 'ervandew/supertab'
   Plug 'jiangmiao/auto-pairs'
+  Plug 'xolox/vim-misc'
+  Plug 'xolox/vim-easytags'
+  Plug 'majutsushi/tagbar'
 
   " Snippets
   Plug 'MarcWeber/vim-addon-mw-utils'
@@ -235,7 +238,9 @@ inoremap jj <esc>
 " NERDTree Toggle
 map <silent> <C-n> :NERDTreeToggle<CR>
 
-""""
+" Tagbar Plugin
+map <silent> <C-b> :TagbarToggle<CR>
+
 " Custom Leader Mappings
 """"
 let mapleader = "\<Space>"
