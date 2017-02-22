@@ -15,6 +15,7 @@
   st = status
   co = checkout
   cl = clone
+  pf = push --force-with-lease
   df = diff --compaction-heuristic
   dfs = diff --staged --compaction-heuristic
   cleanup = !git remote prune origin && git gc && git clean -df && git stash clear
