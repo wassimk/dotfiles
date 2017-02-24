@@ -60,5 +60,9 @@ tmuxline.conf
 node_modules/
 
 # Ruby
-# ############
+#############
 .bundle
+
+# Git
+########
+.git
