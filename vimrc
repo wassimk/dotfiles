@@ -2,6 +2,7 @@
 " vim-plug - https://github.com/junegunn/vim-plug
 """"
 call plug#begin()
+
   " Code / Git
   Plug 'scrooloose/syntastic'
   Plug 'tpope/vim-surround'
@@ -15,11 +16,9 @@ call plug#begin()
   Plug 'mattn/gist-vim'
   Plug 'yggdroot/indentline'
   Plug 'ap/vim-css-color'
-  Plug 'ervandew/supertab'
   Plug 'jiangmiao/auto-pairs'
   Plug 'xolox/vim-misc'
   Plug 'xolox/vim-easytags'
-  Plug 'majutsushi/tagbar'
 
   " Snippets
   Plug 'MarcWeber/vim-addon-mw-utils'
@@ -71,16 +70,13 @@ call plug#begin()
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'christoomey/vim-tmux-runner'
   Plug 'wincent/terminus'
+
 call plug#end()
 
 " Ferret Plugin
 " Don't map shortcuts
 let g:FerretQFMap=0
 let g:FerretMap=1
-
-" Terminus
-" Don't enable mouse support
-let g:TerminusMouse=0
 
 " Run vim-rspec commands with dispatch
 " Zeus needs to be installed with gem install zeus first
@@ -199,6 +195,9 @@ set splitbelow                  " New horizontal split below
 " Wrap markdown files at 100 characters
 au BufRead,BufNewFile *.md setlocal textwidth=100
 
+" Fix highlight of searches
+hi Search cterm=NONE ctermfg=white
+
 " (Hopefully) removes the delay when hitting esc in insert mode
 " set noesckeys
 set ttimeout
@@ -239,8 +238,8 @@ inoremap jj <esc>
 " NERDTree Toggle
 map <silent> <C-n> :NERDTreeToggle<CR>
 
-" Tagbar Plugin
-map <silent> <C-b> :TagbarToggle<CR>
+" CtrlP .gitignore Search
+map <silent> <C-i> :CtrlPMixed<CR>
 
 " Custom Leader Mappings
 """"
