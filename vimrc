@@ -148,6 +148,9 @@ augroup quickfix
   autocmd FileType qf setlocal wrap
 augroup END
 
+" Use system clipboard always
+set clipboard=unnamed
+
 " Enable built-in matchit plugin
 runtime macros/matchit.vim
 
