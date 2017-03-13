@@ -198,9 +198,6 @@ set splitbelow                  " New horizontal split below
 " Wrap markdown files at 100 characters
 au BufRead,BufNewFile *.md setlocal textwidth=100
 
-" Fix highlight of searches
-hi Search cterm=NONE ctermfg=white
-
 " (Hopefully) removes the delay when hitting esc in insert mode
 " set noesckeys
 set ttimeout
