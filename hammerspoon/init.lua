@@ -40,7 +40,7 @@ local layoutConfig = {
 
   _after_ = (function()
     -- Make sure apps are in front of others
-    activate('com.googlecode.iterm2')
+    -- activate('com.googlecode.iterm2')
     -- activate('com.kapeli.dashdoc')
   end),
 
