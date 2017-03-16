@@ -96,7 +96,7 @@ local layoutConfig = {
     if count == 1 then
       hs.grid.set(window, grid.fullScreen)
     else
-      hs.grid.set(window, grid.rightHalf, hs.screen.primaryScreen())
+      hs.grid.set(window, grid.rightTwoThirds, hs.screen.primaryScreen())
     end
   end),
 
@@ -104,6 +104,8 @@ local layoutConfig = {
     local count = forceScreenCount or screenCount
     if count == 1 then
       hs.grid.set(window, grid.fullScreen)
+    elseif atWork() then
+      hs.grid.set(window, grid.leftTwoThirds, internalDisplay())
     else
       hs.grid.set(window, grid.rightHalf, hs.screen.primaryScreen())
     end
@@ -111,7 +113,11 @@ local layoutConfig = {
 
   -- Always full screen internal or single display
   ['com.tinyspeck.slackmacgap'] = (function(window)
-    hs.grid.set(window, grid.fullScreen, internalDisplay())
+    if atWork() then
+      hs.grid.set(window, grid.rightTwoThirds, internalDisplay())
+    else
+      hs.grid.set(window, grid.fullScreen, internalDisplay())
+    end
   end),
 
   ['com.apple.dt.Xcode'] = (function(window)
@@ -173,10 +179,18 @@ function canManageWindow(window)
     bundleID == 'com.googlecode.iterm2'
 end
 
+function atWork()
+  return iMacDisplay()
+end
+
 function internalDisplay()
-  -- Fun fact: this resolution matches both the 13" MacBook Air and the 15"
+  if atWork() then
+    -- External Acer Monitor at Work
+    return hs.screen.find('1920x1080')
+  else
   -- (Retina) MacBook Pro.
-  return hs.screen.find('1440x900')
+    return hs.screen.find('1440x900')
+  end
 end
 
 function iMacDisplay()
