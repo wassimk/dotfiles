@@ -75,7 +75,7 @@ compdef _h h
 
 # Auto complete for nginx servers
 n() { cd /usr/local/etc/nginx/servers/$1; }
-_n() { _files -W ~/usr/local/etc/nginx/servers -/; }
+_n() { _files -W /usr/local/etc/nginx/servers -/; }
 compdef _n n
 
 # Console based weather report, way cool
