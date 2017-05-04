@@ -64,3 +64,9 @@ Metrics/CyclomaticComplexity:
 Lint/Debugger:
   Description: Warn on debugger entries
   Enabled: False
+Style/SymbolArray:
+  Description: Use %i or %I for arrays of symbols.
+  Enabled: false
+Style/RegexpLiteral: 
+  Description: Enforces using / or %r around regular expressions. 
+  EnforcedStyle: percent_r 
