@@ -50,6 +50,7 @@
 
 [commit]
   template = ~/.gitmessage
+  gpgsign = true
 
 [init]
   templatedir = ~/.git_template
