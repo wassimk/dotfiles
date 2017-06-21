@@ -26,9 +26,10 @@ source $HOME/.zsh/functions
 source $HOME/.bin/tmuxinator.zsh
 source $HOME/.zsh/colors
 
-# For NPM with Brew Node
+# For Yarn and NPM with Brew Node
 # https://gist.github.com/DanHerbert/9520689
 export PATH="$HOME/.npm-packages/bin:$PATH"
+export PATH="$PATH:`yarn global bin`"
 
 # Source ZSH Syntax Highlighting
 # First install with brew install zsh-syntax-highlighting
