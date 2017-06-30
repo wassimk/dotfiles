@@ -123,7 +123,7 @@
                 "f8": "f8",
                 "f9": "f9"
             },
-            "name": "Microsoft Natural Ergonomic 4000",
+            "name": "Microsoft_Natural_Ergonomic_4000",
             "selected": true,
             "simple_modifications": {
                 "caps_lock": "left_control",
@@ -253,7 +253,7 @@
                 "f8": "vk_consumer_play",
                 "f9": "vk_consumer_next"
             },
-            "name": "Internal Apple Keyboard",
+            "name": "Internal_Apple_Keyboard",
             "selected": false,
             "simple_modifications": {
                 "caps_lock": "left_control"
