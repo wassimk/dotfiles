@@ -10,6 +10,9 @@ hs.window.animationDuration = 0 -- disable animations
 local screenCount = #hs.screen.allScreens()
 local logLevel = 'info' -- generally want 'debug' or 'info'
 local log = hs.logger.new('wam', logLevel)
+local events = require 'events'
+local karabiner = require 'karabiner'
+local reloader = require 'reloader'
 
 local grid = {
   topHalf = '0,0 12x6',
@@ -494,5 +497,7 @@ function reloadConfig(files)
   end
 end
 
--- Can't seem to follow the symlink, watch directly in .dotfiles/
-hs.pathwatcher.new(os.getenv('HOME') .. '/.dotfiles/hammerspoon/', reloadConfig):start()
+karabiner.init()
+reloader.init()
+
+log.i('Config loaded')
