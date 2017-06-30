@@ -23,7 +23,6 @@ export PATH=$PATH:$HOME/.dotfiles/bin
 # Sourcing of other files
 source $HOME/.zsh/aliases
 source $HOME/.zsh/functions
-source $HOME/.bin/tmuxinator.zsh
 source $HOME/.zsh/colors
 
 # For Yarn and NPM with Brew Node
