@@ -1,7 +1,7 @@
 {
     "global": {
         "check_for_updates_on_startup": true,
-        "show_in_menu_bar": false,
+        "show_in_menu_bar": true,
         "show_profile_name_in_menu_bar": false
     },
     "profiles": [
@@ -206,7 +206,7 @@
                         "product_id": 65535,
                         "vendor_id": 1452
                     },
-                    "ignore": true
+                    "ignore": false
                 },
                 {
                     "disable_built_in_keyboard_if_exists": false,
@@ -216,7 +216,7 @@
                         "product_id": 219,
                         "vendor_id": 1118
                     },
-                    "ignore": false
+                    "ignore": true
                 },
                 {
                     "disable_built_in_keyboard_if_exists": false,
