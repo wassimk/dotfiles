@@ -78,8 +78,7 @@ let g:FerretQFMap=0
 let g:FerretMap=1
 
 " Run vim-rspec commands with dispatch
-" Zeus needs to be installed with gem install zeus first
-let g:rspec_command = "Dispatch rspec {spec}"
+let g:rspec_command = "!clear && rspec {spec}"
 
 " Terminal color support for base-16 themes
 set t_cO=256
