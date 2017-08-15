@@ -11,7 +11,6 @@ local screenCount = #hs.screen.allScreens()
 local logLevel = 'info' -- generally want 'debug' or 'info'
 local log = hs.logger.new('wam', logLevel)
 local events = require 'events'
-local karabiner = require 'karabiner'
 local reloader = require 'reloader'
 
 local grid = {
@@ -497,7 +496,6 @@ function reloadConfig(files)
   end
 end
 
-karabiner.init()
 reloader.init()
 
 log.i('Config loaded')
