@@ -258,7 +258,7 @@ nmap <leader>sv :source $MYVIMRC<cr>
 map <leader>tf :call RunCurrentSpecFile()<CR>
 map <leader>tn :call RunNearestSpec()<CR>
 map <leader>tl :call RunLastSpec()<CR>
-map <leader>ta :call RunAllSpecs()<CR>
+map <leader>ts :call RunAllSpecs()<CR>
 
 " Edit todo and notes
 map <leader>nw :e! ~/Dropbox/docs/todo-work.md<cr>
