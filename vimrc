@@ -18,11 +18,6 @@ call plug#begin()
   Plug 'xolox/vim-misc'
   Plug 'xolox/vim-easytags'
 
-  " Snippets
-  Plug 'MarcWeber/vim-addon-mw-utils'
-  Plug 'honza/vim-snippets'
-  Plug 'garbas/vim-snipmate'
-
   " JavaScript
   Plug 'pangloss/vim-javascript'
 
@@ -50,8 +45,6 @@ call plug#begin()
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'mileszs/ack.vim'
-  Plug 'skwp/greplace.vim'
   Plug 'wincent/ferret'
   Plug 'tpope/vim-unimpaired'
   Plug 'wincent/loupe'
@@ -115,7 +108,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-let g:syntastic_javascript_checkers = ['standard']
+" let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_ignore_files = ['db\/schema.rb']
 
 " Automatically fix formating errors in JS file using Stadard
@@ -198,27 +191,6 @@ set splitbelow                  " New horizontal split below
 
 " Wrap markdown files at 100 characters
 au BufRead,BufNewFile *.md setlocal textwidth=100
-
-" (Hopefully) removes the delay when hitting esc in insert mode
-" set noesckeys
-set ttimeout
-set timeoutlen=1000
-set ttimeoutlen=0
-
-" Break those bad habits
-" NO more arrow keys!
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
-inoremap <up> <nop>
-vnoremap <up> <nop>
-inoremap <down> <nop>
-vnoremap <down> <nop>
-inoremap <left> <nop>
-vnoremap <right> <nop>
-vnoremap <left> <nop>
-inoremap <right> <nop>
 
 """"
 " Autocmd's
