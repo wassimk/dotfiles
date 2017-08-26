@@ -48,6 +48,7 @@ call plug#begin()
   Plug 'wincent/ferret'
   Plug 'tpope/vim-unimpaired'
   Plug 'wincent/loupe'
+  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
   " Pretty much automatic
   Plug 'tpope/vim-repeat'
