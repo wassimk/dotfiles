@@ -8,17 +8,17 @@ ssh-add -A 2>/dev/null
 # Load oh-my-zsh plugins, auto-completion, themes, etc.
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="wassimk"
-plugins=(rails bundler gem npm tmuxinator encode64 jsontools urltools)
+plugins=(rails bundler gem npm tmuxinator encode64 jsontools urltools z)
 source $ZSH/oh-my-zsh.sh
 
 # Upgrade oh-my-zsh without asking
 DISABLE_UPDATE_PROMPT=true
 
-# Add current directory bin
-export PATH=$PATH:bin
-
-# Add my own dotfiles bin
-export PATH=$PATH:$HOME/.dotfiles/bin
+# Add bin directories to path
+export PATH=$PATH:bin # current folder
+export PATH=$PATH:$HOME/.dotfiles/bin # my dot files
+export PATH=$PATH:$HOME/.cargo/bin # Rust cargo
+export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # Sourcing of other files
 source $HOME/.zsh/aliases
@@ -33,5 +33,3 @@ export PATH="$PATH:`yarn global bin`"
 # Source ZSH Syntax Highlighting
 # First install with brew install zsh-syntax-highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

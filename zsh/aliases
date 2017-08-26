@@ -3,7 +3,7 @@
 alias ll='ls -lhF'      # Pretty listing
 alias l='ll'            # Override oh-my-zsh default
 alias lsl='ll'          # Because I keep typing it!
-alias la='ls -lahF'     # Show all files
+alias la="exa -abghl --git --color=automatic"
 alias lsa='la'          # Override oh-my-zsh default
 alias lh='ls -ldhF .*'  # Show dot files / folders
 alias lsh='lh'          # Because I keep typing it!
