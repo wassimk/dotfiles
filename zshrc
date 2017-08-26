@@ -18,7 +18,7 @@ DISABLE_UPDATE_PROMPT=true
 export PATH=$PATH:bin # current folder
 export PATH=$PATH:$HOME/.dotfiles/bin # my dot files
 export PATH=$PATH:$HOME/.cargo/bin # Rust cargo
-export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH=$PATH:$HOME/.rvm/bin # RVM
 
 # Sourcing of other files
 source $HOME/.zsh/aliases
@@ -33,3 +33,7 @@ export PATH="$PATH:`yarn global bin`"
 # Source ZSH Syntax Highlighting
 # First install with brew install zsh-syntax-highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# fzf auto-complete searching
+# brew install fzf first
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
