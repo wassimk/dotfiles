@@ -19,3 +19,14 @@ end
 def pbpaste
   `pbpaste`
 end
+
+def me(place)
+  case place
+  when :fabricut
+    User.find_by(email: 'wassim.metallaoui@fabricut.com')
+  when :shipzen
+    User.find_by(email: 'wassim@shipzen.com')
+  else
+    User.find_by(email: 'wassim@metallaoui.com')
+  end
+end
