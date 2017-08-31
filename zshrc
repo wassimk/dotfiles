@@ -18,7 +18,7 @@ DISABLE_UPDATE_PROMPT=true
 export PATH=$PATH:bin # current folder
 export PATH=$PATH:$HOME/.dotfiles/bin # my dot files
 export PATH=$PATH:$HOME/.cargo/bin # Rust cargo
-export PATH=$PATH:$HOME/.rvm/bin # RVM
+export PATH="$PATH:$HOME/.rvm/bin" # RVM
 
 # Sourcing of other files
 source $HOME/.zsh/aliases
@@ -28,7 +28,8 @@ source $HOME/.zsh/colors
 # For Yarn and NPM with Brew Node
 # https://gist.github.com/DanHerbert/9520689
 export PATH="$HOME/.npm-packages/bin:$PATH"
-export PATH="$PATH:`yarn global bin`"
+export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$(yarn global bin):$PATH"
 
 # Source ZSH Syntax Highlighting
 # First install with brew install zsh-syntax-highlighting
