@@ -19,6 +19,8 @@ call plug#begin()
 
   " JavaScript
   Plug 'pangloss/vim-javascript'
+  Plug 'mxw/vim-jsx'
+  " Plug 'flowtype/vim-flow'
 
   " Miscellaneous
   Plug 'junegunn/vim-easy-align'
