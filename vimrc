@@ -13,7 +13,6 @@ call plug#begin()
   Plug 'christoomey/vim-conflicted'
   Plug 'Valloric/YouCompleteMe'
   Plug 'yggdroot/indentline'
-  Plug 'ap/vim-css-color'
   Plug 'jiangmiao/auto-pairs'
   Plug 'xolox/vim-misc'
   Plug 'xolox/vim-easytags'
