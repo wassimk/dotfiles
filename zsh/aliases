@@ -1,14 +1,11 @@
 # Set personal aliases, overriding those provided by oh-my-zsh libs
 # plugins, and themes. For a full list of active aliases, run `alias`.
-alias ll='exa -lhF'     # Pretty listing
-alias l='ll'            # Override oh-my-zsh default
-alias lsl='ll'          # Because I keep typing it!
-alias la="exa -abghl --git --color=automatic"
-alias lsa='la'          # Override oh-my-zsh default
-alias lh='exa -ldhF .*'  # Show dot files / folders
-alias lsh='lh'          # Because I keep typing it!
-alias rm='trash'        # Send to trash (brew install trash)
-alias npm='yarn'        # Use yarn instead of npm (brew install yarn)
+alias ll='exa -lhg --group-directories-first --git --color=automatic'  # Pretty listing
+alias l='ll'                                                           # Override oh-my-zsh default
+alias la='exa -lahg --group-directories-first --git --color=automatic'
+alias lsa='la'                                                         # Override oh-my-zsh default
+alias lh='exa -lahdg --group-directories-first .*'                     # Show dot files / folders
+alias rm='trash'                                                       # Send to trash (brew install trash)
 
 # Editor
 alias v=$EDITOR
