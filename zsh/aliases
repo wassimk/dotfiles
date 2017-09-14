@@ -10,6 +10,7 @@ alias rm='trash'                                                       # Send to
 # Editor
 alias v=$EDITOR
 alias e=v
+alias typora='open -a typora'
 
 # Tmuxinator
 # tmuxinator gem makes this alias but it's broken in rubygems
