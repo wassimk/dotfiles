@@ -15,6 +15,7 @@ call plug#begin()
   Plug 'yggdroot/indentline'
   Plug 'jiangmiao/auto-pairs'
   Plug 'xolox/vim-misc'
+  Plug 'xolox/vim-shell'
   Plug 'xolox/vim-easytags'
   Plug 'mattn/emmet-vim'
 
@@ -128,6 +129,10 @@ let g:user_emmet_settings = {
   \}
 " Automatically fix formating errors in JS file using Stadard
 " autocmd bufwritepost *.js silent !standard-format -w %
+
+" EasyTags
+let g:easytags_suppress_report = 1
+let g:easytags_async = 1
 
 " NERDTree Settings
 let NERDTreeMinimalUI = 1
