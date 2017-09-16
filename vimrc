@@ -4,7 +4,7 @@
 call plug#begin()
 
   " Code / Git
-  Plug 'scrooloose/syntastic'
+  Plug 'w0rp/ale'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-eunuch'
@@ -16,6 +16,7 @@ call plug#begin()
   Plug 'jiangmiao/auto-pairs'
   Plug 'xolox/vim-misc'
   Plug 'xolox/vim-easytags'
+  Plug 'mattn/emmet-vim'
 
   " JavaScript
   Plug 'pangloss/vim-javascript'
@@ -99,20 +100,32 @@ let g:tmuxline_preset = {
       \ 'options': { 'status-justify': 'left' }
 \}
 
-" Syntax Checking with syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"""
+" Ale Code Linting
+"""
+let g:ale_sign_warning = '-'
+let g:ale_sign_error = '●'
+let g:airline#extensions#ale#enabled = 1
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" Format of messages
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
-let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_ignore_files = ['db\/schema.rb']
+" Don't populate location list, use quickfix though
+" let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+" let g:ale_open_list = 1 " this will always open quick fix list
 
+"""
+" Emmet Configuration
+"""
+let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings = {
+  \  'javascript.jsx' : {
+    \      'extends' : 'jsx',
+    \  },
+  \}
 " Automatically fix formating errors in JS file using Stadard
 " autocmd bufwritepost *.js silent !standard-format -w %
 
