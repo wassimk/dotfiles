@@ -51,6 +51,7 @@ call plug#begin()
   Plug 'wincent/ferret'
   Plug 'tpope/vim-unimpaired'
   Plug 'wincent/loupe'
+  Plug 'milkypostman/vim-togglelist'
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
   " Pretty much automatic
@@ -237,23 +238,6 @@ map <silent> <C-i> :CtrlPMixed<CR>
 " Custom Leader Mappings
 """"
 let mapleader = "\<Space>"
-
-" Toggl Quickfix
-nnoremap <leader>q :call QuickfixToggle()<cr>
-
-let g:quickfix_is_open = 0
-
-function! QuickfixToggle()
-  if g:quickfix_is_open
-      cclose
-      let g:quickfix_is_open = 0
-      execute g:quickfix_return_to_window . "wincmd w"
-  else
-      let g:quickfix_return_to_window = winnr()
-      copen
-      let g:quickfix_is_open = 1
-  endif
-endfunction
 
 " Split edit vimrc and zshrc
 nmap <leader>ev :vsplit $MYVIMRC<cr>
