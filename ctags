@@ -1,3 +1,8 @@
---recurse=yes
+--sort=yes
 --tag-relative=yes
+--recurse
 --exclude=.git
+--exclude=node_modules
+--exclude=coverage
+--exclude=vendor
+--exclude=bower_components
