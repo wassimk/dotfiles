@@ -67,11 +67,6 @@ call plug#begin()
 
 call plug#end()
 
-" Ferret Plugin
-" Don't map shortcuts
-let g:FerretQFMap=0
-let g:FerretMap=1
-
 " Run vim-rspec commands with dispatch
 let g:rspec_command = "!clear && rspec {spec}"
 
@@ -162,7 +157,6 @@ set laststatus=2                " Always show status line
 set number                      " Display line numbers beside buffer
 set lazyredraw                  " Don't update while executing macros
 set backspace=indent,eol,start  " Sane backspace behavior
-set history=500                 " Remember last 500 commands
 set scrolloff=4                 " Keep at least 4 lines below cursor
 set noswapfile                  " Don't know why but I don't need it
 set expandtab                   " Convert <tab> to spaces (2 or 4)
@@ -175,10 +169,6 @@ set autoread                    " Used when edting same file with vim, twice
 set autoindent                  " Always auto-indent
 set showcmd                     " Show when leader is hit
 set colorcolumn=100             " Show colored column at 100 chars"
-set hlsearch                    " Highlight /search results
-set incsearch                   " Incrementally highlight search while typing
-set ignorecase                  " Case insensitive searching
-set smartcase                   " Override ignorecase if pattern has upcase
 set wildmenu                    " Command line auto-complete feature
 set ruler                       " The status line feature of cursor position
 set smarttab                    " Handle tabs, spaces or not smartly
