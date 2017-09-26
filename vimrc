@@ -12,7 +12,6 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
   Plug 'christoomey/vim-conflicted'
   Plug 'Valloric/YouCompleteMe'
-  Plug 'yggdroot/indentline'
   Plug 'jiangmiao/auto-pairs'
   Plug 'xolox/vim-misc'
   Plug 'xolox/vim-shell'
