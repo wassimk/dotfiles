@@ -11,7 +11,6 @@ call plug#begin()
   Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-fugitive'
   Plug 'christoomey/vim-conflicted'
-  Plug 'Valloric/YouCompleteMe'
   Plug 'jiangmiao/auto-pairs'
   Plug 'xolox/vim-misc'
   Plug 'xolox/vim-shell'
