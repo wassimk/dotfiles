@@ -1,19 +1,23 @@
 #!/usr/bin/env ruby
-# Usage: git publish <remote-branch-name>
-# Open the pull request page for <branch>, or the current branch if not
-# specified. Lands on the new pull request page when no PR exists yet.
-# The local branch must be tracking the remote branch.
+#
+# Usage: git publish [remote-branch-name]
+# Pushes the current branch to origin remote with upstream tracking.
+# Accepts an optional remote-branch-name param. Otherwise, uses current branch.
+
+def remote_branch
+  @remote_branch ||= (ARGV[0] || current_branch)
+end
 
 def current_branch
   @current_branch ||= `git rev-parse --abbrev-ref HEAD`.chomp
 end
 
 def main
-  if current_branch == 'master'
-    $stderr.puts 'Currently on master, aborting.'
+  if %(master staging).include? current_branch
+    $stderr.puts "Currently on #{current_branch}, aborting."
     exit 1
   else
-    system("git push -u origin #{current_branch}:wam-#{current_branch}")
+    system("git push -u origin #{current_branch}:#{remote_branch}")
   end
 end
 
