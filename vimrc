@@ -45,9 +45,9 @@ call plug#begin()
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'wincent/loupe'
   Plug 'wincent/ferret'
   Plug 'tpope/vim-unimpaired'
-  Plug 'wincent/loupe'
   Plug 'milkypostman/vim-togglelist'
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
