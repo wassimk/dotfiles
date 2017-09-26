@@ -16,7 +16,6 @@ call plug#begin()
   Plug 'xolox/vim-misc'
   Plug 'xolox/vim-shell'
   Plug 'xolox/vim-easytags'
-  Plug 'mattn/emmet-vim'
 
   " JavaScript
   Plug 'pangloss/vim-javascript'
@@ -117,18 +116,6 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-"""
-" Emmet Configuration
-"""
-let g:user_emmet_leader_key='<Tab>' " Expand with <Tab>,
-let g:user_emmet_settings = {
-  \  'javascript.jsx' : {
-    \      'extends' : 'jsx',
-    \  },
-  \}
-" Automatically fix formating errors in JS file using Stadard
-" autocmd bufwritepost *.js silent !standard-format -w %
 
 " EasyTags
 let g:easytags_suppress_report = 1
