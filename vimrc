@@ -117,6 +117,9 @@ let g:ale_linters = { 'eruby': [] }
 let g:easytags_suppress_report = 1
 let g:easytags_async = 1
 
+" Ferret
+let g:FerretExecutable='ag,rg'
+
 " NERDTree Settings
 let NERDTreeMinimalUI = 1
 
