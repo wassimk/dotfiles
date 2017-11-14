@@ -43,7 +43,7 @@ call plug#begin()
 
   " Files And Search
   Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'scrooloose/nerdtree'
+  Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'wincent/loupe'
   Plug 'wincent/ferret'
