@@ -42,3 +42,6 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # fzf auto-complete searching
 # brew install fzf first
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Ignore duplicate commands pushed to history mostly for fzf usage
+setopt hist_ignore_dups
