@@ -10,20 +10,13 @@ call plug#begin()
   Plug 'tpope/vim-eunuch'
   Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-fugitive'
-  Plug 'christoomey/vim-conflicted'
   Plug 'jiangmiao/auto-pairs'
-  Plug 'xolox/vim-misc'
-  Plug 'xolox/vim-shell'
-  Plug 'xolox/vim-easytags'
+  Plug 'keith/tmux.vim'
 
   " JavaScript
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
   " Plug 'flowtype/vim-flow'
-
-  " Miscellaneous
-  Plug 'junegunn/vim-easy-align'
-  Plug 'keith/tmux.vim'
 
   " Ruby / Rails
   Plug 'vim-ruby/vim-ruby'
@@ -40,6 +33,7 @@ call plug#begin()
   Plug 'kana/vim-textobj-indent'
   Plug 'christoomey/vim-system-copy'
   Plug 'christoomey/vim-sort-motion'
+  Plug 'junegunn/vim-easy-align'
 
   " Files And Search
   Plug 'ctrlpvim/ctrlp.vim'
