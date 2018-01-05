@@ -1,4 +1,16 @@
 ####
+## Typora
+####
+function typora() {
+    if [ "$1" != "" ]
+    then
+      open -a typora $1
+    else
+      open -a typora ~/Dropbox/docs
+    fi
+}
+
+####
 # tmux
 ####
 # Create new sessions
