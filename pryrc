@@ -22,9 +22,9 @@ end
 
 def me(place)
   case place
-  when :fabricut
+  when :f
     User.find_by(email: 'wassim.metallaoui@fabricut.com')
-  when :shipzen
+  when :s
     User.find_by(email: 'wassim@shipzen.com')
   else
     User.find_by(email: 'wassim@metallaoui.com')
