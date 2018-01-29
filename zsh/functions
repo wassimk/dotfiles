@@ -96,7 +96,7 @@ function weather() {
     then
         curl wttr.in/${1}
     else
-        curl wttr.in/74041
+        curl wttr.in/74037
     fi
 }
 
