@@ -22,7 +22,6 @@ DISABLE_UPDATE_PROMPT=true
 export PATH=$PATH:bin # current folder
 export PATH=$PATH:$HOME/.dotfiles/bin # my dot files
 export PATH=$PATH:$HOME/.cargo/bin # Rust cargo
-export PATH="$PATH:$HOME/.rvm/bin" # RVM
 
 # Sourcing of other files
 source $HOME/.zsh/aliases
