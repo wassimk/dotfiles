@@ -27,6 +27,7 @@ export PATH=$PATH:$HOME/.cargo/bin # Rust cargo
 source $HOME/.zsh/aliases
 source $HOME/.zsh/functions
 source $HOME/.zsh/colors
+source $HOME/.private
 
 # For Yarn and NPM with Brew Node
 # https://gist.github.com/DanHerbert/9520689
