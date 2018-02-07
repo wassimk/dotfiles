@@ -44,3 +44,12 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Ignore duplicate commands pushed to history mostly for fzf usage
 setopt hist_ignore_dups
+
+# Planning Center
+eval "$($HOME/Code/pco/bin/pco init -)"
+export RBENV_ROOT=$HOME/.rbenv
+export MYSQL_PORT_3306_TCP_ADDR=127.0.0.1
+export MYSQL_SLAVE_PORT_3306_TCP_ADDR=127.0.0.1
+export MYSQL_SLAVE_PORT_3306_TCP_PORT=3307
+export PATH=$HOME/pco-box/bin:/usr/local/bin:$PATH
+eval "$(rbenv init -)"
