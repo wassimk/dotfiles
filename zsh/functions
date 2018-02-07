@@ -75,10 +75,20 @@ compdef g=git
 ####
 # Other Functions
 ####
-# Auto complete for code directory
-c() { cd ~/code/$1; }
-_c() { _files -W ~/code -/; }
-compdef _c c
+# Auto complete for Planning Center Code directory
+w() { cd ~/Code/$1; }
+_w() { _files -W ~/Code -/; }
+compdef _w w
+
+# Auto complete for Personal code directory
+p() { cd ~/Personal/$1; }
+_p() { _files -W ~/Personal -/; }
+compdef _p p
+
+# Auto complete for Business code directory
+b() { cd ~/Business/$1; }
+_b() { _files -W ~/Business -/; }
+compdef _b b
 
 # Auto complete for home directory
 h() { cd ~/$1; }
