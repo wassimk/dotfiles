@@ -76,8 +76,8 @@ compdef g=git
 # Other Functions
 ####
 # Auto complete for Planning Center Code directory
-w() { cd ~/Code/$1; }
-_w() { _files -W ~/Code -/; }
+w() { cd ~/Work/$1; }
+_w() { _files -W ~/Work -/; }
 compdef _w w
 
 # Auto complete for Personal code directory
