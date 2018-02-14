@@ -12,6 +12,7 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
   Plug 'jiangmiao/auto-pairs'
   Plug 'keith/tmux.vim'
+  Plug 'janko-m/vim-test'
 
   " JavaScript
   Plug 'pangloss/vim-javascript'
@@ -20,7 +21,6 @@ call plug#begin()
 
   " Ruby / Rails
   Plug 'vim-ruby/vim-ruby'
-  Plug 'thoughtbot/vim-rspec'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-bundler'
   Plug 'tpope/vim-rake'
@@ -60,9 +60,6 @@ call plug#begin()
   Plug 'wincent/terminus'
 
 call plug#end()
-
-" Run vim-rspec commands with dispatch
-let g:rspec_command = "!clear && rspec {spec}"
 
 " Terminal color support for base-16 themes
 set t_cO=256
@@ -221,11 +218,12 @@ nmap <leader>et :vsplit ~/.tmux.conf<cr>
 " Source (reload) vimrc
 nmap <leader>sv :source $MYVIMRC<cr>
 
-" RSpec.vim mappings
-map <leader>tf :call RunCurrentSpecFile()<CR>
-map <leader>tn :call RunNearestSpec()<CR>
-map <leader>tl :call RunLastSpec()<CR>
-map <leader>ts :call RunAllSpecs()<CR>
+" these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
+nmap <silent> t<C-n> :TestNearest<CR> " t Ctrl+n
+nmap <silent> t<C-f> :TestFile<CR>    " t Ctrl+f
+nmap <silent> t<C-s> :TestSuite<CR>   " t Ctrl+s
+nmap <silent> t<C-l> :TestLast<CR>    " t Ctrl+l
+nmap <silent> t<C-g> :TestVisit<CR>   " t Ctrl+g
 
 " Edit todo and notes
 map <leader>nw :e! ~/Dropbox/docs/todo-work.md<cr>
