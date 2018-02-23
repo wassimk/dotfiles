@@ -6,6 +6,7 @@ cookbooks
 log
 vendor
 tmp
+node_modules/
 public/assets
 public/fonts
 
@@ -13,6 +14,5 @@ public/fonts
 /.git/
 /.vagrant/
 
-*.sql
 *.svg
 Gemfile.lock
