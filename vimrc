@@ -37,6 +37,7 @@ call plug#begin()
 
   " Files And Search
   Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'JazzCore/ctrlp-cmatcher'
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'wincent/loupe'
@@ -131,8 +132,11 @@ if executable('ag')
   " Use ag for ack
   let g:ackprg = 'ag --vimgrep'
 
-  " Use ag for CtrlP and turn off caching because it's now so much faster
+  " Configure CtrlP
+  let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
   let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
+  let g:ctrlp_show_hidden = 1
+  let g:ctrlp_max_files = 0
   let g:ctrlp_use_caching = 0
 endif
 
