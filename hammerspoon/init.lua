@@ -381,6 +381,14 @@ initEventHandling()
 local lastSeenChain = nil
 local lastSeenWindow = nil
 
+function otherScreen()
+  local win = hs.window.frontmostWindow()
+  local screen = win:screen()
+  local nextScreen = screen:next()
+
+  hs.grid.set(win, grid.fullScreen, nextScreen)
+end
+
 -- Chain the specified movement commands.
 --
 -- This is like the "chain" feature in Slate, but with a couple of enhancements:
@@ -423,6 +431,10 @@ end
 --
 -- Key bindings.
 --
+hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'space', (function()
+  otherScreen()
+end))
+
 hs.hotkey.bind({'ctrl', 'alt'}, 'up', chain({
   grid.topHalf,
   grid.topThird,
