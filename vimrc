@@ -40,7 +40,6 @@ call plug#begin()
 
   " Files And Search
   Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'JazzCore/ctrlp-cmatcher'
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'wincent/loupe'
@@ -137,7 +136,6 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 
   " Configure CtrlP
-  let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
   let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
   let g:ctrlp_show_hidden = 1
   let g:ctrlp_max_files = 0
