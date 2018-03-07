@@ -176,7 +176,7 @@ set tabstop=2                   " Two spaces per tab as default
 set shiftwidth=2                "     then override with per filteype
 set softtabstop=2               "     specific settings via autocmd
 " set secure                      " Limit what modelines and autocmds can do
-set relativenumber              " Show line numbers relative to cursor position
+" set relativenumber              " Show line numbers relative to cursor position
 set autoread                    " Used when edting same file with vim, twice
 set autoindent                  " Always auto-indent
 set showcmd                     " Show when leader is hit
