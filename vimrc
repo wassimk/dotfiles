@@ -5,7 +5,6 @@ call plug#begin()
 
   " Code / Git
   Plug 'w0rp/ale'
-  Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-eunuch'
   Plug 'tpope/vim-dispatch'
@@ -13,6 +12,8 @@ call plug#begin()
   Plug 'jiangmiao/auto-pairs'
   Plug 'keith/tmux.vim'
   Plug 'janko-m/vim-test'
+  Plug 'ap/vim-css-color'
+  Plug 'ajh17/VimCompletesMe'
 
   " JavaScript
   Plug 'pangloss/vim-javascript'
@@ -26,6 +27,8 @@ call plug#begin()
   Plug 'tpope/vim-rake'
 
   " Vim Text Objects and Motions
+  Plug 'tpope/vim-surround'
+  Plug 'wellle/targets.vim'
   Plug 'kana/vim-textobj-user'
   Plug 'nelstrom/vim-textobj-rubyblock'
   Plug 'kana/vim-textobj-line'
