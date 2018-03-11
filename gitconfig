@@ -45,6 +45,9 @@
   tool = vimdiff
   conflictstyle = diff3
 
+[rebase]
+	autosquash = true
+
 [fetch]
   prune = true
 
