@@ -119,20 +119,19 @@ let g:ale_ruby_rubocop_executable = 'bundle'
 " NERDTree Settings
 let NERDTreeMinimalUI = 1
 
-" The Silver Searcher
-" brew install the_silver_searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
+" ripgrep
+"  brew install ripgrep
+if executable('rg')
+  " Use rg over grep
+  set grepprg=rg\ --color=never
 
-  " Use ag for ack
-  let g:ackprg = 'ag --vimgrep'
+  " Use rg for ack
+  let g:ackprg = 'rg --vimgrep --no-heading'
 
   " Configure CtrlP
-  let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
-  let g:ctrlp_show_hidden = 1
-  let g:ctrlp_max_files = 0
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
+  let g:ctrlp_show_hidden = 1
 endif
 
 " Align GitHub-flavored Markdown tables with vim-easy-align
