@@ -116,13 +116,6 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " Use bundle exec version
 let g:ale_ruby_rubocop_executable = 'bundle'
 
-" EasyTags
-let g:easytags_suppress_report = 1
-let g:easytags_async = 1
-
-" Ferret
-let g:FerretExecutable='ag,rg'
-
 " NERDTree Settings
 let NERDTreeMinimalUI = 1
 
