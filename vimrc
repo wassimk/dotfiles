@@ -174,7 +174,7 @@ set colorcolumn=100             " Show colored column at 100 chars"
 set wildmenu                    " Command line auto-complete feature
 set ruler                       " The status line feature of cursor position
 set smarttab                    " Handle tabs, spaces or not smartly
-set cursorline                  " Highlight current line
+" set cursorline                  " Highlight current line
 set winwidth=100                " Set minimum width of current window
 "set winheight=5                 " Windows all start at 5 lines tall
 "set winminheight=5              " Windows always 5 lines tall
