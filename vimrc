@@ -12,7 +12,6 @@ call plug#begin()
   Plug 'jiangmiao/auto-pairs'
   Plug 'keith/tmux.vim'
   Plug 'janko-m/vim-test'
-  Plug 'ap/vim-css-color'
   Plug 'ajh17/VimCompletesMe'
 
   " JavaScript
@@ -133,7 +132,6 @@ if executable('rg')
   " Configure CtrlP
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
-  let g:ctrlp_show_hidden = 1
   let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 endif
 
