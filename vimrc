@@ -40,6 +40,7 @@ call plug#begin()
 
   " Files And Search
   Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'FelikZ/ctrlp-py-matcher'
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'wincent/loupe'
@@ -133,6 +134,7 @@ if executable('rg')
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
   let g:ctrlp_show_hidden = 1
+  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 endif
 
 " Align GitHub-flavored Markdown tables with vim-easy-align
