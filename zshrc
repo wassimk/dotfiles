@@ -35,6 +35,10 @@ export PATH="$HOME/.npm-packages/bin:$PATH"
 export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$(yarn global bin):$PATH"
 
+# For old QT needed for old capybara-webkit
+# brew uninstall qt && brew install qt@5.5
+export PATH="$(brew --prefix qt@5.5)/bin:$PATH"
+
 # Source ZSH Syntax Highlighting
 # First install with brew install zsh-syntax-highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
