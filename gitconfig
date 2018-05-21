@@ -46,7 +46,7 @@
   conflictstyle = diff3
 
 [rebase]
-	autosquash = true
+  autosquash = true
 
 [fetch]
   prune = true
