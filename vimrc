@@ -90,7 +90,6 @@ let g:tmuxline_preset = {
       \'a'    : '#S',
       \'win'  : '#I #W',
       \'cwin' : '#I #W #F',
-      \'x'    : '#(battery -t)',
       \'y'    : ['%a, %b %d', '%I:%M %p'],
       \'z'    : '',
       \ 'options': { 'status-justify': 'left' }
