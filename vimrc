@@ -101,7 +101,8 @@ let g:tmuxline_preset = {
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0 " opening file
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_open_list = 1
+let g:ale_open_list = 0
+let g:ale_set_highlights = 0
 
 let g:ale_sign_warning = '-'
 let g:ale_sign_error = '●'
