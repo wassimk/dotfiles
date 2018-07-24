@@ -9,6 +9,12 @@ export EDITOR=$VISUAL
 # Load SSH keys stored in macOS Keychain
 ssh-add -A 2>/dev/null
 
+# Brew auto-complete
+# https://docs.brew.sh/Shell-Completion
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
 # Load oh-my-zsh plugins, auto-completion, themes, etc.
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="wassimk"
