@@ -120,7 +120,7 @@ let g:ale_ruby_rubocop_options = '--display-cop-names --parallel'
 " Use autofix
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {
-\   'javascript': ['eslint'],
+\   'javascript': ['eslint', 'prettier'],
 \}
 
 " NERDTree Settings
