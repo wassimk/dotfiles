@@ -16,3 +16,4 @@ public/fonts
 
 *.svg
 Gemfile.lock
+yarn.lock
