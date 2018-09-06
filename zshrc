@@ -54,7 +54,9 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Ignore duplicate commands pushed to history mostly for fzf usage
-setopt hist_ignore_all_dups
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
 
 # Planning Center
 eval "$($HOME/Code/pco/bin/pco init -)"
