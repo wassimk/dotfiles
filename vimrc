@@ -39,7 +39,7 @@ call plug#begin()
 
   " Files And Search
   Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'FelikZ/ctrlp-py-matcher'
+  Plug 'JazzCore/ctrlp-cmatcher'
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'wincent/loupe'
@@ -138,7 +138,7 @@ if executable('rg')
   " Configure CtrlP
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
-  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+  let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 endif
 
 " Align GitHub-flavored Markdown tables with vim-easy-align
@@ -173,7 +173,7 @@ set tabstop=2                   " Two spaces per tab as default
 set shiftwidth=2                "     then override with per filteype
 set softtabstop=2               "     specific settings via autocmd
 " set secure                      " Limit what modelines and autocmds can do
-" set relativenumber              " Show line numbers relative to cursor position
+set relativenumber              " Show line numbers relative to cursor position
 set autoread                    " Used when edting same file with vim, twice
 set autoindent                  " Always auto-indent
 set showcmd                     " Show when leader is hit
@@ -181,7 +181,7 @@ set colorcolumn=100             " Show colored column at 100 chars"
 set wildmenu                    " Command line auto-complete feature
 set ruler                       " The status line feature of cursor position
 set smarttab                    " Handle tabs, spaces or not smartly
-" set cursorline                  " Highlight current line
+set cursorline                  " Highlight current line
 set winwidth=100                " Set minimum width of current window
 "set winheight=5                 " Windows all start at 5 lines tall
 "set winminheight=5              " Windows always 5 lines tall
