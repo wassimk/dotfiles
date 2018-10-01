@@ -197,6 +197,11 @@ set splitbelow                  " New horizontal split below
 " Wrap markdown files at 100 characters
 au BufRead,BufNewFile *.md setlocal textwidth=100
 
+" Spell check
+autocmd BufRead,BufNewFile *.md setlocal spell
+autocmd FileType gitcommit setlocal spell
+set complete+=kspell
+
 """"
 " Autocmd's
 """"
