@@ -126,20 +126,24 @@ let g:ale_fixers = {
 " NERDTree Settings
 let NERDTreeMinimalUI = 1
 
-" ripgrep
-"  brew install ripgrep
-if executable('rg')
-  " Use rg over grep
-  set grepprg=rg\ --color=never
+" The Silver Searcher
+" brew install the_silver_searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
 
-  " Use rg for ack
-  let g:ackprg = 'rg --vimgrep --no-heading'
+  " Use ag for ack
+  let g:ackprg = 'ag --vimgrep'
 
   " Configure CtrlP
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
+  let g:ctrlp_show_hidden = 1
+  let g:ctrlp_max_files = 0
   let g:ctrlp_use_caching = 0
-  let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 endif
+
+" Prefer `ag` over `rg` with Ferret
+let g:FerretExecutable='ag,rg'
 
 " Align GitHub-flavored Markdown tables with vim-easy-align
 au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
