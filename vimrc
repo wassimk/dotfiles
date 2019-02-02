@@ -52,6 +52,7 @@ call plug#begin()
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-endwise'
   Plug 'ntpeters/vim-better-whitespace'
+  Plug 'editorconfig/editorconfig-vim'
 
   " Theme / Status Line / Tmux / Pretty Terminal
   Plug 'chriskempson/base16-vim'
@@ -172,10 +173,10 @@ set lazyredraw                  " Don't update while executing macros
 set backspace=indent,eol,start  " Sane backspace behavior
 set scrolloff=4                 " Keep at least 4 lines below cursor
 set noswapfile                  " Don't know why but I don't need it
-set expandtab                   " Convert <tab> to spaces (2 or 4)
 set tabstop=2                   " Two spaces per tab as default
 set shiftwidth=2                "     then override with per filteype
 set softtabstop=2               "     specific settings via autocmd
+set expandtab                   " Convert <tab> to spaces (2 or 4)
 " set secure                      " Limit what modelines and autocmds can do
 set relativenumber              " Show line numbers relative to cursor position
 set autoread                    " Used when edting same file with vim, twice
