@@ -51,8 +51,6 @@ call plug#begin()
   " Pretty much automatic
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-endwise'
-  Plug 'ntpeters/vim-better-whitespace'
-  Plug 'editorconfig/editorconfig-vim'
 
   " Theme / Status Line / Tmux / Pretty Terminal
   Plug 'chriskempson/base16-vim'
@@ -148,9 +146,6 @@ let g:FerretExecutable='ag,rg'
 
 " Align GitHub-flavored Markdown tables with vim-easy-align
 au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
-
-" Uses ntpeters/vim-better-whitespace plugin
-autocmd BufEnter * EnableStripWhitespaceOnSave
 
 augroup quickfix
   autocmd!
