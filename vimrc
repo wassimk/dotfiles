@@ -53,7 +53,7 @@ call plug#begin()
   Plug 'tpope/vim-endwise'
 
   " Theme / Status Line / Tmux / Pretty Terminal
-  Plug 'chriskempson/base16-vim'
+  Plug 'chriskempson/base16-vim', {'do': 'git checkout dict_fix'}
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'edkolev/tmuxline.vim'
