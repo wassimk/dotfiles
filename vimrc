@@ -13,6 +13,7 @@ call plug#begin()
   Plug 'keith/tmux.vim'
   Plug 'janko-m/vim-test'
   Plug 'ajh17/VimCompletesMe'
+  Plug 'rhlobo/vim-super-retab'
 
   " JavaScript
   Plug 'pangloss/vim-javascript'
@@ -51,6 +52,7 @@ call plug#begin()
   " Pretty much automatic
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-endwise'
+  Plug 'Yggdroot/indentLine'
 
   " Theme / Status Line / Tmux / Pretty Terminal
   Plug 'chriskempson/base16-vim', {'do': 'git checkout dict_fix'}
