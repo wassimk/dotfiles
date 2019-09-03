@@ -77,3 +77,6 @@
   old = red bold
   new = green bold
   whitespace = red reverse
+
+[tag]
+  forceSignAnnotated = true
