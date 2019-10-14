@@ -34,6 +34,7 @@ source $HOME/.zsh/aliases
 source $HOME/.zsh/functions
 source $HOME/.zsh/colors
 source $HOME/.private
+source ~/.bin/tmuxinator.zsh
 
 # For Yarn and NPM with Brew Node
 # https://gist.github.com/DanHerbert/9520689
