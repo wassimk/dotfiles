@@ -7,6 +7,10 @@ alias lsa='la'                                                         # Overrid
 alias lh='exa -lahdg --group-directories-first .*'                     # Show dot files / folders
 alias rm='trash'                                                       # Send to trash (brew install trash)
 
+# Logs
+alias super_tail="grc tail -f ~/Code/*/log/development.log"
+alias super_tail_giving="grc tail -f ~/Code/{api,church-center,giving,people,accounts}/log/development.log"
+
 # Editor
 alias v=$EDITOR
 alias e=v
