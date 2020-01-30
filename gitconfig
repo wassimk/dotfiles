@@ -80,3 +80,5 @@
 
 [tag]
   forceSignAnnotated = true
+[gpg]
+	program = /usr/local/bin/gpg
