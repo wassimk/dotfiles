@@ -18,7 +18,9 @@ call plug#begin()
   " JavaScript
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
-  " Plug 'flowtype/vim-flow'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'peitalin/vim-jsx-typescript'
+  Plug 'maxmellon/vim-jsx-pretty'
 
   " Ruby / Rails
   Plug 'vim-ruby/vim-ruby'
@@ -113,6 +115,9 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+" Enable specific linters
+let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['rubocop', 'brakeman'], 'typescript': ['eslint', 'tsserver']}
 
 " Use bundle exec version
 let g:ale_ruby_rubocop_executable = 'bundle'
