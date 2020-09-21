@@ -49,6 +49,7 @@ call plug#begin()
   Plug 'wincent/ferret'
   Plug 'tpope/vim-unimpaired'
   Plug 'milkypostman/vim-togglelist'
+  Plug 'pechorin/any-jump.vim'
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
   " Pretty much automatic
