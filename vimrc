@@ -55,6 +55,7 @@ call plug#begin()
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-endwise'
   Plug 'Yggdroot/indentLine'
+  Plug 'ntpeters/vim-better-whitespace'
 
   " Theme / Status Line / Tmux / Pretty Terminal
   Plug 'chriskempson/base16-vim', {'do': 'git checkout dict_fix'}
@@ -150,6 +151,11 @@ endif
 
 " Prefer `ag` over `rg` with Ferret
 let g:FerretExecutable='ag,rg'
+
+" Better whitespace plugin
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
 
 " Align GitHub-flavored Markdown tables with vim-easy-align
 au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
