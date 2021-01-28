@@ -33,6 +33,7 @@ DISABLE_UPDATE_PROMPT=true
 export PATH=$PATH:bin # current folder
 export PATH=$PATH:$HOME/.dotfiles/bin # my dot files
 export PATH=$PATH:$HOME/.cargo/bin # Rust cargo
+export PATH=$PATH:/usr/local/sbin # brew complained about this
 
 # Sourcing of other files
 source $HOME/.zsh/aliases
@@ -61,10 +62,12 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
 
 # Planning Center
-eval "$($HOME/Code/pco/bin/pco init -)"
-export RBENV_ROOT=$HOME/.rbenv
-eval "$(rbenv init -)"
-export PATH=$HOME/pco-box/bin:/usr/local/bin:$PATH
 export MYSQL_PORT_3306_TCP_ADDR=127.0.0.1
 export MYSQL_READER_PORT_3306_TCP_ADDR=127.0.0.1
 export MYSQL_READER_PORT_3306_TCP_PORT=3307
+export PATH=$HOME/pco-box/bin:/usr/local/bin:$PATH
+export RBENV_ROOT=$HOME/.rbenv
+eval "$($HOME/Code/pco/bin/pco init -)"
+eval "$(rbenv init -)"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
