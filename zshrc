@@ -50,7 +50,9 @@ export PATH="$(yarn global bin):$PATH"
 
 # Source ZSH Syntax Highlighting
 # First install with brew install zsh-syntax-highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#
+# source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# disabled until can load it on ubuntu which is in /usr/share/zsh-syntax/highlighting
 
 # fzf auto-complete searching
 # brew install fzf first
