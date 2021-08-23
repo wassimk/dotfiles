@@ -18,7 +18,7 @@ fi
 # Load oh-my-zsh plugins, auto-completion, themes, etc.
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="wassimk"
-plugins=(bundler gem npm tmuxinator encode64 jsontools urltools z autojump)
+plugins=(bundler gem tmuxinator encode64 jsontools urltools z autojump)
 source $ZSH/oh-my-zsh.sh
 
 # zplug plugin manager
