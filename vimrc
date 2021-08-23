@@ -119,7 +119,7 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 " Enable specific linters
-let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['prettier', 'rubocop', 'brakeman'], 'typescript': ['eslint', 'tsserver']}
+let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['prettier', 'rubocop', 'brakeman', 'standard'], 'typescript': ['eslint', 'tsserver']}
 
 " Use bundle exec version
 let g:ale_ruby_rubocop_executable = 'bundle'
