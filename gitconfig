@@ -53,7 +53,7 @@
 
 [commit]
   template = ~/.gitmessage
-  gpgsign = false
+  gpgsign = true
   verbose = true
 
 [init]
