@@ -36,4 +36,7 @@ alias tml='tmux list-sessions'
 alias tmka='tmux kill-server'
 
 # copy/paste
-alias clip="nc localhost 8377"
+case "$OSTYPE" in
+  darwin*)  alias clip="nc localhost 8377" ;;
+  linux*)  alias clip="nc -N localhost 8377" ;;
+esac
