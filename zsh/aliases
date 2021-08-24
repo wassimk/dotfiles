@@ -34,3 +34,6 @@ alias et='e ~/.tmux.conf'
 ###
 alias tml='tmux list-sessions'
 alias tmka='tmux kill-server'
+
+# copy/paste
+alias clip="nc localhost 8377"
