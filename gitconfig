@@ -1,6 +1,7 @@
 [user]
   name = Wassim Metallaoui
   email = wassim@metallaoui.com
+  signingkey = 088BB870EB37CD21
 
 [github]
   user = wassimk
@@ -78,6 +79,10 @@
   new = green bold
   whitespace = red reverse
 
+[tag]
+  forceSignAnnotated = true
+[gpg]
+	program = /usr/local/bin/gpg
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
