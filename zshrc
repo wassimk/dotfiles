@@ -31,7 +31,7 @@ DISABLE_UPDATE_PROMPT=true
 
 # Add bin directories to path
 export PATH=$PATH:bin # current folder
-export PATH=$PATH:bin/diff-so-fancy
+export PATH=$PATH:$HOME/bin/diff-so-fancy
 export PATH=$PATH:$HOME/.dotfiles/bin # my dot files
 export PATH=$PATH:$HOME/.cargo/bin # Rust cargo
 export PATH=$PATH:/usr/local/sbin # brew complained about this
