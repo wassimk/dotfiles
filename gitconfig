@@ -53,7 +53,7 @@
 
 [commit]
   template = ~/.gitmessage
-  gpgsign = false
+  gpgsign = true
   verbose = true
 
 [init]
@@ -81,8 +81,10 @@
 
 [tag]
   forceSignAnnotated = true
+
 [gpg]
 	program = /usr/local/bin/gpg
+
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
