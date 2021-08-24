@@ -34,13 +34,14 @@ function s:CheckColorScheme()
   doautocmd ColorScheme
 endfunction
 
-if v:progname !=# 'vi'
-  if has('autocmd')
-    augroup WamAutocolor
-      autocmd!
-      autocmd FocusGained * call s:CheckColorScheme()
-    augroup END
-  endif
+" Disable this tool while switching to a linux/terminal based development environment
+" if v:progname !=# 'vi'
+"   if has('autocmd')
+"     augroup WamAutocolor
+"       autocmd!
+"       autocmd FocusGained * call s:CheckColorScheme()
+"     augroup END
+"   endif
 
-  call s:CheckColorScheme()
-endif
+"   call s:CheckColorScheme()
+" endif
