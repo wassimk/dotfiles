@@ -26,6 +26,10 @@ source ~/.zplug/init.zsh
 export NVM_AUTO_USE=true
 zplug "lukechilds/zsh-nvm"
 
+# for gpg-agent
+GPG_TTY=$(tty)
+export GPG_TTY
+
 # Upgrade oh-my-zsh without asking
 DISABLE_UPDATE_PROMPT=true
 
