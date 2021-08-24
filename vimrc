@@ -59,7 +59,7 @@ call plug#begin()
   Plug 'editorconfig/editorconfig-vim'
 
   " Theme / Status Line / Tmux / Pretty Terminal
-  Plug 'chriskempson/base16-vim', {'do': 'git checkout dict_fix'}
+  Plug 'sonph/onehalf', { 'rtp': 'vim' }
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'edkolev/tmuxline.vim'
@@ -77,10 +77,18 @@ endfunction
 let g:test#custom_strategies = {'dispatch_start': function('DispatchStartStrategy')}
 let g:test#strategy = 'dispatch_start'
 
-" Terminal color support for base-16 themes
-set t_cO=256
-let g:base16colorspace=256
-let g:airline_powerline_fonts=1
+" Theme and terminal color support
+syntax on
+set t_Co=256
+set cursorline
+colorscheme onehalfdark
+let g:airline_theme='onehalfdark'
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 
 " vim-airline applies its theme to tmuxline plugin
 " these are preferred defaults, info at https://github.com/edkolev/tmuxline.vim
