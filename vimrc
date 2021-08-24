@@ -60,6 +60,7 @@ call plug#begin()
 
   " Theme / Status Line / Tmux / Pretty Terminal
   Plug 'sonph/onehalf', { 'rtp': 'vim' }
+  Plug 'wincent/vim-clipper'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'edkolev/tmuxline.vim'
