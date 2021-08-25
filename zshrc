@@ -26,12 +26,13 @@ source ~/.zplug/init.zsh
 export NVM_AUTO_USE=true
 zplug "lukechilds/zsh-nvm"
 
-# for gpg-agent
-GPG_TTY=$(tty)
-export GPG_TTY
-
 # Upgrade oh-my-zsh without asking
 DISABLE_UPDATE_PROMPT=true
+
+# Ignore duplicate commands pushed to history mostly for fzf usage
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
 
 # Add bin directories to path
 export PATH=$PATH:bin # current folder
@@ -53,12 +54,6 @@ export PATH="$HOME/.npm-packages/bin:$PATH"
 export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$(yarn global bin):$PATH"
 
-# Source ZSH Syntax Highlighting
-# First install with brew install zsh-syntax-highlighting
-#
-# source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# disabled until can load it on ubuntu which is in /usr/share/zsh-syntax/highlighting
-
 # fzf auto-complete searching
 case "$OSTYPE" in
   darwin*) [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh ;;
@@ -66,10 +61,21 @@ case "$OSTYPE" in
           source /usr/share/doc/fzf/examples/completion.zsh ;;
 esac
 
-# Ignore duplicate commands pushed to history mostly for fzf usage
-setopt HIST_SAVE_NO_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_FIND_NO_DUPS
+# ZSH Syntax Highlighting
+case "$OSTYPE" in
+  darwin*) source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ;;
+  linux*)  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ;;
+esac
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# always run gpg-agent
+GPG_TTY=$(tty)
+export GPG_TTY
+
+case "$OSTYPE" in
+  darwin*) gpg-connect-agent reloadagent /bye 2>/dev/null ;;
+esac
 
 # Planning Center
 export MYSQL_PORT_3306_TCP_ADDR=127.0.0.1
@@ -79,10 +85,3 @@ export PATH=$HOME/pco-box/bin:/usr/local/bin:$PATH
 export RBENV_ROOT=$HOME/.rbenv
 eval "$($HOME/Code/pco/bin/pco init -)"
 eval "$(rbenv init -)"
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# always have gpg-agent running
-case "$OSTYPE" in
-  darwin*) gpg-connect-agent reloadagent /bye 2>/dev/null ;;
-esac
