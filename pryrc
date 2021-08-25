@@ -14,20 +14,17 @@ if defined?(PryRails::RAILS_PROMPT)
   Pry.config.prompt = PryRails::RAILS_PROMPT
 end
 
-def pbcopy(input)
+def clip(input)
   str = input.to_s
-  IO.popen('pbcopy', 'w') { |f| f << str }
+  IO.popen('clip', 'w') { |f| f << str }
   str
 end
 
 def me(place)
   case place
-  when :f
-    User.find_by(email: 'wassim.metallaoui@fabricut.com')
   when :s
     User.find_by(email: 'wassim@shipzen.com')
   else
     User.find_by(email: 'wassim@metallaoui.com')
   end
 end
-
