@@ -14,6 +14,7 @@ call plug#begin()
   Plug 'janko-m/vim-test'
   Plug 'ajh17/VimCompletesMe'
   Plug 'rhlobo/vim-super-retab'
+  Plug 'christoomey/vim-conflicted'
 
   " JavaScript
   Plug 'pangloss/vim-javascript'
@@ -224,11 +225,18 @@ set complete+=kspell
 """"
 " Autocmd's
 """"
+function! s:setupConflicted()
+  set stl+=%{ConflictedVersion()}
+  " Resolve and move to next conflicted file.
+  nnoremap ]m :GitNextConflict<cr>
+endfunction
+
 if has('autocmd')
   augroup WamAutocmds
     autocmd!
 
     autocmd VimResized * execute "normal! \<c-w>="
+    autocmd User VimConflicted call s:setupConflicted()
  augroup END
 endif
 
