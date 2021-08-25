@@ -70,9 +70,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # always run gpg-agent
 GPG_TTY=$(tty)
 export GPG_TTY
-
 case "$OSTYPE" in
-  darwin*) gpg-connect-agent reloadagent /bye 2>/dev/null ;;
+  darwin*) gpg-agent --daemon --use-standard-socket &>/dev/null ;;
 esac
 
 # Planning Center
