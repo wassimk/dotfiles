@@ -5,7 +5,6 @@ alias l='ll'                                                           # Overrid
 alias la='exa -lahg --group-directories-first --git --color=automatic'
 alias lsa='la'                                                         # Override oh-my-zsh default
 alias lh='exa -lahdg --group-directories-first .*'                     # Show dot files / folders
-# alias rm='trash'                                                       # Send to trash (brew install trash)
 
 # Logs
 alias super_tail="grc tail -f ~/Code/*/log/development.log"
