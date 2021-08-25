@@ -60,8 +60,11 @@ export PATH="$(yarn global bin):$PATH"
 # disabled until can load it on ubuntu which is in /usr/share/zsh-syntax/highlighting
 
 # fzf auto-complete searching
-# brew install fzf first
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+case "$OSTYPE" in
+  darwin*) [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh ;;
+  linux*) source /usr/share/doc/fzf/examples/key-bindings.zsh ;
+          source /usr/share/doc/fzf/examples/completion.zsh ;;
+esac
 
 # Ignore duplicate commands pushed to history mostly for fzf usage
 setopt HIST_SAVE_NO_DUPS
