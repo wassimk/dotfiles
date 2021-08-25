@@ -44,7 +44,6 @@ export PATH=$PATH:/usr/local/sbin # brew complained about this
 # Sourcing of other files
 source $HOME/.zsh/aliases
 source $HOME/.zsh/functions
-source $HOME/.zsh/colors
 source $HOME/.private
 source ~/.bin/tmuxinator.zsh
 
