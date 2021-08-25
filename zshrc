@@ -18,7 +18,7 @@ fi
 # Load oh-my-zsh plugins, auto-completion, themes, etc.
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="wassimk"
-plugins=(bundler gem tmuxinator encode64 jsontools urltools z autojump)
+plugins=(bundler gem encode64 jsontools urltools z autojump)
 source $ZSH/oh-my-zsh.sh
 
 # zplug plugin manager
@@ -45,7 +45,6 @@ export PATH=$PATH:/usr/local/sbin # brew complained about this
 source $HOME/.zsh/aliases
 source $HOME/.zsh/functions
 source $HOME/.private
-source ~/.bin/tmuxinator.zsh
 
 # For Yarn and NPM with Brew Node
 # https://gist.github.com/DanHerbert/9520689
