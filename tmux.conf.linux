@@ -1,0 +1,8 @@
+# Setup 'y' to work like Vim visual mode
+bind-key -T copy-mode-vi 'y' send -X copy-pipe "nc -N localhost 8377"
+
+# Bind enter to copy selection and exit copy-mode
+bind-key -T copy-mode-vi Enter send -X copy-pipe-and-cancel "nc -N localhost 8377"
+
+# Drag mouse to copy selection
+bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe "nc -N localhost 8377"
