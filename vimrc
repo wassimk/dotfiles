@@ -36,7 +36,7 @@ call plug#begin()
   Plug 'kana/vim-textobj-line'
   Plug 'kana/vim-textobj-entire'
   Plug 'kana/vim-textobj-indent'
-  Plug 'christoomey/vim-system-copy'
+  Plug 'wincent/vim-clipper'
   Plug 'christoomey/vim-sort-motion'
   Plug 'junegunn/vim-easy-align'
 
@@ -60,7 +60,6 @@ call plug#begin()
 
   " Theme / Status Line / Tmux / Pretty Terminal
   Plug 'sonph/onehalf', { 'rtp': 'vim' }
-  Plug 'wincent/vim-clipper'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'edkolev/tmuxline.vim'
