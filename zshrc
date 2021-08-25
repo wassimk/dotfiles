@@ -81,3 +81,8 @@ eval "$($HOME/Code/pco/bin/pco init -)"
 eval "$(rbenv init -)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# always have gpg-agent running
+case "$OSTYPE" in
+  darwin*) gpg-connect-agent reloadagent /bye 2>/dev/null ;;
+esac
