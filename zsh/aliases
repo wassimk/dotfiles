@@ -15,11 +15,6 @@ alias v=$EDITOR
 alias e=v
 alias vim="nvim"
 
-# Tmuxinator
-# tmuxinator gem makes this alias but it's broken in rubygems
-# https://github.com/rubygems/rubygems/issues/1577
-alias mux=tmuxinator
-
 # Edit and vim and zsh, source zs
 alias sz='source ~/.zshrc'
 alias ez='e ~/.zshrc'
