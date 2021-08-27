@@ -90,6 +90,36 @@ installTree() {
   installOrUpdate "tree"
 }
 
+installTrash() {
+  case $os in
+    $macOS*)
+      installOrUpdate "trash"
+      ;;
+  esac
+}
+
+installShellCheck() {
+  installOrUpdate "shellcheck"
+}
+
+installSshCopyId() {
+  case $os in
+    $macOS*)
+      installOrUpdate "ssh-copy-id"
+      ;;
+  esac
+}
+
+installBattery() {
+  case $os in
+    $macOS*)
+      installOrUpdate "spark"
+      brew tap Goles/battery
+      installOrUpdate "battery"
+      ;;
+  esac
+}
+
 installNeovim() {
   installOrUpdate "neovim"
 }
@@ -128,6 +158,10 @@ installGrc
 installHub
 installGh
 installTree
+installTrash
+installShellCheck
+installSshCopyId
+installBattery
 installNeovim
 installTmux
 (cd "$HOME"/.dotfiles || exit; bash dotfiles.sh)
