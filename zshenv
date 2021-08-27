@@ -7,6 +7,7 @@ esac
 # Add bin directories to path
 export PATH=$PATH:$HOME/bin/diff-so-fancy
 export PATH=$PATH:$HOME/.bin # from dot files
+export PATH=$PATH:"/usr/local/sbin" # for Homebrew
 
 # Ignore duplicate commands pushed to history mostly for fzf usage
 setopt HIST_SAVE_NO_DUPS
