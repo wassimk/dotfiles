@@ -1,10 +1,19 @@
 # Set personal aliases, overriding those provided by oh-my-zsh libs
 # plugins, and themes. For a full list of active aliases, run `alias`.
-alias ll='exa -lhg --group-directories-first --git --color=automatic'  # Pretty listing
-alias l='ll'                                                           # Override oh-my-zsh default
-alias la='exa -lahg --group-directories-first --git --color=automatic'
-alias lsa='la'                                                         # Override oh-my-zsh default
-alias lh='exa -lahdg --group-directories-first .*'                     # Show dot files / folders
+
+# file / dir listing
+unalias l ls lsa                                                         # remove zsh set aliases
+
+if command -v exa 2>&1 >/dev/null; then
+  alias ll='exa -lhg --group-directories-first --git --color=automatic'  # Pretty up the listing
+  alias la='exa -lahg --group-directories-first --git --color=automatic' # Include dot files / folders
+  alias lh='exa -lahdg --group-directories-first .*'                     # Show only dot files / folders
+else
+  # fallback to normal ls
+  alias ll='ls -lF'
+  alias la='ls -laF'
+  alias lh='ls -ld .*'
+fi
 
 # Logs
 alias super_tail="grc tail -f ~/Code/*/log/development.log"
