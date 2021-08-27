@@ -40,6 +40,17 @@ updateAvailablePackages() {
   esac
 }
 
+cleanupPackages() {
+  case $os in
+    $macOS*)
+      brew cleanup
+      ;;
+    $ubuntu*)
+      sudo apt auto-remove -y
+      ;;
+  esac
+}
+
 installOrUpdate() {
   case $os in
     $macOS*)

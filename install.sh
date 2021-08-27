@@ -164,6 +164,7 @@ installSshCopyId
 installBattery
 installNeovim
 installTmux
+cleanupPackages
 (cd "$HOME"/.dotfiles || exit; bash dotfiles.sh)
 setupNeovim
 miscellaneousSetup
