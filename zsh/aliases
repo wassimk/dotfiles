@@ -23,20 +23,20 @@ fi
 
 # Editor
 alias v=$EDITOR
-alias e=v
+alias e="v"
 alias vim="nvim"
 
-# Edit and vim and zsh, source zs
+# Source shell and edit zsh, vim and tmux aliases
 alias sz='source ~/.zshrc'
 alias ez='e ~/.zshrc'
 alias eza='e ~/.zsh/aliases'
 alias ezf='e ~/.zsh/functions'
 alias ev='e ~/.vimrc'
 alias et='e ~/.tmux.conf'
+alias etm='e ~/.tmux.conf.osx'
+alias etl='e ~/.tmux.conf.linux'
 
-###
 # tmux
-###
 alias tml='tmux list-sessions'
 alias tmka='tmux kill-server'
 
