@@ -50,13 +50,6 @@ esac
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# always run gpg-agent
-GPG_TTY=$(tty)
-export GPG_TTY
-case "$OSTYPE" in
-  darwin*) gpg-agent --daemon --use-standard-socket &>/dev/null ;;
-esac
-
 # Planning Center
 export MYSQL_PORT_3306_TCP_ADDR=127.0.0.1
 export MYSQL_READER_PORT_3306_TCP_ADDR=127.0.0.1
