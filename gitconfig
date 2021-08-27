@@ -82,3 +82,6 @@
 
 [tag]
   forceSignAnnotated = true
+
+[advice]
+	detachedHead = false
