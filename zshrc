@@ -18,11 +18,6 @@ source $ZSH/oh-my-zsh.sh
 # Upgrade oh-my-zsh without asking
 DISABLE_UPDATE_PROMPT=true
 
-# Ignore duplicate commands pushed to history mostly for fzf usage
-setopt HIST_SAVE_NO_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_FIND_NO_DUPS
-
 # Add bin directories to path
 export PATH=$PATH:$HOME/bin/diff-so-fancy
 export PATH=$PATH:$HOME/.bin # from dot files
@@ -38,6 +33,11 @@ case "$OSTYPE" in
   linux*) source /usr/share/doc/fzf/examples/key-bindings.zsh ;
           source /usr/share/doc/fzf/examples/completion.zsh ;;
 esac
+
+# Ignore duplicate commands pushed to history mostly for fzf usage
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
 
 # ZSH Syntax Highlighting
 case "$OSTYPE" in
