@@ -3,181 +3,121 @@
 source utils.sh
 
 createPrivateFiles() {
-  touch $HOME/.private
+  touch "$HOME"/.private
 }
 
 installGit() {
-  case $os in
-    $macOS)
-      brew install git
-      ;;
-    $ubuntu)
-      sudo apt-get -y install git
-      ;;
-  esac
+  installOrUpdate "git"
 }
 
 installGo() {
   case $os in
-    $macOS)
-      brew install go
+    $macOS*)
+      installOrUpdate "go"
       ;;
-    $ubuntu)
-      sudo apt-get -y install golang-go
+    $ubuntu*)
+      installOrUpdate "golang-go"
       ;;
   esac
 }
 
 installRuby() {
-  case $os in
-    $macOS)
-      brew install rbenv
-      ;;
-    $ubuntu)
-      sudo apt-get -y install rbenv
-      ;;
-  esac
+  installOrUpdate "rbenv"
+}
+
+installGnuPg() {
+  installOrUpdate "gnupg"
 }
 
 installZsh() {
-  case $os in
-    $macOS)
-      brew install zsh
-      ;;
-    $ubuntu)
-      sudo apt-get install -y zsh
-      ;;
-  esac
+  installOrUpdate "zsh"
 
-  sudo chsh $(whoami) -s $(which zsh)
+  sudo chsh -s "$(which zsh)" "$(whoami)" > /dev/null
 }
 
 installOMZsh() {
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  if [ ! -d "$HOME"/.oh-my-zsh ]; then
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  fi
 }
 
 installZshSyntaxHighlighting() {
-  case $os in
-    $macOS)
-      brew install zsh-syntax-highlighting
-      ;;
-    $ubuntu)
-      sudo apt-get install -y zsh-syntax-highlighting
-      ;;
-  esac
+  installOrUpdate "zsh-syntax-highlighting"
 }
 
 installFzf() {
-  case $os in
-    $macOS)
-      brew install fzf
-      ;;
-    $ubuntu)
-      sudo apt-get install -y fzf
-      ;;
-  esac
+  installOrUpdate "fzf"
 }
 
 installAg() {
   case $os in
-    $macOS)
-      brew install the_silver_searcher
+    $macOS*)
+      installOrUpdate "the_silver_searcher"
       ;;
-    $ubuntu)
-      sudo apt-get -y install silversearcher-ag
+    $ubuntu*)
+      installOrUpdate "silversearcher-ag"
       ;;
   esac
 }
 
 installCtags() {
-  case $os in
-    $macOS)
-      brew install ctags
-      ;;
-    $ubuntu)
-      sudo apt-get -y install ctags
-      ;;
-  esac
+  installOrUpdate "ctags"
+}
+
+installGrc() {
+  installOrUpdate "grc"
+}
+
+installHub() {
+  installOrUpdate "hub"
 }
 
 installGh() {
   case $os in
-    $macOS)
-      brew install gh
-      ;;
-    $ubuntu)
-      curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
-      echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-      sudo apt update
-      sudo apt install gh
+    $ubuntu*)
+      if command -v gh 2>&1 >/dev/null; then
+        curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+        updateAvailablePackages
+      fi
       ;;
   esac
+
+  installOrUpdate "gh"
 }
 
-installGrc() {
-  case $os in
-    $macOS)
-      brew install grc
-      ;;
-    $ubuntu)
-      sudo apt-get install -y grc
-      ;;
-  esac
-}
-
-installHub() {
-  case $os in
-    $macOS)
-      brew install hub
-      ;;
-    $ubuntu)
-      sudo apt-get -y install hub
-      ;;
-  esac
+installTree() {
+  installOrUpdate "tree"
 }
 
 installNeovim() {
-  case $os in
-    $macOS)
-      brew install neovim
-      ;;
-    $ubuntu)
-      sudo apt-get -y install neovim
-      ;;
-  esac
+  installOrUpdate "neovim"
 }
 
 installTmux() {
-  case $os in
-    $macOS)
-      brew install tmux
-      ;;
-    $ubuntu)
-      sudo apt-get -y install tmux
-      ;;
-  esac
+  installOrUpdate "tmux"
 }
 
 setupNeovim() {
   mkdir -p ~/.config/nvim/
-  ln -s ~/.vimrc ~/.config/nvim/init.vim
-  curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  nvim -c "PlugInstall"
-  read e
-  echo $e
+  ln -sf ~/.vimrc ~/.config/nvim/init.vim
 }
 
 miscellaneousSetup() {
-  ln -s ~/Code ~/Work
+  ln -sf ~/Code ~/Work
 }
 
+echo ""
 echo "Running installation for $os..."
+echo ""
+
 createPrivateFiles
 installPackageManager
 updateAvailablePackages
 installGit
 installGo
 installRuby
+installGnuPg
 installZsh
 installOMZsh
 installZshSyntaxHighlighting
@@ -187,9 +127,10 @@ installCtags
 installGrc
 installHub
 installGh
+installTree
 installNeovim
 installTmux
-(cd "$HOME" || exit; bin/bash dotfiles.sh)
+(cd "$HOME"/.dotfiles || exit; bash dotfiles.sh)
 setupNeovim
 miscellaneousSetup
-bin/bash "$HOME/.bin/ctags_init"
+bash "$HOME/.bin/ctags_init"
