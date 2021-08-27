@@ -24,7 +24,9 @@ fi
 # Editor
 alias v=$EDITOR
 alias e="v"
-alias vim="nvim"
+if command -v nvim 2>&1 >/dev/null; then
+  alias vim="nvim"
+fi
 
 # Source shell and edit zsh, vim and tmux aliases
 alias sz='source ~/.zshrc'
