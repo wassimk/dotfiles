@@ -35,12 +35,6 @@ source $HOME/.zsh/aliases
 source $HOME/.zsh/functions
 source $HOME/.private
 
-# For Yarn and NPM with Brew Node
-# https://gist.github.com/DanHerbert/9520689
-export PATH="$HOME/.npm-packages/bin:$PATH"
-export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="$(yarn global bin):$PATH"
-
 # fzf auto-complete searching
 case "$OSTYPE" in
   darwin*) [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh ;;
