@@ -6,14 +6,8 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export VISUAL='vim'
 export EDITOR=$VISUAL
 
-# Load SSH keys stored in macOS Keychain
+# Load SSH keys stored in keychain
 ssh-add -A 2>/dev/null
-
-# Brew auto-complete
-# https://docs.brew.sh/Shell-Completion
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-fi
 
 # Load oh-my-zsh plugins, auto-completion, themes, etc.
 export ZSH=$HOME/.oh-my-zsh
