@@ -21,11 +21,6 @@ ZSH_THEME="wassimk"
 plugins=()
 source $ZSH/oh-my-zsh.sh
 
-# zplug plugin manager
-source ~/.zplug/init.zsh
-export NVM_AUTO_USE=true
-zplug "lukechilds/zsh-nvm"
-
 # Upgrade oh-my-zsh without asking
 DISABLE_UPDATE_PROMPT=true
 
