@@ -2,27 +2,28 @@ macOS="macOS"
 ubuntu="ubuntu"
 uname=$(uname -v)
 
-if [[ $uname == *Darwin* ]]
-then
-  os=$macOS
-elif [[ $uname == *Ubuntu* ]]
-then
-  os=$ubuntu
-else
-  echo "ERROR: Don't know how to handle this OS"
-  exit 1
-fi
+case $uname in
+  *Darwin*)
+    os=$macOS
+    ;;
+  *Ubuntu*)
+    os=$ubuntu
+    ;;
+  *)
+    echo "ERROR: Don't know how to handle this OS"
+    exit 1
+esac
 
 installPackageManager() {
   case $os in
-    $macOS)
+    $macOS*)
       if command -v brew 2>&1 >/dev/null; then
         updateAvailablePackages
       else
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       fi
       ;;
-    $ubuntu)
+    $ubuntu*)
       updateAvailablePackages
       ;;
   esac
@@ -30,10 +31,10 @@ installPackageManager() {
 
 updateAvailablePackages() {
   case $os in
-    $macOS)
+    $macOS*)
       brew update
       ;;
-    $ubuntu)
+    $ubuntu*)
       sudo apt-get -y update
       ;;
   esac
@@ -41,17 +42,17 @@ updateAvailablePackages() {
 
 installOrUpdate() {
   case $os in
-    $macOS)
+    $macOS*)
       if brew list -l | grep -q "$1"; then
         if brew outdated | grep -q "$1"; then
-          brew upgrade $1
+          brew upgrade "$1"
         fi
       else
-        brew install $1
+        brew install "$1"
       fi
       ;;
-    $ubuntu)
-      sudo apt-get -y install $1
+    $ubuntu*)
+      sudo apt-get -y install "$1"
       ;;
   esac
 }
