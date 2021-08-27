@@ -16,8 +16,10 @@ else
 fi
 
 # Logs
-alias super_tail="grc tail -f ~/Code/*/log/development.log"
-alias super_tail_giving="grc tail -f ~/Code/{api,church-center,giving,people,accounts}/log/development.log"
+if command -v grc 2>&1 >/dev/null; then
+  alias super_tail="grc tail -f ~/Code/*/log/development.log"
+  alias super_tail_giving="grc tail -f ~/Code/{api,church-center,giving,people,accounts}/log/development.log"
+fi
 
 # Editor
 alias v=$EDITOR
