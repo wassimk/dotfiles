@@ -42,8 +42,13 @@ alias etl='e ~/.tmux.conf.linux'
 alias tml='tmux list-sessions'
 alias tmka='tmux kill-server'
 
+# bundler
+alias bi='bundle install'
+alias bu='bundle update'
+alias be='bundle exec'
+
 # copy/paste
 case "$OSTYPE" in
-  darwin*)  alias clip="nc localhost 8377" ;;
+  darwin*) alias clip="nc localhost 8377" ;;
   linux*)  alias clip="nc -N localhost 8377" ;;
 esac
