@@ -275,7 +275,13 @@ installTmux() {
 setupNeovim() {
   mkdir -p ~/.config/nvim/
   ln -sf ~/.vimrc ~/.config/nvim/init.vim
-  nvim --headless +PlugInstall +qall
+
+  if [ ! -f ~/.vim/autoload/plug.vim ]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    nvim --headless +PlugInstall +qall
+  else
+    nvim --headless +PlugUpdate +qall
+  fi
 }
 
 miscellaneousSetup() {
