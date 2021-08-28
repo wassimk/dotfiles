@@ -87,6 +87,14 @@ installGh() {
   installOrUpdate "gh"
 }
 
+installHeroku() {
+  case $os in
+    $macOS*)
+      installOrUpdate "heroku"
+      ;;
+  esac
+}
+
 installTree() {
   installOrUpdate "tree"
 }
@@ -198,6 +206,7 @@ installCtags
 installGrc
 installHub
 installGh
+installHeroku
 installTree
 installExa
 installDiffSoFancy
