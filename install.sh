@@ -287,7 +287,7 @@ setupNeovim() {
 }
 
 miscellaneousSetup() {
-  ln -sf ~/Code ~/Work
+  (cd "$HOME" || exit; ln -sf Code Work)
 }
 
 echo ""
