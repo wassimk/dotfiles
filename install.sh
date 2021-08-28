@@ -33,7 +33,9 @@ installGnuPg() {
 installZsh() {
   installOrUpdate "zsh"
 
-  sudo chsh -s "$(command -v zsh)" "$(whoami)"
+  if [[ $SHELL != *zsh* ]]; then
+    sudo chsh -s "$(command -v zsh)" "$(whoami)"
+  fi
 }
 
 installOMZsh() {
