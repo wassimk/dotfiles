@@ -63,6 +63,14 @@ installAg() {
   esac
 }
 
+installRg() {
+  installOrUpdate "ripgrep"
+}
+
+installAck() {
+  installOrUpdate "ack"
+}
+
 installCtags() {
   installOrUpdate "ctags"
 }
@@ -228,6 +236,8 @@ installOMZsh
 installZshSyntaxHighlighting
 installFzf
 installAg
+installRg
+installAck
 installCtags
 installGrc
 installHub
