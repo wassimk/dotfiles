@@ -316,7 +316,7 @@ installGrc
 installHub
 installGh
 installHeroku
-# installAwsCli
+installAwsCli
 installStripeCli
 installTree
 installExa
