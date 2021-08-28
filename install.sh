@@ -113,7 +113,12 @@ installAwsCli() {
     $ubuntu*)
       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
       unzip awscliv2.zip
-      sudo ./aws/install
+      if ! command -v aws 2>&1 >/dev/null; then
+        sudo ./aws/install
+      else
+        sudo ./aws/install --update
+      fi
+
       rm -rf aws
       rm awscliv2.zip
       ;;
