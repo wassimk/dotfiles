@@ -15,6 +15,10 @@ else
   alias lh='ls -ld .*'
 fi
 
+if command -v bat 2>&1 >/dev/null; then
+  alias cat='bat'
+fi
+
 # Logs
 if command -v grc 2>&1 >/dev/null; then
   alias super_tail="grc tail -f ~/Code/*/log/development.log"
