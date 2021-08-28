@@ -32,7 +32,7 @@ installGnuPg() {
 installZsh() {
   installOrUpdate "zsh"
 
-  # sudo chsh -s "$(which zsh)" "$(whoami)"
+  sudo chsh -s "$(command -v zsh)" "$(whoami)"
 }
 
 installOMZsh() {
