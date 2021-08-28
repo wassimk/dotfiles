@@ -51,6 +51,14 @@ cleanupPackages() {
   esac
 }
 
+updateOsPackages() {
+  case $os in
+    $ubuntu*)
+      sudo apt dist-upgrade -y
+      ;;
+  esac
+}
+
 installOrUpdate() {
   case $os in
     $macOS*)
