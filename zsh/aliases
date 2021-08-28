@@ -2,7 +2,7 @@
 # plugins, and themes. For a full list of active aliases, run `alias`.
 
 # file / dir listing
-unalias l ls lsa                                                         # remove zsh set aliases
+unalias l lsa                                                            # remove zsh set aliases
 
 if command -v exa 2>&1 >/dev/null; then
   alias ll='exa -lhg --group-directories-first --git --color=automatic'  # Pretty up the listing
@@ -14,6 +14,8 @@ else
   alias la='ls -laF'
   alias lh='ls -ld .*'
 fi
+
+alias ls='ll'                                                            # You keep tying this one!
 
 if command -v bat 2>&1 >/dev/null; then
   alias cat='bat'
