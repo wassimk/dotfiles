@@ -57,8 +57,6 @@ installZsh() {
 installOMZsh() {
   if [ ! -d "$HOME"/.oh-my-zsh ]; then
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --skip-chsh --keep-zshrc
-  else
-    omz update
   fi
 }
 
@@ -276,8 +274,10 @@ setupNeovim() {
   mkdir -p ~/.config/nvim/
   ln -sf ~/.vimrc ~/.config/nvim/init.vim
 
-  if [ ! -f ~/.vim/autoload/plug.vim ]; then
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  if [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
     nvim --headless +PlugInstall +qall
   else
     nvim --headless +PlugUpdate +qall
