@@ -298,9 +298,9 @@ updateAvailablePackages
 updateOsPackages
 installWget
 installGit
-installGo
+# installGo
 installRuby
-installRust
+# installRust
 installGnuPg
 installClipper
 installZsh
