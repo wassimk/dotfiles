@@ -275,6 +275,7 @@ installTmux() {
 setupNeovim() {
   mkdir -p ~/.config/nvim/
   ln -sf ~/.vimrc ~/.config/nvim/init.vim
+  nvim --headless +PlugInstall +qall
 }
 
 miscellaneousSetup() {
