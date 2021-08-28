@@ -57,7 +57,7 @@ installZsh() {
 installOMZsh() {
   if [ ! -d "$HOME"/.oh-my-zsh ]; then
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --skip-chsh --keep-zshrc
-  elif ! command -v omz >/dev/null 2>&1; then
+  elif command -v omz >/dev/null 2>&1; then
     omz update
   fi
 }
