@@ -298,7 +298,7 @@ updateAvailablePackages
 updateOsPackages
 installWget
 installGit
-# installGo
+installGo
 installRuby
 # installRust
 installGnuPg
