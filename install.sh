@@ -164,7 +164,15 @@ installAwsCli() {
 installStripeCli() {
   case $os in
     $macOS*)
-      installOrUpdate "stripe/stripe-cli/stripe"
+      installOrUpdate "stripe"
+      ;;
+    $ubuntu*)
+      if ! command -v stripe; then
+        cd "/usr/local/bin" || exit
+        sudo wget -O stripe-cli.tar.gz "https://github.com/stripe/stripe-cli/releases/download/v1.7.0/stripe_1.7.0_linux_x86_64.tar.gz"
+        sudo tar -xvf stripe-cli.tar.gz
+        sudo rm stripe-cli.tar.gz
+      fi
       ;;
   esac
 }
