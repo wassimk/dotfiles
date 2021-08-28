@@ -10,7 +10,9 @@ export PATH=$PATH:$HOME/.bin # from dot files
 export PATH=$PATH:"/usr/local/sbin" # for Homebrew
 
 # Rust
-source $HOME/.cargo/env
+if command -v cargo >/dev/null 2>&1; then
+  source $HOME/.cargo/env
+fi
 
 # Ignore duplicate commands pushed to history mostly for fzf usage
 setopt HIST_SAVE_NO_DUPS
