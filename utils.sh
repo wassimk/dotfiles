@@ -1,3 +1,5 @@
+#!/bin/bash
+
 macOS="macOS"
 ubuntu="ubuntu"
 uname=$(uname -v)
@@ -17,7 +19,7 @@ esac
 installPackageManager() {
   case $os in
     $macOS*)
-      if command -v brew 2>&1 >/dev/null; then
+      if command -v brew; then
         updateAvailablePackages
       else
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
