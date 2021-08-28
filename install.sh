@@ -23,6 +23,7 @@ installGo() {
 
 installRuby() {
   installOrUpdate "rbenv"
+  # TODO: install a version and do some setup? right now other work tools do this.
 }
 
 installGnuPg() {
