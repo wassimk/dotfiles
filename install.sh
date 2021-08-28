@@ -48,6 +48,17 @@ installZshSyntaxHighlighting() {
   installOrUpdate "zsh-syntax-highlighting"
 }
 
+installReadline() {
+  case $os in
+    $macOS*)
+      installOrUpdate "readline"
+      ;;
+    $ubuntu*)
+      installOrUpdate "readline8"
+      ;;
+  esac
+}
+
 installFzf() {
   installOrUpdate "fzf"
 }
@@ -243,6 +254,7 @@ installGnuPg
 installZsh
 installOMZsh
 installZshSyntaxHighlighting
+installReadline
 installFzf
 installAg
 installRg
