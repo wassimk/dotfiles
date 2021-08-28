@@ -90,6 +90,44 @@ installTree() {
   installOrUpdate "tree"
 }
 
+installWget() {
+  installOrUpdate "wget"
+}
+
+installExa() {
+  case $os in
+    $macOS*)
+      installOrUpdate "exa"
+      ;;
+    $ubuntu*)
+      if ! command -v exa; then
+        cd "/usr/local" || exit
+        sudo wget https://github.com/ogham/exa/releases/download/v0.10.0/exa-linux-x86_64-v0.10.0.zip -O exa.zip
+        sudo unzip exa.zip -d exa
+        sudo rm exa.zip
+        ln -sf /usr/local/exa/bin/exa /usr/local/bin/exa
+      fi
+      ;;
+  esac
+}
+
+installDiffSoFancy() {
+  case $os in
+    $macOS*)
+      installOrUpdate "diff-so-fancy"
+      ;;
+    $ubuntu*)
+      if ! command -v diff-so-fancy; then
+        cd "/usr/local" || exit
+        sudo git clone https://github.com/so-fancy/diff-so-fancy.git
+        ln -s /usr/local/diff-so-fancy/diff-so-fancy /usr/local/bin/diff-so-fancy
+      else
+        cd "/usr/local/diff-so-fancy" || exit
+        sudo git pull
+      fi
+  esac
+}
+
 installTrash() {
   case $os in
     $macOS*)
@@ -144,6 +182,8 @@ echo ""
 createPrivateFiles
 installPackageManager
 updateAvailablePackages
+updateOsPackages
+installWget
 installGit
 installGo
 installRuby
@@ -158,6 +198,8 @@ installGrc
 installHub
 installGh
 installTree
+installExa
+installDiffSoFancy
 installTrash
 installShellCheck
 installSshCopyId
