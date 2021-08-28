@@ -114,7 +114,7 @@ installHub() {
 installGh() {
   case $os in
     $ubuntu*)
-      if ! command -v gh 2>&1 >/dev/null; then
+      if ! command -v gh; then
         curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
         echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
         updateAvailablePackages
@@ -141,7 +141,7 @@ installAwsCli() {
     $ubuntu*)
       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
       unzip -q awscliv2.zip
-      if ! command -v aws 2>&1 >/dev/null; then
+      if ! command -v aws; then
         sudo ./aws/install
       else
         sudo ./aws/install --update
@@ -152,7 +152,6 @@ installAwsCli() {
       ;;
   esac
 }
-
 
 installStripeCli() {
   case $os in
