@@ -38,6 +38,14 @@ installGnuPg() {
   installOrUpdate "gnupg"
 }
 
+installClipper() {
+  case $os in
+    $macOS*)
+      installOrUpdate "clipper"
+      ;;
+  esac
+}
+
 installZsh() {
   installOrUpdate "zsh"
 
@@ -277,6 +285,7 @@ installGo
 installRuby
 installRust
 installGnuPg
+installClipper
 installZsh
 installOMZsh
 installZshSyntaxHighlighting
