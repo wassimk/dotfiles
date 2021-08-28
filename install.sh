@@ -83,7 +83,16 @@ installAg() {
 }
 
 installRg() {
-  installOrUpdate "ripgrep"
+  case $os in
+    $macOS*)
+      installOrUpdate "ripgrep"
+      ;;
+    $ubuntu*)
+      # https://github.com/sharkdp/bat/issues/938
+      sudo apt -y install -o Dpkg::Options::="--force-overwrite" ripgrep
+      ;;
+  esac
+
 }
 
 installAck() {
@@ -179,7 +188,16 @@ installExa() {
 }
 
 installBat() {
-  installOrUpdate "bat"
+  case $os in
+    $macOS*)
+      installOrUpdate "bat"
+      ;;
+    $ubuntu*)
+      # https://github.com/sharkdp/bat/issues/938
+      sudo apt -y install -o Dpkg::Options::="--force-overwrite" bat
+      ln -sf /usr/bin/batcat /usr/local/bin/bat
+      ;;
+  esac
 }
 
 installDiffSoFancy() {
