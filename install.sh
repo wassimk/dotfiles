@@ -97,6 +97,30 @@ installHeroku() {
   esac
 }
 
+installAwsCli() {
+  case $os in
+    $macOS*)
+      installOrUpdate "awscli"
+      ;;
+    $ubuntu*)
+      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      unzip awscliv2.zip
+      sudo ./aws/install
+      rm -rf aws
+      rm awscliv2.zip
+      ;;
+  esac
+}
+
+
+installStripeCli() {
+  case $os in
+    $macOS*)
+      installOrUpdate "stripe/stripe-cli/stripe"
+      ;;
+  esac
+}
+
 installTree() {
   installOrUpdate "tree"
 }
@@ -209,6 +233,8 @@ installGrc
 installHub
 installGh
 installHeroku
+installAwsCli
+installStripeCli
 installTree
 installExa
 installDiffSoFancy
