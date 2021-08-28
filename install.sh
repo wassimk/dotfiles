@@ -26,6 +26,14 @@ installRuby() {
   # TODO: install a version and do some setup? right now other work tools do this.
 }
 
+installRust() {
+  if ! command -v rustup; then
+    curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+  else
+    rustup update
+  fi
+}
+
 installGnuPg() {
   installOrUpdate "gnupg"
 }
@@ -250,6 +258,7 @@ installWget
 installGit
 installGo
 installRuby
+installRust
 installGnuPg
 installZsh
 installOMZsh
