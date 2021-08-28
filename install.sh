@@ -159,6 +159,10 @@ installExa() {
   esac
 }
 
+installBat() {
+  installOrUpdate "bat"
+}
+
 installDiffSoFancy() {
   case $os in
     $macOS*)
@@ -252,6 +256,7 @@ installAwsCli
 installStripeCli
 installTree
 installExa
+installBat
 installDiffSoFancy
 installTrash
 installShellCheck
