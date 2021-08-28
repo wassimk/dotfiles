@@ -11,4 +11,4 @@ echo ""
 echo "Installing dot files..."
 echo ""
 
-rcup -v -x *.md -x *.sh
+rcup -v -x "*.sh" -x "*.md"
