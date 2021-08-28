@@ -19,7 +19,7 @@ esac
 installPackageManager() {
   case $os in
     $macOS*)
-      if command -v brew; then
+      if command -v brew >/dev/null 2>&1; then
         updateAvailablePackages
       else
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

@@ -27,7 +27,7 @@ installRuby() {
 }
 
 installRust() {
-  if ! command -v rustup; then
+  if ! command -v rustup >/dev/null 2>&1; then
     curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
   else
     rustup update
@@ -122,7 +122,7 @@ installHub() {
 installGh() {
   case $os in
     $ubuntu*)
-      if ! command -v gh; then
+      if ! command -v gh >/dev/null 2>&1; then
         curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
         echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
         updateAvailablePackages
@@ -149,7 +149,7 @@ installAwsCli() {
     $ubuntu*)
       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
       unzip -q awscliv2.zip
-      if ! command -v aws; then
+      if ! command -v aws >/dev/null 2>&1; then
         sudo ./aws/install
       else
         sudo ./aws/install --update
@@ -167,7 +167,7 @@ installStripeCli() {
       installOrUpdate "stripe"
       ;;
     $ubuntu*)
-      if ! command -v stripe; then
+      if ! command -v stripe >/dev/null 2>&1; then
         cd "/usr/local/bin" || exit
         sudo wget -O stripe-cli.tar.gz "https://github.com/stripe/stripe-cli/releases/download/v1.7.0/stripe_1.7.0_linux_x86_64.tar.gz"
         sudo tar -xvf stripe-cli.tar.gz
@@ -191,7 +191,7 @@ installExa() {
       installOrUpdate "exa"
       ;;
     $ubuntu*)
-      if ! command -v exa; then
+      if ! command -v exa >/dev/null 2>&1; then
         cd "/usr/local" || exit
         sudo wget https://github.com/ogham/exa/releases/download/v0.10.0/exa-linux-x86_64-v0.10.0.zip -O exa.zip
         sudo unzip exa.zip -d exa
@@ -221,7 +221,7 @@ installDiffSoFancy() {
       installOrUpdate "diff-so-fancy"
       ;;
     $ubuntu*)
-      if ! command -v diff-so-fancy; then
+      if ! command -v diff-so-fancy >/dev/null 2>&1; then
         cd "/usr/local" || exit
         sudo git clone https://github.com/so-fancy/diff-so-fancy.git
         ln -s /usr/local/diff-so-fancy/diff-so-fancy /usr/local/bin/diff-so-fancy
