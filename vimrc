@@ -170,7 +170,7 @@ let g:FerretExecutable='ag,rg'
 let g:deoplete#enable_at_startup = 1
 let g:LanguageClient_serverCommands = {
     \ 'javascript': ['/usr/local/bin/typescript-language-server', '--stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'javascript.jsx': ['/usr/local/bin/typescript-language-server', '--stdio'],
     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
     \ }
 
