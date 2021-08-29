@@ -11,4 +11,4 @@ echo ""
 echo "Installing dot files..."
 echo ""
 
-rcup -v -x "*.sh" -x "*.md"
+rcup -v -x "*.sh" -x "*.md" -x "iterm/com*"
