@@ -26,6 +26,29 @@ installRuby() {
   # TODO: install a version and do some setup? right now other work tools do this.
 }
 
+installPython() {
+  installOrUpdate "python"
+
+  case $os in
+    $ubuntu*)
+      installOrUpdate "python3"
+      installOrUpdate "python3-pip"
+      ;;
+  esac
+}
+
+installJava() {
+  case $os in
+    $macOS*)
+      installOrUpdate "openjdk"
+      if ! [ -L "/Library/Java/JavaVirtualMachines/openjdk.jdk" ] ; then
+        echo "Symlinking brew's version of Java..."
+        sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+      fi
+      ;;
+  esac
+}
+
 installRust() {
   if ! command -v rustup >/dev/null 2>&1; then
     curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y -q --no-modify-path
@@ -284,10 +307,37 @@ setupNeovim() {
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
+    pip3 install neovim
+    yarn global add neovm
     nvim --headless +PlugInstall +qall
   else
+    pip3 install neovim --upgrade
+    yarn global upgrade neovm
     nvim --headless +PlugUpdate +qall
   fi
+}
+
+SetupYouCompleteMe() {
+  installOrUpdate "cmake"
+
+  case $os in
+    $macOS*)
+      installOrUpdate "node"
+      ;;
+    $ubuntu*)
+      installOrUpdate "build-essential"
+      installOrUpdate "python3-dev"
+      installOrUpdate "vim-nox"
+      installOrUpdate "nodejs"
+      installOrUpdate "npm"
+      ;;
+  esac
+
+  echo ""
+  echo "Configuring YouCompleteMe..."
+  echo ""
+
+  (cd "$HOME/.vim/plugged/YouCompleteMe" || exit; python3 install.py --clangd-completer --ts-completer --go-completer)
 }
 
 miscellaneousSetup() {
@@ -306,6 +356,8 @@ installWget
 installGit
 installGo
 installRuby
+installPython
+installJava
 # installRust
 installGnuPg
 installClipper
@@ -337,6 +389,7 @@ installTmux
 cleanupPackages
 (cd "$HOME"/.dotfiles || exit; bash dotfiles.sh)
 setupNeovim
+SetupYouCompleteMe
 miscellaneousSetup
 bash "$HOME/.bin/ctags_init"
 
