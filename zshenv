@@ -4,6 +4,9 @@ case "$OSTYPE" in
   darwin*) export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES ;;
 esac
 
+# Upgrade oh-my-zsh without asking
+DISABLE_UPDATE_PROMPT=true
+
 # Add bin directories to path
 export PATH=$PATH:$HOME/bin/diff-so-fancy
 export PATH=$PATH:$HOME/.bin # from dot files
