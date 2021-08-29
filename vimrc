@@ -15,6 +15,7 @@ call plug#begin()
   Plug 'ajh17/VimCompletesMe'
   Plug 'rhlobo/vim-super-retab'
   Plug 'christoomey/vim-conflicted'
+  Plug 'ycm-core/YouCompleteMe'
 
   " JavaScript
   Plug 'pangloss/vim-javascript'
