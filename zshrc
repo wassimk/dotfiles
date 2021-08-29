@@ -8,9 +8,6 @@ ZSH_THEME="wassimk"
 plugins=()
 source $ZSH/oh-my-zsh.sh
 
-# Upgrade oh-my-zsh without asking
-DISABLE_UPDATE_PROMPT=true
-
 # Sourcing of other files
 source $HOME/.zsh/aliases
 source $HOME/.zsh/functions
