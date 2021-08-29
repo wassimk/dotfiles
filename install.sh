@@ -23,7 +23,9 @@ installGo() {
 
 installRuby() {
   installOrUpdate "rbenv"
-  # TODO: install a version and do some setup? right now other work tools do this.
+
+  rbenv install 2.7 --skip-existing
+  rbenv global 2.7
 }
 
 installPython() {
@@ -310,12 +312,18 @@ setupNeovim() {
     pip3 install neovim
     yarn global add neovm
     yarn global add typescript
+    yarn global add typescript-language-server
+
+    (cd "$HOME" || exit; gem install solargraph)
 
     nvim --headless +PlugInstall +qall
   else
     pip3 install neovim --upgrade
     yarn global upgrade neovm
     yarn global upgrade typescript
+    yarn global upgrade typescript-language-server
+
+    (cd "$HOME" || exit; gem upgrade solargraph)
 
     nvim --headless +PlugUpdate +qall
   fi
