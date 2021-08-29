@@ -309,35 +309,16 @@ setupNeovim() {
 
     pip3 install neovim
     yarn global add neovm
+    yarn global add typescript
+
     nvim --headless +PlugInstall +qall
   else
     pip3 install neovim --upgrade
     yarn global upgrade neovm
+    yarn global upgrade typescript
+
     nvim --headless +PlugUpdate +qall
   fi
-}
-
-SetupYouCompleteMe() {
-  installOrUpdate "cmake"
-
-  case $os in
-    $macOS*)
-      installOrUpdate "node"
-      ;;
-    $ubuntu*)
-      installOrUpdate "build-essential"
-      installOrUpdate "python3-dev"
-      installOrUpdate "vim-nox"
-      installOrUpdate "nodejs"
-      installOrUpdate "npm"
-      ;;
-  esac
-
-  echo ""
-  echo "Configuring YouCompleteMe..."
-  echo ""
-
-  (cd "$HOME/.vim/plugged/YouCompleteMe" || exit; python3 install.py --clangd-completer --ts-completer --go-completer)
 }
 
 miscellaneousSetup() {
@@ -389,7 +370,6 @@ installTmux
 cleanupPackages
 (cd "$HOME"/.dotfiles || exit; bash dotfiles.sh)
 setupNeovim
-SetupYouCompleteMe
 miscellaneousSetup
 bash "$HOME/.bin/ctags_init"
 

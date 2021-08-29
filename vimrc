@@ -15,7 +15,8 @@ call plug#begin()
   Plug 'ajh17/VimCompletesMe'
   Plug 'rhlobo/vim-super-retab'
   Plug 'christoomey/vim-conflicted'
-  Plug 'ycm-core/YouCompleteMe'
+  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
   " JavaScript
   Plug 'pangloss/vim-javascript'
@@ -165,6 +166,17 @@ endif
 " Prefer `ag` over `rg` with Ferret
 let g:FerretExecutable='ag,rg'
 
+" Solargraph language server / deoplete autocompletion
+let g:deoplete#enable_at_startup = 1
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['/usr/local/bin/typescript-language-server', '--stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ }
+
+nmap <silent>K <Plug>(lcn-hover)
+nmap <silent> gd <Plug>(lcn-definition)
+
 " Align GitHub-flavored Markdown tables with vim-easy-align
 au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
@@ -207,7 +219,7 @@ set winwidth=100                " Set minimum width of current window
 "set winheight=5                 " Windows all start at 5 lines tall
 "set winminheight=5              " Windows always 5 lines tall
 "set winheight=999               " Current window full height but preserve 5 lines for others
-"set hidden                      " Hide unsaved buffers
+set hidden                      " Hide unsaved buffers
 set complete-=i                 " Not sure, from sensible
 set display+=lastline           " Not sure, from sensible
 set scrolloff=1                 " Not sure, from sensible
