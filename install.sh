@@ -298,7 +298,19 @@ installBattery() {
 }
 
 installNeovim() {
-  installOrUpdate "neovim"
+  case $os in
+    $macOS*)
+      installOrUpdate "neovim"
+      ;;
+    $ubuntu*)
+      if ! command -v nvim >/dev/null 2>&1; then
+        sudo snap install nvim --classic
+      else
+        sudo snap refresh nvim --classic
+      fi
+
+      ;;
+  esac
 }
 
 installTmux() {
