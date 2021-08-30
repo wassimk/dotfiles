@@ -284,6 +284,9 @@ installSshCopyId() {
     $macOS*)
       installOrUpdate "ssh-copy-id"
       ;;
+    $ubuntu*)
+      installOrUpdate "openssh-client"
+      ;;
   esac
 }
 
