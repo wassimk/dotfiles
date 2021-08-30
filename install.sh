@@ -138,6 +138,10 @@ installAck() {
   installOrUpdate "ack"
 }
 
+installJq() {
+  installOrUpdate "jq"
+}
+
 installCtags() {
   installOrUpdate "ctags"
 }
@@ -358,6 +362,7 @@ installFzf
 installAg
 installRg
 installAck
+installJq
 installCtags
 installGrc
 installHub
