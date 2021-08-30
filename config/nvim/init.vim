@@ -50,6 +50,7 @@ call plug#begin()
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'wincent/loupe'
   Plug 'wincent/ferret'
+  Plug 'wincent/scalpel'
   Plug 'tpope/vim-unimpaired'
   Plug 'milkypostman/vim-togglelist'
   Plug 'pechorin/any-jump.vim'
