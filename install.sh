@@ -327,7 +327,7 @@ setupNeovim() {
     yarn global upgrade typescript
     yarn global upgrade typescript-language-server
 
-    (cd "$HOME" || exit; gem upgrade solargraph)
+    (cd "$HOME" || exit; gem update solargraph)
 
     nvim --headless +PlugUpdate +qall
   fi
