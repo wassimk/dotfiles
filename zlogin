@@ -7,3 +7,5 @@ esac
 
 # Load SSH keys stored in keychain
 ssh-add -A 2>/dev/null
+
+ensure_tmux_is_running

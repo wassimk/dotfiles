@@ -53,8 +53,6 @@ ensure_tmux_is_running() {
   fi
 }
 
-ensure_tmux_is_running
-
 ####
 # git
 # g for git status
