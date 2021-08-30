@@ -305,11 +305,17 @@ installTmux() {
   installOrUpdate "tmux"
 }
 
-setupNeovim() {
-  mkdir -p ~/.config/nvim/
-  ln -sf ~/.vimrc ~/.config/nvim/init.vim
+installItermShellIntegration() {
+  if [ ! -f "$HOME"/.iterm2_shell_integration.zsh ]; then
+    curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | bash
+  fi
+}
 
-  if [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
+setupNeovim() {
+  mkdir -p "$HOME"/.config/nvim/
+  ln -sf "$HOME"/.vimrc "$HOME"/.config/nvim/init.vim
+
+  if [ ! -f "$HOME"/.local/share/nvim/site/autoload/plug.vim ]; then
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
@@ -380,6 +386,7 @@ installSshCopyId
 installBattery
 installNeovim
 installTmux
+installItermShellIntegration
 cleanupPackages
 (cd "$HOME"/.dotfiles || exit; bash dotfiles.sh)
 setupNeovim
