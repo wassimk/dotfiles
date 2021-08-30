@@ -1,5 +1,5 @@
 # Use vim as the visual editor
-export VISUAL='vim'
+export VISUAL='nvim'
 export EDITOR=$VISUAL
 
 # Load oh-my-zsh plugins, auto-completion, themes, etc.
