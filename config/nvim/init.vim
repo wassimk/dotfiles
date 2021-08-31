@@ -63,6 +63,7 @@ call plug#begin()
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-endwise'
   Plug 'Yggdroot/indentLine'
+  Plug 'machakann/vim-highlightedyank'
   Plug 'editorconfig/editorconfig-vim'
 
   " Theme / Status Line / Tmux / Pretty Terminal
