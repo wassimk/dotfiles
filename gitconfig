@@ -83,4 +83,4 @@
   forceSignAnnotated = true
 
 [advice]
-	detachedHead = false
+  detachedHead = false
