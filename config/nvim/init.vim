@@ -71,7 +71,6 @@ call plug#begin()
   Plug 'vim-airline/vim-airline-themes'
   Plug 'edkolev/tmuxline.vim'
   Plug 'christoomey/vim-tmux-navigator'
-  Plug 'christoomey/vim-tmux-runner'
   Plug 'wincent/terminus'
 
 call plug#end()
@@ -319,13 +318,3 @@ map <leader>fi mmgg=G`m<CR>
 
 " Yank whole file
 map <leader>fy mmggyG`m<CR>
-
-" Vim tmux runner mappings
-map <leader>rc :VtrSendCommandToRunner<cr>
-map <leader>rl :VtrSendLinesToRunner<cr>
-map <leader>ro :VtrOpenRunner<cr>
-map <leader>rk :VtrKillRunner<cr>
-map <leader>rd :VtrDetachRunner<cr>
-map <leader>ra :VtrReattachRunner<cr>
-map <leader>rf :VtrFlushCommand<cr>
-map <leader>rv :VtrSendSelectedToRunner<cr>
