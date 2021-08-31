@@ -15,8 +15,9 @@ call plug#begin()
   Plug 'ajh17/VimCompletesMe'
   Plug 'rhlobo/vim-super-retab'
   Plug 'christoomey/vim-conflicted'
-  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'nvim-lua/completion-nvim'
+  Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 
   " JavaScript
   Plug 'pangloss/vim-javascript'
@@ -169,17 +170,6 @@ endif
 " Prefer `ag` over `rg` with Ferret
 let g:FerretExecutable='ag,rg'
 
-" Solargraph language server / deoplete autocompletion
-let g:deoplete#enable_at_startup = 1
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['/usr/local/bin/typescript-language-server', '--stdio'],
-    \ 'javascript.jsx': ['/usr/local/bin/typescript-language-server', '--stdio'],
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-    \ }
-
-nmap <silent>K <Plug>(lcn-hover)
-nmap <silent> gd <Plug>(lcn-definition)
-
 " Align GitHub-flavored Markdown tables with vim-easy-align
 au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
@@ -237,6 +227,38 @@ au BufRead,BufNewFile *.md setlocal textwidth=100
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd FileType gitcommit setlocal spell
 set complete+=kspell
+
+""""
+" lsp / completion
+""""
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+" set shortmess+=c
+
+let g:completion_trigger_on_delete = 1
+let g:completion_confirm_key = "\<C-y>"
+" let g:completion_auto_change_source = 1
+
+lua << EOF
+local custom_lsp_attach = function(client)
+  -- See https://neovim.io/doc/user/lsp.html
+  vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>ld', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', {noremap = true})
+  vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true})
+  vim.api.nvim_buf_set_keymap(0, 'n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true})
+  vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', {noremap = true})
+
+  require('completion').on_attach()
+end
+
+require'toggle_lsp_diagnostics'.init({ start_on = false })
+require('lspconfig').solargraph.setup({on_attach = custom_lsp_attach})
+require('lspconfig').tsserver.setup({on_attach = custom_lsp_attach})
+EOF
+
+" To use completion it for all buffers :hmmm
+" autocmd BufEnter * lua require'completion'.on_attach()
 
 """"
 " Autocmd's
