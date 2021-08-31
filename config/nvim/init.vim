@@ -254,7 +254,7 @@ end
 
 require'toggle_lsp_diagnostics'.init({ start_on = false })
 require('lspconfig').solargraph.setup({on_attach = custom_lsp_attach})
-require('lspconfig').tsserver.setup({on_attach = custom_lsp_attach})
+-- require('lspconfig').tsserver.setup({on_attach = custom_lsp_attach})
 EOF
 
 " To use completion it for all buffers :hmmm
