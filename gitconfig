@@ -30,7 +30,6 @@
   unstage = reset
   unchange = checkout --
   upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
-  conflicted = !vim +Conflicted
 
 [push]
   default = simple
