@@ -58,12 +58,12 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
-
   " Pretty much automatic
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-endwise'
   Plug 'Yggdroot/indentLine'
   Plug 'machakann/vim-highlightedyank'
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'editorconfig/editorconfig-vim'
 
   " Theme / Status Line / Tmux / Pretty Terminal
@@ -259,6 +259,36 @@ EOF
 
 " To use completion it for all buffers :hmmm
 " autocmd BufEnter * lua require'completion'.on_attach()
+
+""""
+" treesitter
+""""
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = {
+    "css",
+    "html",
+    "javascript",
+    "json",
+    "lua",
+    "regex",
+    "ruby",
+    "scss",
+    "typescript",
+    "vim"
+  },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+  indent = {
+    enable = true
+  },
+  incremental_selection = {
+    enable = true,
+  },
+}
+EOF
 
 """"
 " Autocmd's
