@@ -7,7 +7,6 @@ call plug#begin()
   Plug 'dense-analysis/ale'
   Plug 'tpope/vim-fugitive'
   Plug 'jiangmiao/auto-pairs'
-  Plug 'ericpruitt/tmux.vim'
   Plug 'janko-m/vim-test'
   Plug 'nvim-lua/completion-nvim'
   Plug 'neovim/nvim-lspconfig'
@@ -21,6 +20,7 @@ call plug#begin()
   Plug 'maxmellon/vim-jsx-pretty'
 
   " Ruby / Rails
+  Plug 'nelstrom/vim-textobj-rubyblock'
   Plug 'vim-ruby/vim-ruby'
   Plug 'tpope/vim-rails'
 
@@ -29,12 +29,12 @@ call plug#begin()
   Plug 'tpope/vim-surround'
   Plug 'wellle/targets.vim'
   Plug 'kana/vim-textobj-user'
-  Plug 'nelstrom/vim-textobj-rubyblock'
   Plug 'kana/vim-textobj-line'
   Plug 'kana/vim-textobj-entire'
   Plug 'kana/vim-textobj-indent'
   Plug 'christoomey/vim-sort-motion'
   Plug 'junegunn/vim-easy-align'
+  Plug 'tpope/vim-unimpaired'
 
   " Files And Search
   Plug 'ctrlpvim/ctrlp.vim'
@@ -44,9 +44,6 @@ call plug#begin()
   Plug 'wincent/loupe'
   Plug 'wincent/ferret'
   Plug 'wincent/scalpel'
-  Plug 'tpope/vim-unimpaired'
-  Plug 'milkypostman/vim-togglelist'
-  Plug 'pechorin/any-jump.vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
@@ -59,13 +56,14 @@ call plug#begin()
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'editorconfig/editorconfig-vim'
 
-  " Theme / Status Line / Tmux / Pretty Terminal
+  " Theme / Status Line / Tmux / Pretty Terminal / Vim
   Plug 'sonph/onehalf', { 'rtp': 'vim' }
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'edkolev/tmuxline.vim'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'wincent/terminus'
+  Plug 'milkypostman/vim-togglelist'
 
 call plug#end()
 
@@ -334,6 +332,3 @@ map <leader>nh :e! ~/Dropbox/docs/tiny-habits.md<cr>
 
 " Auto-indent the whole file
 map <leader>fi mmgg=G`m<CR>
-
-" Yank whole file
-map <leader>fy mmggyG`m<CR>
