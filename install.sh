@@ -168,7 +168,7 @@ installGh() {
 
       installOrUpdate "gh"
 
-      gh completion -s zsh | sudo tee -a /usr/local/share/zsh/site-functions/_gh > /dev/null
+      gh completion -s zsh | sudo tee /usr/local/share/zsh/site-functions/_gh > /dev/null
       ;;
   esac
 }
