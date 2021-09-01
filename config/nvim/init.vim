@@ -8,8 +8,9 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
   Plug 'jiangmiao/auto-pairs'
   Plug 'janko-m/vim-test'
-  Plug 'nvim-lua/completion-nvim'
   Plug 'neovim/nvim-lspconfig'
+  Plug 'glepnir/lspsaga.nvim'
+  Plug 'nvim-lua/completion-nvim'
   Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 
   " JavaScript
@@ -236,10 +237,10 @@ let g:completion_confirm_key = "\<C-y>"
 lua << EOF
 local custom_lsp_attach = function(client)
   -- See https://neovim.io/doc/user/lsp.html
-  vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>ld', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', {noremap = true})
+  vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>ld', "<cmd>lua require('lspsaga.diagnostic').show_line_diagnostics()<CR>", {noremap = true})
   vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true})
   vim.api.nvim_buf_set_keymap(0, 'n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true})
-  vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', {noremap = true})
+  vim.api.nvim_buf_set_keymap(0, 'n', 'K', "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", {noremap = true})
 
   require('completion').on_attach()
 end
