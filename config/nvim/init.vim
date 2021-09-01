@@ -244,6 +244,7 @@ local custom_lsp_attach = function(client)
   vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true})
   vim.api.nvim_buf_set_keymap(0, 'n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true})
   vim.api.nvim_buf_set_keymap(0, 'n', 'K', "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", {noremap = true})
+  vim.api.nvim_buf_set_keymap(0, 'n', 'gca', "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", {noremap = true})
 
   require('completion').on_attach()
 end
