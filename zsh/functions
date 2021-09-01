@@ -103,6 +103,9 @@ function weather() {
     fi
 }
 
+# Load all other completions
+autoload -Uz compinit && compinit -i
+
 # Show contents of directory after cd-ing into it
 chpwd() {
   ll
