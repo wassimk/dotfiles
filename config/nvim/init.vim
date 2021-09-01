@@ -125,7 +125,7 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 " Enable specific linters
-let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['prettier', 'rubocop', 'brakeman', 'standard'], 'typescript': ['eslint', 'tsserver']}
+let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['prettier', 'rubocop', 'brakeman', standard'], 'typescript': ['eslint']}
 
 " Use bundle exec version
 let g:ale_ruby_rubocop_executable = 'bundle'
@@ -229,6 +229,9 @@ set completeopt=menuone,noinsert,noselect
 
 " Avoid showing message extra message when using completion
 " set shortmess+=c
+
+" Use vim built in
+let g:ale_disable_lsp = 1
 
 let g:completion_trigger_on_delete = 1
 let g:completion_confirm_key = "\<C-y>"
