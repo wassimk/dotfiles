@@ -5,18 +5,12 @@ call plug#begin()
 
   " Code / Git
   Plug 'dense-analysis/ale'
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-eunuch'
-  Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-fugitive'
   Plug 'jiangmiao/auto-pairs'
-  Plug 'keith/tmux.vim'
+  Plug 'ericpruitt/tmux.vim'
   Plug 'janko-m/vim-test'
-  Plug 'ajh17/VimCompletesMe'
-  Plug 'rhlobo/vim-super-retab'
-  Plug 'christoomey/vim-conflicted'
-  Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/completion-nvim'
+  Plug 'neovim/nvim-lspconfig'
   Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 
   " JavaScript
@@ -29,10 +23,9 @@ call plug#begin()
   " Ruby / Rails
   Plug 'vim-ruby/vim-ruby'
   Plug 'tpope/vim-rails'
-  Plug 'tpope/vim-bundler'
-  Plug 'tpope/vim-rake'
 
   " Vim Text Objects and Motions
+  Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
   Plug 'wellle/targets.vim'
   Plug 'kana/vim-textobj-user'
@@ -40,7 +33,6 @@ call plug#begin()
   Plug 'kana/vim-textobj-line'
   Plug 'kana/vim-textobj-entire'
   Plug 'kana/vim-textobj-indent'
-  Plug 'wincent/vim-clipper'
   Plug 'christoomey/vim-sort-motion'
   Plug 'junegunn/vim-easy-align'
 
@@ -59,9 +51,10 @@ call plug#begin()
   Plug 'junegunn/fzf.vim'
 
   " Pretty much automatic
+  Plug 'wincent/vim-clipper'
+  Plug 'Yggdroot/indentLine'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-endwise'
-  Plug 'Yggdroot/indentLine'
   Plug 'machakann/vim-highlightedyank'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'editorconfig/editorconfig-vim'
@@ -295,18 +288,11 @@ EOF
 """"
 " Autocmd's
 """"
-function! s:setupConflicted()
-  set stl+=%{ConflictedVersion()}
-  " Resolve and move to next conflicted file.
-  nnoremap ]m :GitNextConflict<cr>
-endfunction
-
 if has('autocmd')
   augroup WamAutocmds
     autocmd!
 
     autocmd VimResized * execute "normal! \<c-w>="
-    autocmd User VimConflicted call s:setupConflicted()
  augroup END
 endif
 
