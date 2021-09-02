@@ -53,7 +53,6 @@ call plug#begin()
   Plug 'Yggdroot/indentLine'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-endwise'
-  Plug 'machakann/vim-highlightedyank'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'editorconfig/editorconfig-vim'
 
@@ -212,6 +211,9 @@ set sidescrolloff=5             " Not sure, from sensible
 set splitright                  " New veritcle splits to the right
 set splitbelow                  " New horizontal split below
 set inccommand=nosplit          " Live highlight of substitutions
+
+" Highlight on yank
+au TextYankPost * silent! lua vim.highlight.on_yank {timeout=750}
 
 " Wrap markdown files at 100 characters
 au BufRead,BufNewFile *.md setlocal textwidth=100
