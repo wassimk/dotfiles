@@ -6,6 +6,7 @@ call plug#begin()
   " Code / Git
   Plug 'dense-analysis/ale'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
   Plug 'tpope/vim-dispatch'
   Plug 'jiangmiao/auto-pairs'
   Plug 'janko-m/vim-test'
