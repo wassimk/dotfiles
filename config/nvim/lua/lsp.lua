@@ -1,7 +1,6 @@
 ----
 -- lsp / completion
 ----
-
 local custom_lsp_attach = function(client)
   -- See https://neovim.io/doc/user/lsp.html
   vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>ld', "<cmd>lua require('lspsaga.diagnostic').show_line_diagnostics()<CR>", {noremap = true})
@@ -17,6 +16,7 @@ local custom_lsp_attach = function(client)
 
   vim.api.nvim_buf_set_keymap(0, 'n', '[e', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", {noremap = true})
   vim.api.nvim_buf_set_keymap(0, 'n', ']e', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", {noremap = true})
+
   require('completion').on_attach()
 end
 
@@ -28,3 +28,43 @@ require('lspconfig').solargraph.setup({on_attach = custom_lsp_attach})
 
 -- javascript / typescript
 -- require('lspconfig').tsserver.setup({on_attach = custom_lsp_attach})
+
+----
+-- lua
+----
+
+local system_name
+if vim.fn.has("mac") == 1 then
+  system_name = "macOS"
+elseif vim.fn.has("unix") == 1 then
+  system_name = "Linux"
+else
+  print("Unsupported system for sumneko")
+end
+
+-- install lua language server via https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages
+local sumneko_root_path = "/usr/local/lua-language-server" -- this is the git repo root
+local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
+
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+require('lspconfig').sumneko_lua.setup {
+  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'Lua 5.4',
+        path = runtime_path
+      },
+      diagnostics = {
+        globals = {'vim'}
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true)
+      },
+    }
+  },
+  on_attach = custom_lsp_attach,
+}
