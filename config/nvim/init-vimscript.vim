@@ -11,6 +11,7 @@ call plug#begin()
   Plug 'jiangmiao/auto-pairs'
   Plug 'janko-m/vim-test'
   Plug 'neovim/nvim-lspconfig'
+  Plug 'folke/lsp-colors.nvim'
   Plug 'glepnir/lspsaga.nvim'
   Plug 'nvim-lua/completion-nvim'
   Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
