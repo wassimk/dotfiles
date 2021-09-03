@@ -53,6 +53,9 @@ require"toggle_lsp_diagnostics".init({ start_on = true, virtual_text = false, un
 -- ruby / solargraph
 require("lspconfig").solargraph.setup({ on_attach = custom_lsp_attach })
 
+-- vimscript
+require"lspconfig".vimls.setup({ on_attach = custom_lsp_attach })
+
 -- javascript / typescript
 -- require('lspconfig').tsserver.setup({on_attach = custom_lsp_attach})
 
