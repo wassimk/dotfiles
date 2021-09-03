@@ -252,7 +252,6 @@ endif
 """"
 " Custom Key Mappings
 """"
-inoremap jj <esc>
 
 " NERDTree Toggle
 map <silent> <C-n> :NERDTreeToggle<CR>
