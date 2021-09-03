@@ -60,7 +60,7 @@ call plug#begin()
   Plug 'editorconfig/editorconfig-vim'
 
   " Theme / Status Line / Tmux / Pretty Terminal / Vim
-  Plug 'sonph/onehalf', { 'rtp': 'vim' }
+  Plug 'joshdick/onedark.vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'edkolev/tmuxline.vim'
@@ -79,15 +79,11 @@ let g:test#custom_strategies = {'dispatch_start': function('DispatchStartStrateg
 let g:test#strategy = 'dispatch_start'
 
 " Theme and terminal color support
-syntax on
-set t_Co=256
 set cursorline
-colorscheme onehalfdark
-let g:airline_theme='onehalfdark'
-
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+syntax on
+colorscheme onedark
+let g:airline_theme='onedark'
+if (has("termguicolors"))
   set termguicolors
 endif
 
@@ -179,7 +175,6 @@ set clipboard=unnamed
 runtime macros/matchit.vim
 
 filetype indent plugin on
-syntax on
 
 set nocompatible                " This is Vim not Vi
 set laststatus=2                " Always show status line
