@@ -218,7 +218,7 @@ au BufRead,BufNewFile *.md setlocal textwidth=100
 
 " Spell check
 autocmd BufRead,BufNewFile *.md setlocal spell
-autocmd FileType gitcommit setlocal spell
+autocmd FileType gitcommit setlocal spell | setlocal textwidth=72
 set complete+=kspell
 
 " Use vim built in
