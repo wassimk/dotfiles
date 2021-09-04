@@ -439,15 +439,6 @@ hs.hotkey.bind(
 --
 -- Auto-reload config on change.
 --
-function reloadConfig(files)
-  for _, file in pairs(files) do
-    if file:sub(-4) == ".lua" then
-      tearDownEventHandling()
-      hs.reload()
-    end
-  end
-end
-
 reloader.init()
 
 log.i("Config loaded")
