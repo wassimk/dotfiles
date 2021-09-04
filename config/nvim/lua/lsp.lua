@@ -46,7 +46,6 @@ require("lspconfig").sumneko_lua.setup {
 ----
 -- formatter
 ----
-
 require("lspconfig").efm.setup {
   init_options = { documentFormatting = true },
   filetypes = { "lua" },
