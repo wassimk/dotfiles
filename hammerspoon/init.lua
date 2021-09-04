@@ -101,12 +101,16 @@ local layoutConfig = {
 
   ["com.apple.iCal"] = (function(window, forceScreenCount)
     local count = forceScreenCount or screenCount
-    if count == 1 then
-      hs.grid.set(window, grid.fullScreen)
-    elseif atWork() then
-      hs.grid.set(window, grid.leftTwoThirds, internalDisplay())
-    else
-      hs.grid.set(window, grid.rightHalf, hs.screen.primaryScreen())
+
+    -- the calendar entry suggestions window isStandard() but we don't want to resposition it
+    if window:isMaximizable() then
+      if count == 1 then
+        hs.grid.set(window, grid.fullScreen)
+      elseif atWork() then
+        hs.grid.set(window, grid.leftTwoThirds, internalDisplay())
+      else
+        hs.grid.set(window, grid.rightHalf, hs.screen.primaryScreen())
+      end
     end
   end),
 
