@@ -103,8 +103,10 @@ function weather() {
     fi
 }
 
-# Load all other completions
-autoload -Uz compinit && compinit -i
+# Load all other completions (this breaks h on linux)
+case "$OSTYPE" in
+  darwin*) autoload -Uz compinit && compinit -i
+esac
 
 # Show contents of directory after cd-ing into it
 chpwd() {
