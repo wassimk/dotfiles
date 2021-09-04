@@ -8,12 +8,12 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
   Plug 'tpope/vim-dispatch'
-  Plug 'jiangmiao/auto-pairs'
+  Plug 'windwp/nvim-autopairs'
   Plug 'janko-m/vim-test'
   Plug 'neovim/nvim-lspconfig'
-  Plug 'folke/lsp-colors.nvim'
-  Plug 'glepnir/lspsaga.nvim'
-  Plug 'nvim-lua/completion-nvim'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 
   " JavaScript
