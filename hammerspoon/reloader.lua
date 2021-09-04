@@ -21,7 +21,7 @@ end)
 
 return {
   init = (function()
-    local watcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadFiles)
+    local watcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.dotfiles/hammerspoon/", reloadFiles)
     watcher:start()
   end),
   reload = reload
