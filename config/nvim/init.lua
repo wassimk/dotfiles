@@ -6,3 +6,4 @@ vim.cmd("source ~/.config/nvim/init-vimscript.vim")
 
 require("lsp")
 require("tree-sitter")
+require("completions")
