@@ -11,8 +11,13 @@ cmp.setup {
   formatting = {
     format = function(entry, vim_item)
       -- set a name for each source
-      vim_item.menu = ({ buffer = "[Buffer]", nvim_lsp = "[LSP]", nvim_lua = "[Lua]" })[entry.source
-                        .name]
+      vim_item.menu = ({
+        buffer = "[Buffer]",
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[Lua]",
+        path = "[Path]",
+        spell = "[Spell]"
+      })[entry.source.name]
       return vim_item
     end
   },
@@ -45,7 +50,10 @@ cmp.setup {
       end, { "i", "s" }
     )
   },
-  sources = { { name = "buffer" }, { name = "nvim_lsp" }, { name = "nvim_lua" } },
+  sources = {
+    { name = "buffer" }, { name = "nvim_lsp" }, { name = "nvim_lua" }, { name = "path" },
+    { name = "spell" }
+  },
   completion = { completeopt = "menu,menuone,noinsert" }
 }
 
