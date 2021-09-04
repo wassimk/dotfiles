@@ -226,15 +226,6 @@ set complete+=kspell
 " Use vim built in
 let g:ale_disable_lsp = 1
 
-""""
-" completion
-""""
-
-" Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
-
-let g:completion_trigger_on_delete = 1
-let g:completion_confirm_key = "\<C-y>"
 " let g:completion_auto_change_source = 1
 
 " Avoid showing message extra message when using completion
