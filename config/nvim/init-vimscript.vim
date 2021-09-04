@@ -90,6 +90,7 @@ let g:airline_theme='onedark'
 if (has("termguicolors"))
   set termguicolors
 endif
+let g:onedark_terminal_italics = 1
 
 " vim-airline applies its theme to tmuxline plugin
 " these are preferred defaults, info at https://github.com/edkolev/tmuxline.vim
