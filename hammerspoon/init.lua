@@ -116,7 +116,7 @@ local layoutConfig = {
   end),
 
   -- Always left half of internal or primary display
-  ["com.apple.iChat"] = (function(window, forceScreenCount)
+  ["com.apple.MobileSMS"] = (function(window, forceScreenCount)
     hs.grid.set(window, grid.leftHalf, internalDisplay())
   end)
 }
