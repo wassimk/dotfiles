@@ -58,7 +58,6 @@ call plug#begin()
   Plug 'wincent/vim-clipper'
   Plug 'Yggdroot/indentLine'
   Plug 'tpope/vim-repeat'
-  Plug 'tpope/vim-endwise'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'editorconfig/editorconfig-vim'
 
