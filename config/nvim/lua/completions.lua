@@ -8,6 +8,7 @@ local check_back_space = function()
 end
 
 cmp.setup {
+  snippet = { expand = function(args) vim.fn["vsnip#anonymous"](args.body) end },
   formatting = {
     format = function(entry, vim_item)
       -- set a name for each source
