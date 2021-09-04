@@ -35,7 +35,9 @@ local grid = {
 }
 
 local layoutConfig = {
-  _before_ = (function() hide("com.twitter.twitter-mac") end),
+  _before_ = (function()
+    -- hide("com.twitter.twitter-mac")
+  end),
 
   _after_ = (function()
     -- Make sure apps are in front of others
@@ -89,16 +91,6 @@ local layoutConfig = {
     end
   end),
 
-  -- Full screen single display or right half of primary
-  ["com.github.atom"] = (function(window, forceScreenCount)
-    local count = forceScreenCount or screenCount
-    if count == 1 then
-      hs.grid.set(window, grid.fullScreen)
-    else
-      hs.grid.set(window, grid.rightTwoThirds, hs.screen.primaryScreen())
-    end
-  end),
-
   ["com.apple.iCal"] = (function(window, forceScreenCount)
     local count = forceScreenCount or screenCount
 
@@ -123,17 +115,10 @@ local layoutConfig = {
     end
   end),
 
-  ["com.apple.dt.Xcode"] = (function(window)
-    hs.grid.set(window, grid.fullScreen, internalDisplay())
-  end),
-
   -- Always left half of internal or primary display
   ["com.apple.iChat"] = (function(window, forceScreenCount)
     hs.grid.set(window, grid.leftHalf, internalDisplay())
-  end),
-
-  -- Always right half of internal or single display
-  ["com.skype.skype"] = (function(window) hs.grid.set(window, grid.rightHalf, internalDisplay()) end)
+  end)
 }
 
 --
