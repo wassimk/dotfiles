@@ -2,7 +2,6 @@
 -- Auto-reload config on change.
 --
 local events = require "events"
-local log = require "log"
 
 -- Forward function declarations.
 local reload = nil
