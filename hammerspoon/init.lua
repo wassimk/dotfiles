@@ -7,10 +7,9 @@ hs.grid.setGrid("12x12") -- allows us to place on quarters, thirds and halves
 hs.window.animationDuration = 0 -- disable animations
 
 local screenCount = #hs.screen.allScreens()
-local logLevel = "info" -- generally want 'debug' or 'info'
-local log = hs.logger.new("wam", logLevel)
 local events = require "events"
 local reloader = require "reloader"
+local log = require "logger"
 
 local grid = {
   topHalf = "0,0 12x6",
