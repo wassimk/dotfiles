@@ -1,7 +1,7 @@
 ----
 -- lsp
 ----
--- configuration toggles
+-- configuration toggles this my new completion engine it has stuff like spellbind
 require("toggle_lsp_diagnostics").init({ start_on = true, virtual_text = false, underline = false })
 
 -- ruby / solargraph
