@@ -173,6 +173,26 @@ installGh() {
   esac
 }
 
+installTig() {
+  case $os in
+    $macOS*)
+      installOrUpdate "tig"
+      ;;
+    $ubuntu*)
+      if ! command -v tig >/dev/null 2>&1; then
+        wget -O tig-2.5.4.tar.gz "https://github.com/jonas/tig/releases/download/tig-2.5.4/tig-2.5.4.tar.gz"
+        tar -xvf tig-2.5.4.tar.gz
+        cd tig-2.5.4 || exit
+        make prefix=/usr/local
+        sudo make install prefix=/usr/local
+        cd ..
+        rm -rf tig-2.5.4
+        rm tig-2.5.4.tar.gz
+      fi
+      ;;
+  esac
+}
+
 installHeroku() {
   case $os in
     $macOS*)
@@ -391,6 +411,7 @@ installCtags
 installGrc
 installHub
 installGh
+installTig
 installHeroku
 installAwsCli
 installStripeCli
