@@ -95,14 +95,31 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-" vim-airline applies its theme to tmuxline plugin
-" these are preferred defaults, info at https://github.com/edkolev/tmuxline.vim
-" make sure and change terminal font to one of the powerline fonts
+""""
+" statusline via vim-airline plugin
+""""
+let g:airline_powerline_fonts = 1
+let g:airline_mode_map = {
+      \'c': 'C',
+      \'i': 'I',
+      \'ic': 'IC',
+      \'n': 'N',
+      \'v': 'V',
+      \'V': 'V',
+\}
 
-" Automatically change the theme?
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_symbols.colnr = " 𝚌 "
+let g:airline_symbols.linenr = "ℓ "
+let g:airline_section_x = '%{airline#util#prepend("", 0)}'
+let g:airline_section_y = ''
+let g:airline_section_z = "%{g:airline_symbols.linenr}%l/%L%{g:airline_symbols.colnr}%v"
+
+" Update the tmuxline config file automatically
 let g:airline#extensions#tmuxline#enabled = 1
-
-" Update config file automatically
 let airline#extensions#tmuxline#snapshot_file = "~/.tmuxline.conf"
 let g:tmuxline_preset = {
       \'a'    : '#S',
