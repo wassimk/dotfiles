@@ -86,12 +86,14 @@ let g:test#strategy = 'dispatch_start'
 " Theme and terminal color support
 set cursorline
 syntax on
-colorscheme onedark
-let g:airline_theme='onedark'
+if filereadable( expand("$HOME/.config/nvim/plugged/onedark.vim/colors/onedark.vim") )
+  colorscheme onedark
+  let g:airline_theme='onedark'
+  let g:onedark_terminal_italics = 1
+endif
 if (has("termguicolors"))
   set termguicolors
 endif
-let g:onedark_terminal_italics = 1
 
 " vim-airline applies its theme to tmuxline plugin
 " these are preferred defaults, info at https://github.com/edkolev/tmuxline.vim
