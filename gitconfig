@@ -37,9 +37,6 @@
 [pull]
   rebase = true
 
-[credential]
-  helper = osxkeychain
-
 [merge]
   tool = vimdiff
   conflictstyle = diff3
