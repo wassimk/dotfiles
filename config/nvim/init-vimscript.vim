@@ -64,7 +64,7 @@ call plug#begin()
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'editorconfig/editorconfig-vim'
 
-  " Theme / Status Line / Tmux / Pretty Terminal / Vim
+  " Theme / Status Line / Tmux / Terminal / Vim
   Plug 'joshdick/onedark.vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
