@@ -20,11 +20,11 @@ def clip(input)
   str
 end
 
-def me(place)
+def me(place = nil)
   case place
-  when :s
-    User.find_by(email: 'wassim@shipzen.com')
+  when :b
+    User.find_by(email: Base64.decode64('d2Fzc2ltQHdhd2Vzb21lLmNvbQ==\n'))
   else
-    User.find_by(email: 'wassim@metallaoui.com')
+    User.find_by(email: Base64.decode64('d2Fzc2ltQG1ldGFsbGFvdWkuY29t\n'))
   end
 end
