@@ -270,7 +270,9 @@ installBat() {
     $ubuntu*)
       # https://github.com/sharkdp/bat/issues/938
       sudo apt -y install -o Dpkg::Options::="--force-overwrite" bat
-      ln -sf /usr/bin/batcat /usr/local/bin/bat
+      if ! command -v batcat >/dev/null 2>&1; then
+        ln -sf /usr/bin/batcat /usr/local/bin/bat
+      fi
       ;;
   esac
 }
