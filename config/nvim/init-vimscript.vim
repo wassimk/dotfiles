@@ -5,6 +5,7 @@ call plug#begin()
 
   " Code / Git
   Plug 'dense-analysis/ale'
+  Plug 'wincent/vcs-jump'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
   Plug 'tpope/vim-dispatch'

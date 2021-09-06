@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if ! command -v vcs-jump >/dev/null 2>&1; then
+  ln -sf "$HOME"/.config/nvim/plugged/vcs-jump/bin/vcs-jump "$HOME"/.bin/vcs-jump
+fi
+
+vcs-jump "$@"
