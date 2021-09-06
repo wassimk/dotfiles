@@ -95,6 +95,9 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
+" hide the ~ characters on empty lines
+highlight! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
+
 """"
 " statusline via vim-airline plugin
 """"
