@@ -167,7 +167,7 @@ let g:ale_fixers = {
 \}
 
 " NERDTree Settings
-let NERDTreeMinimalUI = 1
+let g:NERDTreeMinimalUI = 1
 let g:NERDTreeStatusline = ""
 
 " The Silver Searcher
