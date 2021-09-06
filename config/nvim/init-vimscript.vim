@@ -165,6 +165,7 @@ let g:ale_fixers = {
 
 " NERDTree Settings
 let NERDTreeMinimalUI = 1
+let g:NERDTreeStatusline = ""
 
 " The Silver Searcher
 " brew install the_silver_searcher
