@@ -352,6 +352,8 @@
 	<string>660561C2-D1E7-4DA3-859A-104A02C5A573</string>
 	<key>DisableFullscreenTransparency</key>
 	<false/>
+	<key>DisableWindowSizeSnap</key>
+	<true/>
 	<key>EnableDivisionView</key>
 	<true/>
 	<key>EnableProxyIcon</key>
@@ -959,12 +961,14 @@
 					<key>Text</key>
 					<string>[1;2D</string>
 				</dict>
-				<key>0xf702-0x240000</key>
+				<key>0xf702-0x240000-0x7b</key>
 				<dict>
 					<key>Action</key>
-					<integer>10</integer>
+					<integer>11</integer>
+					<key>Label</key>
+					<string></string>
 					<key>Text</key>
-					<string>[1;5D</string>
+					<string>01</string>
 				</dict>
 				<key>0xf702-0x260000</key>
 				<dict>
@@ -973,12 +977,14 @@
 					<key>Text</key>
 					<string>[1;6D</string>
 				</dict>
-				<key>0xf702-0x280000</key>
+				<key>0xf702-0x280000-0x7b</key>
 				<dict>
 					<key>Action</key>
-					<integer>11</integer>
+					<integer>10</integer>
+					<key>Label</key>
+					<string></string>
 					<key>Text</key>
-					<string>0x1b 0x1b 0x5b 0x44</string>
+					<string>b</string>
 				</dict>
 				<key>0xf703-0x220000</key>
 				<dict>
@@ -987,12 +993,14 @@
 					<key>Text</key>
 					<string>[1;2C</string>
 				</dict>
-				<key>0xf703-0x240000</key>
+				<key>0xf703-0x240000-0x7c</key>
 				<dict>
 					<key>Action</key>
-					<integer>10</integer>
+					<integer>11</integer>
+					<key>Label</key>
+					<string></string>
 					<key>Text</key>
-					<string>[1;5C</string>
+					<string>05</string>
 				</dict>
 				<key>0xf703-0x260000</key>
 				<dict>
@@ -1001,12 +1009,14 @@
 					<key>Text</key>
 					<string>[1;6C</string>
 				</dict>
-				<key>0xf703-0x280000</key>
+				<key>0xf703-0x280000-0x7c</key>
 				<dict>
 					<key>Action</key>
-					<integer>11</integer>
+					<integer>10</integer>
+					<key>Label</key>
+					<string></string>
 					<key>Text</key>
-					<string>0x1b 0x1b 0x5b 0x43</string>
+					<string>f</string>
 				</dict>
 				<key>0xf704-0x20000</key>
 				<dict>
