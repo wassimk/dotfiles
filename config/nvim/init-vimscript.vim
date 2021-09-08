@@ -128,7 +128,7 @@ let g:tmuxline_preset = {
       \'a'    : '#S',
       \'win'  : '#I #W',
       \'cwin' : '#I #W #F',
-      \'z'    : '#h',
+      \'z'    : '#($(echo hostname -s) | tr "[:upper:]" "[:lower:]")',
       \ 'options': { 'status-justify': 'left' }
 \}
 
