@@ -477,6 +477,8 @@
 	<false/>
 	<key>HideScrollbar</key>
 	<true/>
+	<key>HideTabNumber</key>
+	<true/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
 	<key>New Bookmarks</key>
