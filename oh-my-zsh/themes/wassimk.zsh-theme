@@ -1,4 +1,9 @@
-local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+if [[ -n $SSH_CONNECTION ]]; then
+  local ret_status="%(?:%{$fg_bold[green]%} :%{$fg_bold[red]%} )"
+else
+  local ret_status="%(?:%{$fg_bold[green]%} :%{$fg_bold[red]%} )"
+fi
+
 PROMPT='${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}(%{$fg[red]%}"
