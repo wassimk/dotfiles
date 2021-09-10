@@ -256,9 +256,6 @@ let g:ale_disable_lsp = 1
 
 " let g:completion_auto_change_source = 1
 
-" Avoid showing message extra message when using completion
-" set shortmess+=c
-
 """"
 " Autocmd's
 """"
