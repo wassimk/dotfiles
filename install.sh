@@ -60,7 +60,14 @@ installRust() {
 }
 
 installGnuPg() {
-  installOrUpdate "gnupg"
+  case $os in
+    $macOS*)
+      brew install --cask gpg-suite-no-mail
+      ;;
+    $ubuntu*)
+      installOrUpdate "gnupg"
+      ;;
+  esac
 }
 
 installClipper() {
