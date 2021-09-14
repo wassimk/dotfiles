@@ -61,6 +61,15 @@ updateOsPackages() {
   esac
 }
 
+installOnceFromCask() {
+  case $os in
+    $macOS*)
+      if ! brew list -l --cask | grep -q "$1"; then
+        brew install --cask "$1"
+      fi
+      ;;
+}
+
 installOrUpdate() {
   case $os in
     $macOS*)

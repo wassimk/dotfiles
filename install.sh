@@ -78,6 +78,38 @@ installClipper() {
   esac
 }
 
+installHammerspoon() {
+  case $os in
+    $macOS*)
+      installOnceFromCask "hammerspoon"
+      ;;
+  esac
+}
+
+installKarabinerElements() {
+  case $os in
+    $macOS*)
+      installOnceFromCask "karabiner-elements"
+      ;;
+  esac
+}
+
+installDropbox() {
+  case $os in
+    $macOS*)
+      installOnceFromCask "dropbox"
+      ;;
+  esac
+}
+
+installITerm() {
+  case $os in
+    $macOS*)
+      installOnceFromCask "iterm2"
+      ;;
+  esac
+}
+
 installZsh() {
   installOrUpdate "zsh"
 
@@ -334,6 +366,19 @@ installBattery() {
   esac
 }
 
+installAsimov() {
+  case $os in
+    $macOS*)
+      if ! command -v asimov >/dev/null 2>&1; then
+        installOrUpdate "asimov"
+        sudo brew services start asimov
+      else
+        installOrUpdate "asimov"
+      fi
+      ;;
+  esac
+}
+
 installNeovim() {
   case $os in
     $macOS*)
@@ -405,6 +450,10 @@ installRuby
 installPython
 installJava
 # installRust
+installHammerspoon
+installKarabinerElements
+installDropbox
+installITerm
 installGnuPg
 installClipper
 installZsh
@@ -432,6 +481,7 @@ installTrash
 installShellCheck
 installSshCopyId
 installBattery
+installAsimov
 installNeovim
 installTmux
 installItermShellIntegration
