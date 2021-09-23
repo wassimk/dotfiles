@@ -71,6 +71,19 @@ local layoutConfig = {
     end
   end),
 
+  ["com.brave.Browser"] = (function(window, forceScreenCount)
+    local count = forceScreenCount or screenCount
+    if count == 1 then
+      hs.grid.set(window, grid.fullScreen)
+    else
+      -- First/odd windows go on the RIGHT side of the screen.
+      -- Second/even windows go on the LEFT side.
+      local windows = windowCount(window:application())
+      local side = windows % 2 == 0 and grid.leftHalf or grid.rightHalf
+      hs.grid.set(window, side, hs.screen.primaryScreen())
+    end
+  end),
+
   -- Full screen single display or left half of primary
   ["com.googlecode.iterm2"] = (function(window, forceScreenCount)
     -- the calendar entry suggestions window isStandard() but we don't want to resposition it
