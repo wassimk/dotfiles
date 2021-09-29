@@ -20,7 +20,7 @@ call plug#begin()
   Plug 'hrsh7th/cmp-path'
   Plug 'f3fora/cmp-spell'
   Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
-  Plug 'glepnir/lspsaga.nvim'
+  Plug 'tami5/lspsaga.nvim'
 
   " JavaScript
   Plug 'pangloss/vim-javascript'
