@@ -9,6 +9,7 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
   Plug 'tpope/vim-dispatch'
+  Plug 'tpope/vim-eunuch'
   Plug 'windwp/nvim-autopairs'
   Plug 'janko-m/vim-test'
   Plug 'neovim/nvim-lspconfig'
