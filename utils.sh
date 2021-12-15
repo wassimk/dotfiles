@@ -68,6 +68,7 @@ installOnceFromCask() {
         brew install --cask "$1"
       fi
       ;;
+  esac
 }
 
 installOrUpdate() {
