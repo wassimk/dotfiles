@@ -14,12 +14,13 @@ call plug#begin()
   Plug 'janko-m/vim-test'
   Plug 'neovim/nvim-lspconfig'
   Plug 'hrsh7th/nvim-cmp'
-  Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-nvim-lua'
   Plug 'hrsh7th/cmp-path'
   Plug 'f3fora/cmp-spell'
+  Plug 'dcampos/nvim-snippy'
+  Plug 'dcampos/cmp-snippy'
   Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 
   " JavaScript
@@ -239,6 +240,7 @@ set sidescrolloff=5             " Not sure, from sensible
 set splitright                  " New veritcle splits to the right
 set splitbelow                  " New horizontal split below
 set inccommand=nosplit          " Live highlight of substitutions
+set nofoldenable                " Disable folding
 
 " Highlight on yank
 au TextYankPost * silent! lua vim.highlight.on_yank {timeout=750}

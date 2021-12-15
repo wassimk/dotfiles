@@ -8,13 +8,18 @@ local check_back_space = function()
 end
 
 cmp.setup {
-  snippet = { expand = function(args) vim.fn["vsnip#anonymous"](args.body) end },
+  snippet = {
+    expand = function(args)
+      require'snippy'.expand_snippet(args.body)
+    end,
+  },
   formatting = {
     format = function(entry, vim_item)
       -- set a name for each source
       vim_item.menu = ({
         buffer = "[Buffer]",
         nvim_lsp = "[LSP]",
+        snippy = "[Snippet]",
         nvim_lua = "[Lua]",
         path = "[Path]",
         spell = "[Spell]"
@@ -52,8 +57,8 @@ cmp.setup {
     )
   },
   sources = {
-    { name = "buffer" }, { name = "nvim_lsp" }, { name = "nvim_lua" }, { name = "path" },
-    { name = "spell" }
+    { name = "buffer", dup = 0 }, { name = "nvim_lsp" }, { name = 'snippy'}, { name = "nvim_lua" },
+    { name = "path" }, { name = "spell" }
   },
   completion = { completeopt = "menu,menuone,noinsert" }
 }
