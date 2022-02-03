@@ -33,10 +33,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # Planning Center
-export MYSQL_PORT_3306_TCP_ADDR=127.0.0.1
-export MYSQL_READER_PORT_3306_TCP_ADDR=127.0.0.1
-export MYSQL_READER_PORT_3306_TCP_PORT=3307
-export PATH=$HOME/pco-box/bin:/usr/local/bin:$PATH
-export RBENV_ROOT=$HOME/.rbenv
-eval "$($HOME/Code/pco/bin/pco init -)"
-eval "$(rbenv init -)"
+source $HOME/pco-box/env.sh
+source $HOME/pco-box/bin/complete.bash
