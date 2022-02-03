@@ -33,5 +33,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # Planning Center
+eval "$($HOME/Code/pco/bin/pco init -)"
 source $HOME/pco-box/env.sh
 source $HOME/pco-box/bin/complete.bash
