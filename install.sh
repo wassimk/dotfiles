@@ -268,7 +268,7 @@ installStripeCli() {
     $ubuntu*)
       if ! command -v stripe >/dev/null 2>&1; then
         cd "/usr/local/bin" || exit
-        sudo wget -O stripe-cli.tar.gz "https://github.com/stripe/stripe-cli/releases/download/v1.7.0/stripe_1.7.0_linux_x86_64.tar.gz"
+        sudo wget -O stripe-cli.tar.gz "https://github.com/stripe/stripe-cli/releases/download/v1.7.12/stripe_1.7.12_linux_x86_64.tar.gz"
         sudo tar -xvf stripe-cli.tar.gz
         sudo rm stripe-cli.tar.gz
       fi
