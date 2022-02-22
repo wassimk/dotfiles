@@ -292,8 +292,8 @@ installExa() {
     $ubuntu*)
       if ! command -v exa >/dev/null 2>&1; then
         cd "/usr/local" || exit
-        sudo wget https://github.com/ogham/exa/releases/download/v0.10.0/exa-linux-x86_64-v0.10.0.zip -O exa.zip
-        sudo unzip exa.zip -d exa
+        sudo wget https://github.com/ogham/exa/releases/download/v0.10.1/exa-linux-x86_64-v0.10.1.zip -O exa.zip
+        sudo unzip -o exa.zip -d exa
         sudo rm exa.zip
         ln -sf /usr/local/exa/bin/exa /usr/local/bin/exa
       fi
