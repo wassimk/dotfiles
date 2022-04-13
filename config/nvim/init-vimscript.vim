@@ -46,6 +46,7 @@ call plug#begin()
   Plug 'christoomey/vim-sort-motion'
   Plug 'junegunn/vim-easy-align'
   Plug 'tpope/vim-unimpaired'
+  Plug 'tpope/vim-abolish'
 
   " Files And Search
   Plug 'ctrlpvim/ctrlp.vim'
