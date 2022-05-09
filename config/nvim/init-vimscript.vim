@@ -12,6 +12,7 @@ call plug#begin()
   Plug 'tpope/vim-eunuch'
   Plug 'windwp/nvim-autopairs'
   Plug 'janko-m/vim-test'
+  Plug 'williamboman/nvim-lsp-installer'
   Plug 'neovim/nvim-lspconfig'
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/cmp-buffer'
