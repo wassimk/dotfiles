@@ -403,6 +403,18 @@ installTmux() {
   installOrUpdate "tmux"
 }
 
+fixTmux256ColorTerm() {
+  curl -OL https://gist.githubusercontent.com/nicm/ea9cf3c93f22e0246ec858122d9abea1/raw/37ae29fc86e88b48dbc8a674478ad3e7a009f357/tmux-256color
+  echo '8f259a31649900b9a8f71cbc28be762aa55206316d33d51fd8d08e4275b5f6a3  tmux-256color' | shasum -a 256 -c
+  if [ $? == 0 ]
+  then
+    /usr/bin/tic -x tmux-256color
+  else
+    echo 'tmux-256color checksum has changed'
+  fi
+  rm tmux-256color
+}
+
 installItermShellIntegration() {
   if [ ! -f "$HOME"/.iterm2_shell_integration.zsh ]; then
     curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | bash
@@ -494,6 +506,7 @@ installBattery
 installAsimov
 installNeovim
 installTmux
+fixTmux256ColorTerm
 installItermShellIntegration
 cleanupPackages
 (cd "$HOME"/.dotfiles || exit; bash dotfiles.sh)
