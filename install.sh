@@ -434,6 +434,12 @@ setupNeovim() {
 }
 
 miscellaneousSetup() {
+  case $os in
+    $ubuntu*)
+      sudo timedatectl set-timezone America/Chicago
+      ;;
+  esac
+
   (cd "$HOME" || exit; ln -sf Code Work)
 }
 
