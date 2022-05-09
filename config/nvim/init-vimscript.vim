@@ -88,13 +88,15 @@ let g:test#strategy = 'dispatch_start'
 " Theme and terminal color support
 set cursorline
 syntax on
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 if filereadable( expand("$HOME/.config/nvim/plugged/onedark.vim/colors/onedark.vim") )
   colorscheme onedark
   let g:airline_theme='onedark'
   let g:onedark_terminal_italics = 1
-endif
-if (has("termguicolors"))
-  set termguicolors
 endif
 
 " hide the ~ characters on empty lines
