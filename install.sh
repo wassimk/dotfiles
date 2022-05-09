@@ -429,21 +429,11 @@ setupNeovim() {
 
     pip3 install neovim
     yarn global add neovm
-    yarn global add typescript
-    yarn global add typescript-language-server
-    yarn global add vim-language-server
-
-    (cd "$HOME" || exit; gem install solargraph)
 
     nvim --headless +PlugInstall +qall
   else
     pip3 install neovim --upgrade
     yarn global upgrade neovm
-    yarn global upgrade typescript
-    yarn global upgrade typescript-language-server
-    yarn global upgrade vim-language-server
-
-    (cd "$HOME" || exit; gem update solargraph)
 
     nvim --headless +PlugUpdate +qall
   fi
