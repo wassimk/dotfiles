@@ -1,16 +1,16 @@
 local snippy = require("snippy")
 
 snippy.setup({
-    scopes = {
-        ruby = { '_', 'ruby', 'rails' },
+  scopes = {
+    ruby = { '_', 'ruby', 'rails' },
+  },
+  mappings = {
+    is = {
+      ["<Tab>"] = "expand_or_advance",
+      ["<S-Tab>"] = "previous",
     },
-    mappings = {
-        is = {
-            ["<Tab>"] = "expand_or_advance",
-            ["<S-Tab>"] = "previous",
-        },
-        nx = {
-            ["<leader>x"] = "cut_text",
-        },
+    nx = {
+      ["<leader>x"] = "cut_text",
     },
+  },
 })
