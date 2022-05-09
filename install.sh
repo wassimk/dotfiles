@@ -235,7 +235,9 @@ installTig() {
 installHeroku() {
   case $os in
     $macOS*)
-      installOrUpdate "heroku"
+      if ! command -v heroku >/dev/null 2>&1; then
+        curl https://cli-assets.heroku.com/install.sh | sh
+      fi
       ;;
   esac
 }
