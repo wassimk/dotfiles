@@ -74,7 +74,7 @@ installOnceFromCask() {
 installOrUpdate() {
   case $os in
     $macOS*)
-      if brew list -l | grep -q "$1"; then
+      if brew list | (grep -q "$1"; ret=$?; cat >/dev/null; exit $ret); then
         if brew outdated | grep -q "$1"; then
           brew upgrade "$1"
         fi
