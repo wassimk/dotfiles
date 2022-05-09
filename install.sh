@@ -219,14 +219,14 @@ installTig() {
       ;;
     $ubuntu*)
       if ! command -v tig >/dev/null 2>&1; then
-        wget -O tig-2.5.4.tar.gz "https://github.com/jonas/tig/releases/download/tig-2.5.4/tig-2.5.4.tar.gz"
-        tar -xvf tig-2.5.4.tar.gz
-        cd tig-2.5.4 || exit
+        gh release download --pattern "tig-*.tar.gz" --repo jonas/tig
+        tar -xvf tig-*.tar.gz
+        cd tig-*/ || exit
         make prefix=/usr/local
         sudo make install prefix=/usr/local
         cd ..
-        rm -rf tig-2.5.4
-        rm tig-2.5.4.tar.gz
+        rm -rf tig-*/
+        rm tig-*.tar.gz
       fi
       ;;
   esac
@@ -268,9 +268,9 @@ installStripeCli() {
     $ubuntu*)
       if ! command -v stripe >/dev/null 2>&1; then
         cd "/usr/local/bin" || exit
-        sudo wget -O stripe-cli.tar.gz "https://github.com/stripe/stripe-cli/releases/download/v1.7.12/stripe_1.7.12_linux_x86_64.tar.gz"
-        sudo tar -xvf stripe-cli.tar.gz
-        sudo rm stripe-cli.tar.gz
+        gh release download --pattern "stripe_*_linux_x86_64.tar.gz" --repo stripe/stripe-cli
+        sudo tar -xvf stripe_*_linux_x86_64.tar.gz
+        sudo rm stripe_*_linux_x86_64.tar.gz
       fi
       ;;
   esac
@@ -291,10 +291,12 @@ installExa() {
       ;;
     $ubuntu*)
       if ! command -v exa >/dev/null 2>&1; then
-        cd "/usr/local" || exit
-        sudo wget https://github.com/ogham/exa/releases/download/v0.10.1/exa-linux-x86_64-v0.10.1.zip -O exa.zip
-        sudo unzip -o exa.zip -d exa
-        sudo rm exa.zip
+        cd "$HOME" || exit
+        gh release download --pattern "exa-linux-x86_64-v*.zip" --repo ogham/exa
+        unzip -o exa-linux-x86_64-v*.zip -d exa
+        rm exa-linux-x86_64-v*.zip
+        sudo rm -rf /usr/local/exa
+        sudo mv exa /usr/local
         ln -sf /usr/local/exa/bin/exa /usr/local/bin/exa
       fi
       ;;
@@ -444,6 +446,7 @@ installPackageManager
 updateAvailablePackages
 updateOsPackages
 installWget
+installGh
 installGit
 installGo
 installRuby
@@ -468,7 +471,6 @@ installJq
 installCtags
 installGrc
 installHub
-installGh
 installTig
 installHeroku
 installAwsCli
