@@ -57,17 +57,6 @@ require("lspconfig").sumneko_lua.setup {
 }
 
 ----
--- formatter
+-- formatting
 ----
-require("lspconfig").efm.setup {
-  init_options = { documentFormatting = true },
-  filetypes = { "lua" },
-  settings = {
-    rootMarkers = { ".git/" },
-    languages = {
-      lua = { { formatCommand = "lua-format -i --config=\"$HOME\"/.lua-format", formatStdin = true } }
-    }
-  }
-}
-
 vim.cmd("autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_seq_sync(nil, 100)")
