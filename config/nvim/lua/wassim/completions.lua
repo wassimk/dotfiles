@@ -10,7 +10,7 @@ end
 cmp.setup {
   snippet = {
     expand = function(args)
-      require'snippy'.expand_snippet(args.body)
+      require("snippy").expand_snippet(args.body)
     end,
   },
   formatting = {
@@ -57,13 +57,13 @@ cmp.setup {
     )
   },
   sources = {
-    { name = "buffer", dup = 0 }, { name = "nvim_lsp" }, { name = 'snippy'}, { name = "nvim_lua" },
+    { name = "buffer", dup = 0 }, { name = "nvim_lsp" }, { name = "snippy" }, { name = "nvim_lua" },
     { name = "path" }, { name = "spell" }
   },
   completion = { completeopt = "menu,menuone,noinsert" }
 }
 
 -- Autopairs
-require("nvim-autopairs").setup({ check_ts = true, map_cr = true  })
+require("nvim-autopairs").setup({ check_ts = true, map_cr = true })
 require("nvim-autopairs").add_rules(require("nvim-autopairs.rules.endwise-lua"))
 require("nvim-autopairs").add_rules(require("nvim-autopairs.rules.endwise-ruby"))
