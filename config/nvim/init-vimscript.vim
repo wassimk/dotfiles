@@ -1,83 +1,3 @@
-""""
-" vim-plug - https://github.com/junegunn/vim-plug
-""""
-call plug#begin()
-
-  " Code / Git
-  Plug 'dense-analysis/ale'
-  Plug 'wincent/vcs-jump'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-rhubarb'
-  Plug 'tpope/vim-dispatch'
-  Plug 'tpope/vim-eunuch'
-  Plug 'windwp/nvim-autopairs'
-  Plug 'janko-m/vim-test'
-  Plug 'williamboman/nvim-lsp-installer'
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'hrsh7th/nvim-cmp'
-  Plug 'hrsh7th/cmp-buffer'
-  Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'hrsh7th/cmp-nvim-lua'
-  Plug 'hrsh7th/cmp-path'
-  Plug 'f3fora/cmp-spell'
-  Plug 'dcampos/nvim-snippy'
-  Plug 'dcampos/cmp-snippy'
-  Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
-
-  " JavaScript
-  Plug 'pangloss/vim-javascript'
-  Plug 'mxw/vim-jsx'
-  Plug 'leafgarland/typescript-vim'
-  Plug 'peitalin/vim-jsx-typescript'
-  Plug 'maxmellon/vim-jsx-pretty'
-
-  " Ruby / Rails
-  Plug 'nelstrom/vim-textobj-rubyblock'
-  Plug 'vim-ruby/vim-ruby'
-  Plug 'tpope/vim-rails'
-
-  " Vim Text Objects and Motions
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-surround'
-  Plug 'wellle/targets.vim'
-  Plug 'kana/vim-textobj-user'
-  Plug 'kana/vim-textobj-line'
-  Plug 'kana/vim-textobj-entire'
-  Plug 'kana/vim-textobj-indent'
-  Plug 'christoomey/vim-sort-motion'
-  Plug 'junegunn/vim-easy-align'
-  Plug 'tpope/vim-unimpaired'
-  Plug 'tpope/vim-abolish'
-
-  " Files And Search
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'JazzCore/ctrlp-cmatcher'
-  Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-  Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'wincent/loupe'
-  Plug 'wincent/ferret'
-  Plug 'wincent/scalpel'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-
-  " Pretty much automatic
-  Plug 'wincent/vim-clipper'
-  Plug 'Yggdroot/indentLine'
-  Plug 'tpope/vim-repeat'
-  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-  Plug 'editorconfig/editorconfig-vim'
-
-  " Theme / Status Line / Tmux / Terminal / Vim
-  Plug 'joshdick/onedark.vim'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'edkolev/tmuxline.vim'
-  Plug 'christoomey/vim-tmux-navigator'
-  Plug 'wincent/terminus'
-  Plug 'milkypostman/vim-togglelist'
-
-call plug#end()
-
 " Make test commands execute using dispatch.vim Start
 function! DispatchStartStrategy(cmd)
   execute 'Start -title=tests -wait=error ' . a:cmd
@@ -94,7 +14,7 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-if filereadable( expand("$HOME/.config/nvim/plugged/onedark.vim/colors/onedark.vim") )
+if filereadable( expand("$HOME/.local/share/nvim/site/pack/packer/start/onedark.vim/colors/onedark.vim") )
   colorscheme onedark
   let g:airline_theme='onedark'
   let g:onedark_terminal_italics = 1
