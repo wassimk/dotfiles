@@ -423,20 +423,16 @@ installItermShellIntegration() {
 
 setupNeovim() {
   mkdir -p "$HOME"/.config/nvim/
-  if [ ! -f "$HOME"/.local/share/nvim/site/autoload/plug.vim ]; then
-    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
+  if [ ! -f "$HOME"/.local/share/nvim/site/pack/packer/start/packer.nvim ]; then
     pip3 install neovim
     yarn global add neovm
-
-    nvim --headless +PlugInstall +qall
   else
     pip3 install neovim --upgrade
     yarn global upgrade neovm
-
-    nvim --headless +PlugUpdate +qall
   fi
+
+  nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 }
 
 miscellaneousSetup() {
