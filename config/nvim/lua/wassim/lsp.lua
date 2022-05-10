@@ -3,7 +3,6 @@
 ----
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
   local opts = { noremap = true, silent = true }
@@ -25,32 +24,36 @@ local on_attach = function(client, bufnr)
 end
 
 -- configuration toggles
-require("toggle_lsp_diagnostics").init({ start_on = true, virtual_text = false, underline = false })
+require('toggle_lsp_diagnostics').init { start_on = true, virtual_text = false, underline = false }
 
 -- automatic lsp server installs
-require("nvim-lsp-installer").setup({ automatic_installation = true })
+require('nvim-lsp-installer').setup { automatic_installation = true }
 
 -- vimscript
-require("lspconfig").vimls.setup({ on_attach = on_attach })
+require('lspconfig').vimls.setup { on_attach = on_attach }
 
 -- ruby / solargraph
-require("lspconfig").solargraph.setup({ on_attach = on_attach })
+require('lspconfig').solargraph.setup { on_attach = on_attach }
 
 -- javascript / typescript
-require("lspconfig").tsserver.setup({ on_attach = on_attach })
+require('lspconfig').tsserver.setup { on_attach = on_attach }
 
 ----
 -- lua
 ----
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-require("lspconfig").sumneko_lua.setup {
+local runtime_path = vim.split(package.path, ';')
+
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
+require('lspconfig').sumneko_lua.setup {
   settings = {
     Lua = {
-      runtime = { version = "Lua 5.4", path = runtime_path },
-      diagnostics = { globals = { "vim", "hs" } },
-      workspace = { library = vim.api.nvim_get_runtime_file("", true) }
+      runtime = { path = runtime_path },
+      diagnostics = { globals = { 'vim', 'hs' } },
+      workspace = { library = vim.api.nvim_get_runtime_file('', true) },
+      format = {
+        enable = true,
+      },
     }
   },
   on_attach = on_attach
@@ -59,4 +62,4 @@ require("lspconfig").sumneko_lua.setup {
 ----
 -- formatting
 ----
-vim.cmd("autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_seq_sync(nil, 100)")
+vim.cmd('autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_seq_sync(nil, 100)')
