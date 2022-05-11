@@ -47,7 +47,7 @@ vim.opt.splitbelow = true -- New horizontal split below
 vim.opt.inccommand = 'nosplit' -- Live highlight of substitutions
 -- vim.opt.nofoldenable = true -- Disable folding
 vim.opt.complete = vim.opt.complete + 'kspell'
-
+vim.opt.fillchars = vim.opt.fillchars + { eob = ' ' } -- hide the ~ characters on empty lines
 
 -- Use system clipboard
 vim.opt.clipboard = 'unnamed'

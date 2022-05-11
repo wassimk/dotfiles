@@ -6,9 +6,6 @@ endfunction
 let g:test#custom_strategies = {'dispatch_start': function('DispatchStartStrategy')}
 let g:test#strategy = 'dispatch_start'
 
-" hide the ~ characters on empty lines
-highlight! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
-
 """"
 " statusline via vim-airline plugin
 """"
