@@ -53,8 +53,17 @@ return require('packer').startup(function(use)
   use 'tpope/vim-abolish'
 
   -- Files And Search
-  use 'ctrlpvim/ctrlp.vim'
-  use 'JazzCore/ctrlp-cmatcher'
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {
+      {
+        'nvim-lua/plenary.nvim',
+        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+        'kyazdani42/nvim-web-devicons'
+      }
+    }
+  }
+
   use { 'scrooloose/nerdtree', cmd = { 'NERDTreeToggle' } }
   use 'Xuyuanp/nerdtree-git-plugin'
   use 'wincent/loupe'
