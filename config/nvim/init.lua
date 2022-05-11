@@ -63,9 +63,6 @@ vim.api.nvim_exec([[
 vim.g['test#custom_strategies'] = { dispatch_start = vim.fn['DispatchStartStrategy'] }
 vim.g['test#strategy'] = 'dispatch_start'
 
--- source the old vim init
-vim.cmd('source ~/.config/nvim/init-vimscript.vim')
-
 -----------------
 -- vim-airline --
 -----------------
