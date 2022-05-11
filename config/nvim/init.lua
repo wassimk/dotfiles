@@ -2,7 +2,14 @@
 -- init.lua
 --
 
+require('utils')
 require('plugins')
+
+if file_exists(os.getenv('HOME') .. '/.local/share/nvim/site/pack/packer/start/onedark.vim/colors/onedark.vim') then
+  vim.cmd('colorscheme onedark')
+  vim.g.airline_theme = 'onedark'
+  vim.g.onedark_terminal_italics = 1
+end
 
 -------------------------------------------------------------------------------
 -- Options --------------------------------------------------------------------

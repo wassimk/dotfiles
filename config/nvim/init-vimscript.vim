@@ -6,12 +6,6 @@ endfunction
 let g:test#custom_strategies = {'dispatch_start': function('DispatchStartStrategy')}
 let g:test#strategy = 'dispatch_start'
 
-if filereadable( expand("$HOME/.local/share/nvim/site/pack/packer/start/onedark.vim/colors/onedark.vim") )
-  colorscheme onedark
-  let g:airline_theme='onedark'
-  let g:onedark_terminal_italics = 1
-endif
-
 " hide the ~ characters on empty lines
 highlight! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
 
