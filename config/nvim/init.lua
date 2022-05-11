@@ -149,15 +149,12 @@ if vim.fn.executable('ag') == 1 then
   -- use ag for ack
   vim.g.ackprg = 'ag --vimgrep'
 
-  -- CtrlP
-  vim.g.ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
-  vim.g.ctrlp_show_hidden = 1
-  vim.g.ctrlp_max_files = 0
-  vim.g.ctrlp_use_caching = 0
-
   -- prefer `ag` over `rg` with Ferret
   vim.g.FerretExecutable = 'ag,rg'
 end
+
+-- Telescope
+require('telescope').load_extension('fzf')
 
 -- more indepth setup/config/etc
 require('wassim')

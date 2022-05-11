@@ -20,3 +20,9 @@ vim.api.nvim_set_keymap('n', 't<C-f>', ':TestFile<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', 't<C-a>', ':TestSuite<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', 't<C-l>', ':TestLast<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', 't<C-g>', ':TestVisit<CR>', { silent = true })
+
+-- telescope mappings
+vim.api.nvim_set_keymap('n', 'ff', ':Telescope find_files<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', 'fg', ':Telescope live_grep<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', 'fb', ':Telescope buffers<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', 'fh', ':Telescope help_tags<CR>', { noremap = true })
