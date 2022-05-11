@@ -102,10 +102,6 @@ let g:FerretExecutable='ag,rg'
 au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
 
-" Enable built-in matchit plugin
-runtime macros/matchit.vim
-
-
 " Use vim built in
 let g:ale_disable_lsp = 1
 
