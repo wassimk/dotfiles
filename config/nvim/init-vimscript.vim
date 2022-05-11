@@ -98,10 +98,6 @@ endif
 " Prefer `ag` over `rg` with Ferret
 let g:FerretExecutable='ag,rg'
 
-" Align GitHub-flavored Markdown tables with vim-easy-align
-au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
-
-
 " Use vim built in
 let g:ale_disable_lsp = 1
 
