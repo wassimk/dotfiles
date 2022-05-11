@@ -99,5 +99,45 @@ vim.g.tmuxline_preset = {
 vim.g.NERDTreeMinimalUI = 1
 vim.g.NERDTreeStatusline = ''
 
+-- ALE lint/formatting plugin
+vim.g.ale_lint_on_save = 1
+vim.g.ale_lint_on_enter = 0 -- opening file
+vim.g.ale_lint_on_text_changed = 'never'
+vim.g.ale_open_list = 0
+vim.g.ale_set_highlights = 0
+
+vim.g.ale_sign_warning = '-'
+vim.g.ale_sign_error = '●'
+vim.g['airline#extensions#ale#enabled'] = 1
+
+-- format of messages
+vim.g.ale_echo_msg_error_str = 'E'
+vim.g.ale_echo_msg_warning_str = 'W'
+vim.g.ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+-- enable specific linters
+vim.g.ale_linters = {
+  javascript = { 'eslint' },
+  ruby = { 'prettier', 'rubocop', 'standard' },
+  typescript = { 'eslint' }
+}
+vim.g.ale_linters_explicit = 1
+
+-- use bundle exec version
+vim.g.ale_ruby_rubocop_executable = 'bundle'
+vim.g.ale_ruby_rubocop_options = '--display-cop-names --parallel'
+
+-- use autofix
+vim.g.ale_fix_on_save = 1
+vim.g.ale_fixers = {
+  ['*'] = { 'remove_trailing_lines', 'trim_whitespace' },
+  javascript = { 'eslint' },
+  typescript = { 'eslint' },
+  ruby = { 'prettier' },
+}
+
+-- FIXME: use vims built-in lsp
+vim.g.ale_disable_lsp = 1
+
 -- more indepth setup/config/etc
 require('wassim')
