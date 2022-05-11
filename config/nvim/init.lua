@@ -3,28 +3,10 @@
 --
 
 require('utils')
-require('plugins')
-
-if file_exists(os.getenv('HOME') .. '/.local/share/nvim/site/pack/packer/start/onedark.vim/colors/onedark.vim') then
-  vim.cmd('colorscheme onedark')
-  vim.g.airline_theme = 'onedark'
-  vim.g.onedark_terminal_italics = 1
-end
-
--- vim-test custom run strategy
-vim.api.nvim_exec([[
-  function! DispatchStartStrategy(cmd)
-    execute 'Start -title=testing -wait=error ' . a:cmd
-  endfunction
-]], false)
-
-vim.g['test#custom_strategies'] = { dispatch_start = vim.fn['DispatchStartStrategy'] }
-vim.g['test#strategy'] = 'dispatch_start'
 
 -------------------------------------------------------------------------------
 -- Options --------------------------------------------------------------------
 -------------------------------------------------------------------------------
-
 vim.opt.cursorline = true -- highlight current line
 vim.opt.termguicolors = true -- use guifg/guibg instead of ctermfg/ctermbg in terminal
 -- vim.opt.nocompatible = true -- This is Vim not Vi
@@ -59,15 +41,31 @@ vim.opt.inccommand = 'nosplit' -- Live highlight of substitutions
 vim.opt.complete = vim.opt.complete + 'kspell'
 vim.opt.fillchars = vim.opt.fillchars + { eob = ' ' } -- hide the ~ characters on empty lines
 
--- Use system clipboard
+-- use system clipboard
 vim.opt.clipboard = 'unnamed'
 
--- Automatic, language-dependent indentation, syntax coloring and other
--- functionality.
+-- load plugins after options in case they override them
+require('plugins')
 
-vim.cmd('filetype indent plugin on')
-vim.cmd('syntax on')
+-- load the theme
+if file_exists(os.getenv('HOME') .. '/.local/share/nvim/site/pack/packer/start/onedark.vim/colors/onedark.vim') then
+  vim.cmd('colorscheme onedark')
+  vim.g.airline_theme = 'onedark'
+  vim.g.onedark_terminal_italics = 1
+end
 
+-- vim-test custom run strategy using vim-dispatch
+vim.api.nvim_exec([[
+  function! DispatchStartStrategy(cmd)
+    execute 'Start -title=testing -wait=error ' . a:cmd
+  endfunction
+]], false)
+
+vim.g['test#custom_strategies'] = { dispatch_start = vim.fn['DispatchStartStrategy'] }
+vim.g['test#strategy'] = 'dispatch_start'
+
+-- source the old vim init
 vim.cmd('source ~/.config/nvim/init-vimscript.vim')
 
+-- more indepth setup/config/etc
 require('wassim')
