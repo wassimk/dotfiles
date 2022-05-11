@@ -1,38 +1,3 @@
-"""
-" Ale Code Linting
-"""
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_enter = 0 " opening file
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_open_list = 0
-let g:ale_set_highlights = 0
-
-let g:ale_sign_warning = '-'
-let g:ale_sign_error = '●'
-let g:airline#extensions#ale#enabled = 1
-
-" Format of messages
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-" Enable specific linters
-let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['prettier', 'rubocop', 'standard'], 'typescript': ['eslint']}
-let g:ale_linters_explicit = 1
-
-" Use bundle exec version
-let g:ale_ruby_rubocop_executable = 'bundle'
-let g:ale_ruby_rubocop_options = '--display-cop-names --parallel'
-
-" Use autofix
-let g:ale_fix_on_save = 1
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'typescript': ['eslint'],
-\   'ruby': ['prettier'],
-\}
-
 " The Silver Searcher
 " brew install the_silver_searcher
 if executable('ag')
@@ -51,11 +16,6 @@ endif
 
 " Prefer `ag` over `rg` with Ferret
 let g:FerretExecutable='ag,rg'
-
-" Use vim built in
-let g:ale_disable_lsp = 1
-
-" let g:completion_auto_change_source = 1
 
 """"
 " Custom Key Mappings
