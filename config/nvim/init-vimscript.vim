@@ -118,10 +118,6 @@ augroup END
 " Enable built-in matchit plugin
 runtime macros/matchit.vim
 
-
-" Highlight on yank
-au TextYankPost * silent! lua vim.highlight.on_yank {timeout=750}
-
 " Wrap markdown files at 100 characters
 au BufRead,BufNewFile *.md setlocal textwidth=100
 
