@@ -11,21 +11,37 @@ return require('packer').startup(function(use)
   use 'dense-analysis/ale'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
-  use 'tpope/vim-dispatch'
   use 'tpope/vim-eunuch'
   use 'windwp/nvim-autopairs'
-  use 'janko-m/vim-test'
-  use 'williamboman/nvim-lsp-installer'
-  use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-nvim-lua'
-  use 'hrsh7th/cmp-path'
-  use 'f3fora/cmp-spell'
-  use 'dcampos/nvim-snippy'
-  use 'dcampos/cmp-snippy'
-  use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
+
+  use { 'janko-m/vim-test',
+    requires = {
+      'tpope/vim-dispatch'
+    }
+  }
+
+  use { 'neovim/nvim-lspconfig',
+    requires = {
+      'williamboman/nvim-lsp-installer',
+      'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
+    }
+  }
+
+  use { 'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lua',
+      'hrsh7th/cmp-path',
+      'f3fora/cmp-spell',
+    }
+  }
+
+  use { 'dcampos/nvim-snippy',
+    requires = {
+      'dcampos/cmp-snippy'
+    }
+  }
 
   -- JavaScript
   use 'pangloss/vim-javascript'
@@ -53,41 +69,44 @@ return require('packer').startup(function(use)
   use 'tpope/vim-abolish'
 
   -- Files And Search
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = {
-      {
-        'nvim-lua/plenary.nvim',
-        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-        'kyazdani42/nvim-web-devicons'
-      }
-    }
-  }
-
-  use { 'scrooloose/nerdtree', cmd = { 'NERDTreeToggle' } }
-  use 'Xuyuanp/nerdtree-git-plugin'
   use 'wincent/loupe'
   use 'wincent/ferret'
   use 'wincent/scalpel'
-  -- use { "junegunn/fzf", run = { ":fzf#install()" } }
   use 'junegunn/fzf.vim'
+
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+      'kyazdani42/nvim-web-devicons'
+    }
+  }
+
+  use { 'scrooloose/nerdtree',
+    requires = { 'Xuyuanp/nerdtree-git-plugin' },
+    cmd = { 'NERDTreeToggle' }
+  }
 
   -- Pretty much automatic
   use 'wincent/vim-clipper'
   use 'Yggdroot/indentLine'
   use 'tpope/vim-repeat'
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'editorconfig/editorconfig-vim'
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- Theme / Status Line / Tmux / Terminal / Vim
   use 'joshdick/onedark.vim'
-  use 'vim-airline/vim-airline'
-  use 'vim-airline/vim-airline-themes'
-  use 'edkolev/tmuxline.vim'
   use 'christoomey/vim-tmux-navigator'
   use 'wincent/terminus'
   use 'milkypostman/vim-togglelist'
 
+  use { 'vim-airline/vim-airline',
+    requires = {
+      'vim-airline/vim-airline-themes',
+      'edkolev/tmuxline.vim'
+    }
+  }
 
   -- Automatically set up configuration after cloning packer.nvim
   if packer_bootstrap then
