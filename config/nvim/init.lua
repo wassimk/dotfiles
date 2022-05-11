@@ -11,6 +11,16 @@ if file_exists(os.getenv('HOME') .. '/.local/share/nvim/site/pack/packer/start/o
   vim.g.onedark_terminal_italics = 1
 end
 
+-- vim-test custom run strategy
+vim.api.nvim_exec([[
+  function! DispatchStartStrategy(cmd)
+    execute 'Start -title=testing -wait=error ' . a:cmd
+  endfunction
+]], false)
+
+vim.g['test#custom_strategies'] = { dispatch_start = vim.fn['DispatchStartStrategy'] }
+vim.g['test#strategy'] = 'dispatch_start'
+
 -------------------------------------------------------------------------------
 -- Options --------------------------------------------------------------------
 -------------------------------------------------------------------------------

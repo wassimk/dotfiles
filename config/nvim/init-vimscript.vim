@@ -1,11 +1,3 @@
-" Make test commands execute using dispatch.vim Start
-function! DispatchStartStrategy(cmd)
-  execute 'Start -title=tests -wait=error ' . a:cmd
-endfunction
-
-let g:test#custom_strategies = {'dispatch_start': function('DispatchStartStrategy')}
-let g:test#strategy = 'dispatch_start'
-
 """"
 " statusline via vim-airline plugin
 """"
