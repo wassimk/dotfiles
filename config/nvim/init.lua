@@ -99,7 +99,9 @@ vim.g.tmuxline_preset = {
 vim.g.NERDTreeMinimalUI = 1
 vim.g.NERDTreeStatusline = ''
 
--- ALE lint/formatting plugin
+--------------------------------
+-- ALE lint/formatting plugin --
+--------------------------------
 vim.g.ale_lint_on_save = 1
 vim.g.ale_lint_on_enter = 0 -- opening file
 vim.g.ale_lint_on_text_changed = 'never'
@@ -138,6 +140,27 @@ vim.g.ale_fixers = {
 
 -- FIXME: use vims built-in lsp
 vim.g.ale_disable_lsp = 1
+
+---------------
+-- Searching --
+---------------
+-- The Silver Searcher
+if vim.fn.executable('ag') == 1 then
+  -- use ag over grep
+  vim.cmd('set grepprg=ag\\ --nogroup\\ --nocolor')
+
+  -- use ag for ack
+  vim.g.ackprg = 'ag --vimgrep'
+
+  -- CtrlP
+  vim.g.ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
+  vim.g.ctrlp_show_hidden = 1
+  vim.g.ctrlp_max_files = 0
+  vim.g.ctrlp_use_caching = 0
+
+  -- prefer `ag` over `rg` with Ferret
+  vim.g.FerretExecutable = 'ag,rg'
+end
 
 -- more indepth setup/config/etc
 require('wassim')
