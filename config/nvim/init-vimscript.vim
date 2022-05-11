@@ -33,10 +33,6 @@ let g:ale_fixers = {
 \   'ruby': ['prettier'],
 \}
 
-" NERDTree Settings
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeStatusline = ""
-
 " The Silver Searcher
 " brew install the_silver_searcher
 if executable('ag')

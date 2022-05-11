@@ -95,5 +95,9 @@ vim.g.tmuxline_preset = {
   options = { ['status-justify'] = 'left' }
 }
 
+-- NERDTree Settings
+vim.g.NERDTreeMinimalUI = 1
+vim.g.NERDTreeStatusline = ''
+
 -- more indepth setup/config/etc
 require('wassim')
