@@ -110,37 +110,15 @@ let g:FerretExecutable='ag,rg'
 " Align GitHub-flavored Markdown tables with vim-easy-align
 au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
-augroup quickfix
-  autocmd!
-  autocmd FileType qf setlocal wrap
-augroup END
 
 " Enable built-in matchit plugin
 runtime macros/matchit.vim
 
-" Wrap markdown files at 100 characters
-au BufRead,BufNewFile *.md setlocal textwidth=100
-
-" Spell check
-autocmd BufRead,BufNewFile *.md setlocal spell
-autocmd FileType gitcommit setlocal spell | setlocal textwidth=72
-set complete+=kspell
 
 " Use vim built in
 let g:ale_disable_lsp = 1
 
 " let g:completion_auto_change_source = 1
-
-""""
-" Autocmd's
-""""
-if has('autocmd')
-  augroup WamAutocmds
-    autocmd!
-
-    autocmd VimResized * execute "normal! \<c-w>="
- augroup END
-endif
 
 """"
 " Custom Key Mappings
