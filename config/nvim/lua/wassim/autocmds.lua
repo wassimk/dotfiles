@@ -3,7 +3,6 @@ local wamGrp = api.nvim_create_augroup('WamAutocmds', { clear = true })
 
 -- highlight on yank
 api.nvim_create_autocmd('TextYankPost', {
-  pattern = '*',
   command = 'silent! lua vim.highlight.on_yank { timeout = 750 }',
   group = wamGrp,
 })
@@ -15,10 +14,9 @@ api.nvim_create_autocmd('FileType', {
   group = wamGrp,
 })
 
--- center current window when is resized
+-- center current window when vim is resized
 -- FIXME: this doesn't seem to work, you can manally do it and it behaves different
 api.nvim_create_autocmd('VimResized', {
-  pattern = '*',
   command = 'execute "normal! \\<c-w>="',
   group = wamGrp,
 })
@@ -38,18 +36,25 @@ api.nvim_create_autocmd('FileType', {
 })
 
 -- show cursor line only in active window
-api.nvim_create_autocmd(
-  { 'InsertLeave', 'WinEnter' },
-  { pattern = '*', command = 'set cursorline', group = wamGrp }
-)
-api.nvim_create_autocmd(
-  { 'InsertEnter', 'WinLeave' },
-  { pattern = '*', command = 'set nocursorline', group = wamGrp }
-)
+api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
+  command = 'set cursorline',
+  group = wamGrp
+})
+
+api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
+  command = 'set nocursorline',
+  group = wamGrp
+})
 
 -- close certain windows to close with "q"
-api.nvim_create_autocmd(
-  'FileType',
-  { pattern = { 'help', 'startuptime', 'qf', 'lspinfo' }, command = [[nnoremap <buffer><silent> q :close<CR>]] }
-)
-api.nvim_create_autocmd('FileType', { pattern = 'man', command = [[nnoremap <buffer><silent> q :quit<CR>]] })
+api.nvim_create_autocmd('FileType', {
+  pattern = { 'help', 'startuptime', 'qf', 'lspinfo' },
+  command = 'nnoremap <buffer><silent> q :close<CR>',
+  group = wamGrp
+})
+
+api.nvim_create_autocmd('FileType', {
+  pattern = 'man',
+  command = 'nnoremap <buffer><silent> q :quit<CR>',
+  group = wamGrp
+})
