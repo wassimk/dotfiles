@@ -6,14 +6,6 @@ endfunction
 let g:test#custom_strategies = {'dispatch_start': function('DispatchStartStrategy')}
 let g:test#strategy = 'dispatch_start'
 
-" Theme and terminal color support
-set cursorline
-syntax on
-
-if (has("termguicolors"))
-  set termguicolors
-endif
-
 if filereadable( expand("$HOME/.local/share/nvim/site/pack/packer/start/onedark.vim/colors/onedark.vim") )
   colorscheme onedark
   let g:airline_theme='onedark'
@@ -123,48 +115,9 @@ augroup quickfix
   autocmd FileType qf setlocal wrap
 augroup END
 
-" Use system clipboard always
-set clipboard=unnamed
-
 " Enable built-in matchit plugin
 runtime macros/matchit.vim
 
-filetype indent plugin on
-
-set nocompatible                " This is Vim not Vi
-set laststatus=2                " Always show status line
-set number                      " Display line numbers beside buffer
-set lazyredraw                  " Don't update while executing macros
-set backspace=indent,eol,start  " Sane backspace behavior
-set scrolloff=4                 " Keep at least 4 lines below cursor
-set noswapfile                  " Don't know why but I don't need it
-set tabstop=2                   " Two spaces per tab as default
-set shiftwidth=2                "     then override with per filteype
-set softtabstop=2               "     specific settings via autocmd
-set expandtab                   " Convert <tab> to spaces (2 or 4)
-" set secure                      " Limit what modelines and autocmds can do
-set relativenumber              " Show line numbers relative to cursor position
-set autoread                    " Used when edting same file with vim, twice
-set autoindent                  " Always auto-indent
-set showcmd                     " Show when leader is hit
-set colorcolumn=100             " Show colored column at 100 chars"
-set wildmenu                    " Command line auto-complete feature
-set ruler                       " The status line feature of cursor position
-set smarttab                    " Handle tabs, spaces or not smartly
-set cursorline                  " Highlight current line
-set winwidth=100                " Set minimum width of current window
-"set winheight=5                 " Windows all start at 5 lines tall
-"set winminheight=5              " Windows always 5 lines tall
-"set winheight=999               " Current window full height but preserve 5 lines for others
-set hidden                      " Hide unsaved buffers
-set complete-=i                 " Not sure, from sensible
-set display+=lastline           " Not sure, from sensible
-set scrolloff=1                 " Not sure, from sensible
-set sidescrolloff=5             " Not sure, from sensible
-set splitright                  " New veritcle splits to the right
-set splitbelow                  " New horizontal split below
-set inccommand=nosplit          " Live highlight of substitutions
-set nofoldenable                " Disable folding
 
 " Highlight on yank
 au TextYankPost * silent! lua vim.highlight.on_yank {timeout=750}
