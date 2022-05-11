@@ -1,22 +1,3 @@
-" The Silver Searcher
-" brew install the_silver_searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag for ack
-  let g:ackprg = 'ag --vimgrep'
-
-  " Configure CtrlP
-  let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
-  let g:ctrlp_show_hidden = 1
-  let g:ctrlp_max_files = 0
-  let g:ctrlp_use_caching = 0
-endif
-
-" Prefer `ag` over `rg` with Ferret
-let g:FerretExecutable='ag,rg'
-
 """"
 " Custom Key Mappings
 """"
