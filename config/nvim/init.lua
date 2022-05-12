@@ -93,10 +93,6 @@ vim.g.tmuxline_preset = {
   options = { ['status-justify'] = 'left' }
 }
 
--- NERDTree Settings
-vim.g.NERDTreeMinimalUI = 1
-vim.g.NERDTreeStatusline = ''
-
 --------------------------------
 -- ALE lint/formatting plugin --
 --------------------------------
@@ -156,6 +152,15 @@ end
 
 -- Telescope
 require('telescope').load_extension('fzf')
+
+-- nvim-tree
+require('nvim-tree').setup {
+  view = {
+    width = '20%',
+    preserve_window_proportions = true,
+    hide_root_folder = true,
+  },
+}
 
 -- more indepth setup/config/etc
 require('wassim')
