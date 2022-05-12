@@ -32,8 +32,11 @@ cmp.setup {
     ['<CR>'] = cmp.mapping.confirm { select = true },
   },
   sources = {
-    { name = 'buffer', dup = 0 }, { name = 'nvim_lsp' }, { name = 'snippy' }, { name = 'nvim_lua' },
-    { name = 'path' }, { name = 'spell' }
+    { name = 'nvim_lsp', group_index = 1 },
+    { name = 'snippy', group_index = 1 },
+    { name = 'buffer', group_index = 2 },
+    { name = 'nvim_lua' },
+    { name = 'spell' }
   },
   completion = { completeopt = 'menu,menuone,noinsert' }
 }
