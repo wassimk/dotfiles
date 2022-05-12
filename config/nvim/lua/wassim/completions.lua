@@ -38,6 +38,22 @@ cmp.setup {
   completion = { completeopt = 'menu,menuone,noinsert' }
 }
 
+cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
+
 -- Autopairs
 require('nvim-autopairs').setup { check_ts = true, map_cr = true }
 require('nvim-autopairs').add_rules(require('nvim-autopairs.rules.endwise-lua'))
