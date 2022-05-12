@@ -5,8 +5,8 @@
 -- custom leader mapping
 vim.cmd('let mapleader = "\\<Space>"')
 
--- NERDTree toggle
-vim.api.nvim_set_keymap('n', '<C-n>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
+-- nvim-tree toggle
+vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 -- Edit configuration files
 vim.api.nvim_set_keymap('n', '<Leader>ev', ':vsplit $MYVIMRC<CR>', {})
