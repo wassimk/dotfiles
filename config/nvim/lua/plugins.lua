@@ -13,6 +13,7 @@ return require('packer').startup(function(use)
   use 'tpope/vim-rhubarb'
   use 'tpope/vim-eunuch'
   use 'windwp/nvim-autopairs'
+  use 'github/copilot.vim'
 
   use { 'janko-m/vim-test',
     requires = {
