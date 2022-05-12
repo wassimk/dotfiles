@@ -98,6 +98,7 @@ return require('packer').startup(function(use)
   use 'wincent/vim-clipper'
   use 'Yggdroot/indentLine'
   use 'tpope/vim-repeat'
+  use 'tpope/vim-sensible'
   use 'editorconfig/editorconfig-vim'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
