@@ -39,6 +39,7 @@ vim.opt.splitbelow = true -- New horizontal split below
 vim.opt.inccommand = 'nosplit' -- Live highlight of substitutions
 -- vim.opt.nofoldenable = true -- Disable folding
 vim.opt.complete = vim.opt.complete + 'kspell'
+vim.opt.shortmess = vim.opt.shortmess + 'I'
 
 -- use system clipboard
 vim.opt.clipboard = 'unnamed'
