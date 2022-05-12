@@ -29,14 +29,16 @@ require('toggle_lsp_diagnostics').init { start_on = true, virtual_text = false, 
 -- automatic lsp server installs
 require('nvim-lsp-installer').setup { automatic_installation = true }
 
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 -- vimscript
-require('lspconfig').vimls.setup { on_attach = on_attach }
+require('lspconfig').vimls.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- ruby / solargraph
-require('lspconfig').solargraph.setup { on_attach = on_attach }
+require('lspconfig').solargraph.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- javascript / typescript
-require('lspconfig').tsserver.setup { on_attach = on_attach }
+require('lspconfig').tsserver.setup { capabilities = capabilities, on_attach = on_attach }
 
 ----
 -- lua
@@ -56,6 +58,7 @@ require('lspconfig').sumneko_lua.setup {
       },
     }
   },
+  capabilities = capabilities,
   on_attach = on_attach
 }
 
