@@ -39,7 +39,6 @@ vim.opt.splitbelow = true -- New horizontal split below
 vim.opt.inccommand = 'nosplit' -- Live highlight of substitutions
 -- vim.opt.nofoldenable = true -- Disable folding
 vim.opt.complete = vim.opt.complete + 'kspell'
-vim.opt.fillchars = vim.opt.fillchars + { eob = ' ' } -- hide the ~ characters on empty lines
 
 -- use system clipboard
 vim.opt.clipboard = 'unnamed'
@@ -50,6 +49,7 @@ require('plugins')
 -- load the theme and enable italics support
 if file_exists(os.getenv('HOME') .. '/.local/share/nvim/site/pack/packer/start/onedark.vim/colors/onedark.vim') then
   vim.g.onedark_terminal_italics = 1
+  vim.g.onedark_hide_endofbuffer = 1
   vim.cmd('colorscheme onedark')
 end
 
