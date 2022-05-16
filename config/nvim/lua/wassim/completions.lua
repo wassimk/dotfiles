@@ -1,7 +1,5 @@
 local cmp = require('cmp')
 
-local t = function(str) return vim.api.nvim_replace_termcodes(str, true, true, true) end
-
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -47,15 +45,6 @@ cmp.setup.cmdline('/', {
   sources = {
     { name = 'buffer' }
   }
-})
-
-cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-    { name = 'cmdline' }
-  })
 })
 
 -- Autopairs
