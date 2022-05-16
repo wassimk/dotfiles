@@ -163,5 +163,10 @@ require('nvim-tree').setup {
   },
 }
 
+-- Indent Blankline
+require('indent_blankline').setup {
+  show_current_context = false,
+}
+
 -- more indepth setup/config/etc
 require('wassim')

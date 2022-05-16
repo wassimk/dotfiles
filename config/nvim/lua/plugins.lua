@@ -97,7 +97,7 @@ return require('packer').startup(function(use)
 
   -- Pretty much automatic
   use 'wincent/vim-clipper'
-  use 'Yggdroot/indentLine'
+  use 'lukas-reineke/indent-blankline.nvim'
   use 'tpope/vim-repeat'
   use 'tpope/vim-sensible'
   use 'editorconfig/editorconfig-vim'
