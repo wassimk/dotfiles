@@ -58,3 +58,9 @@ api.nvim_create_autocmd('FileType', {
   command = 'nnoremap <buffer><silent> q :quit<CR>',
   group = wamGrp
 })
+
+-- new lines with 'o' or 'O' from commented lines don't continue commenting
+api.nvim_create_autocmd('FileType', {
+  command = 'setlocal formatoptions-=o',
+  group = wamGrp
+})
