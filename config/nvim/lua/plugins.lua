@@ -14,6 +14,7 @@ return require('packer').startup(function(use)
   use 'tpope/vim-eunuch'
   use 'windwp/nvim-autopairs'
   use 'github/copilot.vim'
+  use 'wincent/vcs-jump'
 
   use { 'janko-m/vim-test',
     requires = {
