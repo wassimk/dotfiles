@@ -44,9 +44,9 @@ require('lspconfig').tsserver.setup { capabilities = capabilities, on_attach = o
 -- lua
 ----
 local runtime_path = vim.split(package.path, ';')
-
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
+
 require('lspconfig').sumneko_lua.setup {
   settings = {
     Lua = {
@@ -65,4 +65,9 @@ require('lspconfig').sumneko_lua.setup {
 ----
 -- formatting
 ----
-vim.cmd('autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_seq_sync(nil, 100)')
+local wamGrp = vim.api.nvim_create_augroup('WamAutocmdsFormatting', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.lua',
+  command = 'lua vim.lsp.buf.formatting_seq_sync(nil, 100)',
+  group = wamGrp,
+})
