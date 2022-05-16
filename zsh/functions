@@ -53,6 +53,17 @@ ensure_tmux_is_running() {
   fi
 }
 
+# Make CTRL-Z background and unbackground
+function fg-bg() {
+  if [[ $#BUFFER -eq 0 ]]; then
+    fg
+  else
+    zle push-input
+  fi
+}
+zle -N fg-bg
+bindkey '^Z' fg-bg
+
 ####
 # git
 # g for git status
