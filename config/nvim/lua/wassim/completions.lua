@@ -48,6 +48,7 @@ cmp.setup.cmdline('/', {
 })
 
 -- Autopairs
-require('nvim-autopairs').setup { check_ts = true, map_cr = true }
-require('nvim-autopairs').add_rules(require('nvim-autopairs.rules.endwise-lua'))
-require('nvim-autopairs').add_rules(require('nvim-autopairs.rules.endwise-ruby'))
+npairs = require('nvim-autopairs')
+npairs.setup { check_ts = true, map_cr = true }
+npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
+npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
