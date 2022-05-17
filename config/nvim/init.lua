@@ -168,5 +168,7 @@ require('indent_blankline').setup {
   show_current_context = false,
 }
 
+require('Comment').setup()
+
 -- more indepth setup/config/etc
 require('wassim')
