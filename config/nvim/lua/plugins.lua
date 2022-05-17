@@ -60,7 +60,7 @@ return require('packer').startup(function(use)
   use 'tpope/vim-rails'
 
   -- Vim Text Objects and Motions
-  use 'tpope/vim-commentary'
+  use 'numToStr/Comment.nvim'
   use 'tpope/vim-surround'
   use 'wellle/targets.vim'
   use 'kana/vim-textobj-user'
