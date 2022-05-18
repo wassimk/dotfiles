@@ -65,9 +65,8 @@ require('lspconfig').sumneko_lua.setup {
       runtime = { path = runtime_path },
       diagnostics = { globals = { 'vim', 'hs' } },
       workspace = { library = vim.api.nvim_get_runtime_file('', true) },
-      format = {
-        enable = true,
-      },
+      format = { enable = true },
+      telemetry = { enable = false },
     }
   },
   capabilities = capabilities,
