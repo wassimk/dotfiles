@@ -115,14 +115,10 @@ vim.g.ale_echo_msg_format = '[%linter%] %s [%severity%]'
 -- enable specific linters
 vim.g.ale_linters = {
   javascript = { 'eslint' },
-  ruby = { 'prettier', 'rubocop', 'standard' },
+  ruby = { 'standard' },
   typescript = { 'eslint' }
 }
 vim.g.ale_linters_explicit = 1
-
--- use bundle exec version
-vim.g.ale_ruby_rubocop_executable = 'bundle'
-vim.g.ale_ruby_rubocop_options = '--display-cop-names --parallel'
 
 -- use autofix
 vim.g.ale_fix_on_save = 1
@@ -130,7 +126,6 @@ vim.g.ale_fixers = {
   ['*'] = { 'remove_trailing_lines', 'trim_whitespace' },
   javascript = { 'eslint' },
   typescript = { 'eslint' },
-  ruby = { 'prettier' },
 }
 
 -- FIXME: use vims built-in lsp
