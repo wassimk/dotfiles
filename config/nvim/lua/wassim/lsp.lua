@@ -37,10 +37,12 @@ require('lspconfig').vimls.setup { capabilities = capabilities, on_attach = on_a
 -- ruby / solargraph
 require 'lspconfig'.solargraph.setup {
   cmd = { 'bundle', 'exec', 'solargraph', 'stdio' },
+  init_options = {
+    formatting = false,
+  },
   settings = {
     solargraph = {
       diagnostics = true,
-      formatting = false,
     }
   },
   capabilities = capabilities,
