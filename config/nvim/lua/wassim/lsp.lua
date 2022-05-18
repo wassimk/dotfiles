@@ -27,7 +27,7 @@ end
 require('toggle_lsp_diagnostics').init { start_on = true, virtual_text = false, underline = false }
 
 -- automatic lsp server installs
-require('nvim-lsp-installer').setup { automatic_installation = true }
+require('nvim-lsp-installer').setup { automatic_installation = { exclude = { 'solargraph' } } }
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -35,7 +35,17 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 require('lspconfig').vimls.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- ruby / solargraph
-require('lspconfig').solargraph.setup { capabilities = capabilities, on_attach = on_attach }
+require 'lspconfig'.solargraph.setup {
+  cmd = { 'bundle', 'exec', 'solargraph', 'stdio' },
+  settings = {
+    solargraph = {
+      diagnostics = true,
+      formatting = false,
+    }
+  },
+  capabilities = capabilities,
+  on_attach = on_attach
+}
 
 -- javascript / typescript
 require('lspconfig').tsserver.setup { capabilities = capabilities, on_attach = on_attach }
@@ -69,5 +79,11 @@ local wamGrp = vim.api.nvim_create_augroup('WamAutocmdsFormatting', { clear = tr
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.lua',
   command = 'lua vim.lsp.buf.formatting_seq_sync(nil, 100)',
+  group = wamGrp,
+})
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.rb',
+  command = 'PrettierAsync',
   group = wamGrp,
 })
