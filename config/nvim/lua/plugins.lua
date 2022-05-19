@@ -8,7 +8,6 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- Code / Git
-  use 'dense-analysis/ale'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'tpope/vim-eunuch'
