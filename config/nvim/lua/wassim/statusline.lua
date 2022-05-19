@@ -19,7 +19,7 @@ require('lualine').setup {
     end },
     lualine_b = { 'branch', 'diff' },
     lualine_c = { 'filename' },
-    lualine_x = { 'filetype' },
+    lualine_x = { 'filetype', "require('lsp-status').status()" },
     lualine_y = { 'diagnostics' },
     lualine_z = { "'ℓ %l 𝚌 %v'" }, -- ℓ symbol breaks without the inner quotes
   },
