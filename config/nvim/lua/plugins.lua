@@ -42,9 +42,10 @@ return require('packer').startup(function(use)
     }
   }
 
-  use { 'dcampos/nvim-snippy',
+  -- Snippets with completion
+  use { 'L3MON4D3/LuaSnip',
     requires = {
-      'dcampos/cmp-snippy'
+      'saadparwaiz1/cmp_luasnip'
     }
   }
 
