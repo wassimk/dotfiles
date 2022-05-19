@@ -65,24 +65,6 @@ vim.api.nvim_exec([[
 vim.g['test#custom_strategies'] = { dispatch_start = vim.fn['DispatchStartStrategy'] }
 vim.g['test#strategy'] = 'dispatch_start'
 
------------------
--- vim-airline --
------------------
--- vim.g.airline_powerline_fonts = 1
--- vim.g.airline_mode_map = {
---   c = 'C',
---   i = 'I',
---   ic = 'IC',
---   n = 'N',
---   v = 'V',
---   V = 'V',
--- }
--- vim.g.airline_theme = 'onedark'
--- vim.g.airline_symbols = { colnr = ' 𝚌 ', linenr = 'ℓ ' }
--- vim.g.airline_section_x = '%{airline#util#prepend("", 0)}'
--- vim.g.airline_section_y = ''
--- vim.g.airline_section_z = '%{g:airline_symbols.linenr}%l/%L%{g:airline_symbols.colnr}%v'
-
 -- Update the tmuxline config file automatically
 -- vim.g['airline#extensions#tmuxline#enabled'] = 1
 -- vim.g['airline#extensions#tmuxline#snapshot_file'] = '~/.tmuxline.conf'
