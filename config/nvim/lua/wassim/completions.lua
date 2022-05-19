@@ -12,6 +12,7 @@ cmp.setup {
       vim_item.menu = ({
         buffer = '[Buffer]',
         nvim_lsp = '[LSP]',
+        nvim_lsp_signature_help = '[Signature]',
         snippy = '[Snippet]',
         nvim_lua = '[Lua]',
         path = '[Path]',
@@ -30,11 +31,11 @@ cmp.setup {
     ['<CR>'] = cmp.mapping.confirm { select = true },
   },
   sources = {
-    { name = 'buffer' },
     { name = 'snippy' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lua' },
+    { name = 'buffer' },
     { name = 'spell' }
   },
   completion = { completeopt = 'menu,menuone,noinsert' }
