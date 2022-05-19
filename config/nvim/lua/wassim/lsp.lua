@@ -1,6 +1,31 @@
 ----
 -- lsp
 ----
+local lsp_status = require('lsp-status')
+lsp_status.register_progress()
+lsp_status.config {
+  diagnostics = false, -- using the built-in to lualine
+  select_symbol = function(cursor_pos, symbol) -- sumneko_lua offers more capabilities for ranges
+    if symbol.valueRange then
+      local value_range = {
+        ['start'] = {
+          character = 0,
+          line = vim.fn.byte2line(symbol.valueRange[1])
+        },
+        ['end'] = {
+          character = 0,
+          line = vim.fn.byte2line(symbol.valueRange[2])
+        }
+      }
+
+      return require('lsp-status.util').in_range(cursor_pos, value_range)
+    end
+  end
+}
+
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
+
 local on_attach = function(client, bufnr)
   local opts = { buffer = 0, silent = true }
 
@@ -23,6 +48,8 @@ local on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
   end
+
+  lsp_status.on_attach(client)
 end
 
 -- configuration toggles
@@ -30,8 +57,6 @@ require('toggle_lsp_diagnostics').init { start_on = true, virtual_text = false, 
 
 -- automatic lsp server installs
 require('nvim-lsp-installer').setup { automatic_installation = { exclude = { 'solargraph' } } }
-
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- vimscript
 require('lspconfig').vimls.setup { capabilities = capabilities, on_attach = on_attach }
