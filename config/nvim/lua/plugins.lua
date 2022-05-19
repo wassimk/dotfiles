@@ -108,13 +108,7 @@ return require('packer').startup(function(use)
   use 'christoomey/vim-tmux-navigator'
   use 'wincent/terminus'
   use 'milkypostman/vim-togglelist'
-
-  use { 'vim-airline/vim-airline',
-    requires = {
-      'vim-airline/vim-airline-themes',
-      'edkolev/tmuxline.vim'
-    }
-  }
+  use 'nvim-lualine/lualine.nvim'
 
   -- Automatically set up configuration after cloning packer.nvim
   if packer_bootstrap then
