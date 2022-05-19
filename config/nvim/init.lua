@@ -82,7 +82,7 @@ vim.g['test#strategy'] = 'dispatch_start'
 -- The Silver Searcher
 if vim.fn.executable('ag') == 1 then
   -- use ag over grep
-  vim.cmd('set grepprg=ag\\ --nogroup\\ --nocolor')
+  vim.opt.grepprg = 'ag --nogroup --nocolor'
 
   -- use ag for ack
   vim.g.ackprg = 'ag --vimgrep'
