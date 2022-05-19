@@ -52,9 +52,10 @@ require 'lspconfig'.solargraph.setup {
 -- javascript / typescript
 require('lspconfig').tsserver.setup { capabilities = capabilities, on_attach = on_attach }
 
-----
+-- eslint
+require 'lspconfig'.eslint.setup { capabilities = capabilities, on_attach = on_attach }
+
 -- lua
-----
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
@@ -77,6 +78,7 @@ require('lspconfig').sumneko_lua.setup {
 -- formatting
 ----
 local wamGrp = vim.api.nvim_create_augroup('WamAutocmdsFormatting', { clear = true })
+
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.lua',
   command = 'lua vim.lsp.buf.formatting_seq_sync(nil, 100)',
@@ -86,5 +88,11 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.rb',
   command = 'PrettierAsync',
+  group = wamGrp,
+})
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
+  command = 'EslintFixAll',
   group = wamGrp,
 })
