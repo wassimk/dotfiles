@@ -65,17 +65,6 @@ vim.api.nvim_exec([[
 vim.g['test#custom_strategies'] = { dispatch_start = vim.fn['DispatchStartStrategy'] }
 vim.g['test#strategy'] = 'dispatch_start'
 
--- Update the tmuxline config file automatically
--- vim.g['airline#extensions#tmuxline#enabled'] = 1
--- vim.g['airline#extensions#tmuxline#snapshot_file'] = '~/.tmuxline.conf'
--- vim.g.tmuxline_preset = {
---   a = '#S',
---   win = '#I #W',
---   cwin = '#I #W #F',
---   z = '#($(echo hostname -s) | tr "[:upper:]" "[:lower:]")',
---   options = { ['status-justify'] = 'left' }
--- }
-
 ---------------
 -- Searching --
 ---------------
