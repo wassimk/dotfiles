@@ -54,9 +54,7 @@ database.yml
 #############
 .vagrant
 
-# tmux - airline generated file
-.tmuxline.conf
-tmuxline.conf
+# Javascript
 node_modules/
 
 # Ruby
