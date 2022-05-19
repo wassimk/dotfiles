@@ -80,8 +80,6 @@ return require('packer').startup(function(use)
   use 'wincent/loupe'
   use 'wincent/ferret'
   use 'wincent/scalpel'
-  use { 'junegunn/fzf', run = './install --bin' }
-  use 'junegunn/fzf.vim'
 
   use {
     'nvim-telescope/telescope.nvim',
