@@ -18,6 +18,11 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, opts)
   vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, opts)
   vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting, opts)
+
+  if client.name == 'tsserver' then
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+  end
 end
 
 -- configuration toggles
