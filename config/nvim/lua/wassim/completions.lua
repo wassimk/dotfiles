@@ -16,7 +16,8 @@ cmp.setup {
         luasnip = '[Snippet]',
         nvim_lua = '[Lua]',
         path = '[Path]',
-        spell = '[Spell]'
+        spell = '[Spell]',
+        git = '[GitHub]',
       })[entry.source.name]
       return vim_item
     end
@@ -36,7 +37,8 @@ cmp.setup {
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lua' },
     { name = 'buffer' },
-    { name = 'spell' }
+    { name = 'spell' },
+    { name = 'git' },
   },
   completion = { completeopt = 'menu,menuone,noinsert' }
 }
@@ -48,8 +50,10 @@ cmp.setup.cmdline('/', {
   }
 })
 
+require('cmp_git').setup()
+
 -- Autopairs
-npairs = require('nvim-autopairs')
+local npairs = require('nvim-autopairs')
 npairs.setup { check_ts = true, map_cr = true }
 npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
 npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))

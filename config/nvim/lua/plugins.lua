@@ -37,6 +37,7 @@ return require('packer').startup(function(use)
       'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lua',
+      'petertriho/cmp-git',
       'hrsh7th/cmp-path',
       'f3fora/cmp-spell',
     }
