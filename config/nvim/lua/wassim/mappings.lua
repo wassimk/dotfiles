@@ -27,3 +27,7 @@ vim.api.nvim_set_keymap('n', '<C-f>g', ':Telescope live_grep<CR>', { noremap = t
 vim.api.nvim_set_keymap('n', '<C-f>b', ':Telescope current_buffer_fuzzy_find<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-f>ob', ':Telescope buffers<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-f>h', ':Telescope help_tags<CR>', { noremap = true, silent = true })
+
+-- bufferline
+vim.api.nvim_set_keymap('n', ']b', '<cmd>BufferLineCycleNext<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '[b', '<cmd>BufferLineCyclePrev<CR>', { noremap = true, silent = true })
