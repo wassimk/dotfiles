@@ -3,7 +3,7 @@ local cmp = require('cmp')
 cmp.setup {
   snippet = {
     expand = function(args)
-      require('snippy').expand_snippet(args.body)
+      require 'luasnip'.lsp_expand(args.body)
     end,
   },
   formatting = {
@@ -13,7 +13,7 @@ cmp.setup {
         buffer = '[Buffer]',
         nvim_lsp = '[LSP]',
         nvim_lsp_signature_help = '[Signature]',
-        snippy = '[Snippet]',
+        luasnip = '[Snippet]',
         nvim_lua = '[Lua]',
         path = '[Path]',
         spell = '[Spell]'
@@ -31,7 +31,7 @@ cmp.setup {
     ['<CR>'] = cmp.mapping.confirm { select = true },
   },
   sources = {
-    { name = 'snippy' },
+    { name = 'luasnip' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lua' },

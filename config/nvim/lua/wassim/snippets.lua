@@ -1,13 +1,2 @@
-local snippy = require('snippy')
-
-snippy.setup {
-  scopes = {
-    ruby = { '_', 'ruby', 'rails' },
-  },
-  mappings = {
-    is = {
-      ['<Tab>'] = 'expand_or_advance',
-      ['<S-Tab>'] = 'previous',
-    },
-  },
-}
+require('luasnip').config.setup { enable_autosnippets = true }
+require('luasnip.loaders.from_lua').load { paths = '~/.config/nvim/snippets' }
