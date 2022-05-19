@@ -114,9 +114,7 @@ vim.g.ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 -- enable specific linters
 vim.g.ale_linters = {
-  javascript = { 'eslint' },
   ruby = { 'standard' },
-  typescript = { 'eslint' }
 }
 vim.g.ale_linters_explicit = 1
 
@@ -124,8 +122,6 @@ vim.g.ale_linters_explicit = 1
 vim.g.ale_fix_on_save = 1
 vim.g.ale_fixers = {
   ['*'] = { 'remove_trailing_lines', 'trim_whitespace' },
-  javascript = { 'eslint' },
-  typescript = { 'eslint' },
 }
 
 -- FIXME: use vims built-in lsp
