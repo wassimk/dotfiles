@@ -119,7 +119,7 @@ vim.g['prettier#autoformat'] = 0
 vim.g['prettier#autoformat_config_files'] = 0
 
 vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*.rb',
+  pattern = { '*.rb', '*.rake' },
   command = 'PrettierAsync',
   group = wamGrp,
 })
