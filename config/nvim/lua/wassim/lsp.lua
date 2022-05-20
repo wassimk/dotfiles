@@ -115,8 +115,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 
 -- disable vim-prettier automatic formatting
 vim.g['prettier#create_autocmds'] = 0 -- from the forked version
-vim.g['prettier#autoformat'] = 0
-vim.g['prettier#autoformat_config_files'] = 0
 
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = { '*.rb', '*.rake' },
