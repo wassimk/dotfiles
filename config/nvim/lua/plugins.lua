@@ -75,7 +75,7 @@ return require('packer').startup(function(use)
   use 'junegunn/vim-easy-align'
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-abolish'
-  use 'prettier/vim-prettier'
+  use { 'wassimk/vim-prettier', branch = 'wm/fixes' }
 
   -- Files And Search
   use 'wincent/loupe'
