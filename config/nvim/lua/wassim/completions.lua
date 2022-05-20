@@ -1,4 +1,13 @@
 local cmp = require('cmp')
+local key_mappings = {
+  ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
+  ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+  ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+  ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+  ['<C-y>'] = cmp.mapping(cmp.mapping.confirm(), { 'i', 'c' }),
+  ['<C-e>'] = cmp.mapping(cmp.mapping.abort(), { 'i', 'c' }),
+  ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+}
 
 cmp.setup {
   snippet = {
@@ -22,15 +31,7 @@ cmp.setup {
       return vim_item
     end
   },
-  mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-d>'] = cmp.mapping.scroll_docs(4),
-    ['<C-y>'] = cmp.mapping.confirm { select = true },
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<C-Space>'] = cmp.mapping.complete(),
-  },
+  mapping = key_mappings,
   sources = {
     { name = 'luasnip' },
     { name = 'nvim_lsp' },
@@ -44,20 +45,14 @@ cmp.setup {
 }
 
 cmp.setup.cmdline('/', {
-  mapping = cmp.mapping.preset.cmdline(),
+  mapping = key_mappings,
   sources = {
     { name = 'buffer' }
   }
 })
 
 cmp.setup.cmdline(':', {
-  mapping = {
-    ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
-    ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
-    ['<C-y>'] = cmp.mapping(cmp.mapping.confirm(), { 'i', 'c' }),
-    ['<C-e>'] = cmp.mapping(cmp.mapping.abort(), { 'i', 'c' }),
-    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-  },
+  mapping = key_mappings,
   sources = cmp.config.sources({
     { name = 'path' }
   }, {
