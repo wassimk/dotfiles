@@ -27,9 +27,9 @@ cmp.setup {
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-y>'] = cmp.mapping.confirm { select = true },
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm { select = true },
+    ['<C-Space>'] = cmp.mapping.complete(),
   },
   sources = {
     { name = 'luasnip' },
@@ -51,7 +51,13 @@ cmp.setup.cmdline('/', {
 })
 
 cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
+  mapping = {
+    ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
+    ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+    ['<C-y>'] = cmp.mapping(cmp.mapping.confirm(), { 'i', 'c' }),
+    ['<C-e>'] = cmp.mapping(cmp.mapping.abort(), { 'i', 'c' }),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+  },
   sources = cmp.config.sources({
     { name = 'path' }
   }, {
