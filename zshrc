@@ -1,6 +1,9 @@
 # Use vim as the visual editor
 export VISUAL='nvim'
 export EDITOR=$VISUAL
+case "$OSTYPE" in
+  linux*) export BROWSER='local-open' ;;
+esac
 
 # Load oh-my-zsh plugins, auto-completion, themes, etc.
 export ZSH=$HOME/.oh-my-zsh
