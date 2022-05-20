@@ -29,7 +29,7 @@ vim.opt.wildmenu = true -- Command line auto-complete feature
 vim.opt.ruler = true -- The status line feature of cursor position
 vim.opt.smarttab = true -- Handle tabs, spaces or not smartly
 vim.opt.winwidth = 100 -- Set minimum width of current window
-vim.opt.hidden = true -- Hide unsaved buffers
+vim.opt.hidden = true -- Don't ask to save unmodified buffers, just hide them
 vim.opt.complete = vim.opt.complete - 'i' -- Not sure, from sensible
 vim.opt.display = vim.opt.display + 'lastline' -- Not sure, from sensible
 vim.opt.scrolloff = 1 -- Not sure, from sensible
@@ -40,7 +40,6 @@ vim.opt.inccommand = 'nosplit' -- Live highlight of substitutions
 -- vim.opt.nofoldenable = true -- Disable folding
 vim.opt.complete = vim.opt.complete + 'kspell'
 vim.opt.shortmess = vim.opt.shortmess + 'a' -- Some sane display defaults
-vim.opt.shortmess = vim.opt.shortmess + 'I' -- No vim startup messages
 
 -- use system clipboard
 vim.opt.clipboard = 'unnamed'
