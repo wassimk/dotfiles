@@ -70,6 +70,7 @@ require 'lspconfig'.solargraph.setup {
   settings = {
     solargraph = {
       diagnostics = true,
+      logLevel = 'debug',
     }
   },
   capabilities = capabilities,
