@@ -10,7 +10,7 @@ local mode_map = {
 
 require('lualine').setup {
   options = {
-    disabled_filetypes = {},
+    disabled_filetypes = { 'NvimTree' },
     globalstatus = false,
   },
   sections = {
@@ -31,5 +31,5 @@ require('lualine').setup {
     lualine_y = {},
     lualine_z = {}
   },
-  extensions = { 'quickfix', 'nvim-tree', 'fugitive' }
+  extensions = { 'quickfix', 'fugitive' },
 }
