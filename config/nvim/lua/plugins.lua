@@ -63,6 +63,8 @@ return require('packer').startup(function(use)
   use 'vim-ruby/vim-ruby'
   use 'tpope/vim-rails'
 
+  use '~/cmp-rails-fixtures'
+
   -- Vim Text Objects and Motions
   use 'numToStr/Comment.nvim'
   use 'tpope/vim-surround'

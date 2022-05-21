@@ -27,6 +27,8 @@ cmp.setup {
         path = '[Path]',
         spell = '[Spell]',
         git = '[GitHub]',
+        rails_fixtures_names = '[Fixture Name]',
+        rails_fixtures_types = '[Fixture Type]',
       })[entry.source.name]
       return vim_item
     end
@@ -40,6 +42,8 @@ cmp.setup {
     { name = 'buffer' },
     { name = 'spell' },
     { name = 'git' },
+    { name = 'rails_fixtures_names' },
+    { name = 'rails_fixtures_types' },
   },
   completion = { completeopt = 'menu,menuone,noinsert' }
 }
