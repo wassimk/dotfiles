@@ -131,7 +131,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 vim.g['prettier#create_autocmds'] = 0 -- from the forked version
 
 vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = { '*.rb', '*.rake' },
+  pattern = { '*.rb', '*.rake', '*.html', '*.css', '*.jsx', '*js' },
   command = 'PrettierAsync',
   group = wamGrp,
 })
