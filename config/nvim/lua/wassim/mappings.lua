@@ -31,6 +31,19 @@ vim.keymap.set('n', '<C-f>ob', '<cmd>Telescope buffers<CR>', opts)
 vim.keymap.set('n', '<C-f>h', '<cmd>Telescope help_tags<CR>', opts)
 vim.keymap.set('n', '<C-f>c', '<cmd>Telescope commands<CR>', opts)
 
+local actions = require('telescope.actions')
+require('telescope').setup {
+  defaults = {
+    mappings = {
+      i = {
+        ['<C-y>'] = actions.select_default
+      },
+      n = {
+        ['<C-y>'] = actions.select_default
+      },
+    },
+  }
+}
 -- bufferline
 vim.keymap.set('n', ']b', '<cmd>BufferLineCycleNext<CR>', opts)
 vim.keymap.set('n', '[b', '<cmd>BufferLineCyclePrev<CR>', opts)
