@@ -64,3 +64,8 @@ node_modules/
 # Git
 ########
 .git
+
+# ctags
+tags
+tags.lock
+tags.temp
