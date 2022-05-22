@@ -17,7 +17,6 @@ cmp.setup {
   },
   formatting = {
     format = function(entry, vim_item)
-      -- set a name for each source
       vim_item.menu = ({
         buffer = '[Buffer]',
         nvim_lsp = '[LSP]',
@@ -46,6 +45,14 @@ cmp.setup {
 
 cmp.setup.cmdline('/', {
   mapping = key_mappings,
+  formatting = {
+    format = function(entry, vim_item)
+      vim_item.kind = nil
+      vim_item.source = nil
+
+      return vim_item
+    end
+  },
   sources = {
     { name = 'buffer' }
   }
@@ -53,6 +60,13 @@ cmp.setup.cmdline('/', {
 
 cmp.setup.cmdline(':', {
   mapping = key_mappings,
+  formatting = {
+    format = function(entry, vim_item)
+      vim_item.kind = nil
+
+      return vim_item
+    end
+  },
   sources = cmp.config.sources({
     { name = 'path' }
   }, {
