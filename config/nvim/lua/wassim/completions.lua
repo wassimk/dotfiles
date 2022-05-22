@@ -37,7 +37,7 @@ cmp.setup {
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lua' },
     { name = 'buffer' },
-    { name = 'spell' },
+    { name = 'spell', keyword_length = 4 },
     { name = 'git' },
   },
   completion = { completeopt = 'menu,menuone,noinsert' }
