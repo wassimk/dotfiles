@@ -6,3 +6,5 @@
 --exclude=coverage
 --exclude=vendor
 --exclude=bower_components
+--exclude=public/packs
+--exclude=public/packs-test

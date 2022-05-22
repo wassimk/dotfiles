@@ -182,7 +182,20 @@ installJq() {
 }
 
 installCtags() {
-  installOrUpdate "ctags"
+
+  case $os in
+    $macOS*)
+      installOrUpdate "universal-ctags"
+      ;;
+    $ubuntu*)
+      if ! command -v universal-ctags >/dev/null 2>&1; then
+        sudo apt remove exuberant-ctags -y
+        sudo snap install universal-ctags
+      else
+        sudo snap refresh universal-ctags
+      fi
+      ;;
+  esac
 }
 
 installGrc() {

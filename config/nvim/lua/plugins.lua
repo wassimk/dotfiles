@@ -105,6 +105,7 @@ return require('packer').startup(function(use)
   use 'tpope/vim-repeat'
   use 'tpope/vim-sensible'
   use 'editorconfig/editorconfig-vim'
+  use 'ludovicchabant/vim-gutentags'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- Theme / Status Line / Tmux / Terminal / Vim
