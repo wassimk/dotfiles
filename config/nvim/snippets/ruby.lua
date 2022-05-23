@@ -1,13 +1,10 @@
 return {
-  parse("rl", "also loaded!!")
-}, {
-  parse("autotrig", "autotriggered, if enabled")
-}
+  s({
+    trig = 'rl',
+    namr = 'Rails Logger',
+    dscr = 'Write to the built-in Rails logger'
+  },
 
--- snip({
---   trig = "rl",
---   namr = "Rails Logger",
---   dscr = "Write to the configured Rails log files"
--- },
---   {
---     text({ "Rails.logger.info '#' * 50", "Rails.logger.info '#' * 50" }), insert(1, "data"), text({ "Rails.logger.info '#' * 50" }) })
+    { t { "Rails.logger.info '#' * 50", 'Rails.logger.info ', }, i(0, 'data_to_log'), t { '', "Rails.logger.info '#' * 50" } }
+  )
+}
