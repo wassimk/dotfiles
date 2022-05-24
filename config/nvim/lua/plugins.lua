@@ -37,6 +37,7 @@ return require('packer').startup(function(use)
       'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lua',
+      'quangnguyen30192/cmp-nvim-tags',
       'petertriho/cmp-git',
       'olacin/telescope-gitmoji.nvim',
       'hrsh7th/cmp-path',

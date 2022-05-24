@@ -26,6 +26,7 @@ cmp.setup {
         path = '[Path]',
         spell = '[Spell]',
         git = '[GitHub]',
+        tags = '[Tag]',
       })[entry.source.name]
       return vim_item
     end
@@ -33,6 +34,7 @@ cmp.setup {
   mapping = key_mappings,
   sources = {
     { name = 'luasnip' },
+    { name = 'tags' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lua' },
