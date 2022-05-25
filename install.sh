@@ -190,7 +190,15 @@ installCtags() {
     $ubuntu*)
       if ! command -v universal-ctags >/dev/null 2>&1; then
         sudo apt remove exuberant-ctags -y
-        sudo snap install universal-ctags
+
+        cd "$HOME" || exit
+        git clone https://github.com/universal-ctags/ctags.git
+        cd ctags || exit
+        ./autogen.sh
+        ./configure
+        make && make install
+        cd ../
+        rm -rf ctags
       else
         sudo snap refresh universal-ctags
       fi
