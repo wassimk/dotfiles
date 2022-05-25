@@ -130,12 +130,12 @@ vim.g['prettier#create_autocmds'] = 0 -- from the forked version
 
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = { '*.rb', '*.rake', '*.html', '*.css', '*.jsx', '*js' },
-  command = 'PrettierAsync',
+  command = 'silent! PrettierAsync',
   group = wamGrp,
 })
 
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
-  command = 'EslintFixAll',
+  command = 'silent! EslintFixAll',
   group = wamGrp,
 })
