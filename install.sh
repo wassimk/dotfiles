@@ -513,7 +513,6 @@ cleanupPackages
 (cd "$HOME"/.dotfiles || exit; bash dotfiles.sh)
 setupNeovim
 miscellaneousSetup
-bash "$HOME/.bin/ctags_init"
 
 echo ""
 echo "Done! You'll probably need to restart your shell/SSH session..."
