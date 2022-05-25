@@ -18,7 +18,7 @@ require('lualine').setup {
       return mode_map[vim.api.nvim_get_mode().mode] or '__'
     end },
     lualine_b = { 'branch', 'diff' },
-    lualine_c = { 'filename' },
+    lualine_c = { { 'filename', path = 1 } },
     lualine_x = { 'filetype', "require('lsp-status').status()" },
     lualine_y = { 'diagnostics' },
     lualine_z = { "'ℓ %l 𝚌 %v'" }, -- ℓ symbol breaks without the inner quotes
@@ -26,7 +26,7 @@ require('lualine').setup {
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = { 'filename' },
+    lualine_c = { { 'filename', path = 1 } },
     lualine_x = {},
     lualine_y = {},
     lualine_z = {}
