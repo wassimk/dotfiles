@@ -64,6 +64,9 @@ require 'lspconfig'.bashls.setup { capabilities = capabilities, on_attach = on_a
 -- vimscript
 require('lspconfig').vimls.setup { capabilities = capabilities, on_attach = on_attach }
 
+-- yaml
+require('lspconfig').yamlls.setup { capabilities = capabilities, on_attach = on_attach }
+
 -- ruby / solargraph
 require 'lspconfig'.solargraph.setup {
   cmd = { 'bundle', 'exec', 'solargraph', 'stdio' },
