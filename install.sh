@@ -118,18 +118,6 @@ installZsh() {
   fi
 }
 
-installOMZsh() {
-  if [ ! -d "$HOME"/.oh-my-zsh ]; then
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --skip-chsh --keep-zshrc
-  else
-    if command -v omz >/dev/null 2>&1; then
-      omz update
-    elif command -v upgrade_oh_my_zsh >/dev/null 2>&1; then
-      upgrade_oh_my_zsh
-    fi
-  fi
-}
-
 installZshSyntaxHighlighting() {
   installOrUpdate "zsh-syntax-highlighting"
 }
@@ -261,6 +249,16 @@ installTerminal() {
   esac
 }
 
+installTerminalPrompt() {
+  case $os in
+    $macOS*)
+      installOrUpdate "starship"
+      ;;
+    $ubuntu*)
+      curl -sS https://starship.rs/install.sh | sh
+      ;;
+  esac
+}
 installWindowManager() {
   case $os in
     $macOS*)
@@ -536,7 +534,6 @@ installITerm
 installGnuPg
 installClipper
 installZsh
-installOMZsh
 installZshSyntaxHighlighting
 installReadline
 installFzf

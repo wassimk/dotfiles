@@ -1,3 +1,7 @@
+### Initalize completions
+autoload -Uz compinit
+compinit
+
 ####
 ## Typora
 ####
