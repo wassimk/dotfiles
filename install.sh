@@ -247,7 +247,7 @@ installTerminalPrompt() {
       installOrUpdate "starship"
       ;;
     $ubuntu*)
-      curl -sS https://starship.rs/install.sh | sh
+      sh -c "$(curl -fsSL https://starship.rs/install.sh)" -y -f
       ;;
   esac
 }
