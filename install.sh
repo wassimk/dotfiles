@@ -253,6 +253,14 @@ installTig() {
   esac
 }
 
+installTerminal() {
+  case $os in
+    $macOS*)
+      installOnceFromCask "alacritty"
+      ;;
+  esac
+}
+
 installHeroku() {
   case $os in
     $macOS*)
@@ -501,6 +509,7 @@ installCtags
 installGrc
 installHub
 installTig
+installTerminal
 installHeroku
 installAwsCli
 installStripeCli
