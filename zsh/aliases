@@ -2,8 +2,6 @@
 # plugins, and themes. For a full list of active aliases, run `alias`.
 
 # file / dir listing
-unalias lsa                                                              # remove zsh set aliases
-
 if command -v exa 2>&1 >/dev/null; then
   alias ll='exa -lhg --group-directories-first --git --color=automatic'  # Pretty up the listing
   alias la='exa -lahg --group-directories-first --git --color=automatic' # Include dot files / folders

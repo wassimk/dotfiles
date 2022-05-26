@@ -1,15 +1,13 @@
+# Prompt
+eval "$(starship init zsh)"
+
 # Use vim as the visual editor
 export VISUAL='nvim'
 export EDITOR=$VISUAL
+
 case "$OSTYPE" in
   linux*) export BROWSER='local-open' ;;
 esac
-
-# Load oh-my-zsh plugins, auto-completion, themes, etc.
-export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="wassimk"
-plugins=()
-source $ZSH/oh-my-zsh.sh
 
 # Sourcing of other files
 source $HOME/.zsh/aliases
