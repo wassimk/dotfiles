@@ -261,6 +261,36 @@ installTerminal() {
   esac
 }
 
+installWindowManager() {
+  case $os in
+    $macOS*)
+      if ! command -v yabai >/dev/null 2>&1; then
+        installOrUpdate "koekeishiya/formulae/yabai"
+
+        echo -e "You need to disable SIP and do some other hackery to get this loading on macOS"
+        echo -e "https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)"
+        echo -e "Type 'OK' to acknowledge this!"
+        read -r confirm
+        if [ "$confirm" != "OK" ] ; then
+          echo "Get it done! Exiting."
+          exit 1
+        fi
+      fi
+      ;;
+  esac
+}
+
+installShortcutManager() {
+  case $os in
+    $macOS*)
+      if ! command -v skhd >/dev/null 2>&1; then
+        installOrUpdate "koekeishiya/formulae/skhd"
+        brew services start skhd
+      fi
+      ;;
+  esac
+}
+
 installHeroku() {
   case $os in
     $macOS*)
@@ -510,6 +540,8 @@ installGrc
 installHub
 installTig
 installTerminal
+installWindowManager
+installShortcutManager
 installHeroku
 installAwsCli
 installStripeCli
