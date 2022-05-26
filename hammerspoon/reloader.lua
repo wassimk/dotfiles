@@ -1,8 +1,3 @@
---
--- Auto-reload config on change.
---
-local events = require 'events'
-
 -- Forward function declarations.
 local reload = nil
 local reloadFiles = nil
@@ -14,7 +9,6 @@ reloadFiles = (function(files)
 end)
 
 reload = (function()
-  events.emit('reload')
   hs.reload()
 end)
 
