@@ -41,5 +41,7 @@ yabai -m rule --add app="^balenaEtcher$" manage=off
 yabai -m rule --add app="^Logi Options$" manage=off
 yabai -m rule --add app="^Alfred Preferences$" manage=off
 yabai -m rule --add app="^SpaceLauncher$" manage=off
+yabai -m rule --add app="^Vanilla$" manage=off
+yabai -m rule --add app="^CheatSheet$" manage=off
 
 echo "yabai configuration loaded..."
