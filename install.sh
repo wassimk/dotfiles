@@ -275,6 +275,15 @@ installWindowManager() {
           echo "Get it done! Exiting."
           exit 1
         fi
+      else
+        brew services stop yabai
+        brew upgrade yabai
+        brew services start yabai
+
+        sudo yabai --uninstall-sa
+        sudo yabai --install-sa
+
+        killall Dock
       fi
       ;;
   esac
