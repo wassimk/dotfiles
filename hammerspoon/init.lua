@@ -3,34 +3,34 @@
 -- Install it first from - http://www.hammerspoon.org/
 -- Most of this came directly from: github.com/wincent
 --
-hs.grid.setGrid("12x12") -- allows us to place on quarters, thirds and halves
+hs.grid.setGrid('12x12') -- allows us to place on quarters, thirds and halves
 hs.window.animationDuration = 0 -- disable animations
 
 local screenCount = #hs.screen.allScreens()
-local events = require "events"
-local reloader = require "reloader"
-local log = require "logger"
+local events = require 'events'
+local reloader = require 'reloader'
+local log = require 'logger'
 
 local grid = {
-  topHalf = "0,0 12x6",
-  topThird = "0,0 12x4",
-  topTwoThirds = "0,0 12x8",
-  rightHalf = "6,0 6x12",
-  rightThird = "8,0 4x12",
-  rightTwoThirds = "4,0 8x12",
-  bottomHalf = "0,6 12x6",
-  bottomThird = "0,8 12x4",
-  bottomTwoThirds = "0,4 12x8",
-  leftHalf = "0,0 6x12",
-  leftThird = "0,0 4x12",
-  leftTwoThirds = "0,0 8x12",
-  topLeft = "0,0 6x6",
-  topRight = "6,0 6x6",
-  bottomRight = "6,6 6x6",
-  bottomLeft = "0,6 6x6",
-  fullScreen = "0,0 12x12",
-  centeredBig = "3,3 6x6",
-  centeredSmall = "4,4 4x4"
+  topHalf = '0,0 12x6',
+  topThird = '0,0 12x4',
+  topTwoThirds = '0,0 12x8',
+  rightHalf = '6,0 6x12',
+  rightThird = '8,0 4x12',
+  rightTwoThirds = '4,0 8x12',
+  bottomHalf = '0,6 12x6',
+  bottomThird = '0,8 12x4',
+  bottomTwoThirds = '0,4 12x8',
+  leftHalf = '0,0 6x12',
+  leftThird = '0,0 4x12',
+  leftTwoThirds = '0,0 8x12',
+  topLeft = '0,0 6x6',
+  topRight = '6,0 6x6',
+  bottomRight = '6,6 6x6',
+  bottomLeft = '0,6 6x6',
+  fullScreen = '0,0 12x12',
+  centeredBig = '3,3 6x6',
+  centeredSmall = '4,4 4x4'
 }
 
 local layoutConfig = {
@@ -45,7 +45,7 @@ local layoutConfig = {
   end),
 
   -- Full screen on single display or right half odd and left half even windows
-  ["com.apple.Safari"] = (function(window, forceScreenCount)
+  ['com.apple.Safari'] = (function(window, forceScreenCount)
     local count = forceScreenCount or screenCount
     if count == 1 then
       hs.grid.set(window, grid.fullScreen)
@@ -58,7 +58,7 @@ local layoutConfig = {
     end
   end),
 
-  ["com.google.Chrome"] = (function(window, forceScreenCount)
+  ['com.google.Chrome'] = (function(window, forceScreenCount)
     local count = forceScreenCount or screenCount
     if count == 1 then
       hs.grid.set(window, grid.fullScreen)
@@ -71,7 +71,7 @@ local layoutConfig = {
     end
   end),
 
-  ["com.brave.Browser"] = (function(window, forceScreenCount)
+  ['com.brave.Browser'] = (function(window, forceScreenCount)
     local count = forceScreenCount or screenCount
     if count == 1 then
       hs.grid.set(window, grid.fullScreen)
@@ -85,7 +85,7 @@ local layoutConfig = {
   end),
 
   -- Full screen single display or left half of primary
-  ["com.googlecode.iterm2"] = (function(window, forceScreenCount)
+  ['com.googlecode.iterm2'] = (function(window, forceScreenCount)
     -- the calendar entry suggestions window isStandard() but we don't want to resposition it
     if window:isMaximizable() then
       local count = forceScreenCount or screenCount
@@ -97,7 +97,7 @@ local layoutConfig = {
     end
   end),
 
-  ["com.apple.mail"] = (function(window, forceScreenCount)
+  ['com.apple.mail'] = (function(window, forceScreenCount)
     local count = forceScreenCount or screenCount
     if count == 1 then
       hs.grid.set(window, grid.fullScreen)
@@ -106,7 +106,7 @@ local layoutConfig = {
     end
   end),
 
-  ["com.apple.iCal"] = (function(window, forceScreenCount)
+  ['com.apple.iCal'] = (function(window, forceScreenCount)
     local count = forceScreenCount or screenCount
 
     -- the calendar entry suggestions window isStandard() but we don't want to resposition it
@@ -122,7 +122,7 @@ local layoutConfig = {
   end),
 
   -- Always full screen internal or single display
-  ["com.tinyspeck.slackmacgap"] = (function(window)
+  ['com.tinyspeck.slackmacgap'] = (function(window)
     if atWork() then
       hs.grid.set(window, grid.rightTwoThirds, internalDisplay())
     else
@@ -131,7 +131,7 @@ local layoutConfig = {
   end),
 
   -- Always left half of internal or primary display
-  ["com.apple.MobileSMS"] = (function(window, forceScreenCount)
+  ['com.apple.MobileSMS'] = (function(window, forceScreenCount)
     hs.grid.set(window, grid.leftHalf, internalDisplay())
   end)
 }
@@ -170,7 +170,7 @@ function canManageWindow(window)
 
   -- Special handling for iTerm: windows without title bars are
   -- non-standard.
-  return window:isStandard() or bundleID == "com.googlecode.iterm2"
+  return window:isStandard() or bundleID == 'com.googlecode.iterm2'
 end
 
 function atWork() return iMacDisplay() end
@@ -178,14 +178,14 @@ function atWork() return iMacDisplay() end
 function internalDisplay()
   if atWork() then
     -- External Acer Monitor at Work
-    return hs.screen.find("1920x1080")
+    return hs.screen.find('1920x1080')
   else
     -- (Retina) MacBook Pro.
-    return hs.screen.find("1440x900")
+    return hs.screen.find('1440x900')
   end
 end
 
-function iMacDisplay() return hs.screen.find("2560x1440") end
+function iMacDisplay() return hs.screen.find('2560x1440') end
 
 function activateLayout(forceScreenCount)
   layoutConfig._before_()
@@ -218,7 +218,7 @@ local events = hs.uielement.watcher
 frontmost = nil
 hs.application.watcher.new(
   function(_, event, app)
-    if (event == hs.application.watcher.activated and app:bundleID() ~= "org.hammerspoon.Hammerspoon") then
+    if (event == hs.application.watcher.activated and app:bundleID() ~= 'org.hammerspoon.Hammerspoon') then
       frontmost = app
     end
   end
@@ -226,35 +226,35 @@ hs.application.watcher.new(
 
 function handleGlobalEvent(name, eventType, app)
   if eventType == hs.application.watcher.launched then
-    log.df("[event] launched %s", app:bundleID())
+    log.df('[event] launched %s', app:bundleID())
     watchApp(app)
   elseif eventType == hs.application.watcher.terminated then
     -- Only the PID is set for terminated apps, so can't log bundleID.
     local pid = app:pid()
-    log.df("[event] terminated PID %d", pid)
+    log.df('[event] terminated PID %d', pid)
     unwatchApp(pid)
   end
 end
 
 function handleAppEvent(element, event)
   if event == events.windowCreated then
-    if pcall(function() log.df("[event] window %s created", element:id()) end) then
+    if pcall(function() log.df('[event] window %s created', element:id()) end) then
       watchWindow(element)
     else
-      log.wf("error thrown trying to access element in handleAppEvent")
+      log.wf('error thrown trying to access element in handleAppEvent')
     end
   else
-    log.wf("unexpected app event %d received", event)
+    log.wf('unexpected app event %d received', event)
   end
 end
 
 function handleWindowEvent(window, event, watcher, info)
   if event == events.elementDestroyed then
-    log.df("[event] window %s destroyed", info.id)
+    log.df('[event] window %s destroyed', info.id)
     watcher:stop()
     watchers[info.pid].windows[info.id] = nil
   else
-    log.wf("unexpected window event %d received", event)
+    log.wf('unexpected window event %d received', event)
   end
 end
 
@@ -272,14 +272,14 @@ end
 function watchApp(app)
   local pid = app:pid()
   if watchers[pid] then
-    log.wf("attempted watch for already-watched PID %d", pid)
+    log.wf('attempted watch for already-watched PID %d', pid)
     return
   end
 
   -- Watch for new windows.
   local watcher = app:newWatcher(handleAppEvent)
   watchers[pid] = { watcher = watcher, windows = {} }
-  watcher:start({ events.windowCreated })
+  watcher:start { events.windowCreated }
 
   -- Watch already-existing windows.
   for _, window in pairs(app:allWindows()) do watchWindow(window) end
@@ -288,7 +288,7 @@ end
 function unwatchApp(pid)
   local appWatcher = watchers[pid]
   if not appWatcher then
-    log.wf("attempted unwatch for unknown PID %d", pid)
+    log.wf('attempted unwatch for unknown PID %d', pid)
     return
   end
 
@@ -313,7 +313,7 @@ function watchWindow(window)
       if not windows[id] then
         local watcher = window:newWatcher(handleWindowEvent, { id = id, pid = pid })
         windows[id] = watcher
-        watcher:start({ events.elementDestroyed })
+        watcher:start { events.elementDestroyed }
       end
     end
   end
@@ -327,7 +327,7 @@ function initEventHandling()
   -- Watch already-running applications.
   local apps = hs.application.runningApplications()
   for _, app in pairs(apps) do
-    if app:bundleID() ~= "org.hammerspoon.Hammerspoon" then watchApp(app) end
+    if app:bundleID() ~= 'org.hammerspoon.Hammerspoon' then watchApp(app) end
   end
 
   -- Watch for screen changes.
@@ -396,57 +396,57 @@ end
 --
 -- Key bindings.
 --
-hs.hotkey.bind({ "ctrl", "alt", "cmd" }, "space", (function() otherScreen() end))
+hs.hotkey.bind({ 'ctrl', 'alt', 'cmd' }, 'space', (function() otherScreen() end))
 
-hs.hotkey.bind({ "ctrl", "alt" }, "up", chain({ grid.topHalf, grid.topThird, grid.topTwoThirds }))
+hs.hotkey.bind({ 'ctrl', 'alt' }, 'up', chain { grid.topHalf, grid.topThird, grid.topTwoThirds })
 
 hs.hotkey.bind(
-  { "ctrl", "alt" }, "right", chain({ grid.rightHalf, grid.rightThird, grid.rightTwoThirds })
+  { 'ctrl', 'alt' }, 'right', chain { grid.rightHalf, grid.rightThird, grid.rightTwoThirds }
 )
 
 hs.hotkey.bind(
-  { "ctrl", "alt" }, "down", chain({ grid.bottomHalf, grid.bottomThird, grid.bottomTwoThirds })
+  { 'ctrl', 'alt' }, 'down', chain { grid.bottomHalf, grid.bottomThird, grid.bottomTwoThirds }
 )
 
 hs.hotkey.bind(
-  { "ctrl", "alt" }, "left", chain({ grid.leftHalf, grid.leftThird, grid.leftTwoThirds })
+  { 'ctrl', 'alt' }, 'left', chain { grid.leftHalf, grid.leftThird, grid.leftTwoThirds }
 )
 
 hs.hotkey.bind(
-  { "ctrl", "alt", "cmd" }, "up",
-  chain({ grid.topLeft, grid.topRight, grid.bottomRight, grid.bottomLeft })
+  { 'ctrl', 'alt', 'cmd' }, 'up',
+  chain { grid.topLeft, grid.topRight, grid.bottomRight, grid.bottomLeft }
 )
 
 hs.hotkey.bind(
-  { "ctrl", "alt", "cmd" }, "down", chain({ grid.fullScreen, grid.centeredBig, grid.centeredSmall })
+  { 'ctrl', 'alt', 'cmd' }, 'down', chain { grid.fullScreen, grid.centeredBig, grid.centeredSmall }
 )
 
 hs.hotkey.bind(
-  { "ctrl", "alt", "cmd" }, "f1", (function()
-    hs.alert("One-monitor layout")
+  { 'ctrl', 'alt', 'cmd' }, 'f1', (function()
+    hs.alert('One-monitor layout')
     activateLayout(1)
   end)
 )
 
 hs.hotkey.bind(
-  { "ctrl", "alt", "cmd" }, "f2", (function()
-    hs.alert("Two-monitor layout")
+  { 'ctrl', 'alt', 'cmd' }, 'f2', (function()
+    hs.alert('Two-monitor layout')
     activateLayout(2)
   end)
 )
 
-hs.hotkey.bind({ "ctrl", "alt", "cmd" }, "f3", (function() hs.openConsole() end))
+hs.hotkey.bind({ 'ctrl', 'alt', 'cmd' }, 'f3', (function() hs.openConsole() end))
 
 hs.hotkey.bind(
-  { "ctrl", "alt", "cmd" }, "f4", (function()
-    hs.notify.new({ title = "Hammerspoon", informativeText = "Menu toggled" }):send()
+  { 'ctrl', 'alt', 'cmd' }, 'f4', (function()
+    hs.notify.new { title = 'Hammerspoon', informativeText = 'Menu toggled' }:send()
     hs.menuIcon(not hs.menuIcon())
   end)
 )
 
 hs.hotkey.bind(
-  { "ctrl", "alt", "cmd" }, "f5", (function()
-    hs.notify.new({ title = "Hammerspoon", informativeText = "Config reloaded" }):send()
+  { 'ctrl', 'alt', 'cmd' }, 'f5', (function()
+    hs.notify.new { title = 'Hammerspoon', informativeText = 'Config reloaded' }:send()
     hs.reload()
   end)
 )
@@ -456,4 +456,4 @@ hs.hotkey.bind(
 --
 reloader.init()
 
-log.i("Config loaded")
+log.i('Config loaded')
