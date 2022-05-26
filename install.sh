@@ -102,14 +102,6 @@ installDropbox() {
   esac
 }
 
-installITerm() {
-  case $os in
-    $macOS*)
-      installOnceFromCask "iterm2"
-      ;;
-  esac
-}
-
 installZsh() {
   installOrUpdate "zsh"
 
@@ -479,12 +471,6 @@ fixTmux256ColorTerm() {
     echo 'tmux-256color checksum has changed'
   fi
   rm tmux-256color
-}
-
-installItermShellIntegration() {
-  if [ ! -f "$HOME"/.iterm2_shell_integration.zsh ]; then
-    curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | bash
-  fi
 }
 
 setupNeovim() {
