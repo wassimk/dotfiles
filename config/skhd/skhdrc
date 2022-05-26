@@ -16,6 +16,12 @@ shift + alt + ctrl - j : yabai -m window --warp south
 shift + alt + ctrl - k : yabai -m window --warp north
 shift + alt + ctrl - l : yabai -m window --warp east
 
+# move floating window by 1/3rds
+ctrl + alt - h : yabai -m window --grid 1:3:0:0:2:1
+ctrl + alt - j : yabai -m window --grid 3:1:0:1:1:2
+ctrl + alt - k : yabai -m window --grid 3:1:0:0:1:2
+ctrl + alt - l : yabai -m window --grid 1:3:1:0:2:1
+
 # rotate tree
 alt - r : yabai -m space --rotate 90
 
