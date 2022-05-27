@@ -8,10 +8,6 @@ eval "$(starship init zsh)"
 export VISUAL='nvim'
 export EDITOR=$VISUAL
 
-case "$OSTYPE" in
-  linux*) export BROWSER='local-open' ;;
-esac
-
 # Sourcing of other files
 source $HOME/.zsh/aliases
 source $HOME/.zsh/functions

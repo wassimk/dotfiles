@@ -2,7 +2,9 @@
 # https://blog.phusion.nl/2017/10/13/why-ruby-app-servers-break-on-macos-high-sierra-and-what-can-be-done-about-it/
 case "$OSTYPE" in
   darwin*) export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES ;;
+  linux*) export BROWSER='local-open' ;;
 esac
+
 
 # Upgrade oh-my-zsh without asking
 DISABLE_UPDATE_PROMPT=true
