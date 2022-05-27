@@ -21,6 +21,7 @@ bindkey '^x^x' edit-command-line
 # Completion
 #
 autoload -Uz compinit && compinit
+autoload bashcompinit && bashcompinit
 
 # Make completion:
 # - Try exact (case-sensitive) match first.
