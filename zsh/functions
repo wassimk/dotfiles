@@ -1,6 +1,3 @@
-### Initalize completions
-autoload -Uz compinit
-compinit
 
 ####
 ## Typora
@@ -122,8 +119,3 @@ function weather() {
 case "$OSTYPE" in
   darwin*) autoload -Uz compinit && compinit -i
 esac
-
-# Show contents of directory after cd-ing into it
-chpwd() {
-  ll
-}

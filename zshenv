@@ -5,10 +5,6 @@ case "$OSTYPE" in
   linux*) export BROWSER='local-open' ;;
 esac
 
-
-# Upgrade oh-my-zsh without asking
-DISABLE_UPDATE_PROMPT=true
-
 # Add bin directories to path
 export PATH=$PATH:$HOME/bin/diff-so-fancy
 export PATH=$PATH:$HOME/.bin # from dot files
@@ -19,6 +15,17 @@ if command -v cargo >/dev/null 2>&1; then
   source $HOME/.cargo/env
 fi
 
-# Ignore duplicate commands pushed to history mostly for fzf usage
-setopt HIST_FIND_NO_DUPS     # don't show dupes when searching
-setopt HIST_IGNORE_ALL_DUPS  # filter non-contiguous duplicates from history
+#
+# Options
+#
+
+setopt NO_FLOW_CONTROL         # disable start (C-s) and stop (C-q) characters
+setopt NO_HIST_IGNORE_ALL_DUPS # don't filter non-contiguous duplicates from history
+setopt HIST_IGNORE_ALL_DUPS    # filter non-contiguous duplicates from history
+setopt HIST_FIND_NO_DUPS       # don't show dupes when searching
+setopt HIST_IGNORE_DUPS        # do filter contiguous duplicates from history
+setopt HIST_VERIFY             # confirm history expansion (!$, !!, !foo)
+setopt LIST_PACKED             # make completion lists more densely packed
+setopt MENU_COMPLETE           # auto-insert first possible ambiguous completion
+setopt PUSHD_IGNORE_DUPS       # don't push multiple copies of same dir onto stack
+setopt SHARE_HISTORY           # share history across shells
