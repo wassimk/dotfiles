@@ -101,6 +101,9 @@ key_bindings:
   # [vim] type <escape>:w<enter> to save
   - { key: S, mods: Command, chars: "\x1b\x3a\x77\x0a" }
 
+  # [shell] type lf<enter> to launch file finder
+  - { key: F, mods: Command, chars: "\x6c\x66\x0a" }
+
 #key_bindings:
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }

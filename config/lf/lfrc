@@ -1,0 +1,14 @@
+# show hidden files by default (zh toggles it)
+set hidden
+
+# show icons, loaded from ~/.confg/lf/icons
+set icons
+
+# This command is called when current file is not a directory.
+# Use an editor for text files and a file opener for the rest.
+cmd open ${{
+    case $(file --mime-type $f -b) in
+        text/*) $EDITOR $fx;;
+        *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
+    esac
+}}
