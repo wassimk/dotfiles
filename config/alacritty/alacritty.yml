@@ -48,8 +48,12 @@ colors:
   save_to_clipboard: true
 
 key_bindings:
-  # [alacrity] launch new instance
+  # [alacritty] launch new instance
   - { key: N, mods: Command|Control, action: SpawnNewInstance }
+
+  # [alacritty] quit instance
+  # (make sure and override MacOS "Log Out %account fullname%...")
+  - { key: Q, mods: Command|Control, action: Quit }
 
   # [tmux] launch command mode
   - { key: LBracket, mods: Command, chars: "\x13\x5b" }
@@ -61,7 +65,7 @@ key_bindings:
   - { key: L, mods: Command, chars: "\x13\x4c" }
 
   # [tmux] detach the current client
-  # (make sure and override terminal cmd-q in macOS)
+  # (make sure and override alacritty's default cmd-q in macOS)
   - { key: Q, mods: Command, chars: "\x13\x64" }
 
   # [tmux] create a new window
