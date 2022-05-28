@@ -47,6 +47,57 @@ colors:
 
   save_to_clipboard: true
 
+key_bindings:
+  # [tmux] launch command mode
+  - { key: LBracket, mods: Command, chars: "\x13\x5b" }
+
+  # [tmux] launch the session switcher
+  - { key: K, mods: Command, chars: "\x13\x53" }
+
+  # [tmux] switch to last session
+  - { key: L, mods: Command, chars: "\x13\x4c" }
+
+  # [tmux] detach the current client
+  # (make sure and override terminal cmd-q in macOS)
+  - { key: Q, mods: Command, chars: "\x13\x64" }
+
+  # [tmux] create a new window
+  - { key: T, mods: Command, chars: "\x13\x63" }
+
+  # [tmux] split the current pane, horizontal / vertical
+  - { key: N, mods: Command, chars: "\x13\x22" }
+  - { key: N, mods: Command|Shift, chars: "\x13\x25" }
+
+  # [tmux] kill the current pane (and window if last pane)
+  - { key: W, mods: Command, chars: "\x13\x78" }
+
+  # [tmux] kill the current window (and exit if last window)
+  - { key: X, mods: Command, chars: "\x13\x26" }
+
+  # [tmux] rename the current window
+  - { key: Comma, mods: Command, chars: "\x13\x2c" }
+
+  # [tmux] go to the previous and next windoww
+  - { key: LBracket, mods: Command|Shift, chars: "\x13\x70" }
+  - { key: RBracket, mods: Command|Shift, chars: "\x13\x6e" }
+
+  # [tmux] select windows 1-9
+  - { key: Key1, mods: Command, chars: "\x13\x31" }
+  - { key: Key2, mods: Command, chars: "\x13\x32" }
+  - { key: Key3, mods: Command, chars: "\x13\x33" }
+  - { key: Key4, mods: Command, chars: "\x13\x34" }
+  - { key: Key5, mods: Command, chars: "\x13\x35" }
+  - { key: Key6, mods: Command, chars: "\x13\x36" }
+  - { key: Key7, mods: Command, chars: "\x13\x37" }
+  - { key: Key8, mods: Command, chars: "\x13\x38" }
+  - { key: Key9, mods: Command, chars: "\x13\x39" }
+
+  # [tmux] break the current pane out into its own window
+  - { key: T, mods: Command|Shift, chars: "\x13\x21" }
+
+  # [tmux] toggle the zoom state of the current pane
+  - { key: Z, mods: Command, chars: "\x13\x7a" }
+
 #key_bindings:
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
