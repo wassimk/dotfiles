@@ -48,6 +48,9 @@ colors:
   save_to_clipboard: true
 
 key_bindings:
+  # [alacrity] launch new instance
+  - { key: N, mods: Command|Control, action: SpawnNewInstance }
+
   # [tmux] launch command mode
   - { key: LBracket, mods: Command, chars: "\x13\x5b" }
 
