@@ -378,6 +378,23 @@ installBat() {
   esac
 }
 
+installLf() {
+  case $os in
+    $macOS*)
+      installOrUpdate "lf"
+      ;;
+    $ubuntu*)
+      if ! command -v lf >/dev/null 2>&1; then
+        gh release download --pattern "lf-linux-386.tar.gz" --repo gokcehan/lf
+        tar -xvf lf-linux-*.tar.gz
+        rm lf-linux-*.tar.gz
+        sudo rm -rf /usr/local/bin/lf
+        sudo mv lf /usr/local/bin
+      fi
+      ;;
+  esac
+}
+
 installDiffSoFancy() {
   case $os in
     $macOS*)
@@ -540,6 +557,7 @@ installStripeCli
 installTree
 installExa
 installBat
+installLf
 installDiffSoFancy
 installTrash
 installShellCheck
