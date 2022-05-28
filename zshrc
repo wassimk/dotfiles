@@ -42,7 +42,9 @@ zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(..) ]] && reply=(..)
 zstyle ':completion:*:complete:(cd|pushd):*' tag-order 'local-directories named-directories'
 
 # Enable visual menu cycling of compleition
+zmodload zsh/complist
 zstyle ':completion:*' menu select
+bindkey -M menuselect '^[[Z' reverse-menu-complete # shift-tab
 
 #
 # Personal Aliases, Functions and Secrets
