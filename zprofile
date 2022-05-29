@@ -1,3 +1,12 @@
+# Personal Aliases, Functions and Secrets
+source $HOME/.zsh/completion
+source $HOME/.zsh/aliases
+source $HOME/.zsh/functions
+source $HOME/.private
+
+# Prompt
+eval "$(starship init zsh)"
+
 # Rust
 if command -v cargo >/dev/null 2>&1; then
   source $HOME/.cargo/env
@@ -20,14 +29,6 @@ esac
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-# Personal Aliases, Functions and Secrets
-source $HOME/.zsh/aliases
-source $HOME/.zsh/functions
-source $HOME/.private
-
-# Prompt
-eval "$(starship init zsh)"
 
 # Planning Center
 eval "$($HOME/Code/pco/bin/pco init -)"
