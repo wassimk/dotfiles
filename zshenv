@@ -35,4 +35,3 @@ setopt LIST_PACKED             # make completion lists more densely packed
 setopt MENU_COMPLETE           # auto-insert first possible ambiguous completion
 setopt PUSHD_IGNORE_DUPS       # don't push multiple copies of same dir onto stack
 setopt SHARE_HISTORY           # share history across shells
-setopt IGNOREEOF               # disable ctrl-d shell exit
