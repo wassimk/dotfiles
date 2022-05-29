@@ -41,6 +41,10 @@ vim.opt.inccommand = 'nosplit' -- Live highlight of substitutions
 vim.opt.complete = vim.opt.complete + 'kspell'
 vim.opt.shortmess = vim.opt.shortmess + 'a' -- Some sane display defaults
 
+-- allow undo even after closing a file
+vim.opt.undofile = true
+vim.opt.undodir = os.getenv('HOME') .. '/.config/nvim/undo'
+
 -- use system clipboard
 vim.opt.clipboard = 'unnamed'
 
