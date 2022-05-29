@@ -1,3 +1,5 @@
+export VISUAL='nvim'
+export EDITOR=$VISUAL
 export DOTFILES="$HOME"/.dotfiles
 
 # Fix for fork issue introduced in macOS High Sierra
@@ -11,20 +13,16 @@ case "$OSTYPE" in
   linux*) export BROWSER='local-open' ;;
 esac
 
-# Add bin directories to path
+#
+# Path
+#
 export PATH=$PATH:$HOME/bin/diff-so-fancy
 export PATH=$PATH:$HOME/.bin # from dot files
 export PATH=$PATH:"/usr/local/sbin" # for Homebrew
 
-# Rust
-if command -v cargo >/dev/null 2>&1; then
-  source $HOME/.cargo/env
-fi
-
 #
 # Options
 #
-
 setopt NO_FLOW_CONTROL         # disable start (C-s) and stop (C-q) characters
 setopt NO_HIST_IGNORE_ALL_DUPS # don't filter non-contiguous duplicates from history
 setopt HIST_IGNORE_ALL_DUPS    # filter non-contiguous duplicates from history

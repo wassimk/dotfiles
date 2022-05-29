@@ -46,12 +46,6 @@ zmodload zsh/complist
 zstyle ':completion:*' menu select
 bindkey -M menuselect '^[[Z' reverse-menu-complete # shift-tab
 
-#
-# Personal Aliases, Functions and Secrets
-#
-source $HOME/.zsh/aliases
-source $HOME/.zsh/functions
-source $HOME/.private
 
 #
 # Hooks
@@ -97,13 +91,3 @@ case "$OSTYPE" in
   darwin*) source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ;;
   linux*)  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ;;
 esac
-
-# Node Version Manager
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-# Planning Center
-eval "$($HOME/Code/pco/bin/pco init -)"
-source $HOME/pco-box/env.sh
-source $HOME/pco-box/bin/complete.bash
