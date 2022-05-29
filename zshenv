@@ -4,6 +4,10 @@ export DOTFILES="$HOME"/.dotfiles
 # https://blog.phusion.nl/2017/10/13/why-ruby-app-servers-break-on-macos-high-sierra-and-what-can-be-done-about-it/
 case "$OSTYPE" in
   darwin*) export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES ;;
+esac
+
+# local-open sends open commands to client machine while in ssh session
+case "$OSTYPE" in
   linux*) export BROWSER='local-open' ;;
 esac
 
