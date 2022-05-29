@@ -102,6 +102,15 @@ installDropbox() {
   esac
 }
 
+installEspanso() {
+  case $os in
+    $macOS*)
+      brew tap espanso/espanso
+      installOrUpdate "espanso"
+      ;;
+  esac
+}
+
 installZsh() {
   installOrUpdate "zsh"
 
@@ -530,7 +539,7 @@ installJava
 installHammerspoon
 installKarabinerElements
 installDropbox
-installITerm
+installEspanso
 installGnuPg
 installClipper
 installZsh
@@ -564,7 +573,6 @@ installAsimov
 installNeovim
 installTmux
 fixTmux256ColorTerm
-installItermShellIntegration
 cleanupPackages
 (cd "$HOME"/.dotfiles || exit; bash dotfiles.sh)
 setupNeovim
