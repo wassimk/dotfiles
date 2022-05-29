@@ -1,3 +1,5 @@
+export DOTFILES="$HOME"/.dotfiles
+
 # Fix for fork issue introduced in macOS High Sierra
 # https://blog.phusion.nl/2017/10/13/why-ruby-app-servers-break-on-macos-high-sierra-and-what-can-be-done-about-it/
 case "$OSTYPE" in
