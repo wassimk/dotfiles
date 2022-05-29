@@ -162,7 +162,6 @@ installJq() {
 }
 
 installCtags() {
-
   case $os in
     $macOS*)
       installOrUpdate "universal-ctags"
@@ -179,8 +178,6 @@ installCtags() {
         make && make install
         cd ../
         rm -rf ctags
-      else
-        sudo snap refresh universal-ctags
       fi
       ;;
   esac
