@@ -13,3 +13,9 @@ disabled = true
 
 [hostname]
 disabled = true
+
+[nodejs]
+disabled = true
+
+[ruby]
+disabled = true
