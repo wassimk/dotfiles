@@ -59,7 +59,7 @@ key_bindings:
   - { key: LBracket, mods: Command, chars: "\x13\x5b" }
 
   # [tmux] launch the session switcher
-  - { key: K, mods: Command, chars: "\x13\x53" }
+  - { key: K, mods: Command, chars: "\x13\x77" }
 
   # [tmux] switch to last session
   - { key: L, mods: Command, chars: "\x13\x4c" }
