@@ -123,8 +123,3 @@ function weather() {
 cheat() {
     curl cheat.sh/$1
 }
-
-# Load all other completions (this breaks h on linux)
-case "$OSTYPE" in
-  darwin*) autoload -Uz compinit && compinit -i
-esac
