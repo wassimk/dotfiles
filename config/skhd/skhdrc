@@ -1,3 +1,30 @@
+#
+# Managed Windows
+#
+
+# toggle window fullscreen zoom
+alt - f : yabai -m window --toggle zoom-fullscreen
+
+# toggle window split type
+alt - e : yabai -m window --toggle split
+
+# rotate tree
+alt - r : yabai -m space --rotate 270
+
+# balance size of windows
+shift + alt - 0 : yabai -m space --balance
+
+# increase window size
+shift + alt - w : yabai -m window --resize top:0:-20
+shift + alt - d : yabai -m window --resize left:-20:0
+
+# decrease window size
+shift + alt - s : yabai -m window --resize bottom:0:-20
+shift + alt - a : yabai -m window --resize top:0:20
+
+# toggle padding and gap
+alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
+
 # focus window
 alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
@@ -16,32 +43,7 @@ shift + alt + ctrl - j : yabai -m window --warp south
 shift + alt + ctrl - k : yabai -m window --warp north
 shift + alt + ctrl - l : yabai -m window --warp east
 
-# move floating window by 1/3rds
-ctrl + alt - h : yabai -m window --grid 1:3:0:0:2:1
-ctrl + alt - j : yabai -m window --grid 3:1:0:1:1:2
-ctrl + alt - k : yabai -m window --grid 3:1:0:0:1:2
-ctrl + alt - l : yabai -m window --grid 1:3:1:0:2:1
-
-# rotate tree
-alt - r : yabai -m space --rotate 270
-
-# toggle window fullscreen zoom
-alt - f : yabai -m window --toggle zoom-fullscreen
-
-# toggle padding and gap
-alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
-
-# float / unfloat window and center on screen
-alt - t : yabai -m window --toggle float;\
-          yabai -m window --grid 4:4:1:1:2:2
-
-# toggle window split type
-alt - e : yabai -m window --toggle split
-
-# balance size of windows
-shift + alt - 0 : yabai -m space --balance
-
-# move window and focus desktop - weird because this works with sip still enabled
+# move window to space and focus it - complexity because this works with sip enabled
 shift + alt - 1 : index=1; yabai -m window --space "${index}" && eval "$(yabai -m query --spaces | jq --argjson index "${index}" -r '(.[] | select(.index == $index).windows[0]) as $wid | if $wid then "yabai -m window --focus \"" + ($wid | tostring) + "\"" else "skhd --key \"ctrl - " + (map(select(."is-native-fullscreen" == false)) | index(map(select(.index == $index))) + 1 % 10 | tostring) + "\"" end')"
 shift + alt - 2 : index=2; yabai -m window --space "${index}" && eval "$(yabai -m query --spaces | jq --argjson index "${index}" -r '(.[] | select(.index == $index).windows[0]) as $wid | if $wid then "yabai -m window --focus \"" + ($wid | tostring) + "\"" else "skhd --key \"ctrl - " + (map(select(."is-native-fullscreen" == false)) | index(map(select(.index == $index))) + 1 % 10 | tostring) + "\"" end')"
 shift + alt - 3 : index=3; yabai -m window --space "${index}" && eval "$(yabai -m query --spaces | jq --argjson index "${index}" -r '(.[] | select(.index == $index).windows[0]) as $wid | if $wid then "yabai -m window --focus \"" + ($wid | tostring) + "\"" else "skhd --key \"ctrl - " + (map(select(."is-native-fullscreen" == false)) | index(map(select(.index == $index))) + 1 % 10 | tostring) + "\"" end')"
@@ -52,23 +54,33 @@ shift + alt - 7 : index=7; yabai -m window --space "${index}" && eval "$(yabai -
 shift + alt - 8 : index=8; yabai -m window --space "${index}" && eval "$(yabai -m query --spaces | jq --argjson index "${index}" -r '(.[] | select(.index == $index).windows[0]) as $wid | if $wid then "yabai -m window --focus \"" + ($wid | tostring) + "\"" else "skhd --key \"ctrl - " + (map(select(."is-native-fullscreen" == false)) | index(map(select(.index == $index))) + 1 % 10 | tostring) + "\"" end')"
 shift + alt - 9 : index=9; yabai -m window --space "${index}" && eval "$(yabai -m query --spaces | jq --argjson index "${index}" -r '(.[] | select(.index == $index).windows[0]) as $wid | if $wid then "yabai -m window --focus \"" + ($wid | tostring) + "\"" else "skhd --key \"ctrl - " + (map(select(."is-native-fullscreen" == false)) | index(map(select(.index == $index))) + 1 % 10 | tostring) + "\"" end')"
 
-# create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
+#
+# Floating Windows
+#
+
+# float / unfloat window and center on screen
+alt - t : yabai -m window --toggle float;\
+          yabai -m window --grid 4:4:1:1:2:2
+
+# move / resize floating window by 1/3rds
+ctrl + alt - h : yabai -m window --grid 1:3:0:0:2:1
+ctrl + alt - j : yabai -m window --grid 3:1:0:1:1:2
+ctrl + alt - k : yabai -m window --grid 3:1:0:0:1:2
+ctrl + alt - l : yabai -m window --grid 1:3:1:0:2:1
+
+#
+# THESE DON'T WORK BECAUSE THEY NEED SIP DISABLED
+#
+
+# create space, move window and focus it
 shift + alt - n : yabai -m space --create && \
                    index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
                    yabai -m window --space "${index}" && \
                    yabai -m space --focus "${index}"
 
-# fast focus desktop
+# focus recent space
 alt - 0 : yabai -m space --focus recent
 
-# send window to monitor and follow focus
+# send window to next display and focus it
 shift + alt - n : yabai -m window --display next; yabai -m display --focus next
 shift + alt - p : yabai -m window --display previous; yabai -m display --focus previous
-
-# increase window size
-shift + alt - w : yabai -m window --resize top:0:-20
-shift + alt - d : yabai -m window --resize left:-20:0
-
-# decrease window size
-shift + alt - s : yabai -m window --resize bottom:0:-20
-shift + alt - a : yabai -m window --resize top:0:20
