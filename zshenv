@@ -13,6 +13,8 @@ case "$OSTYPE" in
   linux*) export BROWSER='local-open' ;;
 esac
 
+export ZSH_AUTOSUGGEST_HISTORY_IGNORE="g *|git *|cd *|ls *|ll *|la *|l *|"
+
 #
 # Path
 #
