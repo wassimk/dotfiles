@@ -55,3 +55,6 @@ case "$OSTYPE" in
   darwin*) source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ;;
   linux*)  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ;;
 esac
+
+# Auto-suggestions
+source "$HOME"/.zsh/external/zsh-autosuggestions/zsh-autosuggestions.zsh
