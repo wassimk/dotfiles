@@ -1,12 +1,12 @@
 ####
 ## Typora
 ####
-function typora() {
+typora() {
     if [ "$1" != "" ]
     then
       open -a typora $1
     else
-      open -a typora ~/Dropbox/docs
+      open -a typora "$HOME"/Dropbox/docs
     fi
 }
 
@@ -14,7 +14,7 @@ function typora() {
 # tmux
 ####
 # Create new sessions
-function tmn() {
+tmn() {
     if [ "$1" != "" ]
     then
       tmux new -s $1
@@ -24,7 +24,7 @@ function tmn() {
 }
 
 # Attach to session
-function tma() {
+tma() {
     if [ "$1" != "" ]
     then
       tmux attach -t $1
@@ -34,7 +34,7 @@ function tma() {
 }
 
 # Kill session
-function tmk() {
+tmk() {
     if [ "$1" != "" ]
     then
         tmux kill-session -t $1
@@ -44,7 +44,7 @@ function tmk() {
     fi
 }
 
-# Make sure we are always in TMUX, uses ~/.bin/tat script
+# Make sure we are always in TMUX, uses "$HOME"/.bin/tat script
 _not_inside_tmux() { [[ -z "$TMUX" ]] }
 
 ensure_tmux_is_running() {
@@ -90,27 +90,27 @@ compdef g=git
 # Other Functions
 ####
 # Auto complete for Planning Center Code directory
-w() { cd ~/Work/$1; }
-_w() { _files -W ~/Work -/; }
+w() { cd "$HOME"/Work/"$1"; }
+_w() { _files -W "$HOME"/Work -/; }
 compdef _w w
 
 # Auto complete for Personal code directory
-p() { cd ~/Personal/$1; }
-_p() { _files -W ~/Personal -/; }
+p() { cd "$HOME"/Personal/"$1"; }
+_p() { _files -W "$HOME"/Personal -/; }
 compdef _p p
 
 # Auto complete for Business code directory
-b() { cd ~/Business/$1; }
-_b() { _files -W ~/Business -/; }
+b() { cd "$HOME"/Business/"$1"; }
+_b() { _files -W "$HOME"/Business -/; }
 compdef _b b
 
 # Auto complete for home directory
-h() { cd ~/$1; }
-_h() { _files -W ~/ -/; }
+h() { cd "$HOME"/"$1"; }
+_h() { _files -W "$HOME"/ -/; }
 compdef _h h
 
 # Console based weather report, way cool
-function weather() {
+weather() {
     if [ "$1" != "" ]
     then
         curl wttr.in/${1}
@@ -121,5 +121,5 @@ function weather() {
 
 # Aggregated man pages
 cheat() {
-    curl cheat.sh/$1
+    curl cheat.sh/"$1"
 }
