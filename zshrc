@@ -1,13 +1,3 @@
-#
-# Prompt
-#
-eval "$(starship init zsh)"
-
-# Use vim as the visual editor
-export VISUAL='nvim'
-export EDITOR=$VISUAL
-
-#
 # Keys
 #
 # Enable emacs style editing keys
@@ -43,3 +33,13 @@ bindkey '^x^x' edit-command-line
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
+# Personal Aliases, Functions and Secrets
+source $HOME/.zsh/completion
+source $HOME/.zsh/aliases
+source $HOME/.zsh/functions
+source $HOME/.private
+
+# Planning Center
+eval "$($HOME/Code/pco/bin/pco init -)"
+source $HOME/pco-box/env.sh
+source $HOME/pco-box/bin/complete.bash
