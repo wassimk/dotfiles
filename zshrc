@@ -11,21 +11,6 @@ bindkey "^[[1;3D" backward-word # wordwise alt-left
 bindkey "^[[3~" delete-char     # delete current char
 
 #
-# Hooks
-#
-autoload -U add-zsh-hook
-
-function -auto-ls-after-cd() {
-  emulate -L zsh
-  # Only in response to a user-initiated `cd`, not indirectly (eg. via another
-  # function).
-  if [ "$ZSH_EVAL_CONTEXT" = "toplevel:shfunc" ]; then
-    ll
-  fi
-}
-add-zsh-hook chpwd -auto-ls-after-cd
-
-#
 # Misc / Tools
 #
 # Edit current command with ctrl-x-x
