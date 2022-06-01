@@ -1,9 +1,3 @@
-# Personal Aliases, Functions and Secrets
-source $HOME/.zsh/completion
-source $HOME/.zsh/aliases
-source $HOME/.zsh/functions
-source $HOME/.private
-
 # Prompt
 eval "$(starship init zsh)"
 
@@ -33,8 +27,3 @@ export NVM_DIR="$HOME/.nvm"
 
 # Auto-suggestions
 source "$HOME"/.zsh/external/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Planning Center
-eval "$($HOME/Code/pco/bin/pco init -)"
-source $HOME/pco-box/env.sh
-source $HOME/pco-box/bin/complete.bash
