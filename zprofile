@@ -1,6 +1,3 @@
-# Prompt
-eval "$(starship init zsh)"
-
 # Rust
 if command -v cargo >/dev/null 2>&1; then
   source $HOME/.cargo/env

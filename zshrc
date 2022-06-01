@@ -1,3 +1,7 @@
+# Prompt
+eval "$(starship init zsh)"
+
+#
 # Keys
 #
 # Enable emacs style editing keys
