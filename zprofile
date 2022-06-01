@@ -10,12 +10,6 @@ case "$OSTYPE" in
           source /usr/share/doc/fzf/examples/completion.zsh ;;
 esac
 
-# ZSH Syntax Highlighting
-case "$OSTYPE" in
-  darwin*) source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ;;
-  linux*)  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ;;
-esac
-
 # Node Version Manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"

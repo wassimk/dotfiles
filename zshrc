@@ -47,3 +47,9 @@ source $HOME/.private
 eval "$($HOME/Code/pco/bin/pco init -)"
 source $HOME/pco-box/env.sh
 source $HOME/pco-box/bin/complete.bash
+
+# ZSH Syntax Highlighting
+case "$OSTYPE" in
+  darwin*) source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ;;
+  linux*)  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ;;
+esac
