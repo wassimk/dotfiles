@@ -37,10 +37,6 @@
 [pull]
   rebase = true
 
-[merge]
-  tool = vimdiff
-  conflictstyle = diff3
-
 [rebase]
   autosquash = true
 
@@ -56,8 +52,9 @@
   templatedir = ~/.git_template
   defaultBranch = main
 
-[mergetool]
-  prompt = false
+[merge]
+  tool = vimdiff
+  conflictstyle = diff3
 
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
