@@ -44,8 +44,8 @@ alias etm='e ~/.tmux.conf.osx'
 alias etl='e ~/.tmux.conf.linux'
 
 # tmux
-alias tml='tmux ls -F "#{session_name}"'
-alias tmka='tmux kill-server'
+alias tl='tmux ls -F #S'
+alias tka='tmux kill-server'
 
 # bundler
 alias bi='bundle install'
