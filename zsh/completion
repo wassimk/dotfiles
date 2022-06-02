@@ -33,3 +33,11 @@ zstyle ':completion:*:*:cdr:*:*' menu selection
 
 # fall through to cd if cdr is passed a non-recent dir as an argument
 zstyle ':chpwd:*' recent-dirs-default true
+
+# completion for "tat" command in "$HOME"/.bin
+function _tat() {
+  for session in $(tmux list-sessions -F "#S"); do
+    compadd "$session"
+  done
+}
+compdef _tat tat
