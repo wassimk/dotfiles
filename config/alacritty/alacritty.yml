@@ -111,6 +111,9 @@ key_bindings:
   # [shell] type lf<enter> to launch file finder
   - { key: F, mods: Command, chars: "\x6c\x66\x0a" }
 
+  # [shell] this makes alt-c work, literally, used for fzf
+  - { key: C,  mods: Alt, chars: "\x1bc" }
+
 #key_bindings:
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
