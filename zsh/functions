@@ -116,9 +116,9 @@ _h() { _files -J "files "-W "$HOME"/ -/ }
 compdef _h h
 
 # dotfiles
-dotfiles() {
+dots() {
   if ! $(tmux list-sessions | sed -E 's/:.*$//' | grep -q "^dotfiles$"); then
-    (TMUX='' tmux new-session -Ad -s "dotfiles" -c "$HOME"/.dotfiles)
+    (TMUX='' tmux new-session -Ad -s "dotfiles" -c $DOTFILES)
   fi
 
   ta dotfiles
