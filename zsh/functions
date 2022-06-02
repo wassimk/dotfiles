@@ -115,6 +115,15 @@ h() { cd "$HOME"/"$1" && la }
 _h() { _files -J "files "-W "$HOME"/ -/ }
 compdef _h h
 
+# dotfiles
+dotfiles() {
+  if ! $(tmux list-sessions | sed -E 's/:.*$//' | grep -q "^dotfiles$"); then
+    (TMUX='' tmux new-session -Ad -s "dotfiles" -c "$HOME"/.dotfiles)
+  fi
+
+  ta dotfiles
+}
+
 # Console based weather report
 weather() {
     if [ "$1" != "" ]
