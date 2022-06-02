@@ -24,7 +24,10 @@ compdef _ta ta
 
 # completion for "tw" alias (ta work)
 tw() { 
-  (TMUX='' tmux new-session -Ad -s "$1" -c "$HOME"/Work/"$1")
+  if ! $(tmux list-sessions | sed -E 's/:.*$//' | grep -q "^$1$"); then
+    (TMUX='' tmux new-session -Ad -s "$1" -c "$HOME"/Work/"$1")
+  fi
+
   ta "$1"
 }
 
