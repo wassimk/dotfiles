@@ -13,7 +13,11 @@ case "$OSTYPE" in
   linux*) export BROWSER='local-open' ;;
 esac
 
+#
+# Misc
+#
 export ZSH_AUTOSUGGEST_HISTORY_IGNORE="g *|git *|cd *|ls *|ll *|la *|l *|"
+export HOMEBREW_NO_ENV_HINTS=false # no more suggestions in the UI
 
 #
 # Path
