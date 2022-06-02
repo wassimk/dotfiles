@@ -138,6 +138,17 @@ installFzf() {
   installOrUpdate "fzf"
 }
 
+installFd() {
+  case $os in
+    $macOS*)
+      installOrUpdate "fd"
+      ;;
+    $ubuntu*)
+      installOrUpdate "fd-find"
+      ;;
+  esac
+}
+
 installAg() {
   case $os in
     $macOS*)
@@ -545,6 +556,7 @@ installClipper
 installZsh
 installZshSyntaxHighlighting
 installReadline
+installFd
 installFzf
 installAg
 installRg

@@ -39,6 +39,8 @@ if command -v cargo >/dev/null 2>&1; then
 fi
 
 # fzf auto-complete searching
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 case "$OSTYPE" in
   darwin*) [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh ;;
   linux*) source /usr/share/doc/fzf/examples/key-bindings.zsh ;
