@@ -37,15 +37,3 @@ zstyle ':chpwd:*' recent-dirs-default true
 # show group names
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
-
-# completion for "tat" command in "$HOME"/.bin
-function _tat() {
-  for session in $(tmux list-sessions -F "#S"); do
-    compadd -J "active" "$session"
-  done
-
-  for dir in $(ls -D -1 "$HOME"/Work); do
-    compadd -J "inactive" "$dir"
-  done
-}
-compdef _tat tat

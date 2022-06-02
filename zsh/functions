@@ -1,6 +1,6 @@
-####
-## Typora
-####
+#
+# Typora
+#
 typora() {
     if [ "$1" != "" ]
     then
@@ -10,50 +10,54 @@ typora() {
     fi
 }
 
-####
+#
 # tmux
-####
-# Create new sessions
-tmn() {
-    if [ "$1" != "" ]
-    then
-      tmux new -s $1
-    else
-      tmux new -s hacking
-    fi
-}
+#
 
-# Attach to session
-tma() {
-    if [ "$1" != "" ]
-    then
-      tmux attach -t $1
-    else
-      tmux attach
-    fi
+# completion for "ta" command in "$HOME"/.bin
+function _ta() {
+  for session in $(tmux list-sessions -F "#S"); do
+    compadd "$session"
+  done
 }
+compdef _ta ta
 
-# Kill session
-tmk() {
+# completion for "tw" alias (ta work)
+tw() { cd "$HOME"/Work/"$1" && ta "$1" }
+function _tw() {
+  for session in $(tmux list-sessions -F "#S"); do
+    compadd -J "active" "$session"
+  done
+
+  for dir in $(ls -D -1 "$HOME"/Work); do
+    compadd -J "inactive" "$dir"
+  done
+}
+compdef _tw tw
+
+# kill session
+tk() {
     if [ "$1" != "" ]
     then
         tmux kill-session -t $1
     else
      echo "Kill which session?"
-      tml
+     echo ""
+      tmux list-sessions -F "#S"
     fi
 }
+compdef _ta tk
 
-# Make sure we are always in TMUX, uses "$HOME"/.bin/tat script
+# Make sure we are always in TMUX, uses "$HOME"/.bin/ta script
 _not_inside_tmux() { [[ -z "$TMUX" ]] }
 
 ensure_tmux_is_running() {
   if _not_inside_tmux; then
     if [ -d $DOTFILES ]; then
       cd $DOTFILES
-      tat
+      ta
     else
-      tat
+      ta
     fi
   fi
 }
@@ -69,12 +73,9 @@ function fg-bg() {
 zle -N fg-bg
 bindkey '^Z' fg-bg
 
-####
+#
 # git
-# g for git status
-# -or-
-# g anything else for git anything else
-####
+#
 function g {
   if [[ $# > 0 ]]; then
     git $@
@@ -86,9 +87,10 @@ function g {
 # Complete g like git
 compdef g=git
 
-####
+#
 # Other Functions
-####
+#
+
 # Auto complete for Planning Center Code directory
 w() { cd "$HOME"/Work/"$1" && ll }
 _w() { _files -J "files" -W "$HOME"/Work -/ }
@@ -109,7 +111,7 @@ h() { cd "$HOME"/"$1" && la }
 _h() { _files -J "files "-W "$HOME"/ -/ }
 compdef _h h
 
-# Console based weather report, way cool
+# Console based weather report
 weather() {
     if [ "$1" != "" ]
     then
