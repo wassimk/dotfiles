@@ -56,6 +56,10 @@
   tool = vimdiff
   conflictstyle = diff3
 
+[mergetool]
+  prompt = true
+	path = nvim
+
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustExitCode = true
