@@ -23,7 +23,11 @@ function _ta() {
 compdef _ta ta
 
 # completion for "tw" alias (ta work)
-tw() { cd "$HOME"/Work/"$1" && ta "$1" }
+tw() { 
+  (TMUX='' tmux new-session -Ad -s "$1" -c "$HOME"/Work/"$1")
+  ta "$1"
+}
+
 function _tw() {
   for session in $(tmux list-sessions -F "#S"); do
     compadd -J "active" "$session"
