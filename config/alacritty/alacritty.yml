@@ -84,6 +84,15 @@ key_bindings:
   # [tmux] rename the current window
   - { key: Comma, mods: Command, chars: "\x13\x2c" }
 
+  # [tmux] type clear<enter> to clear screen
+  - { key: L, mods: Control, chars: "\x63\x6c\x65\x61\x72\x0a" }
+
+  # [shell] type reset<enter> for clear screen & scroll back buffer
+  - { key: K, mods: Control, chars: "\x72\x65\x73\x65\x74\x0a" }
+
+  # [tmux] rename the current session
+  - { key: Period, mods: Command, chars: "\x13\x24" }
+
   # [tmux] go to the previous and next windoww
   - { key: LBracket, mods: Command|Shift, chars: "\x13\x70" }
   - { key: RBracket, mods: Command|Shift, chars: "\x13\x6e" }
