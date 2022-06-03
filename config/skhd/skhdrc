@@ -2,14 +2,14 @@
 # Managed Windows
 #
 
-# toggle window fullscreen zoom
-shift + alt - f : yabai -m window --toggle zoom-fullscreen
-
 # toggle window split type
-alt - e : yabai -m window --toggle split
+shift + alt - e : yabai -m window --toggle split
 
 # rotate tree
-alt - r : yabai -m space --rotate 270
+shift + alt - r : yabai -m space --rotate 270
+
+# toggle window fullscreen zoom
+shift + alt - f : yabai -m window --toggle zoom-fullscreen
 
 # balance size of windows
 shift + alt - 0 : yabai -m space --balance
@@ -23,7 +23,7 @@ shift + alt - s : yabai -m window --resize bottom:0:-20
 shift + alt - a : yabai -m window --resize top:0:20
 
 # toggle padding and gap
-alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
+shift + alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
 
 # focus window
 alt - h : yabai -m window --focus west
@@ -59,7 +59,7 @@ shift + alt - 9 : index=9; yabai -m window --space "${index}" && eval "$(yabai -
 #
 
 # float / unfloat window and center on screen
-alt - t : yabai -m window --toggle float;\
+shift + alt - t : yabai -m window --toggle float;\
           yabai -m window --grid 4:4:1:1:2:2
 
 # move / resize floating window by 1/3rds
