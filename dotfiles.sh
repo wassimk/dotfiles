@@ -25,3 +25,9 @@ fi
 # must symlink the directory for these apps
 ln -sf "$HOME"/.dotfiles/config/karabiner "$HOME"/.config
 ln -sf "$HOME"/.dotfiles/iterm "$HOME"/.config
+
+# config is in a weird spot and i don't want to commit it
+espanso_dir="$HOME/Library/Application Support/espanso"
+if [ -d $espanso_dir ]; then
+  ln -sf  $espanso_dir "$HOME"/.dotfiles/config
+fi
