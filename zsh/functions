@@ -100,22 +100,22 @@ compdef g=git
 
 # Auto complete for Planning Center Code directory
 w() { cd "$HOME"/Work/"$1" && ll }
-_w() { _files -J "files" -W "$HOME"/Work -/ }
+_w() { _files -J "file" -W "$HOME"/Work -/ }
 compdef _w w
 
 # Auto complete for Personal code directory
 p() { cd "$HOME"/Personal/"$1" && ll }
-_p() { _files -J "files" -W "$HOME"/Personal -/ }
+_p() { _files -J "file" -W "$HOME"/Personal -/ }
 compdef _p p
 
 # Auto complete for Business code directory
 b() { cd "$HOME"/Business/"$1" && ll }
-_b() { _files -J "files" -W "$HOME"/Business -/ }
+_b() { _files -J "file" -W "$HOME"/Business -/ }
 compdef _b b
 
 # Auto complete for home directory
 h() { cd "$HOME"/"$1" && la }
-_h() { _files -J "files "-W "$HOME"/ -/ }
+_h() { _files -J "file" -W "$HOME" -/ }
 compdef _h h
 
 # dotfiles
