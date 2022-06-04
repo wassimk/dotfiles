@@ -125,5 +125,9 @@ key_bindings:
   - { key: C, mods: Alt, chars: "\x1bc" }
   - { key: F, mods: Alt, chars: "\x1bf" }
   - { key: Q, mods: Alt, chars: "\x1b\x71" }
+  - { key: Y, mods: Alt, chars: "\x1b\x79" }
+  - { key: U, mods: Alt, chars: "\x1b\x75" }
+  - { key: I, mods: Alt, chars: "\x1b\x69" }
+  - { key: O, mods: Alt, chars: "\x1b\x6f" }
   - { key: Q, mods: Control, chars: "\x11" }
   - { key: Slash, mods: Control, chars: "\x1f" } # it beeps
