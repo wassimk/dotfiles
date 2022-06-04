@@ -120,9 +120,10 @@ key_bindings:
   # [shell] type lf<enter> to launch file finder
   - { key: F, mods: Command, chars: "\x6c\x66\x0a" }
 
-  # [shell] makes alt-c work, literally, used for fzf
-  - { key: C,  mods: Alt, chars: "\x1bc" }
-
-    # [shell] make alt-b and alt-f work, literally, for readline
-  - { key: B,  mods: Alt, chars: "\x1bb" }
-  - { key: F,  mods: Alt, chars: "\x1bf" }
+  # [shell] makes these work as they are
+  - { key: B, mods: Alt, chars: "\x1bb" }
+  - { key: C, mods: Alt, chars: "\x1bc" }
+  - { key: F, mods: Alt, chars: "\x1bf" }
+  - { key: Q, mods: Alt, chars: "\x1b\x71" }
+  - { key: Q, mods: Control, chars: "\x11" }
+  - { key: Slash, mods: Control, chars: "\x1f" } # it beeps
