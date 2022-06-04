@@ -84,12 +84,6 @@ key_bindings:
   # [tmux] rename the current window
   - { key: Comma, mods: Command, chars: "\x13\x2c" }
 
-  # [tmux] type clear<enter> to clear screen
-  - { key: L, mods: Control, chars: "\x63\x6c\x65\x61\x72\x0a" }
-
-  # [shell] type reset<enter> for clear screen & scroll back buffer
-  - { key: K, mods: Control, chars: "\x72\x65\x73\x65\x74\x0a" }
-
   # [tmux] rename the current session
   - { key: Period, mods: Command, chars: "\x13\x24" }
 
@@ -116,6 +110,12 @@ key_bindings:
 
   # [vim] type <escape>:w<enter> to save
   - { key: S, mods: Command, chars: "\x1b\x3a\x77\x0a" }
+
+  # [shell] type clear<enter> to clear screen
+  - { key: L, mods: Command|Shift, chars: "\x63\x6c\x65\x61\x72\x0a" }
+
+  # [shell] type reset<enter> for clear screen & scroll back buffer
+  - { key: K, mods: Command|Shift, chars: "\x72\x65\x73\x65\x74\x0a" }
 
   # [shell] type lf<enter> to launch file finder
   - { key: F, mods: Command, chars: "\x6c\x66\x0a" }
