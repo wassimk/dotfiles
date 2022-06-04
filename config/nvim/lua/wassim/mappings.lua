@@ -32,11 +32,11 @@ vim.keymap.set('n', '<C-f>h', '<cmd>Telescope help_tags<CR>', opts)
 vim.keymap.set('n', '<C-f>c', '<cmd>Telescope commands<CR>', opts)
 vim.keymap.set('n', '<C-f>k', '<cmd>Telescope keymaps<CR>', opts)
 
--- split resizing
-vim.keymap.set('n', '<M-k>', '<cmd>resize -5<CR>')
-vim.keymap.set('n', '<M-j>', '<cmd>resize +5<CR>')
-vim.keymap.set('n', '<M-h>', '<cmd>vertical resize -5<CR>')
-vim.keymap.set('n', '<M-l>', '<cmd>vertical resize +5<CR>')
+-- split resizing (taken over by yabai)
+-- vim.keymap.set('n', '<M-k>', '<cmd>resize -5<CR>')
+-- vim.keymap.set('n', '<M-j>', '<cmd>resize +5<CR>')
+-- vim.keymap.set('n', '<M-h>', '<cmd>vertical resize -5<CR>')
+-- vim.keymap.set('n', '<M-l>', '<cmd>vertical resize +5<CR>')
 
 local actions = require('telescope.actions')
 require('telescope').setup {
