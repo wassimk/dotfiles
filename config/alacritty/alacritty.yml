@@ -48,12 +48,12 @@ colors:
   save_to_clipboard: true
 
 key_bindings:
-  # [alacritty] launch new instance
-  - { key: N, mods: Command|Control, action: SpawnNewInstance }
+  # [alacritty] launch new instance (doesn't work)
+  - { key: N, mods: Command|Alt, action: SpawnNewInstance }
 
   # [alacritty] quit instance
-  # (make sure and override MacOS "Log Out %account fullname%...")
-  - { key: Q, mods: Command|Control, action: Quit }
+  # also add in macOS System Preferences -> Keyboard -> Shortcuts -> App Shortcuts 
+  - { key: Q, mods: Command|Alt, action: Quit }
 
   # [tmux] launch command mode
   - { key: LBracket, mods: Command, chars: "\x13\x5b" }
