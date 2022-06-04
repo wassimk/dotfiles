@@ -30,6 +30,7 @@ vim.keymap.set('n', '<C-f>b', '<cmd>Telescope current_buffer_fuzzy_find<CR>', op
 vim.keymap.set('n', '<C-f>ob', '<cmd>Telescope buffers<CR>', opts)
 vim.keymap.set('n', '<C-f>h', '<cmd>Telescope help_tags<CR>', opts)
 vim.keymap.set('n', '<C-f>c', '<cmd>Telescope commands<CR>', opts)
+vim.keymap.set('n', '<C-f>k', '<cmd>Telescope keymaps<CR>', opts)
 
 -- split resizing
 vim.keymap.set('n', '<M-k>', '<cmd>resize -5<CR>')
