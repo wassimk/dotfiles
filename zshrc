@@ -6,9 +6,6 @@ eval "$(starship init zsh)"
 #
 # Enable emacs style editing keys
 bindkey -e
-bindkey "^[[1;3C" forward-word  # wordwise alt-right
-bindkey "^[[1;3D" backward-word # wordwise alt-left
-bindkey "^[[3~" delete-char     # delete current char
 
 #
 # Misc / Tools
