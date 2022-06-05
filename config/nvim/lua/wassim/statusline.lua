@@ -21,7 +21,7 @@ require('lualine').setup {
     lualine_c = { { 'filename', path = 1 } },
     lualine_x = { 'filetype', "require('lsp-status').status()" },
     lualine_y = { 'diagnostics' },
-    lualine_z = { "'ℓ %l 𝚌 %v'" }, -- ℓ symbol breaks without the inner quotes
+    lualine_z = { '%{ConflictedVersion()}', "'ℓ %l 𝚌 %v'" }, -- ℓ symbol breaks without the inner quotes
   },
   inactive_sections = {
     lualine_a = {},
@@ -29,7 +29,7 @@ require('lualine').setup {
     lualine_c = { { 'filename', path = 1 } },
     lualine_x = {},
     lualine_y = {},
-    lualine_z = {}
+    lualine_z = { '%{ConflictedVersion()}' }
   },
   extensions = { 'quickfix', 'fugitive' },
 }

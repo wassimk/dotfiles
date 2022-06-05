@@ -11,6 +11,7 @@ return require('packer').startup(function(use)
   -- Code / Git
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
+  use 'christoomey/vim-conflicted'
   use 'tpope/vim-eunuch'
   use 'windwp/nvim-autopairs'
   use 'github/copilot.vim'

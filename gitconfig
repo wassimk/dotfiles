@@ -53,19 +53,19 @@
   defaultBranch = main
 
 [merge]
-  tool = vimdiff
-  conflictstyle = diff3
+  tool = kaleidoscope
+
+[mergetool "vimdiff"]
+  cmd = nvim +Conflicted
+  keepBackup = false
+
+[mergetool "kaleidoscope"]
+  cmd = ksdiff --merge --output "$MERGED" --base "$BASE" -- "$LOCAL" --snapshot "$REMOTE" --snapshot
+  keepBackup = false
+  trustExitCode = true
 
 [mergetool]
-  prompt = true
-	path = nvim
-
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustExitCode = true
-
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+  prompt = false
 
 [color]
   ui = true

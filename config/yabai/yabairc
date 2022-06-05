@@ -38,5 +38,6 @@ yabai -m rule --add app="^SpaceLauncher$" manage=off
 yabai -m rule --add app="^Vanilla$" manage=off
 yabai -m rule --add app="^CheatSheet$" manage=off
 yabai -m rule --add app="^Pastebot$" manage=off
+yabai -m rule --add app="^Kaleidoscope$" manage=off
 
 echo "yabai configuration loaded..."
