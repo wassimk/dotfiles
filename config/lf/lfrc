@@ -4,6 +4,9 @@ set hidden
 # show icons, loaded from ~/.confg/lf/icons
 set icons
 
+# map escape quit
+map <esc> quit
+
 # This command is called when current file is not a directory.
 # Use an editor for text files and a file opener for the rest.
 cmd open ${{
