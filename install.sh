@@ -546,7 +546,7 @@ installGo
 installRuby
 installPython
 installJava
-# installRust
+installRust
 installHammerspoon
 installKarabinerElements
 installDropbox

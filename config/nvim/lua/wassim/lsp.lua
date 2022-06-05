@@ -59,13 +59,16 @@ require('toggle_lsp_diagnostics').init { start_on = true, virtual_text = false, 
 require('nvim-lsp-installer').setup { automatic_installation = { exclude = { 'solargraph' } } }
 
 -- bash scripting
-require 'lspconfig'.bashls.setup { capabilities = capabilities, on_attach = on_attach }
+require('lspconfig').bashls.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- vimscript
 require('lspconfig').vimls.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- yaml
 require('lspconfig').yamlls.setup { capabilities = capabilities, on_attach = on_attach }
+
+-- rust
+require('lspconfig').rust_analyzer.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- ruby / solargraph
 require 'lspconfig'.solargraph.setup {
