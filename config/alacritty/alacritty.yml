@@ -129,6 +129,8 @@ key_bindings:
   - { key: U, mods: Alt, chars: "\x1b\x75" }
   - { key: I, mods: Alt, chars: "\x1b\x69" }
   - { key: O, mods: Alt, chars: "\x1b\x6f" }
+  - { key: Left, mods: Alt, chars: "\x1b\x62" }
+  - { key: Right, mods: Alt, chars: "\x1b\x66" }
   - { key: Q, mods: Control, chars: "\x11" }
   - { key: B, mods: Control, chars: "\x02" }
   - { key: F, mods: Control, chars: "\x06" }
