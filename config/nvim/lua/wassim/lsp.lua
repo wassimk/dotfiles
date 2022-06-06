@@ -68,7 +68,20 @@ require('lspconfig').vimls.setup { capabilities = capabilities, on_attach = on_a
 require('lspconfig').yamlls.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- rust
-require('lspconfig').rust_analyzer.setup { capabilities = capabilities, on_attach = on_attach }
+require('lspconfig').rust_analyzer.setup {
+  settings = {
+    ['rust-analyzer'] = {
+      checkOnSave = {
+        allFeatures = true,
+        overrideCommand = {
+          'cargo', 'clippy', '--workspace', '--message-format=json', '--all-targets', '--all-features'
+        }
+      }
+    }
+  },
+  capabilities = capabilities,
+  on_attach = on_attach
+}
 
 -- ruby / solargraph
 require 'lspconfig'.solargraph.setup {
