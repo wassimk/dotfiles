@@ -112,6 +112,7 @@ return require('packer').startup(function(use)
 
   -- Theme / Status Line / Tmux / Terminal / Vim
   use 'joshdick/onedark.vim'
+  use 'pacokwon/onedarkhc.vim'
   use 'christoomey/vim-tmux-navigator'
   use 'wincent/terminus'
   use 'milkypostman/vim-togglelist'

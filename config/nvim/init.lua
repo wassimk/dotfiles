@@ -56,6 +56,10 @@ if file_exists(os.getenv('HOME') .. '/.local/share/nvim/site/pack/packer/start/o
   vim.g.onedark_terminal_italics = 1
   vim.g.onedark_hide_endofbuffer = 1
   vim.cmd('colorscheme onedark')
+elseif file_exists(os.getenv('HOME') .. '/.local/share/nvim/site/pack/packer/start/onedarkhc.vim/colors/onedarkhc.vim') then
+  vim.g.onedarkhc_terminal_italics = 1
+  vim.g.onedarkhc_hide_endofbuffer = 1
+  vim.cmd('colorscheme onedarkhc')
 end
 
 -- vim-test custom run strategy using vim-dispatch
