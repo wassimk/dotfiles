@@ -53,14 +53,14 @@
   defaultBranch = main
 
 [merge]
-  tool = vimdiff
+  tool = conflicted
   guitool = kaleidoscope
 
 [mergetool]
   prompt = false
   keepBackup = false
 
-[mergetool "vimdiff"]
+[mergetool "conflicted"]
   cmd = nvim +Conflicted
 
 [mergetool "kaleidoscope"]
