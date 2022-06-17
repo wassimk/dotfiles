@@ -121,6 +121,7 @@ key_bindings:
   - { key: F, mods: Command, chars: "\x6c\x66\x0a" }
 
   # [shell] makes these work as they are
+  - { key: Delete, chars: "\x04" }
   - { key: B, mods: Alt, chars: "\x1bb" }
   - { key: C, mods: Alt, chars: "\x1bc" }
   - { key: F, mods: Alt, chars: "\x1bf" }
