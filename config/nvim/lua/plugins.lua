@@ -5,7 +5,22 @@ if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
 end
 
-return require('packer').startup(function(use)
+-- Don't crash if packer was just installed
+local status_ok, packer = pcall(require, 'packer')
+if not status_ok then
+  return
+end
+
+-- Use popup window instead of a split
+packer.init {
+  display = {
+    open_fn = function()
+      return require('packer.util').float { border = 'rounded' }
+    end,
+  },
+}
+
+return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- Code / Git
