@@ -31,6 +31,7 @@ return packer.startup(function(use)
   use 'windwp/nvim-autopairs'
   use 'github/copilot.vim'
   use 'wincent/vcs-jump'
+  use 'lewis6991/gitsigns.nvim'
 
   use { 'janko-m/vim-test',
     requires = {

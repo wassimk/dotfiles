@@ -1,6 +1,7 @@
 require('wassim/autocmds')
 require('wassim/statusline')
 require('wassim/tabline')
+require('wassim/gitsigns')
 require('wassim/lsp')
 require('wassim/treesitter')
 require('wassim/completions')
