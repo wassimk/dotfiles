@@ -108,6 +108,7 @@ require('indent_blankline').setup {
   show_current_context = false,
 }
 
+-- Comment.nvim
 require('Comment').setup()
 
 -- more indepth setup/config/etc
