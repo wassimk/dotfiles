@@ -437,6 +437,22 @@ installTrash() {
   esac
 }
 
+installBottom() {
+  case $os in
+    $macOS*)
+      installOrUpdate "bottom"
+      ;;
+  esac
+}
+
+installBandwhich() {
+  case $os in
+    $macOS*)
+      installOrUpdate "bandwhich"
+      ;;
+  esac
+}
+
 installShellCheck() {
   installOrUpdate "shellcheck"
 }
@@ -578,6 +594,8 @@ installBat
 installLf
 installDiffSoFancy
 installTrash
+installBottom
+installBandwhich
 installShellCheck
 installSshCopyId
 installBattery
