@@ -51,16 +51,11 @@ vim.opt.clipboard = 'unnamed'
 -- load plugins after options in case they override them
 require('plugins')
 
--- load the theme and enable italics support
-if file_exists(os.getenv('HOME') .. '/.local/share/nvim/site/pack/packer/start/onedark.vim/colors/onedark.vim') then
-  vim.g.onedark_terminal_italics = 1
-  vim.g.onedark_hide_endofbuffer = 1
-  vim.cmd('colorscheme onedark')
-elseif file_exists(os.getenv('HOME') .. '/.local/share/nvim/site/pack/packer/start/onedarkhc.vim/colors/onedarkhc.vim') then
-  vim.g.onedarkhc_terminal_italics = 1
-  vim.g.onedarkhc_hide_endofbuffer = 1
-  vim.cmd('colorscheme onedarkhc')
-end
+require('onedark').setup {
+  style = 'darker',
+}
+
+require('onedark').load()
 
 -- vim-test custom run strategy using vim-dispatch
 vim.api.nvim_exec([[
