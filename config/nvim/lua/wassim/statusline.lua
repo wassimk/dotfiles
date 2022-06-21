@@ -13,6 +13,7 @@ require('lualine').setup {
     disabled_filetypes = { 'NvimTree' },
     globalstatus = false,
   },
+  theme = 'onedark',
   sections = {
     lualine_a = { function()
       return mode_map[vim.api.nvim_get_mode().mode] or '__'
