@@ -158,3 +158,11 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   command = 'silent! EslintFixAll',
   group = wamGrp,
 })
+
+----
+-- Autopairs
+----
+local npairs = require('nvim-autopairs')
+npairs.setup { check_ts = true, map_cr = true }
+npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
+npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
