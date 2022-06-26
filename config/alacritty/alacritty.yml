@@ -108,9 +108,6 @@ key_bindings:
   # [tmux] toggle the zoom state of the current pane
   - { key: Z, mods: Command, chars: "\x13\x7a" }
 
-  # [vim] type <escape>:w<enter> to save
-  - { key: S, mods: Command, chars: "\x1b\x3a\x77\x0a" }
-
   # [shell] type lf<enter> to launch file finder
   - { key: F, mods: Command, chars: "\x6c\x66\x0a" }
 
