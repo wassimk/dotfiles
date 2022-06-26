@@ -66,7 +66,7 @@ if has_cmp then
     mapping = key_mappings,
 
     formatting = {
-      format = function(entry, vim_item)
+      format = function(_, vim_item)
         vim_item.kind = nil
         vim_item.source = nil
 
@@ -83,7 +83,7 @@ if has_cmp then
     mapping = key_mappings,
 
     formatting = {
-      format = function(entry, vim_item)
+      format = function(_, vim_item)
         vim_item.kind = nil
 
         return vim_item
