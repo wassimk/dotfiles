@@ -2,6 +2,7 @@ local has_cmp, cmp = pcall(require, 'cmp')
 
 if has_cmp then
   local has_luasnip, luasnip = pcall(require, 'luasnip')
+  local lspkind = require('lspkind')
 
   local key_mappings = {
     ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
@@ -28,19 +29,22 @@ if has_cmp then
     },
 
     formatting = {
-      format = function(entry, vim_item)
-        vim_item.menu = ({
-          buffer = '[Buffer]',
-          nvim_lsp = '[LSP]',
-          nvim_lsp_signature_help = '[Signature]',
-          luasnip = '[Snippet]',
-          nvim_lua = '[Lua]',
-          path = '[Path]',
-          spell = '[Spell]',
-          git = '[GitHub]',
-        })[entry.source.name]
-        return vim_item
-      end
+      format = lspkind.cmp_format {
+        mode = 'symbol',
+        before = function(entry, vim_item)
+          vim_item.menu = ({
+            buffer = '[Buffer]',
+            nvim_lsp = '[LSP]',
+            nvim_lsp_signature_help = '[Signature]',
+            luasnip = '[Snippet]',
+            nvim_lua = '[Lua]',
+            path = '[Path]',
+            spell = '[Spell]',
+            git = '[GitHub]',
+          })[entry.source.name]
+          return vim_item
+        end
+      }
     },
 
     mapping = key_mappings,

@@ -59,6 +59,7 @@ return packer.startup(function(use)
       'olacin/telescope-gitmoji.nvim',
       'hrsh7th/cmp-path',
       'f3fora/cmp-spell',
+      'onsails/lspkind.nvim',
     }
   }
 
