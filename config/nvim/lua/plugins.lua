@@ -56,7 +56,6 @@ return packer.startup(function(use)
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lua',
       'petertriho/cmp-git',
-      'olacin/telescope-gitmoji.nvim',
       'hrsh7th/cmp-path',
       'f3fora/cmp-spell',
       'onsails/lspkind.nvim',

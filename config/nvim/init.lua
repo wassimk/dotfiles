@@ -87,7 +87,6 @@ vim.g.LoupeVeryMagic = 0
 
 -- Telescope
 require('telescope').load_extension('fzf')
-require('telescope').load_extension('gitmoji')
 
 -- nvim-tree
 require('nvim-tree').setup {
