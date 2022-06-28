@@ -45,8 +45,8 @@ vim.opt.shortmess = vim.opt.shortmess + 'a' -- Some sane display defaults
 vim.opt.undofile = true
 vim.opt.undodir = os.getenv('HOME') .. '/.config/nvim/undo'
 
--- use system clipboard
-vim.opt.clipboard = 'unnamed'
+-- use only the system clipboard
+vim.opt.clipboard = vim.opt.clipboard + 'unnamedplus'
 
 -- load plugins after options in case they override them
 require('plugins')
