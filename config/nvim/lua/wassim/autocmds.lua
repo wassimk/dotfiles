@@ -28,13 +28,6 @@ api.nvim_create_autocmd('FileType', {
   group = wamGrp,
 })
 
--- gitcommit
-api.nvim_create_autocmd('FileType', {
-  pattern = 'gitcommit',
-  command = 'setlocal spell',
-  group = wamGrp,
-})
-
 -- show cursor line only in active window
 api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
   command = 'set cursorline',
