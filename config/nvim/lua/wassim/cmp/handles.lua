@@ -83,6 +83,8 @@ handles.setup = function()
       { name = 'luasnip' },
       { name = 'buffer' },
       { name = 'path' },
+      { name = 'git' },
+      { name = 'spell', keyword_length = 4 },
 
       -- My custom sources.
       { name = 'handles' }, -- GitHub handles; eg. @wassimk → Wassim Metallaoui <wassimk@github.com>
