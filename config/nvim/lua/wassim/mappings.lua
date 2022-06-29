@@ -23,6 +23,10 @@ vim.keymap.set('n', 't<C-a>', '<cmd>TestSuite<CR>', opts)
 vim.keymap.set('n', 't<C-l>', '<cmd>TestLast<CR>', opts)
 vim.keymap.set('n', 't<C-g>', '<cmd>TestVisit<CR>', opts)
 
+-- vim-easy-align
+vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)<CR>', opts)
+vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)<CR>', opts)
+
 -- telescope
 vim.keymap.set('n', '<C-f>f', '<cmd>Telescope find_files<CR>', opts)
 vim.keymap.set('n', '<C-f>g', '<cmd>Telescope live_grep<CR>', opts)
