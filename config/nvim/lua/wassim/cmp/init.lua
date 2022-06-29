@@ -83,7 +83,6 @@ if has_cmp then
       { name = 'nvim_lua' },
       { name = 'buffer' },
       { name = 'spell', keyword_length = 4 },
-      { name = 'git' },
     },
 
     completion = { completeopt = 'menu,menuone,noinsert' }
@@ -124,5 +123,3 @@ if has_cmp then
     })
   })
 end
-
-require('cmp_git').setup()
