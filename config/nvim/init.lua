@@ -94,6 +94,11 @@ require('nvim-tree').setup {
     width = '20%',
     preserve_window_proportions = true,
     hide_root_folder = false,
+    mappings = {
+      list = {
+        { key = '?', action = 'toggle_help' },
+      },
+    },
   },
 }
 
