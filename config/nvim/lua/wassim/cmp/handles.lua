@@ -45,7 +45,7 @@ handles.setup = function()
     local input = string.sub(request.context.cursor_before_line, request.offset - 1)
     local prefix = string.sub(request.context.cursor_before_line, 1, request.offset - 1)
 
-    if vim.startswith(input, '@') and (prefix == '@' or vim.endswith(prefix, ' @')) then
+    if vim.startswith(input, '@') and (vim.startswith(prefix, 'Co-Authored-By: ')) then
       local items = {}
       for handle, name_and_email in pairs(handles_with_names_and_emails) do
         table.insert(items, {
