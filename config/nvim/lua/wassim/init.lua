@@ -1,3 +1,4 @@
+require('wassim/globals')
 require('wassim/autocmds')
 require('wassim/statusline')
 require('wassim/tabline')
