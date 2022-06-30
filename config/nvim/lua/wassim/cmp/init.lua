@@ -1,6 +1,11 @@
 local has_cmp, cmp = pcall(require, 'cmp')
 
 if has_cmp then
+  local has_rails_fixture_types, rails_fixture_types = pcall(require, 'wassim.cmp.rails_fixture_types')
+  if has_rails_fixture_types then
+    rails_fixture_types.setup()
+  end
+
   local has_luasnip, luasnip = pcall(require, 'luasnip')
   local lspkind = require('lspkind')
 
@@ -64,6 +69,7 @@ if has_cmp then
             nvim_lsp = '[LSP]',
             nvim_lsp_signature_help = '[Signature]',
             luasnip = '[Snippet]',
+            rails_fixture_types = '[Fixture Type]',
             nvim_lua = '[Lua]',
             path = '[Path]',
             spell = '[Spell]',
@@ -77,6 +83,7 @@ if has_cmp then
     mapping = key_mappings,
 
     sources = {
+      { name = 'rails_fixture_types' },
       { name = 'luasnip' },
       { name = 'nvim_lsp' },
       { name = 'nvim_lsp_signature_help' },
