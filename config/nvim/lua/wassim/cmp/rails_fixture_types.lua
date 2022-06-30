@@ -22,7 +22,9 @@ rails_fixture_types.setup = function()
 
   local success, fixture_types = pcall(function()
     local fixtures_dir = './test/fixtures'
-    local fixture_files = scan.scan_dir(fixtures_dir, { search_pattern = '.yml', respect_gitignore = true })
+
+    local fixture_files = scan.scan_dir(fixtures_dir, { search_pattern = '.yml', respect_gitignore = true,
+      silent = true })
 
     local fixture_types = {}
     for _, file in ipairs(fixture_files) do
