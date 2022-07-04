@@ -1,4 +1,4 @@
--- Custom nvim-cmp source for Ruby on Rails fixture types.
+-- custom nvim-cmp source for Ruby on Rails fixture types
 
 local rails_fixture_types = {}
 
@@ -17,24 +17,26 @@ rails_fixture_types.setup = function()
 
   local has_scan, scan = pcall(require, 'plenary.scandir')
   if not has_scan then
+    vim.notify('Need the plenary plugin installed for cmp-rails-fixture-types to work')
     return
   end
 
-  local success, fixture_types = pcall(function()
+
+  local success, types = pcall(function()
     local fixtures_dir = './test/fixtures'
 
-    local fixture_files = scan.scan_dir(fixtures_dir, { search_pattern = '.yml', respect_gitignore = true,
+    local files = scan.scan_dir(fixtures_dir, { search_pattern = '.yml', respect_gitignore = true,
       silent = true })
 
-    local fixture_types = {}
-    for _, file in ipairs(fixture_files) do
+    local types = {}
+    for _, file in ipairs(files) do
       local type = file:match(fixtures_dir .. '/(.+)%.yml$')
       type = type:gsub('/', '_')
 
-      table.insert(fixture_types, type)
+      table.insert(types, type)
     end
 
-    return fixture_types
+    return types
   end)
   if not success then
     return
@@ -55,10 +57,10 @@ rails_fixture_types.setup = function()
   source.complete = function(_, request, callback)
     local results = {}
 
-    for _, fixture_type in ipairs(fixture_types) do
+    for _, type in ipairs(types) do
       local cmp_item = {
-        word = fixture_type .. '(', -- in code when cycling the completion options
-        label = fixture_type, -- the completion options and keyword trigger
+        label = type,
+        word = type .. '(',
       }
       table.insert(results, cmp_item)
     end
