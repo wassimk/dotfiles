@@ -181,6 +181,22 @@ installJq() {
   installOrUpdate "jq"
 }
 
+installYq() {
+  installOrUpdate "yq"
+}
+
+installSd() {
+  installOrUpdate "sd"
+}
+
+installDust() {
+  installOrUpdate "dust"
+}
+
+installProcs() {
+  installOrUpdate "procs"
+}
+
 installCtags() {
   case $os in
     $macOS*)
@@ -578,6 +594,10 @@ installAg
 installRg
 installAck
 installJq
+installYq
+installSd
+installDust
+installProcs
 installCtags
 installGrc
 installHub
