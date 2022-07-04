@@ -28,6 +28,6 @@ ln -sf "$HOME"/.dotfiles/iterm "$HOME"/.config
 
 # config is in a weird spot and i don't want to commit it
 espanso_dir="$HOME/Library/Application Support/espanso"
-if [ -d $espanso_dir ]; then
-  ln -sf  $espanso_dir "$HOME"/.dotfiles/config
+if [ -d "$espanso_dir" ]; then
+  ln -sf  "$espanso_dir" "$HOME"/.dotfiles/config
 fi
