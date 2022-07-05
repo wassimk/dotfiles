@@ -2,7 +2,14 @@
 
 local rails_fixture_names = {}
 
+local registered = false
+
 rails_fixture_names.setup = function()
+  if registered then
+    return
+  end
+  registered = true
+
   local has_cmp, cmp = pcall(require, 'cmp')
   if not has_cmp then
     return
