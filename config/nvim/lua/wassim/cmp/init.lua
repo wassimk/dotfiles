@@ -48,7 +48,7 @@ if has_cmp then
             luasnip = '[Snippet]',
             rails_fixture_types = '[Fixture]',
             rails_fixture_names = '[Fixture]',
-            nvim_lua = '[Lua]',
+            nvim_lua = '[Neovim]',
             path = '[Path]',
             spell = '[Spell]',
             git = '[GitHub]',
