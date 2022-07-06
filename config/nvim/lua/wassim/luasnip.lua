@@ -4,6 +4,8 @@ if has_luasnip then
   local types = require('luasnip.util.types')
 
   luasnip.config.setup {
+    history = true,
+    update_events = 'InsertLeave,TextChangedI',
     ext_opts = {
       [types.choiceNode] = {
         active = {
@@ -17,7 +19,7 @@ if has_luasnip then
       -- },
     },
     -- store_selection_keys = '<Tab>',
-    -- update_events = 'InsertLeave,TextChangedI',
+    -- enable_autosnippets = true,
   }
 
   require('luasnip.loaders.from_lua').load { paths = '~/.config/nvim/snippets' }
