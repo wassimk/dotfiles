@@ -29,6 +29,7 @@ vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)<CR>', opts)
 
 -- telescope
 vim.keymap.set('n', '<C-f>f', '<cmd>Telescope find_files<CR>', opts)
+vim.keymap.set('n', '<C-f>w', '<cmd>Telescope grep_string<CR>', opts)
 vim.keymap.set('n', '<C-f>g', '<cmd>Telescope live_grep<CR>', opts)
 vim.keymap.set('n', '<C-f>b', '<cmd>Telescope current_buffer_fuzzy_find<CR>', opts)
 vim.keymap.set('n', '<C-f>ob', '<cmd>Telescope buffers<CR>', opts)
