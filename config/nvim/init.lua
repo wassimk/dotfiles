@@ -87,6 +87,7 @@ vim.g.LoupeVeryMagic = 0
 
 -- Telescope
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('ui-select')
 
 -- nvim-tree
 require('nvim-tree').setup {
