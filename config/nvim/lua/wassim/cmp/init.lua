@@ -60,12 +60,12 @@ if has_cmp then
         mode = 'symbol',
         before = function(entry, vim_item)
           vim_item.menu = ({
-            buffer = '[Buffer]',
-            nvim_lsp = '[LSP]',
-            nvim_lsp_signature_help = '[Signature]',
             luasnip = '[Snippet]',
+            nvim_lsp_signature_help = '[Signature]',
             rails_fixture_types = '[Fixture]',
             rails_fixture_names = '[Fixture]',
+            buffer = '[Buffer]',
+            nvim_lsp = '[LSP]',
             nvim_lua = '[Neovim]',
             path = '[Path]',
             spell = '[Spell]',
