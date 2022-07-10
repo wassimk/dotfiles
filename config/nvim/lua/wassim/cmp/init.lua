@@ -12,11 +12,11 @@ if has_cmp then
     ['<C-y>'] = cmp.mapping(cmp.mapping.confirm(), { 'i', 'c' }),
     ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
 
-    ['<C-e>'] = cmp.mapping(function(fallback)
+    ['<C-u>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.abort()
+        cmp.scroll_docs(-4)
       elseif has_luasnip and luasnip.choice_active() then
-        luasnip.jump(1)
+        require 'luasnip.extras.select_choice' ()
       else
         fallback()
       end
