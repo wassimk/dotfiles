@@ -21,29 +21,33 @@ return {
   ),
   s(
     {
-      trig = 'use_stripe_cassette',
-      name = 'Stripe VCR Cassette (object)',
+      trig = 'usca',
+      name = 'use_stripe_cassette',
       dscr = 'Stripe VCR cassette with object from cassette data',
-      hidden = true,
+      hidden = false,
     },
-    {
-      t { 'use_stripe_cassette("' }, i(1, 'cassette-name'), t { '") do |cassette|', '' },
-      t { '  ' }, i(2, 'stripe_object-name'), t { ' = stripe_object_from_cassette(cassette, path: "' }, i(3, 'request-path'), t { '", http_method: :' }, c(4, { t 'post', t 'get', t 'put', t 'delete' }), t { ')', '' },
-      t { '  ' }, i(0),
-      t { '', 'end' }
-    }
+    fmt(
+      [[
+        use_stripe_cassette("{}") do |cassette|
+          {} = stripe_object_from_cassette(cassette, path: "{}", http_method: :{})
+          {}
+        end
+      ]], { i(1, 'cassette-name'), i(2, 'stripe_object_name'), i(3, 'request-path'), c(4, { t 'get', t 'post', t 'put', t 'delete' }), i(0) }
+    )
   ),
   s(
     {
-      trig = 'use_stripe_cassette',
-      name = 'Stripe VCR Cassette (simple)',
+      trig = 'uscs',
+      name = 'use_stripe_cassette',
       dscr = 'Stripe VCR cassette',
-      hidden = true,
+      hidden = false,
     },
-    {
-      t { 'use_stripe_cassette("' }, i(1), t { '") do', '' },
-      t { '  ' }, i(0),
-      t { '', 'end' }
-    }
+    fmt(
+      [[
+        use_stripe_cassette("{}") do
+          {}
+        end
+      ]], { i(1), i(0) }
+    )
   )
 }
