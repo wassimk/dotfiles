@@ -114,8 +114,6 @@ rails_fixture_names.setup = function()
 
     local type = prefix:match '^%s*(.*)':match '(.-)%s*$' -- remove spaces
 
-    LOG { input = input, prefix = prefix, type = type }
-
     if vim.startswith(input, ':') and valid_type(type) then
       local items = {}
       for _, name in ipairs(names(type)) do
