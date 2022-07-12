@@ -110,9 +110,9 @@ rails_fixture_names.setup = function()
 
   source.complete = function(_, request, callback)
     local input = string.sub(request.context.cursor_before_line, request.offset - 1)
-    local prefix = string.sub(request.context.cursor_before_line, 1, request.offset - 3)
+    local prefix = string.sub(request.context.cursor_before_line, 1, request.offset - 1)
 
-    local type = prefix:match '^%s*(.*)':match '(.-)%s*$' -- remove spaces
+    local type = prefix:match('(%g+)%(%:$')
 
     if vim.startswith(input, ':') and valid_type(type) then
       local items = {}
