@@ -70,16 +70,13 @@ vim.g['test#strategy'] = 'dispatch_start'
 ---------------
 -- Searching --
 ---------------
--- The Silver Searcher
-if vim.fn.executable('ag') == 1 then
-  -- use ag over grep
-  vim.opt.grepprg = 'ag --nogroup --nocolor'
+if vim.fn.executable('rg') == 1 then
+  -- use rg for grep
+  vim.opt.grepprg = 'rg -H --no-heading --vimgrep'
+  vim.opt.grepformat = '%f:%l:%c:%m,%f'
 
-  -- use ag for ack
-  vim.g.ackprg = 'ag --vimgrep'
-
-  -- prefer `ag` over `rg` with Ferret
-  vim.g.FerretExecutable = 'ag,rg'
+  -- use rg for ack
+  vim.g.ackprg = 'rg --vimgrep'
 end
 
 -- Loupe
