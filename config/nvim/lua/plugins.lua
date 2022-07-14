@@ -58,6 +58,8 @@ return packer.startup(function(use)
       'petertriho/cmp-git',
       'hrsh7th/cmp-path',
       'f3fora/cmp-spell',
+      'wassimk/cmp-rails-fixture-types',
+      'wassimk/cmp-rails-fixture-names',
       'onsails/lspkind.nvim',
     }
   }
