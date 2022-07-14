@@ -111,5 +111,8 @@ require('indent_blankline').setup {
 -- Comment.nvim
 require('Comment').setup()
 
+-- nvim-surround
+require('nvim-surround').setup {}
+
 -- more indepth setup/config/etc
 require('wassim')
