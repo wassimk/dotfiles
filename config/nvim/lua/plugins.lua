@@ -83,7 +83,7 @@ return packer.startup(function(use)
 
   -- Vim Text Objects and Motions
   use 'numToStr/Comment.nvim'
-  use 'tpope/vim-surround'
+  use 'kylechui/nvim-surround'
   use 'wellle/targets.vim'
   use 'kana/vim-textobj-user'
   use 'kana/vim-textobj-line'
