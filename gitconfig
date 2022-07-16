@@ -97,3 +97,6 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[blame]
+	ignoreRevsFile = .git-blame-ignore-revs
