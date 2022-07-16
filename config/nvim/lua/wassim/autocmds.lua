@@ -31,29 +31,29 @@ api.nvim_create_autocmd('FileType', {
 -- show cursor line only in active window
 api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
   command = 'set cursorline',
-  group = wamGrp
+  group = wamGrp,
 })
 
 api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
   command = 'set nocursorline',
-  group = wamGrp
+  group = wamGrp,
 })
 
 -- close certain windows to close with "q"
 api.nvim_create_autocmd('FileType', {
   pattern = { 'help', 'startuptime', 'qf', 'lspinfo' },
   command = 'nnoremap <buffer><silent> q :close<CR>',
-  group = wamGrp
+  group = wamGrp,
 })
 
 api.nvim_create_autocmd('FileType', {
   pattern = 'man',
   command = 'nnoremap <buffer><silent> q :quit<CR>',
-  group = wamGrp
+  group = wamGrp,
 })
 
 -- new lines with 'o' or 'O' from commented lines don't continue commenting
 api.nvim_create_autocmd('FileType', {
   command = 'setlocal formatoptions-=o',
-  group = wamGrp
+  group = wamGrp,
 })

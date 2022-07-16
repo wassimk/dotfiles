@@ -4,7 +4,7 @@ P = function(v)
 end
 
 LOG = function(...)
-  logger = require('plenary.log').new { plugin = 'globals-log' }
+  logger = require('plenary.log').new({ plugin = 'globals-log' })
   return logger.info(...)
 end
 

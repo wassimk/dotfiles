@@ -64,22 +64,21 @@ handles.setup = function()
               },
             },
           },
-        }
-        )
+        })
       end
-      callback {
+      callback({
         items = items,
         isIncomplete = true,
-      }
+      })
     else
-      callback { isIncomplete = true }
+      callback({ isIncomplete = true })
     end
   end
 
   cmp.register_source('handles', source.new())
 
   cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources {
+    sources = cmp.config.sources({
       { name = 'luasnip' },
       { name = 'buffer' },
       { name = 'path' },
@@ -88,7 +87,7 @@ handles.setup = function()
 
       -- My custom sources.
       { name = 'handles' }, -- GitHub handles; eg. @wassimk → Wassim Metallaoui <wassimk@github.com>
-    },
+    }),
   })
 end
 

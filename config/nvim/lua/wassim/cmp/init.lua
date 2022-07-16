@@ -29,7 +29,7 @@ if has_cmp then
       if cmp.visible() then
         cmp.scroll_docs(-4)
       elseif has_luasnip and luasnip.choice_active() then
-        require 'luasnip.extras.select_choice' ()
+        require('luasnip.extras.select_choice')()
       else
         fallback()
       end
@@ -41,7 +41,7 @@ if has_cmp then
     ['<C-e>'] = cmp.mapping(cmp.mapping.abort(), { 'i', 'c' }),
   }
 
-  cmp.setup {
+  cmp.setup({
     snippet = {
       expand = function(args)
         if has_luasnip then
@@ -56,7 +56,7 @@ if has_cmp then
     },
 
     formatting = {
-      format = lspkind.cmp_format {
+      format = lspkind.cmp_format({
         mode = 'symbol',
         before = function(entry, vim_item)
           vim_item.menu = ({
@@ -73,8 +73,8 @@ if has_cmp then
             git = '[GitHub]',
           })[entry.source.name]
           return vim_item
-        end
-      }
+        end,
+      }),
     },
 
     mapping = key_mappings,
@@ -91,8 +91,8 @@ if has_cmp then
       { name = 'spell', keyword_length = 4 },
     },
 
-    completion = { completeopt = 'menu,menuone,noinsert' }
-  }
+    completion = { completeopt = 'menu,menuone,noinsert' },
+  })
 
   cmp.setup.cmdline('/', {
     mapping = key_mappings,
@@ -103,12 +103,12 @@ if has_cmp then
         vim_item.source = nil
 
         return vim_item
-      end
+      end,
     },
 
     sources = {
-      { name = 'buffer' }
-    }
+      { name = 'buffer' },
+    },
   })
 
   cmp.setup.cmdline(':', {
@@ -119,13 +119,13 @@ if has_cmp then
         vim_item.kind = nil
 
         return vim_item
-      end
+      end,
     },
 
     sources = cmp.config.sources({
-      { name = 'path' }
+      { name = 'path' },
     }, {
-      { name = 'cmdline' }
-    })
+      { name = 'cmdline' },
+    }),
   })
 end
