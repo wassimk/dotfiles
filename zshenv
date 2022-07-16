@@ -18,6 +18,7 @@ esac
 #
 export ZSH_AUTOSUGGEST_HISTORY_IGNORE="g *|git *|cd *|ls *|ll *|la *|l *|"
 export HOMEBREW_NO_ENV_HINTS=false # no more suggestions in the UI
+export CARGO_NET_GIT_FETCH_WITH_CLI=true # fix odd github issue
 
 #
 # Path
