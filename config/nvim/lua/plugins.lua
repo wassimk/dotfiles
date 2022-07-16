@@ -58,12 +58,13 @@ return packer.startup(function(use)
       'petertriho/cmp-git',
       'hrsh7th/cmp-path',
       'f3fora/cmp-spell',
-      'wassimk/cmp-rails-fixture-types',
-      'wassimk/cmp-rails-fixture-names',
-      'wassimk/cmp-feature-flipper',
       'onsails/lspkind.nvim',
     }
   }
+
+  use '~/personal/neovim/cmp-rails-fixture-types'
+  use '~/personal/neovim/cmp-rails-fixture-names'
+  use '~/personal/neovim/cmp-feature-flipper'
 
   -- Snippets with completion
   use { 'L3MON4D3/LuaSnip',
