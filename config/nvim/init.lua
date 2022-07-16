@@ -51,18 +51,21 @@ vim.opt.clipboard = vim.opt.clipboard + 'unnamedplus'
 -- load plugins after options in case they override them
 require('plugins')
 
-require('onedark').setup {
+require('onedark').setup({
   style = 'darker',
-}
+})
 
 require('onedark').load()
 
 -- vim-test custom run strategy using vim-dispatch
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+  [[
   function! DispatchStartStrategy(cmd)
     execute 'Start -title=testing -wait=error ' . a:cmd
   endfunction
-]], false)
+]],
+  false
+)
 
 vim.g['test#custom_strategies'] = { dispatch_start = vim.fn['DispatchStartStrategy'] }
 vim.g['test#strategy'] = 'dispatch_start'
@@ -87,7 +90,7 @@ require('telescope').load_extension('fzf')
 require('telescope').load_extension('ui-select')
 
 -- nvim-tree
-require('nvim-tree').setup {
+require('nvim-tree').setup({
   view = {
     width = '20%',
     preserve_window_proportions = true,
@@ -98,18 +101,18 @@ require('nvim-tree').setup {
       },
     },
   },
-}
+})
 
 -- Indent Blankline
-require('indent_blankline').setup {
+require('indent_blankline').setup({
   show_current_context = false,
-}
+})
 
 -- Comment.nvim
 require('Comment').setup()
 
 -- nvim-surround
-require('nvim-surround').setup {}
+require('nvim-surround').setup({})
 
 -- more indepth setup/config/etc
 require('wassim')

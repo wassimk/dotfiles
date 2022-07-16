@@ -1,23 +1,25 @@
 local mode_map = {
-  ['c']  = 'C',
-  ['i']  = 'I',
+  ['c'] = 'C',
+  ['i'] = 'I',
   ['ic'] = 'IC',
-  ['n']  = 'N',
-  ['t']  = 'T',
-  ['v']  = 'V',
-  ['V']  = 'VL'
+  ['n'] = 'N',
+  ['t'] = 'T',
+  ['v'] = 'V',
+  ['V'] = 'VL',
 }
 
-require('lualine').setup {
+require('lualine').setup({
   options = {
     disabled_filetypes = { 'NvimTree' },
     globalstatus = false,
   },
   theme = 'onedark',
   sections = {
-    lualine_a = { function()
-      return mode_map[vim.api.nvim_get_mode().mode] or '__'
-    end },
+    lualine_a = {
+      function()
+        return mode_map[vim.api.nvim_get_mode().mode] or '__'
+      end,
+    },
     lualine_b = { 'branch', 'diff' },
     lualine_c = { { 'filename', path = 1 } },
     lualine_x = { 'filetype', "require('lsp-status').status()" },
@@ -30,7 +32,7 @@ require('lualine').setup {
     lualine_c = { { 'filename', path = 1 } },
     lualine_x = {},
     lualine_y = {},
-    lualine_z = {}
+    lualine_z = {},
   },
   extensions = { 'quickfix', 'fugitive' },
-}
+})

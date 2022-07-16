@@ -45,18 +45,18 @@ vim.keymap.set('n', '<M-y>', '<cmd>vertical resize +5<CR>')
 vim.keymap.set('n', '<M-o>', '<cmd>vertical resize -5<CR>')
 
 local actions = require('telescope.actions')
-require('telescope').setup {
+require('telescope').setup({
   defaults = {
     mappings = {
       i = {
-        ['<C-y>'] = actions.select_default
+        ['<C-y>'] = actions.select_default,
       },
       n = {
-        ['<C-y>'] = actions.select_default
+        ['<C-y>'] = actions.select_default,
       },
     },
-  }
-}
+  },
+})
 -- bufferline
 vim.keymap.set('n', ']b', '<cmd>BufferLineCycleNext<CR>', opts)
 vim.keymap.set('n', '[b', '<cmd>BufferLineCyclePrev<CR>', opts)

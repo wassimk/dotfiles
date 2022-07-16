@@ -3,25 +3,25 @@
 ----
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
-lsp_status.config {
+lsp_status.config({
   diagnostics = false, -- using the built-in to lualine
   select_symbol = function(cursor_pos, symbol) -- sumneko_lua offers more capabilities for ranges
     if symbol.valueRange then
       local value_range = {
         ['start'] = {
           character = 0,
-          line = vim.fn.byte2line(symbol.valueRange[1])
+          line = vim.fn.byte2line(symbol.valueRange[1]),
         },
         ['end'] = {
           character = 0,
-          line = vim.fn.byte2line(symbol.valueRange[2])
-        }
+          line = vim.fn.byte2line(symbol.valueRange[2]),
+        },
       }
 
       return require('lsp-status.util').in_range(cursor_pos, value_range)
     end
-  end
-}
+  end,
+})
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
@@ -53,38 +53,43 @@ local on_attach = function(client, bufnr)
 end
 
 -- configuration toggles
-require('toggle_lsp_diagnostics').init { start_on = true, virtual_text = false, underline = false }
+require('toggle_lsp_diagnostics').init({ start_on = true, virtual_text = false, underline = false })
 
 -- automatic lsp server installs
-require('nvim-lsp-installer').setup { automatic_installation = { exclude = { 'solargraph' } } }
+require('nvim-lsp-installer').setup({ automatic_installation = { exclude = { 'solargraph' } } })
 
 -- bash scripting
-require('lspconfig').bashls.setup { capabilities = capabilities, on_attach = on_attach }
+require('lspconfig').bashls.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- vimscript
-require('lspconfig').vimls.setup { capabilities = capabilities, on_attach = on_attach }
+require('lspconfig').vimls.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- yaml
-require('lspconfig').yamlls.setup { capabilities = capabilities, on_attach = on_attach }
+require('lspconfig').yamlls.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- rust
-require('lspconfig').rust_analyzer.setup {
+require('lspconfig').rust_analyzer.setup({
   settings = {
     ['rust-analyzer'] = {
       checkOnSave = {
         allFeatures = true,
         overrideCommand = {
-          'cargo', 'clippy', '--workspace', '--message-format=json', '--all-targets', '--all-features'
-        }
-      }
-    }
+          'cargo',
+          'clippy',
+          '--workspace',
+          '--message-format=json',
+          '--all-targets',
+          '--all-features',
+        },
+      },
+    },
   },
   capabilities = capabilities,
-  on_attach = on_attach
-}
+  on_attach = on_attach,
+})
 
 -- ruby / solargraph
-require 'lspconfig'.solargraph.setup {
+require('lspconfig').solargraph.setup({
   cmd = { 'bundle', 'exec', 'solargraph', 'stdio' },
   init_options = {
     formatting = false,
@@ -93,17 +98,17 @@ require 'lspconfig'.solargraph.setup {
     solargraph = {
       diagnostics = true,
       logLevel = 'debug',
-    }
+    },
   },
   capabilities = capabilities,
-  on_attach = on_attach
-}
+  on_attach = on_attach,
+})
 
 -- javascript / typescript
-require('lspconfig').tsserver.setup { capabilities = capabilities, on_attach = on_attach }
+require('lspconfig').tsserver.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- eslint
-require 'lspconfig'.eslint.setup {
+require('lspconfig').eslint.setup({
   settings = {
     validate = 'on',
     codeAction = {
@@ -116,22 +121,22 @@ require 'lspconfig'.eslint.setup {
     },
   },
   capabilities = capabilities,
-  on_attach = on_attach
-}
+  on_attach = on_attach,
+})
 
 -- lua
-require('lspconfig').sumneko_lua.setup {
+require('lspconfig').sumneko_lua.setup({
   settings = {
     Lua = {
       diagnostics = { globals = { 'vim', 'hs' } },
       workspace = { library = vim.api.nvim_get_runtime_file('', true) },
-      format = { enable = true },
+      format = { enable = false },
       telemetry = { enable = false },
-    }
+    },
   },
   capabilities = capabilities,
-  on_attach = on_attach
-}
+  on_attach = on_attach,
+})
 
 ----
 -- formatting
@@ -159,10 +164,15 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   group = wamGrp,
 })
 
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = { '*.lua' },
+  command = 'lua require("stylua-nvim").format_file()',
+  group = wamGrp,
+})
 ----
 -- Autopairs
 ----
 local npairs = require('nvim-autopairs')
-npairs.setup { check_ts = true, map_cr = true }
+npairs.setup({ check_ts = true, map_cr = true })
 npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
 npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))

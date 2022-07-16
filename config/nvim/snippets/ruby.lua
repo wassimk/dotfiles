@@ -10,7 +10,10 @@ end
 local cassettes = function()
   local cassettes_dir = './test/vcr_cassettes'
 
-  local files = require('plenary.scandir').scan_dir(cassettes_dir, { search_pattern = '.yml', respect_gitignore = true, depth = 1, silent = true })
+  local files = require('plenary.scandir').scan_dir(
+    cassettes_dir,
+    { search_pattern = '.yml', respect_gitignore = true, depth = 1, silent = true }
+  )
 
   local cassettes = {}
   for _, file in ipairs(files) do
@@ -33,14 +36,15 @@ return {
     {
       trig = 'rl',
       name = 'Rails Logger',
-      dscr = 'Write to the built-in Rails logger'
+      dscr = 'Write to the built-in Rails logger',
     },
     fmt(
       [[
         Rails.logger.info "#" * 50
         Rails.logger.info {}
         Rails.logger.info "#" * 50
-      ]], { i(0, 'data_to_log') }
+      ]],
+      { i(0, 'data_to_log') }
     )
   ),
   s(
@@ -56,7 +60,14 @@ return {
           {} = stripe_object_from_cassette(cassette, path: "{}", http_method: :{})
           {}
         end
-      ]], { c(1, cassettes()), i(2, 'stripe_object_name'), i(3, 'request-path'), c(4, { t 'get', t 'post', t 'put', t 'delete' }), i(0) }
+      ]],
+      {
+        c(1, cassettes()),
+        i(2, 'stripe_object_name'),
+        i(3, 'request-path'),
+        c(4, { t('get'), t('post'), t('put'), t('delete') }),
+        i(0),
+      }
     )
   ),
   s(
@@ -71,7 +82,8 @@ return {
         use_stripe_cassette("{}") do
           {}
         end
-      ]], { c(1, cassettes()), i(0) }
+      ]],
+      { c(1, cassettes()), i(0) }
     )
-  )
+  ),
 }
