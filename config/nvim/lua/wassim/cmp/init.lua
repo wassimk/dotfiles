@@ -64,6 +64,7 @@ if has_cmp then
             nvim_lsp_signature_help = '[Signature]',
             rails_fixture_types = '[Fixture]',
             rails_fixture_names = '[Fixture]',
+            feature_flipper = '[Flipper]',
             buffer = '[Buffer]',
             nvim_lsp = '[LSP]',
             nvim_lua = '[Neovim]',
@@ -81,6 +82,7 @@ if has_cmp then
     sources = {
       { name = 'rails_fixture_names' },
       { name = 'rails_fixture_types' },
+      { name = 'feature_flipper' },
       { name = 'luasnip' },
       { name = 'nvim_lsp' },
       { name = 'nvim_lsp_signature_help' },
