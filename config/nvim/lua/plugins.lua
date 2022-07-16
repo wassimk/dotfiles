@@ -60,6 +60,7 @@ return packer.startup(function(use)
       'f3fora/cmp-spell',
       'wassimk/cmp-rails-fixture-types',
       'wassimk/cmp-rails-fixture-names',
+      'wassimk/cmp-feature-flipper',
       'onsails/lspkind.nvim',
     }
   }
