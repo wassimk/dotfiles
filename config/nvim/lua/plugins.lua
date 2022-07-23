@@ -12,6 +12,13 @@ if not status_ok then
   return
 end
 
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = { 'plugins.lua' },
+  command = 'source <afile> | PackerSync',
+  group = vim.api.nvim_create_augroup('WamPackerSync', { clear = true }),
+  desc = 'Reload the plugins.lua file and run PackerSync on save',
+})
+
 -- Use popup window instead of a split
 packer.init({
   display = {
