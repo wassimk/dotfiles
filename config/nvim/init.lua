@@ -114,5 +114,12 @@ require('Comment').setup()
 -- nvim-surround
 require('nvim-surround').setup({})
 
+-- incline.nvim
+require('incline').setup({
+  hide = {
+    only_win = true,
+  },
+})
+
 -- more indepth setup/config/etc
 require('wassim')
