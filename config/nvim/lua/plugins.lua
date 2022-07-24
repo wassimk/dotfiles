@@ -144,6 +144,7 @@ return packer.startup(function(use)
   use('wincent/terminus')
   use('milkypostman/vim-togglelist')
   use('nvim-lualine/lualine.nvim')
+  use('b0o/incline.nvim')
   use('akinsho/bufferline.nvim')
 
   -- Automatically set up configuration after cloning packer.nvim

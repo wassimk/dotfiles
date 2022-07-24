@@ -11,7 +11,7 @@ local mode_map = {
 require('lualine').setup({
   options = {
     disabled_filetypes = { 'NvimTree' },
-    globalstatus = false,
+    globalstatus = true,
   },
   theme = 'onedark',
   sections = {
