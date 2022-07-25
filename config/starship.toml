@@ -4,14 +4,17 @@
 # Inserts a blank line between shell prompts
 add_newline = true
 
-# Disable the package module, hiding it from the prompt completely
-[package]
-disabled = true
+[git_status]
+stashed = ""
 
+# Disable certain features
 [username]
 disabled = true
 
 [hostname]
+disabled = true
+
+[package]
 disabled = true
 
 [nodejs]
@@ -21,4 +24,7 @@ disabled = true
 disabled = true
 
 [rust]
+disabled = true
+
+[lua]
 disabled = true
