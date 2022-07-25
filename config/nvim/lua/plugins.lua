@@ -46,10 +46,12 @@ return packer.startup(function(use)
     'tpope/vim-dispatch',
   } })
 
+  use('williamboman/mason.nvim')
   use({
     'neovim/nvim-lspconfig',
     requires = {
-      'williamboman/nvim-lsp-installer',
+      'williamboman/mason-lspconfig.nvim',
+      'neovim/nvim-lspconfig',
       'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim',
     },
   })
