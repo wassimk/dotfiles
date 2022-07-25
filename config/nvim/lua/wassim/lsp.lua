@@ -56,7 +56,8 @@ end
 require('toggle_lsp_diagnostics').init({ start_on = true, virtual_text = false, underline = false })
 
 -- automatic lsp server installs
-require('nvim-lsp-installer').setup({ automatic_installation = { exclude = { 'solargraph' } } })
+require('mason').setup() -- does more but the lspconfig extension is all we use it for
+require('mason-lspconfig').setup({ automatic_installation = { exclude = { 'solargraph' } } })
 
 -- bash scripting
 require('lspconfig').bashls.setup({ capabilities = capabilities, on_attach = on_attach })
