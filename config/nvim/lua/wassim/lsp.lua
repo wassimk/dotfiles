@@ -68,6 +68,15 @@ require('lspconfig').vimls.setup({ capabilities = capabilities, on_attach = on_a
 -- yaml
 require('lspconfig').yamlls.setup({ capabilities = capabilities, on_attach = on_attach })
 
+-- json
+require('lspconfig').jsonls.setup({ capabilities = capabilities, on_attach = on_attach })
+
+-- html
+require('lspconfig').html.setup({ capabilities = capabilities, on_attach = on_attach })
+
+-- css
+require('lspconfig').cssls.setup({ capabilities = capabilities, on_attach = on_attach })
+
 -- rust
 require('lspconfig').rust_analyzer.setup({
   settings = {
