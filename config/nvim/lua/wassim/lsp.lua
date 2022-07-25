@@ -153,12 +153,6 @@ require('lspconfig').sumneko_lua.setup({
 ----
 local wamGrp = vim.api.nvim_create_augroup('WamAutocmdsFormatting', { clear = true })
 
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*.lua',
-  command = 'lua vim.lsp.buf.formatting_seq_sync(nil, 100)',
-  group = wamGrp,
-})
-
 -- disable vim-prettier automatic formatting
 vim.g['prettier#create_autocmds'] = 0 -- from the forked version
 
@@ -179,6 +173,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   command = 'lua require("stylua-nvim").format_file()',
   group = wamGrp,
 })
+
 ----
 -- Autopairs
 ----
