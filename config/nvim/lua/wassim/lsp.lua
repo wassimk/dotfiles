@@ -175,12 +175,10 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 ----
--- Autopairs
+-- autopairs / endwise / auto-close tags
 ----
-local npairs = require('nvim-autopairs')
-npairs.setup({ check_ts = true, map_cr = true })
-npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
-npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
+require('nvim-autopairs').setup({ check_ts = true, map_cr = true })
 
--- auto-close html/jsx tags
+require('nvim-treesitter.configs').setup({ endwise = { enable = true } })
+
 require('nvim-ts-autotag').setup()
