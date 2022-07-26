@@ -117,6 +117,7 @@ require('nvim-surround').setup({})
 -- incline.nvim
 require('incline').setup({
   hide = {
+    focused_win = true,
     only_win = true,
   },
 })
