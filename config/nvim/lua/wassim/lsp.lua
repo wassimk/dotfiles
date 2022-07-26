@@ -181,3 +181,6 @@ local npairs = require('nvim-autopairs')
 npairs.setup({ check_ts = true, map_cr = true })
 npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
 npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
+
+-- auto-close html/jsx tags
+require('nvim-ts-autotag').setup()
