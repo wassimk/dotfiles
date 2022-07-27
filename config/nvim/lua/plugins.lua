@@ -53,7 +53,6 @@ return packer.startup(function(use)
     'neovim/nvim-lspconfig',
     requires = {
       'williamboman/mason-lspconfig.nvim',
-      'neovim/nvim-lspconfig',
       'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim',
     },
   })
