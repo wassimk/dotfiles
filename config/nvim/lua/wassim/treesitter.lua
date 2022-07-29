@@ -25,3 +25,8 @@ require('nvim-treesitter.configs').setup({
   autopairs = { enable = true },
   autotag = { enable = true }, -- nvim-ts-autotag
 })
+
+-- folding
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldlevelstart = 99
