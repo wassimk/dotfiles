@@ -84,13 +84,6 @@ return packer.startup(function(use)
     'saadparwaiz1/cmp_luasnip',
   } })
 
-  -- JavaScript
-  use('pangloss/vim-javascript')
-  use('mxw/vim-jsx')
-  use('leafgarland/typescript-vim')
-  use('peitalin/vim-jsx-typescript')
-  use('maxmellon/vim-jsx-pretty')
-
   -- Ruby / Rails
   use('vim-ruby/vim-ruby')
   use('tpope/vim-rails')
