@@ -92,8 +92,6 @@ require('telescope').load_extension('ui-select')
 -- nvim-tree
 require('nvim-tree').setup({
   view = {
-    width = '20%',
-    preserve_window_proportions = true,
     hide_root_folder = false,
     mappings = {
       list = {
