@@ -51,12 +51,6 @@ vim.opt.clipboard = vim.opt.clipboard + 'unnamedplus'
 -- load plugins after options in case they override them
 require('plugins')
 
-require('onedark').setup({
-  style = 'darker',
-})
-
-require('onedark').load()
-
 -- vim-test custom run strategy using vim-dispatch
 vim.api.nvim_exec(
   [[
