@@ -92,18 +92,12 @@ return packer.startup(function(use)
   use('maxmellon/vim-jsx-pretty')
 
   -- Ruby / Rails
-  use('nelstrom/vim-textobj-rubyblock')
   use('vim-ruby/vim-ruby')
   use('tpope/vim-rails')
 
   -- Vim Text Objects and Motions
   use('numToStr/Comment.nvim')
   use('kylechui/nvim-surround')
-  use('wellle/targets.vim')
-  use('kana/vim-textobj-user')
-  use('kana/vim-textobj-line')
-  use('kana/vim-textobj-entire')
-  use('kana/vim-textobj-indent')
   use('christoomey/vim-sort-motion')
   use('junegunn/vim-easy-align')
   use('tpope/vim-unimpaired')
