@@ -173,12 +173,3 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   command = 'lua require("stylua-nvim").format_file()',
   group = wamGrp,
 })
-
-----
--- autopairs / endwise / auto-close tags
-----
-require('nvim-autopairs').setup({ check_ts = true, map_cr = true })
-
-require('nvim-treesitter.configs').setup({ endwise = { enable = true } })
-
-require('nvim-ts-autotag').setup()
