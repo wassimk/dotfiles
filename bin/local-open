@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+#
+# If in an SSH session then this will pass back any URL to the open command on
+# the client machine.
+
+# So "local-open http://yahoo.com" will send that URL to my macOS.
 
 if [[ -f ~/.localopenrc ]]; then
   . ~/.localopenrc
