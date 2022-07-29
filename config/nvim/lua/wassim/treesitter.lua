@@ -22,7 +22,7 @@ require('nvim-treesitter.configs').setup({
   highlight = { enable = true, additional_vim_regex_highlighting = false },
   indent = { enable = true },
   incremental_selection = { enable = true },
-  autopairs = { enable = true },
+  autopairs = { enable = true }, -- nvim-autopairs
   autotag = { enable = true }, -- nvim-ts-autotag
 })
 
