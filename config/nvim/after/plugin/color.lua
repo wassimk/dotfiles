@@ -3,3 +3,5 @@ require('onedark').setup({
 })
 
 require('onedark').load()
+
+vim.api.nvim_set_hl(0, 'MatchWord', { italic = true })

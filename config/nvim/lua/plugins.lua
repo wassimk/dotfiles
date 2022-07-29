@@ -140,6 +140,7 @@ return packer.startup(function(use)
   use('editorconfig/editorconfig-vim')
   use('ludovicchabant/vim-gutentags')
   use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
+  use('andymass/vim-matchup')
 
   -- Theme / Status Line / Tmux / Terminal / Vim
   use('navarasu/onedark.nvim')
