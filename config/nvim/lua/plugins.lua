@@ -43,6 +43,7 @@ return packer.startup(function(use)
   use('wincent/vcs-jump')
   use('lewis6991/gitsigns.nvim')
   use({ 'ckipp01/stylua-nvim', run = 'cargo install stylua' })
+  use('folke/todo-comments.nvim')
 
   use({ 'janko-m/vim-test', requires = {
     'tpope/vim-dispatch',

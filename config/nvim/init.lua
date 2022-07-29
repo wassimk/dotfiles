@@ -102,6 +102,9 @@ require('indent_blankline').setup({
 -- Comment.nvim
 require('Comment').setup()
 
+-- todo-comments.nvim
+require('todo-comments').setup({})
+
 -- nvim-surround
 require('nvim-surround').setup({})
 
