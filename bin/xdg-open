@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Most tools try to run xdg-open in my SSH sessions, so let's create that
+# binary and make it use local-open to send its arguments to my client machine.
+
 case "$OSTYPE" in
   linux*) local-open $1 ;;
 esac
