@@ -20,11 +20,14 @@ require('nvim-treesitter.configs').setup({
     'yaml',
   },
   highlight = { enable = true, additional_vim_regex_highlighting = false },
-  indent = { enable = true },
   incremental_selection = { enable = true },
-  autopairs = { enable = true }, -- nvim-autopairs
+  indent = { enable = true },
   autotag = { enable = true }, -- nvim-ts-autotag
+  endwise = { enable = true }, -- nvim-treesitter-endwise
 })
+
+-- nvim-autopairs - not a treesitter module but uses it
+require('nvim-autopairs').setup({ check_ts = true, map_cr = true })
 
 -- folding
 vim.opt.foldmethod = 'expr'
