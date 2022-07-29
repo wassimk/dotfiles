@@ -111,20 +111,21 @@ require('lspconfig').rust_analyzer.setup({
 })
 
 -- ruby / solargraph
-require('lspconfig').solargraph.setup({
-  cmd = { 'bundle', 'exec', 'solargraph', 'stdio' },
-  init_options = {
-    formatting = false,
-  },
-  settings = {
-    solargraph = {
-      diagnostics = true,
-      logLevel = 'debug',
+if require('utils').installed_via_bundler('solargraph') then
+  require('lspconfig').solargraph.setup({
+    cmd = { 'bundle', 'exec', 'solargraph', 'stdio' },
+    init_options = {
+      formatting = false,
     },
-  },
-  capabilities = capabilities,
-  on_attach = on_attach,
-})
+    settings = {
+      solargraph = {
+        diagnostics = true,
+      },
+    },
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
+end
 
 -- javascript / typescript
 -- this plugin calls lspconfig and sets up tsserver
