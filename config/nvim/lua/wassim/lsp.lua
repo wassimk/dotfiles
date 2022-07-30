@@ -52,8 +52,15 @@ local on_attach = function(client, bufnr)
   lsp_status.on_attach(client)
 end
 
--- configuration toggles
-require('toggle_lsp_diagnostics').init({ start_on = true, virtual_text = false, underline = false })
+-- global diagnostic configuration
+vim.diagnostic.config({
+  virtual_text = false,
+  underline = false,
+  signs = { priority = 10 },
+  float = {
+    source = 'if_many',
+  },
+})
 
 -- automatic lsp server installs
 require('mason').setup() -- does more but the lspconfig extension is all we use it for
