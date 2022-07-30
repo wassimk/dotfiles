@@ -102,11 +102,14 @@ require('indent_blankline').setup({
 -- Comment.nvim
 require('Comment').setup()
 
+-- trouble.nvim
+require('trouble').setup()
+
 -- todo-comments.nvim
-require('todo-comments').setup({})
+require('todo-comments').setup()
 
 -- nvim-surround
-require('nvim-surround').setup({})
+require('nvim-surround').setup()
 
 -- incline.nvim
 require('incline').setup({
