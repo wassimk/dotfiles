@@ -100,8 +100,7 @@ return packer.startup(function(use)
   use('junegunn/vim-easy-align')
   use('tpope/vim-unimpaired')
   use('tpope/vim-abolish')
-  -- use 'prettier/vim-prettier'
-  use({ 'wassimk/vim-prettier', branch = 'tweaks' })
+  use('prettier/vim-prettier')
 
   -- Files And Search
   use('wincent/loupe')

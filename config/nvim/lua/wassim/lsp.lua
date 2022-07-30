@@ -163,12 +163,7 @@ require('lspconfig').sumneko_lua.setup({
 ----
 -- formatting
 ----
-local wamGrp = vim.api.nvim_create_augroup('WamAutocmdsFormatting', { clear = true })
-
-vim.g['prettier#create_autocmds'] = 0 -- from the forked version
-
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = { '*.rb', '*.rake', '*.html', '*.css', '*.jsx', '*js' },
-  command = 'silent! PrettierAsync',
-  group = wamGrp,
-})
+-- run prettier on save if there is a config file present
+vim.g['prettier#autoformat'] = 0
+vim.g['prettier#autoformat_require_pragma'] = 0
+vim.g['prettier#autoformat_config_present'] = 1
