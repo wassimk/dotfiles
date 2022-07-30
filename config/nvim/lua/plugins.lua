@@ -59,6 +59,7 @@ return packer.startup(function(use)
     requires = {
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim',
+      'jose-elias-alvarez/typescript.nvim',
     },
   })
 

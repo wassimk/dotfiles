@@ -119,7 +119,15 @@ require('lspconfig').solargraph.setup({
 })
 
 -- javascript / typescript
-require('lspconfig').tsserver.setup({ capabilities = capabilities, on_attach = on_attach })
+-- this plugin calls lspconfig and sets up tsserver
+require('typescript').setup({
+  disable_commands = false,
+  debug = false,
+  server = {
+    capabilities = capabilities,
+    on_attach = on_attach,
+  },
+})
 
 -- eslint
 require('lspconfig').eslint.setup({
@@ -157,18 +165,11 @@ require('lspconfig').sumneko_lua.setup({
 ----
 local wamGrp = vim.api.nvim_create_augroup('WamAutocmdsFormatting', { clear = true })
 
--- disable vim-prettier automatic formatting
 vim.g['prettier#create_autocmds'] = 0 -- from the forked version
 
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = { '*.rb', '*.rake', '*.html', '*.css', '*.jsx', '*js' },
   command = 'silent! PrettierAsync',
-  group = wamGrp,
-})
-
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
-  command = 'silent! EslintFixAll',
   group = wamGrp,
 })
 

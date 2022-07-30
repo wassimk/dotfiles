@@ -1,8 +1,8 @@
 --
--- javascript filetype
+-- typescriptreact filetype
 --
 
-local auGroup = vim.api.nvim_create_augroup('WamAutocmdsJavaScriptFormatting', {})
+local auGroup = vim.api.nvim_create_augroup('WamAutocmdsTypeScriptReactFormatting', {})
 
 vim.api.nvim_create_autocmd('BufWritePre', {
   callback = function()
