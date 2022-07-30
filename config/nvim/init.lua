@@ -108,7 +108,9 @@ require('Comment').setup()
 require('trouble').setup()
 
 -- todo-comments.nvim
-require('todo-comments').setup()
+require('todo-comments').setup({
+  sign_priority = 5, -- lower than gitsigns
+})
 
 -- nvim-surround
 require('nvim-surround').setup()
