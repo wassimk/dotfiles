@@ -63,7 +63,11 @@ require('mason-lspconfig').setup({ automatic_installation = { exclude = { 'solar
 require('lspconfig').bashls.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- vimscript
-require('lspconfig').vimls.setup({ capabilities = capabilities, on_attach = on_attach })
+require('lspconfig').vimls.setup({
+  init_options = { isNeovim = true },
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
 
 -- yaml
 require('lspconfig').yamlls.setup({ capabilities = capabilities, on_attach = on_attach })
