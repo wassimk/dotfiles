@@ -172,9 +172,3 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   command = 'silent! PrettierAsync',
   group = wamGrp,
 })
-
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = { '*.lua' },
-  command = 'lua require("stylua-nvim").format_file()',
-  group = wamGrp,
-})
