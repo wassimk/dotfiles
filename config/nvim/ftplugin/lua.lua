@@ -1,6 +1,10 @@
-local wamGrp = vim.api.nvim_create_augroup('WamAutocmdsLuaFormatting', { clear = true })
+--
+-- lua filetype
+--
 
 vim.api.nvim_create_autocmd('BufWritePre', {
-  command = 'lua require("stylua-nvim").format_file()',
-  group = wamGrp,
+  callback = function()
+    require('stylua-nvim').format_file()
+  end,
+  group = vim.api.nvim_create_augroup('WamAutocmdsLuaFormatting', {}),
 })

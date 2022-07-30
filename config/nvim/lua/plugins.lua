@@ -15,7 +15,7 @@ end
 vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = { 'plugins.lua' },
   command = 'source <afile> | PackerSync',
-  group = vim.api.nvim_create_augroup('WamPackerSync', { clear = true }),
+  group = vim.api.nvim_create_augroup('WamPackerSync', {}),
   desc = 'Reload the plugins.lua file and run PackerSync on save',
 })
 

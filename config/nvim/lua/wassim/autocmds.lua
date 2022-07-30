@@ -1,5 +1,5 @@
 local api = vim.api
-local wamGrp = api.nvim_create_augroup('WamAutocmds', { clear = true })
+local wamGrp = api.nvim_create_augroup('WamAutocmds', {})
 
 -- highlight on yank
 api.nvim_create_autocmd('TextYankPost', {
