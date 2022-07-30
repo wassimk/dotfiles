@@ -42,7 +42,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, opts)
   vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, opts)
-  vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting, opts)
+  vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting_seq_sync, opts)
 
   if client.name == 'tsserver' then
     client.resolved_capabilities.document_formatting = false
@@ -170,6 +170,10 @@ require('lspconfig').sumneko_lua.setup({
 ----
 -- formatting
 ----
+require('null-ls').setup({
+  sources = { require('null-ls').builtins.formatting.stylua },
+})
+
 -- run prettier on save if there is a config file present
 vim.g['prettier#autoformat'] = 0
 vim.g['prettier#autoformat_require_pragma'] = 0
