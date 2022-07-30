@@ -1,4 +1,5 @@
 require('gitsigns').setup({
+  sign_priority = 6, -- higher than todo-comments
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns
 
