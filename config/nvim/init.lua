@@ -48,7 +48,7 @@ vim.opt.undodir = os.getenv('HOME') .. '/.config/nvim/undo'
 vim.opt.clipboard = vim.opt.clipboard + 'unnamedplus'
 
 -- HACK: winbar is neovim 0.8 only
-vim.opt.winbar = '%=%f'
+vim.opt.winbar = "%{%v:lua.require'wassim.winbar'.statusline()%}"
 
 -- load plugins after options in case they override them
 require('wassim.plugins')
