@@ -462,10 +462,6 @@ installBandwhich() {
   esac
 }
 
-installShellCheck() {
-  installOrUpdate "shellcheck"
-}
-
 installSshCopyId() {
   case $os in
     $macOS*)
@@ -609,7 +605,6 @@ installDiffSoFancy
 installTrash
 installBottom
 installBandwhich
-installShellCheck
 installSshCopyId
 installBattery
 installAsimov
