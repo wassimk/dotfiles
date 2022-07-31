@@ -10,6 +10,9 @@ vim.api.nvim_create_autocmd('BufWritePre', {
     require('typescript').actions.organizeImports({ sync = true })
     require('typescript').actions.removeUnused({ sync = true })
     require('typescript').actions.fixAll({ sync = true })
+
+    -- HACK: neovim 0.8 changed formatting_seq_sync to format
+    vim.lsp.buf.format()
   end,
   group = auGroup,
 })
