@@ -45,8 +45,9 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting_seq_sync, opts)
 
   if client.name == 'tsserver' then
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    -- HACK: neovim 0.8 change client_capabilities => server_capabilities
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.document_range_formatting = false
   end
 
   lsp_status.on_attach(client)
