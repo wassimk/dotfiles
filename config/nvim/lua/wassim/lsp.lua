@@ -42,7 +42,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, opts)
   vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, opts)
-  vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting_seq_sync, opts)
+  -- HACK: neovim 0.8 changed formatting_seq_sync to format
+  vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts)
 
   if client.name == 'tsserver' then
     -- HACK: neovim 0.8 change client_capabilities => server_capabilities
