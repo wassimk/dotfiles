@@ -49,6 +49,9 @@ vim.opt.undodir = os.getenv('HOME') .. '/.config/nvim/undo'
 -- use only the system clipboard
 vim.opt.clipboard = vim.opt.clipboard + 'unnamedplus'
 
+-- HACK: winbar is neovim 0.8 only
+vim.opt.winbar = '%=%f'
+
 -- load plugins after options in case they override them
 require('plugins')
 
@@ -114,14 +117,6 @@ require('todo-comments').setup({
 
 -- nvim-surround
 require('nvim-surround').setup()
-
--- incline.nvim
-require('incline').setup({
-  hide = {
-    focused_win = true,
-    only_win = true,
-  },
-})
 
 -- more indepth setup/config/etc
 require('wassim')
