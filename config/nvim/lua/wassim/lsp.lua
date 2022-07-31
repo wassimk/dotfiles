@@ -146,7 +146,7 @@ end
 -- javascript / typescript
 -- this plugin calls lspconfig and sets up tsserver
 require('typescript').setup({
-  disable_commands = false,
+  disable_commands = false, -- :Typescript* commands
   debug = false,
   server = {
     capabilities = capabilities,
