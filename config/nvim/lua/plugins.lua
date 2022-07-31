@@ -99,7 +99,6 @@ return packer.startup(function(use)
   use('junegunn/vim-easy-align')
   use('tpope/vim-unimpaired')
   use('tpope/vim-abolish')
-  use('prettier/vim-prettier')
 
   -- Files And Search
   use('wincent/loupe')

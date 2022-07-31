@@ -168,13 +168,13 @@ require('lspconfig').sumneko_lua.setup({
 })
 
 ----
--- formatting
+-- null-ls
 ----
-require('null-ls').setup({
-  sources = { require('null-ls').builtins.formatting.stylua },
-})
+local null_ls = require('null-ls')
 
--- run prettier on save if there is a config file present
-vim.g['prettier#autoformat'] = 0
-vim.g['prettier#autoformat_require_pragma'] = 0
-vim.g['prettier#autoformat_config_present'] = 1
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.prettierd.with({ extra_filetypes = { 'ruby' } }),
+  },
+})
