@@ -175,6 +175,7 @@ local null_ls = require('null-ls')
 null_ls.setup({
   sources = {
     null_ls.builtins.formatting.stylua,
+    null_ls.builtins.diagnostics.selene,
     null_ls.builtins.formatting.prettierd.with({ extra_filetypes = { 'ruby' } }),
     null_ls.builtins.diagnostics.codespell, -- TODO: if it works well switch to formatting version
   },
