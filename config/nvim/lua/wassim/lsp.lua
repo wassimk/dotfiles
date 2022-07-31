@@ -111,7 +111,7 @@ require('lspconfig').rust_analyzer.setup({
 })
 
 -- ruby / solargraph
-if require('utils').installed_via_bundler('solargraph') then
+if require('wassim.utils').installed_via_bundler('solargraph') then
   require('lspconfig').solargraph.setup({
     cmd = { 'bundle', 'exec', 'solargraph', 'stdio' },
     init_options = {
