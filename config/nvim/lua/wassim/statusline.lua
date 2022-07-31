@@ -66,5 +66,13 @@ require('lualine').setup({
     lualine_y = { 'diagnostics' },
     lualine_z = { rhs_character_and_word_counts },
   },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {},
+  },
   extensions = { 'quickfix', 'fugitive' },
 })
