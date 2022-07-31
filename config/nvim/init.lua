@@ -4,8 +4,6 @@
 
 pcall(require, 'impatient')
 
-require('utils')
-
 -------------------------------------------------------------------------------
 -- Options --------------------------------------------------------------------
 -------------------------------------------------------------------------------
@@ -53,7 +51,7 @@ vim.opt.clipboard = vim.opt.clipboard + 'unnamedplus'
 vim.opt.winbar = '%=%f'
 
 -- load plugins after options in case they override them
-require('plugins')
+require('wassim.plugins')
 
 -- vim-test custom run strategy using vim-dispatch
 vim.api.nvim_exec(
