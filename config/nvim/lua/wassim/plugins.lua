@@ -35,8 +35,13 @@ return packer.startup(function(use)
   use('dstein64/vim-startuptime')
 
   -- Code / Git
-  use('tpope/vim-fugitive')
-  use('tpope/vim-rhubarb')
+  use({
+    'tpope/vim-fugitive',
+    requires = {
+      'tpope/vim-rhubarb',
+      'tpope/vim-dispatch', -- used for Gbrowse command
+    },
+  })
   use('christoomey/vim-conflicted')
   use('tpope/vim-eunuch')
   use('windwp/nvim-autopairs')
