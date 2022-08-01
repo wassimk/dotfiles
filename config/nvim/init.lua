@@ -53,18 +53,25 @@ vim.opt.winbar = "%{%v:lua.require'wassim.winbar'.statusline()%}"
 -- load plugins after options in case they override them
 require('wassim.plugins')
 
--- vim-test custom run strategy using vim-dispatch
+-- vim-test custom run strategy using vim-floaterm
+-- TODO: vim-test hard codes this floaterm autoclose = 0, maybe it should be configurable?
+-- TODO: also, maybe put the test command here with --title=a:cmd
 vim.api.nvim_exec(
   [[
-  function! DispatchStartStrategy(cmd)
-    execute 'Start -title=testing -wait=error ' . a:cmd
+  function! FloatermAutocloseStrategy(cmd)
+    execute 'FloatermNew '. a:cmd
+
   endfunction
 ]],
   false
 )
 
-vim.g['test#custom_strategies'] = { dispatch_start = vim.fn['DispatchStartStrategy'] }
-vim.g['test#strategy'] = 'dispatch_start'
+vim.g['test#custom_strategies'] = { floaterm_autoclose = vim.fn['FloatermAutocloseStrategy'] }
+
+vim.g['test#strategy'] = 'floaterm_autoclose'
+vim.g.floaterm_width = 0.8
+vim.g.floaterm_height = 0.8
+vim.g.floaterm_title = ''
 
 ---------------
 -- Searching --

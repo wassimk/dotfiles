@@ -49,7 +49,7 @@ return packer.startup(function(use)
   use('folke/trouble.nvim')
 
   use({ 'janko-m/vim-test', requires = {
-    'tpope/vim-dispatch',
+    'voldikss/vim-floaterm',
   } })
 
   use('williamboman/mason.nvim')
