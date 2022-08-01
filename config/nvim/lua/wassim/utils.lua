@@ -11,6 +11,7 @@ function M.installed_via_bundler(gemname)
   for line in io.lines(gemfile) do
     if string.find(line, gemname) then
       found = true
+      break
     end
   end
 
