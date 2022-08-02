@@ -60,17 +60,18 @@ if has_cmp then
         mode = 'symbol',
         before = function(entry, vim_item)
           vim_item.menu = ({
-            luasnip = '[Snippet]',
-            nvim_lsp_signature_help = '[Signature]',
-            rails_fixture_types = '[Fixture]',
-            rails_fixture_names = '[Fixture]',
-            feature_flipper = '[Flipper]',
             buffer = '[Buffer]',
+            feature_flipper = '[Flipper]',
+            git = '[GitHub]',
+            luasnip = '[Snippet]',
             nvim_lsp = '[LSP]',
+            nvim_lsp_signature_help = '[Signature]',
             nvim_lua = '[Neovim]',
             path = '[Path]',
+            rails_fixture_names = '[Fixture]',
+            rails_fixture_types = '[Fixture]',
             spell = '[Spell]',
-            git = '[GitHub]',
+            treesitter = '[Treesitter]',
           })[entry.source.name]
           return vim_item
         end,
@@ -87,6 +88,7 @@ if has_cmp then
       { name = 'nvim_lsp' },
       { name = 'nvim_lsp_signature_help' },
       { name = 'nvim_lua' },
+      { name = 'treesitter' },
       { name = 'buffer' },
       { name = 'spell', keyword_length = 4 },
     },
