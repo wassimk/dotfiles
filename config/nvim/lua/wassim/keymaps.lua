@@ -35,8 +35,14 @@ vim.keymap.set('n', '<C-f>k', '<cmd>Telescope keymaps<CR>', opts)
 require('telescope').setup({
   defaults = {
     mappings = {
-      i = { ['<C-y>'] = require('telescope.actions').select_default },
-      n = { ['<C-y>'] = require('telescope.actions').select_default },
+      i = {
+        ['<C-y>'] = require('telescope.actions').select_default,
+        ['<C-e>'] = require('telescope.actions').close,
+      },
+      n = {
+        ['<C-y>'] = require('telescope.actions').select_default,
+        ['<C-e>'] = require('telescope.actions').close,
+      },
     },
   },
 })
