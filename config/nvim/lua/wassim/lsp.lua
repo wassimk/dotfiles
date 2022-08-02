@@ -8,14 +8,8 @@ lsp_status.config({
   select_symbol = function(cursor_pos, symbol) -- sumneko_lua offers more capabilities for ranges
     if symbol.valueRange then
       local value_range = {
-        ['start'] = {
-          character = 0,
-          line = vim.fn.byte2line(symbol.valueRange[1]),
-        },
-        ['end'] = {
-          character = 0,
-          line = vim.fn.byte2line(symbol.valueRange[2]),
-        },
+        ['start'] = { character = 0, line = vim.fn.byte2line(symbol.valueRange[1]) },
+        ['end'] = { character = 0, line = vim.fn.byte2line(symbol.valueRange[2]) },
       }
 
       return require('lsp-status.util').in_range(cursor_pos, value_range)
@@ -42,6 +36,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, opts)
   vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, opts)
+
   -- HACK: neovim 0.8 changed formatting_seq_sync to format
   vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts)
 
