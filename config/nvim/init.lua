@@ -131,5 +131,15 @@ require('todo-comments').setup({
 -- nvim-surround
 require('nvim-surround').setup()
 
+-- iron.nvim repl
+local iron = require('iron.core')
+
+iron.setup({
+  config = {
+    scratch_repl = true,
+    repl_open_cmd = 'belowright 20 split',
+  },
+})
+
 -- more indepth setup/config/etc
 require('wassim')
