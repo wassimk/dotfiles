@@ -16,9 +16,11 @@ require('nvim-treesitter.configs').setup({
     'markdown',
     'markdown_inline',
     'python',
+    'query',
     'regex',
     'ruby',
     'rust',
+    'scheme',
     'scss',
     'sql',
     'toml',
@@ -30,6 +32,8 @@ require('nvim-treesitter.configs').setup({
   highlight = { enable = true, additional_vim_regex_highlighting = false },
   incremental_selection = { enable = true },
   indent = { enable = true },
+  playground = { enable = true }, -- nvim-treesitter/playground
+  query_linter = { enable = true }, -- nvim-treesitter/playground
   autotag = { enable = true }, -- nvim-ts-autotag
   endwise = { enable = true }, -- nvim-treesitter-endwise
   matchup = { enable = true }, -- vim-matchup

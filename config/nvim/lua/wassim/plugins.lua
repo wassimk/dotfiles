@@ -45,9 +45,6 @@ return packer.startup(function(use)
 
   use('christoomey/vim-conflicted')
   use('tpope/vim-eunuch')
-  use('windwp/nvim-autopairs')
-  use('RRethy/nvim-treesitter-endwise')
-  use('windwp/nvim-ts-autotag')
   use('github/copilot.vim')
   use('wincent/vcs-jump')
   use('lewis6991/gitsigns.nvim')
@@ -85,6 +82,7 @@ return packer.startup(function(use)
       'petertriho/cmp-git',
       'hrsh7th/cmp-path',
       'f3fora/cmp-spell',
+      'ray-x/cmp-treesitter',
       'onsails/lspkind.nvim',
     },
   })
@@ -139,8 +137,17 @@ return packer.startup(function(use)
   use('tpope/vim-sensible')
   use('editorconfig/editorconfig-vim')
   use('ludovicchabant/vim-gutentags')
-  use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
-  use('andymass/vim-matchup')
+  use({
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    requires = {
+      'nvim-treesitter/playground',
+      'windwp/nvim-ts-autotag',
+      'RRethy/nvim-treesitter-endwise',
+      'windwp/nvim-autopairs',
+      'andymass/vim-matchup',
+    },
+  })
 
   -- Theme / Status Line / Tmux / Terminal / Vim
   use('navarasu/onedark.nvim')
