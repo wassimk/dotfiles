@@ -42,6 +42,7 @@ return packer.startup(function(use)
       'tpope/vim-dispatch', -- used for Gbrowse command
     },
   })
+
   use('christoomey/vim-conflicted')
   use('tpope/vim-eunuch')
   use('windwp/nvim-autopairs')
@@ -52,6 +53,8 @@ return packer.startup(function(use)
   use('lewis6991/gitsigns.nvim')
   use('folke/todo-comments.nvim')
   use('folke/trouble.nvim')
+
+  use('hkupty/iron.nvim')
 
   use({ 'janko-m/vim-test', requires = {
     'voldikss/vim-floaterm',

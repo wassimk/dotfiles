@@ -16,9 +16,12 @@ vim.keymap.set('n', 't<C-a>', '<cmd>TestSuite<CR>', opts)
 vim.keymap.set('n', 't<C-l>', '<cmd>TestLast<CR>', opts)
 vim.keymap.set('n', 't<C-g>', '<cmd>TestVisit<CR>', opts)
 
--- vim-easy-align
-vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)<CR>', opts)
-vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)<CR>', opts)
+-- iron.nvim
+vim.keymap.set('n', '<Leader>pl', require('iron.core').send_line, opts)
+vim.keymap.set('v', '<Leader>pv', require('iron.core').visual_send, opts)
+vim.keymap.set('n', '<Leader>pf', require('iron.core').send_file, opts)
+vim.keymap.set('n', '<Leader>pc', require('iron.core').close_repl, opts)
+vim.keymap.set('n', '<Leader>pr', require('iron.core').repl_restart, opts)
 
 -- telescope
 vim.keymap.set('n', '<C-f>f', '<cmd>Telescope find_files<CR>', opts)
@@ -41,6 +44,10 @@ require('telescope').setup({
 -- bufferline.nvim
 vim.keymap.set('n', ']b', '<cmd>BufferLineCycleNext<CR>', opts)
 vim.keymap.set('n', '[b', '<cmd>BufferLineCyclePrev<CR>', opts)
+
+-- vim-easy-align
+vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)<CR>', opts)
+vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)<CR>', opts)
 
 -- split resizing (defaults taken over by yabai)
 vim.keymap.set('n', '<M-i>', '<cmd>resize -5<CR>')
