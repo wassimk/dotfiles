@@ -125,5 +125,5 @@ key_bindings:
   - { key: Right, mods: Alt, chars: "\x1b\x66" }
   - { key: Q, mods: Control, chars: "\x11" }
   - { key: B, mods: Control, chars: "\x02" }
-  - { key: F, mods: Control, chars: "\x06" }
+  # - { key: F, mods: Control, chars: "\x06" }
   - { key: Slash, mods: Control, chars: "\x1f" } # it beeps
