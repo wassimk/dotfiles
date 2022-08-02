@@ -24,6 +24,7 @@ vim.keymap.set('n', '<Leader>pc', require('iron.core').close_repl, opts)
 vim.keymap.set('n', '<Leader>pr', require('iron.core').repl_restart, opts)
 
 -- telescope
+vim.keymap.set('n', '<C-f>', '', opts) -- i keep typing this and it scrolls the screen!
 vim.keymap.set('n', '<C-f>f', '<cmd>Telescope find_files<CR>', opts)
 vim.keymap.set('n', '<C-f>w', '<cmd>Telescope grep_string<CR>', opts)
 vim.keymap.set('n', '<C-f>g', '<cmd>Telescope live_grep<CR>', opts)
