@@ -132,6 +132,9 @@ require('todo-comments').setup({
 -- nvim-surround
 require('nvim-surround').setup()
 
+-- refactoring.nvim
+require('refactoring').setup({})
+
 -- iron.nvim repl
 local iron = require('iron.core')
 
