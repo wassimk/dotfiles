@@ -3,6 +3,7 @@
 ----
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
+
 lsp_status.config({
   diagnostics = false, -- using the built-in to lualine
   select_symbol = function(cursor_pos, symbol) -- sumneko_lua offers more capabilities for ranges
@@ -192,6 +193,6 @@ null_ls.setup({
     null_ls.builtins.formatting.prettierd.with({ extra_filetypes = { 'ruby' } }),
     null_ls.builtins.diagnostics.codespell, -- TODO: if it works well switch to formatting version
     null_ls.builtins.code_actions.shellcheck,
-    null_ls.builtins.code_actions.refactoring,
+    null_ls.builtins.code_actions.refactoring.with({ extra_filetypes = { 'ruby' } }),
   },
 })
