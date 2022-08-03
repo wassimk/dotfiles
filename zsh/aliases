@@ -16,6 +16,11 @@ fi
 alias ls='ll'
 alias l='ll'
 
+# lazygit
+if command -v lazygit 2>&1 >/dev/null; then
+  alias lg='lazygit'
+fi
+
 if command -v bat 2>&1 >/dev/null; then
   alias cat='bat'
 fi

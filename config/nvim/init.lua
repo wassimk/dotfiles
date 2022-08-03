@@ -70,9 +70,11 @@ vim.api.nvim_exec(
 vim.g['test#custom_strategies'] = { floaterm_autoclose = vim.fn['FloatermAutocloseStrategy'] }
 
 vim.g['test#strategy'] = 'floaterm_autoclose'
-vim.g.floaterm_width = 0.8
-vim.g.floaterm_height = 0.8
+vim.g.floaterm_width = 0.85
+vim.g.floaterm_height = 0.85
 vim.g.floaterm_title = ''
+
+vim.api.nvim_create_user_command('Lg', 'FloatermNew lazygit', {})
 
 ---------------
 -- Searching --
