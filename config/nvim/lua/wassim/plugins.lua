@@ -70,6 +70,7 @@ return packer.startup(function(use)
 
   use('nvim-lua/lsp-status.nvim')
   use('jose-elias-alvarez/null-ls.nvim')
+  use('ThePrimeagen/refactoring.nvim')
 
   use({
     'hrsh7th/nvim-cmp',

@@ -33,7 +33,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
   vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+  vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, opts)
   vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, opts)
 
@@ -191,5 +191,6 @@ null_ls.setup({
     null_ls.builtins.diagnostics.selene,
     null_ls.builtins.formatting.prettierd.with({ extra_filetypes = { 'ruby' } }),
     null_ls.builtins.diagnostics.codespell, -- TODO: if it works well switch to formatting version
+    null_ls.builtins.code_actions.refactoring,
   },
 })
