@@ -109,6 +109,11 @@ return packer.startup(function(use)
   use('tpope/vim-unimpaired')
   use('tpope/vim-abolish')
 
+  use('kana/vim-textobj-user')
+  use('kana/vim-textobj-line')
+  use('kana/vim-textobj-entire')
+  use('kana/vim-textobj-indent')
+
   -- Files And Search
   use('wincent/loupe')
   use('wincent/ferret')
