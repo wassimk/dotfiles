@@ -1,27 +1,10 @@
 ----
 -- lsp
 ----
-local lsp_status = require('lsp-status')
-lsp_status.register_progress()
-
-lsp_status.config({
-  diagnostics = false, -- using the built-in to lualine
-  select_symbol = function(cursor_pos, symbol) -- sumneko_lua offers more capabilities for ranges
-    if symbol.valueRange then
-      local value_range = {
-        ['start'] = { character = 0, line = vim.fn.byte2line(symbol.valueRange[1]) },
-        ['end'] = { character = 0, line = vim.fn.byte2line(symbol.valueRange[2]) },
-      }
-
-      return require('lsp-status.util').in_range(cursor_pos, value_range)
-    end
-  end,
-})
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
 
-local on_attach = function(client, bufnr)
+local on_attach = function(client)
   local opts = { buffer = 0, silent = true }
 
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
@@ -46,8 +29,6 @@ local on_attach = function(client, bufnr)
     client.server_capabilities.document_formatting = false
     client.server_capabilities.document_range_formatting = false
   end
-
-  lsp_status.on_attach(client)
 end
 
 -- global diagnostic configuration
