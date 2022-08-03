@@ -135,7 +135,16 @@ require('todo-comments').setup({
 require('nvim-surround').setup()
 
 -- refactoring.nvim
-require('refactoring').setup({})
+require('refactoring').setup()
+
+-- fidget.nvim
+require('fidget').setup({
+  sources = {
+    ['null-ls'] = {
+      ignore = true,
+    },
+  },
+})
 
 -- iron.nvim repl
 local iron = require('iron.core')
