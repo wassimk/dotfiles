@@ -10,6 +10,14 @@ installGit() {
   installOrUpdate "git"
 }
 
+installLazygit() {
+  case $os in
+    $macOS*)
+      installOrUpdate "jesseduffield/lazygit/lazygit"
+      ;;
+  esac
+}
+
 installGo() {
   case $os in
     $macOS*)

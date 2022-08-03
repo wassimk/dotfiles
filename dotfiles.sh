@@ -11,7 +11,7 @@ echo ""
 echo "Installing dot files..."
 echo ""
 
-rcup -v -x "*.sh" -x "*.md" -x "iterm/com*" -x "config/karabiner"
+rcup -v -x "*.sh" -x "*.md" -x "iterm/com*" -x "config/karabiner" -x "config/lazygit*"
 
 # vcs-jump installed by packer plugin manager in vim
 vcs_jump_link="$HOME"/.bin/vcs-jump
@@ -30,4 +30,11 @@ ln -sf "$HOME"/.dotfiles/iterm "$HOME"/.config
 espanso_dir="$HOME/Library/Application Support/espanso"
 if [ -d "$espanso_dir" ]; then
   ln -sf  "$espanso_dir" "$HOME"/.dotfiles/config
+fi
+
+# lazygit config wants to live somewhere odd, let's symlink it
+real_lazygit_config_dir="$HOME/Library/Application Support/lazygit"
+lazygit_config_file="$HOME/.dotfiles/config/lazygit/config.yml"
+if [ -d "$real_lazygit_config_dir" ]; then
+  ln -sf "$lazygit_config_file" "$real_lazygit_config_dir/config.yml"
 fi
