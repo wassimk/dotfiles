@@ -107,6 +107,13 @@ require('nvim-tree').setup({
   },
 })
 
+-- QFEnter for quickfix keymaps
+vim.g.qfenter_keymap = {
+  vopen = { '<C-v>' },
+  hopen = { '<C-x>' },
+  topen = { '<C-t>' },
+}
+
 -- Indent Blankline
 require('indent_blankline').setup({
   show_current_context = false,
