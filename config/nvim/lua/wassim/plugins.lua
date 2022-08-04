@@ -139,6 +139,7 @@ return packer.startup(function(use)
   use('yssl/QFEnter')
 
   -- Pretty much automatic
+  use('beauwilliams/focus.nvim')
   use('wincent/vim-clipper')
   use('lukas-reineke/indent-blankline.nvim')
   use('tpope/vim-repeat')

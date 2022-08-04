@@ -14,13 +14,6 @@ api.nvim_create_autocmd('FileType', {
   group = wamGrp,
 })
 
--- center current window when vim is resized
--- FIXME: this doesn't seem to work, you can manally do it and it behaves different
-api.nvim_create_autocmd('VimResized', {
-  command = 'execute "normal! \\<c-w>="',
-  group = wamGrp,
-})
-
 -- markdown
 api.nvim_create_autocmd('FileType', {
   pattern = 'markdown',
