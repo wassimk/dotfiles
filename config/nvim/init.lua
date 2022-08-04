@@ -153,6 +153,12 @@ require('fidget').setup({
   },
 })
 
+-- focus.nvim
+require('focus').setup({
+  width = 120,
+  excluded_buftypes = { 'nofile', 'prompt', 'popup', 'quickfix' },
+})
+
 -- iron.nvim repl
 local iron = require('iron.core')
 
