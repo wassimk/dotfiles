@@ -1,6 +1,9 @@
-local has_luasnip, luasnip = pcall(require, 'luasnip')
+--
+-- luasnip.nvim
+-- https://github.com/L3MON4D3/LuaSnip
+--
 
-if has_luasnip then
+if packer_plugins['luasnip'] and packer_plugins['luasnip'].loaded then
   local types = require('luasnip.util.types')
 
   luasnip.config.setup({

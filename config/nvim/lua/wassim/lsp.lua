@@ -161,7 +161,7 @@ require('lspconfig').eslint.setup({
 require('lspconfig').sumneko_lua.setup({
   settings = {
     Lua = {
-      diagnostics = { globals = { 'vim', 'hs' } },
+      diagnostics = { globals = { 'vim', 'hs', 'packer_plugins' } },
       workspace = { library = vim.api.nvim_get_runtime_file('', true) },
       format = { enable = false },
       telemetry = { enable = false },

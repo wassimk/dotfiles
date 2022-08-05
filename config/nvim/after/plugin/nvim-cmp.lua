@@ -1,8 +1,12 @@
-local has_cmp, cmp = pcall(require, 'cmp')
+--
+-- nvim-cmp
+-- https://github.com/hrsh7th/nvim-cmp
+--
 
-if has_cmp then
-  local has_luasnip, luasnip = pcall(require, 'luasnip')
+if packer_plugins['nvim-cmp'] and packer_plugins['nvim-cmp'].loaded then
+  local cmp = require('cmp')
   local lspkind = require('lspkind')
+  local luasnip = pcall(require, 'luasnip')
 
   local key_mappings = {
     ['<C-p>'] = cmp.mapping(function(fallback)
