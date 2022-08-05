@@ -52,7 +52,7 @@ vim.opt.clipboard = vim.opt.clipboard + 'unnamedplus'
 vim.opt.winbar = "%{%v:lua.require'wassim.winbar'.statusline()%}"
 
 -- load plugins after options in case they override them
-require('wassim.plugins').setup()
+require('plugins').setup()
 
 -- vim-test custom run strategy using vim-floaterm
 -- TODO: vim-test hard codes this floaterm autoclose = 0, maybe it should be configurable?
