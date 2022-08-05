@@ -7,9 +7,6 @@ pcall(require, 'impatient')
 require('plugins').setup()
 require('wassim')
 
--- HACK: winbar is neovim 0.8 only
-vim.opt.winbar = "%{%v:lua.require'wassim.winbar'.statusline()%}"
-
 -- vim-test custom run strategy using vim-floaterm
 -- TODO: vim-test hard codes this floaterm autoclose = 0, maybe it should be configurable?
 -- TODO: also, maybe put the test command here with --title=a:cmd

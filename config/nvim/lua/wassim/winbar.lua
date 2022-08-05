@@ -10,9 +10,6 @@ local winbar_filetype_exclude = {
   'startuptime',
 }
 
-vim.api.nvim_set_hl(0, 'WinBarPath', { bg = '#282c34' })
-vim.api.nvim_set_hl(0, 'WinBarModified', { bg = '#282c34' })
-
 function M.statusline()
   if vim.tbl_contains(winbar_filetype_exclude, vim.bo.filetype) then
     return ''
@@ -24,6 +21,10 @@ function M.statusline()
   -- file_path = file_path:gsub('/', ' > ')
 
   return '%=' .. '%#WinBarPath#' .. ' ' .. file_path .. '%*' .. '%#WinBarModified#' .. modified .. ' ' .. '%*'
+end
+
+function M.setup()
+  vim.opt.winbar = "%{%v:lua.require'wassim.winbar'.statusline()%}"
 end
 
 return M
