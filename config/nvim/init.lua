@@ -19,25 +19,6 @@ if vim.fn.executable('rg') == 1 then
   vim.g.ackprg = 'rg --vimgrep'
 end
 
--- Loupe
-vim.g.LoupeVeryMagic = 0
-
--- Telescope
-require('telescope').load_extension('fzf')
-require('telescope').load_extension('ui-select')
-
--- nvim-tree
-require('nvim-tree').setup({
-  view = {
-    hide_root_folder = false,
-    mappings = {
-      list = {
-        { key = '?', action = 'toggle_help' },
-      },
-    },
-  },
-})
-
 -- QFEnter for quickfix keymaps
 vim.g.qfenter_keymap = {
   vopen = { '<C-v>' },
