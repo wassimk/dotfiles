@@ -1,37 +1,37 @@
---------------
--- Key Mappings
---------------
+local keymap = vim.keymap.set
+local opts = { noremap = true, silent = true }
 
+-- Remap leader and local leader to <Space>
+vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
-
-local opts = { silent = true }
+vim.g.maplocalleader = ' '
 
 -- nvim-tree
-vim.keymap.set('n', '<C-n>', '<cmd>NvimTreeToggle<CR>', opts)
+keymap('n', '<C-n>', '<cmd>NvimTreeToggle<CR>', opts)
 
 -- vim-test
-vim.keymap.set('n', 't<C-n>', '<cmd>TestNearest<CR>', opts)
-vim.keymap.set('n', 't<C-f>', '<cmd>TestFile<CR>', opts)
-vim.keymap.set('n', 't<C-a>', '<cmd>TestSuite<CR>', opts)
-vim.keymap.set('n', 't<C-l>', '<cmd>TestLast<CR>', opts)
-vim.keymap.set('n', 't<C-g>', '<cmd>TestVisit<CR>', opts)
+keymap('n', 't<C-n>', '<cmd>TestNearest<CR>', opts)
+keymap('n', 't<C-f>', '<cmd>TestFile<CR>', opts)
+keymap('n', 't<C-a>', '<cmd>TestSuite<CR>', opts)
+keymap('n', 't<C-l>', '<cmd>TestLast<CR>', opts)
+keymap('n', 't<C-g>', '<cmd>TestVisit<CR>', opts)
 
 -- iron.nvim
-vim.keymap.set('n', '<Leader>pl', require('iron.core').send_line, opts)
-vim.keymap.set('v', '<Leader>pv', require('iron.core').visual_send, opts)
-vim.keymap.set('n', '<Leader>pf', require('iron.core').send_file, opts)
-vim.keymap.set('n', '<Leader>pc', require('iron.core').close_repl, opts)
-vim.keymap.set('n', '<Leader>pr', require('iron.core').repl_restart, opts)
+keymap('n', '<Leader>pl', require('iron.core').send_line, opts)
+keymap('v', '<Leader>pv', require('iron.core').visual_send, opts)
+keymap('n', '<Leader>pf', require('iron.core').send_file, opts)
+keymap('n', '<Leader>pc', require('iron.core').close_repl, opts)
+keymap('n', '<Leader>pr', require('iron.core').repl_restart, opts)
 
 -- telescope
-vim.keymap.set('n', '<C-f>', '', opts) -- i keep typing this and it scrolls the screen!
-vim.keymap.set('n', '<C-f>f', '<cmd>Telescope find_files<CR>', opts)
-vim.keymap.set('n', '<C-f>w', '<cmd>Telescope grep_string<CR>', opts)
-vim.keymap.set('n', '<C-f>g', '<cmd>Telescope live_grep<CR>', opts)
-vim.keymap.set('n', '<C-f>b', '<cmd>Telescope current_buffer_fuzzy_find<CR>', opts)
-vim.keymap.set('n', '<C-f>h', '<cmd>Telescope help_tags<CR>', opts)
-vim.keymap.set('n', '<C-f>c', '<cmd>Telescope commands<CR>', opts)
-vim.keymap.set('n', '<C-f>k', '<cmd>Telescope keymaps<CR>', opts)
+keymap('n', '<C-f>', '', opts) -- i keep typing this and it scrolls the screen!
+keymap('n', '<C-f>f', '<cmd>Telescope find_files<CR>', opts)
+keymap('n', '<C-f>w', '<cmd>Telescope grep_string<CR>', opts)
+keymap('n', '<C-f>g', '<cmd>Telescope live_grep<CR>', opts)
+keymap('n', '<C-f>b', '<cmd>Telescope current_buffer_fuzzy_find<CR>', opts)
+keymap('n', '<C-f>h', '<cmd>Telescope help_tags<CR>', opts)
+keymap('n', '<C-f>c', '<cmd>Telescope commands<CR>', opts)
+keymap('n', '<C-f>k', '<cmd>Telescope keymaps<CR>', opts)
 
 require('telescope').setup({
   defaults = {
@@ -49,15 +49,15 @@ require('telescope').setup({
 })
 
 -- bufferline.nvim
-vim.keymap.set('n', ']b', '<cmd>BufferLineCycleNext<CR>', opts)
-vim.keymap.set('n', '[b', '<cmd>BufferLineCyclePrev<CR>', opts)
+keymap('n', ']b', '<cmd>BufferLineCycleNext<CR>', opts)
+keymap('n', '[b', '<cmd>BufferLineCyclePrev<CR>', opts)
 
 -- vim-easy-align
-vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)<CR>', opts)
-vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)<CR>', opts)
+keymap('x', 'ga', '<Plug>(EasyAlign)<CR>', opts)
+keymap('n', 'ga', '<Plug>(EasyAlign)<CR>', opts)
 
 -- split resizing (defaults taken over by yabai)
-vim.keymap.set('n', '<M-i>', '<cmd>resize -5<CR>')
-vim.keymap.set('n', '<M-u>', '<cmd>resize +5<CR>')
-vim.keymap.set('n', '<M-y>', '<cmd>vertical resize +5<CR>')
-vim.keymap.set('n', '<M-o>', '<cmd>vertical resize -5<CR>')
+keymap('n', '<M-i>', '<cmd>resize -5<CR>')
+keymap('n', '<M-u>', '<cmd>resize +5<CR>')
+keymap('n', '<M-y>', '<cmd>vertical resize +5<CR>')
+keymap('n', '<M-o>', '<cmd>vertical resize -5<CR>')
