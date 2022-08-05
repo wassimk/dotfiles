@@ -103,6 +103,15 @@ require('lspconfig').rust_analyzer.setup({
   on_attach = on_attach,
 })
 
+-- syntax_tree
+if require('wassim.utils').installed_via_bundler('syntax_tree') then
+  require('lspconfig').syntax_tree.setup({
+    cmd = { 'bundle', 'exec', 'stree', 'lsp' },
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
+end
+
 -- ruby / solargraph
 if require('wassim.utils').installed_via_bundler('solargraph') then
   require('lspconfig').solargraph.setup({
