@@ -54,7 +54,12 @@ function M.setup()
     use('wincent/vcs-jump')
     use('lewis6991/gitsigns.nvim')
     use('folke/todo-comments.nvim')
-    use('folke/trouble.nvim')
+    use({
+      'folke/trouble.nvim',
+      config = function()
+        require('trouble').setup()
+      end,
+    })
 
     use('hkupty/iron.nvim')
 
@@ -76,7 +81,12 @@ function M.setup()
 
     use('j-hui/fidget.nvim')
     use('jose-elias-alvarez/null-ls.nvim')
-    use('ThePrimeagen/refactoring.nvim')
+    use({
+      'ThePrimeagen/refactoring.nvim',
+      config = function()
+        require('refactoring').setup()
+      end,
+    })
 
     use({
       'hrsh7th/nvim-cmp',
@@ -108,8 +118,18 @@ function M.setup()
     use('tpope/vim-rails')
 
     -- Vim Text Objects and Motions
-    use('numToStr/Comment.nvim')
-    use('kylechui/nvim-surround')
+    use({
+      'numToStr/Comment.nvim',
+      config = function()
+        require('Comment').setup()
+      end,
+    })
+    use({
+      'kylechui/nvim-surround',
+      config = function()
+        require('nvim-surround').setup()
+      end,
+    })
     use('christoomey/vim-sort-motion')
     use('junegunn/vim-easy-align')
     use('tpope/vim-unimpaired')

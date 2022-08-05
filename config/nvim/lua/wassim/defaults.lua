@@ -1,4 +1,3 @@
-local api = vim.api
 local g = vim.g
 local opt = vim.opt
 
@@ -45,3 +44,12 @@ opt.clipboard = opt.clipboard + 'unnamedplus'
 
 -- HACK: winbar is neovim 0.8 only
 require('wassim.winbar').setup()
+
+if vim.fn.executable('rg') == 1 then
+  -- use rg for grep
+  opt.grepprg = 'rg -H --no-heading --vimgrep'
+  opt.grepformat = '%f:%l:%c:%m,%f'
+
+  -- use rg for ack
+  g.ackprg = 'rg --vimgrep'
+end
