@@ -6,6 +6,10 @@ function M.setup()
 
   -- packer.nvim use popup window instead of a split
   local conf = {
+    profile = {
+      enable = true,
+      threshold = 0, -- load time before included in reporting
+    },
     display = {
       open_fn = function()
         return require('packer.util').float({ border = 'rounded' })
