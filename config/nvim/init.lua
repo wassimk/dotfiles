@@ -7,28 +7,6 @@ pcall(require, 'impatient')
 require('plugins').setup()
 require('wassim')
 
--- vim-test custom run strategy using vim-floaterm
--- TODO: vim-test hard codes this floaterm autoclose = 0, maybe it should be configurable?
--- TODO: also, maybe put the test command here with --title=a:cmd
-vim.api.nvim_exec(
-  [[
-  function! FloatermAutocloseStrategy(cmd)
-    execute 'FloatermNew '. a:cmd
-
-  endfunction
-]],
-  false
-)
-
-vim.g['test#custom_strategies'] = { floaterm_autoclose = vim.fn['FloatermAutocloseStrategy'] }
-
-vim.g['test#strategy'] = 'floaterm_autoclose'
-vim.g.floaterm_width = 0.85
-vim.g.floaterm_height = 0.85
-vim.g.floaterm_title = ''
-
-vim.api.nvim_create_user_command('Lg', 'FloatermNew lazygit', {})
-
 ---------------
 -- Searching --
 ---------------
