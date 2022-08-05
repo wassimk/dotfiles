@@ -1,12 +1,6 @@
 local api = vim.api
 local wamGrp = api.nvim_create_augroup('WamAutocmds', {})
 
--- highlight on yank
-api.nvim_create_autocmd('TextYankPost', {
-  command = 'silent! lua vim.highlight.on_yank { timeout = 750 }',
-  group = wamGrp,
-})
-
 -- wrap long text in quickfix windows
 api.nvim_create_autocmd('FileType', {
   pattern = 'qf',
