@@ -34,5 +34,5 @@ if has_luasnip then
     end
   end, { silent = true })
 
-  require('luasnip.loaders.from_lua').load({ paths = '~/.config/nvim/snippets' })
+  require('luasnip.loaders.from_lua').load({ paths = os.getenv('HOME') .. '/.config/nvim/lua/wassim/snippets' })
 end
