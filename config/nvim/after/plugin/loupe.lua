@@ -3,5 +3,6 @@
 -- https://github.com/wincent/loupe
 --
 
--- don't use vim very magic mode on / searches
-vim.g.LoupeVeryMagic = 0
+if packer_plugins['loupe'] and packer_plugins['loupe'].loaded then
+  vim.g.LoupeVeryMagic = 0
+end

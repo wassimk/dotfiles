@@ -3,6 +3,8 @@
 -- https://github.com/lukas-reineke/indent-blankline.nvim
 --
 
-require('indent_blankline').setup({
-  show_current_context = false,
-})
+if packer_plugins['indent-blankline.nvim'] and packer_plugins['indent-blankline.nvim'].loaded then
+  require('indent_blankline').setup({
+    show_current_context = false,
+  })
+end
