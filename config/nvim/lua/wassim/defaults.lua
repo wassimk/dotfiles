@@ -42,3 +42,6 @@ opt.undodir = os.getenv('HOME') .. '/.config/nvim/undo'
 
 -- use only the system clipboard
 opt.clipboard = opt.clipboard + 'unnamedplus'
+
+-- HACK: winbar is neovim 0.8 only
+require('wassim.winbar').setup()

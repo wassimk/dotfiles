@@ -7,6 +7,10 @@ require('onedark').load()
 -- used by vim-matchup plugin
 vim.api.nvim_set_hl(0, 'MatchWord', { italic = true })
 
+-- winbar
+vim.api.nvim_set_hl(0, 'WinBarPath', { bg = '#282c34' })
+vim.api.nvim_set_hl(0, 'WinBarModified', { bg = '#282c34' })
+
 -- diagnostic icons in gutter
 local signs = {
   Error = ' ',
