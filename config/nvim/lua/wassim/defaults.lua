@@ -34,10 +34,7 @@ opt.splitbelow = true -- New horizontal split below
 opt.inccommand = 'nosplit' -- Live highlight of substitutions
 opt.complete = opt.complete + 'kspell'
 opt.shortmess = opt.shortmess + 'a' -- Some sane display defaults
-
--- allow undo even after closing a file
-opt.undofile = true
-opt.undodir = os.getenv('HOME') .. '/.config/nvim/undo'
+opt.undofile = true -- allow undo even after closing a file
 
 -- use only the system clipboard
 opt.clipboard = opt.clipboard + 'unnamedplus'
