@@ -4,6 +4,6 @@
 
 pcall(require, 'impatient')
 
-require('disable_builtin').setup()
+require('builtin_plugins').disable()
 require('plugins').setup()
 require('wassim')
