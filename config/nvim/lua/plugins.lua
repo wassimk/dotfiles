@@ -164,7 +164,7 @@ function M.setup()
     -- files and search
     use('wincent/loupe')
     use('wincent/ferret')
-    use('wincent/scalpel')
+    use({ 'wincent/scalpel', keys = '<Leader>e' })
 
     use({
       'nvim-telescope/telescope.nvim',
