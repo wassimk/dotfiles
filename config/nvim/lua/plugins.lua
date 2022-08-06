@@ -57,13 +57,13 @@ function M.setup()
       'tpope/vim-fugitive',
       cmd = { 'GBrowse', 'Gdiff' },
       requires = {
-        'tpope/vim-rhubarb',
-        'tpope/vim-dispatch',
+        { 'tpope/vim-rhubarb', after = 'vim-fugitive' },
+        { 'tpope/vim-dispatch', after = 'vim-rhubarb' },
       },
     })
 
     use({ 'christoomey/vim-conflicted', cmd = 'Conflicted' })
-    use({ 'wincent/vcs-jump', cmd = { 'VcsJump' } })
+    use({ 'wincent/vcs-jump', cmd = 'VcsJump' })
     use('lewis6991/gitsigns.nvim')
 
     -- repl
@@ -86,7 +86,7 @@ function M.setup()
 
     use({
       'voldikss/vim-floaterm',
-      cmd = { 'FloatermNew' },
+      cmd = 'FloatermNew',
       config = function()
         require('lazy.vim-floaterm').setup()
       end,
@@ -110,7 +110,7 @@ function M.setup()
       'wassimk/nvim-lspconfig',
       branch = 'add-syntax_tree',
       requires = {
-        'williamboman/mason-lspconfig.nvim',
+        { 'williamboman/mason-lspconfig.nvim' },
         'jose-elias-alvarez/typescript.nvim',
       },
     })
@@ -121,6 +121,7 @@ function M.setup()
 
     use({
       'ThePrimeagen/refactoring.nvim',
+      module = 'refactoring',
       config = function()
         require('refactoring').setup()
       end,
@@ -140,23 +141,24 @@ function M.setup()
         'f3fora/cmp-spell',
         'ray-x/cmp-treesitter',
         'onsails/lspkind.nvim',
+        { '~/personal/neovim/cmp-rails-fixture-types', ft = 'ruby' },
+        { '~/personal/neovim/cmp-rails-fixture-names', ft = 'ruby' },
+        { '~/personal/neovim/cmp-feature-flipper', ft = 'ruby' },
       },
     })
 
-    use('~/personal/neovim/cmp-rails-fixture-types')
-    use('~/personal/neovim/cmp-rails-fixture-names')
-    use('~/personal/neovim/cmp-feature-flipper')
-
     use({
       'L3MON4D3/LuaSnip',
-      requires = { 'saadparwaiz1/cmp_luasnip' },
+      requires = 'saadparwaiz1/cmp_luasnip',
     })
 
     -- ruby / rails
     use({
       'vim-ruby/vim-ruby',
-      ft = { 'ruby' },
-      requires = { 'tpope/vim-rails' },
+      ft = 'ruby',
+      requires = {
+        { 'tpope/vim-rails', after = 'vim-ruby' },
+      },
     })
 
     -- files and search
@@ -166,10 +168,10 @@ function M.setup()
 
     use({
       'nvim-telescope/telescope.nvim',
-      cmd = { 'Telescope' },
+      cmd = 'Telescope',
       requires = {
         { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-        'nvim-telescope/telescope-ui-select.nvim',
+        { 'nvim-telescope/telescope-ui-select.nvim' },
       },
       config = function()
         require('lazy.telescope').setup()
@@ -178,8 +180,7 @@ function M.setup()
 
     use({
       'kyazdani42/nvim-tree.lua',
-      opt = true,
-      cmd = { 'NvimTreeToggle' },
+      cmd = 'NvimTreeToggle',
       config = function()
         require('lazy.nvim-tree').setup()
       end,
@@ -188,7 +189,6 @@ function M.setup()
     -- text objects / motions
     use({
       'numToStr/Comment.nvim',
-      opt = true,
       keys = { 'gc', 'gcc', 'gbc' },
       config = function()
         require('Comment').setup()
@@ -197,13 +197,14 @@ function M.setup()
 
     use({
       'kylechui/nvim-surround',
+      keys = { 'cs', 'ds', 'ys' },
       config = function()
         require('nvim-surround').setup()
       end,
     })
 
-    use({ 'christoomey/vim-sort-motion', keys = { 'gs' } })
-    use({ 'junegunn/vim-easy-align', keys = { 'ga' } })
+    use({ 'christoomey/vim-sort-motion', keys = 'gs' })
+    use({ 'junegunn/vim-easy-align', keys = 'ga' })
     use('kana/vim-textobj-user')
     use('kana/vim-textobj-line')
     use('kana/vim-textobj-entire')
