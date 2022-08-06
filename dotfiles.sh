@@ -38,3 +38,8 @@ lazygit_config_file="$HOME/.dotfiles/config/lazygit/config.yml"
 if [ -d "$real_lazygit_config_dir" ]; then
   ln -sf "$lazygit_config_file" "$real_lazygit_config_dir/config.yml"
 fi
+
+echo ""
+echo "Cleaning up broken symlinks..."
+echo ""
+find -L "$HOME/.config" -type l -exec rm -i {} \;
