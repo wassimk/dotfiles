@@ -15,6 +15,7 @@ function M.setup()
         return require('packer.util').float({ border = 'rounded' })
       end,
     },
+    max_jobs = 20, -- prevent stalling on sync
   }
 
   -- install packer.nvim if not installed
@@ -24,52 +25,83 @@ function M.setup()
     if fn.empty(fn.glob(install_path)) > 0 then
       packer_bootstrap =
         fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-
-      -- vim.cmd([[packadd packer.nvim]])
     end
 
     -- install and sync plugins on file change
     vim.api.nvim_create_autocmd('BufWritePost', {
       pattern = { 'plugins.lua' },
-      command = 'source <afile> | PackerSync',
-      group = vim.api.nvim_create_augroup('WamPackerSync', {}),
-      desc = 'Reload the plugins.lua file and run PackerSync on save',
+      command = 'source <afile> | PackerCompile',
+      group = vim.api.nvim_create_augroup('WamPackerCompile', {}),
+      desc = 'Reload the plugins.lua file and run PackerCompile on save',
     })
   end
 
   local function plugins(use)
     use('wbthomason/packer.nvim')
 
+    -- profile neovim
     use('lewis6991/impatient.nvim')
     use('dstein64/vim-startuptime')
 
-    -- Code / Git
+    -- many plugins use these, so not listed as required per plugin
+    use({ 'nvim-lua/plenary.nvim', module = 'plenary' })
+
+    use({
+      'kyazdani42/nvim-web-devicons',
+      module = 'nvim-web-devicons',
+      config = require('lazy.nvim-web-devicons').setup(),
+    })
+
+    -- git
     use({
       'tpope/vim-fugitive',
+      cmd = { 'GBrowse', 'Gdiff' },
       requires = {
         'tpope/vim-rhubarb',
-        'tpope/vim-dispatch', -- used for Gbrowse command
+        'tpope/vim-dispatch',
       },
     })
 
-    use('christoomey/vim-conflicted')
-    use('tpope/vim-eunuch')
-    use('github/copilot.vim')
-    use('wincent/vcs-jump')
+    use({ 'christoomey/vim-conflicted', cmd = 'Conflicted' })
+    use({ 'wincent/vcs-jump', cmd = { 'VcsJump' } })
     use('lewis6991/gitsigns.nvim')
-    use('folke/todo-comments.nvim')
+
+    -- repl
     use({
+      'hkupty/iron.nvim',
+      module = 'iron.core',
+      config = function()
+        require('lazy.iron').setup()
+      end,
+    })
+
+    -- testing
+    use({
+      'janko-m/vim-test',
+      cmd = { 'TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit' },
+      config = function()
+        require('lazy.vim-test').setup()
+      end,
+    })
+
+    use({
+      'voldikss/vim-floaterm',
+      cmd = { 'FloatermNew' },
+      config = function()
+        require('lazy.vim-floaterm').setup()
+      end,
+    })
+
+    -- lsp / copilot / diagnostics
+    use('folke/todo-comments.nvim')
+
+    use({
+      cmd = 'Trouble',
       'folke/trouble.nvim',
       config = function()
         require('trouble').setup()
       end,
     })
-
-    use('hkupty/iron.nvim')
-
-    use({ 'janko-m/vim-test', requires = {
-      'voldikss/vim-floaterm',
-    } })
 
     use('williamboman/mason.nvim')
     use('WhoIsSethDaniel/mason-tool-installer.nvim')
@@ -85,6 +117,8 @@ function M.setup()
 
     use('j-hui/fidget.nvim')
     use('jose-elias-alvarez/null-ls.nvim')
+    use('github/copilot.vim')
+
     use({
       'ThePrimeagen/refactoring.nvim',
       config = function()
@@ -92,6 +126,7 @@ function M.setup()
       end,
     })
 
+    -- completion / snippets
     use({
       'hrsh7th/nvim-cmp',
       requires = {
@@ -112,70 +147,76 @@ function M.setup()
     use('~/personal/neovim/cmp-rails-fixture-names')
     use('~/personal/neovim/cmp-feature-flipper')
 
-    -- Snippets with completion
-    use({ 'L3MON4D3/LuaSnip', requires = {
-      'saadparwaiz1/cmp_luasnip',
-    } })
-
-    -- Ruby / Rails
-    use('vim-ruby/vim-ruby')
-    use('tpope/vim-rails')
-
-    -- Vim Text Objects and Motions
     use({
-      'numToStr/Comment.nvim',
-      config = function()
-        require('Comment').setup()
-      end,
+      'L3MON4D3/LuaSnip',
+      requires = { 'saadparwaiz1/cmp_luasnip' },
     })
+
+    -- ruby / rails
     use({
-      'kylechui/nvim-surround',
-      config = function()
-        require('nvim-surround').setup()
-      end,
+      'vim-ruby/vim-ruby',
+      ft = { 'ruby' },
+      requires = { 'tpope/vim-rails' },
     })
-    use('christoomey/vim-sort-motion')
-    use('junegunn/vim-easy-align')
-    use('tpope/vim-unimpaired')
-    use('tpope/vim-abolish')
 
-    use('kana/vim-textobj-user')
-    use('kana/vim-textobj-line')
-    use('kana/vim-textobj-entire')
-    use('kana/vim-textobj-indent')
-
-    -- Files And Search
+    -- files and search
     use('wincent/loupe')
     use('wincent/ferret')
     use('wincent/scalpel')
 
     use({
       'nvim-telescope/telescope.nvim',
+      cmd = { 'Telescope' },
       requires = {
-        'nvim-lua/plenary.nvim',
         { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-        'kyazdani42/nvim-web-devicons',
         'nvim-telescope/telescope-ui-select.nvim',
       },
+      config = function()
+        require('lazy.telescope').setup()
+      end,
     })
 
     use({
       'kyazdani42/nvim-tree.lua',
-      requires = {
-        'kyazdani42/nvim-web-devicons',
-      },
+      opt = true,
+      cmd = { 'NvimTreeToggle' },
+      config = function()
+        require('lazy.nvim-tree').setup()
+      end,
     })
 
-    use('yssl/QFEnter')
+    -- text objects / motions
+    use({
+      'numToStr/Comment.nvim',
+      opt = true,
+      keys = { 'gc', 'gcc', 'gbc' },
+      config = function()
+        require('Comment').setup()
+      end,
+    })
 
-    -- Pretty much automatic
+    use({
+      'kylechui/nvim-surround',
+      config = function()
+        require('nvim-surround').setup()
+      end,
+    })
+
+    use({ 'christoomey/vim-sort-motion', keys = { 'gs' } })
+    use({ 'junegunn/vim-easy-align', keys = { 'ga' } })
+    use('kana/vim-textobj-user')
+    use('kana/vim-textobj-line')
+    use('kana/vim-textobj-entire')
+    use('kana/vim-textobj-indent')
+
+    -- miscellaneous / automatic
     use('beauwilliams/focus.nvim')
     use('wincent/vim-clipper')
-    use('lukas-reineke/indent-blankline.nvim')
+    use({ 'lukas-reineke/indent-blankline.nvim' })
     use('tpope/vim-repeat')
-    use('tpope/vim-sensible')
     use('editorconfig/editorconfig-vim')
     use('ludovicchabant/vim-gutentags')
+
     use({
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
@@ -188,13 +229,16 @@ function M.setup()
       },
     })
 
-    -- Theme / Status Line / Tmux / Terminal / Vim
+    -- theme / status line / tmux / terminal / vim
     use('navarasu/onedark.nvim')
     use('christoomey/vim-tmux-navigator')
     use('wincent/terminus')
+    use('yssl/QFEnter')
     use('milkypostman/vim-togglelist')
     use('nvim-lualine/lualine.nvim')
     use('akinsho/bufferline.nvim')
+    use('tpope/vim-unimpaired')
+    use('tpope/vim-abolish')
 
     if packer_bootstrap then
       vim.notify('packer.nvim installed with plugins, restart neovim!')

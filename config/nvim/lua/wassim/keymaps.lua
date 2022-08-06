@@ -16,12 +16,12 @@ keymap('n', 't<C-a>', '<cmd>TestSuite<CR>', opts)
 keymap('n', 't<C-l>', '<cmd>TestLast<CR>', opts)
 keymap('n', 't<C-g>', '<cmd>TestVisit<CR>', opts)
 
--- iron.nvim
-keymap('n', '<Leader>pl', require('iron.core').send_line, opts)
-keymap('v', '<Leader>pv', require('iron.core').visual_send, opts)
-keymap('n', '<Leader>pf', require('iron.core').send_file, opts)
-keymap('n', '<Leader>pc', require('iron.core').close_repl, opts)
-keymap('n', '<Leader>pr', require('iron.core').repl_restart, opts)
+-- iron
+keymap('n', '<Leader>pl', "<cmd>lua require('iron.core').send_line()<CR>", opts)
+keymap('v', '<Leader>pv', "<cmd>lua require('iron.core').visual_send()<CR>", opts)
+keymap('n', '<Leader>pf', "<cmd>lua require('iron.core').send_file()<CR>", opts)
+keymap('n', '<Leader>pc', "<cmd>lua require('iron.core').close_repl()<CR>", opts)
+keymap('n', '<Leader>pr', "<cmd>lua require('iron.core').repl_restart()<CR>", opts)
 
 -- telescope
 keymap('n', '<C-f>', '', opts) -- i keep typing this and it scrolls the screen!

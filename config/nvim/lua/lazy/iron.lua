@@ -3,7 +3,9 @@
 -- https://github.com/hkupty/iron.nvim
 --
 
-if packer_plugins['iron.nvim'] and packer_plugins['iron.nvim'].loaded then
+local M = {}
+
+function M.setup()
   require('iron.core').setup({
     config = {
       scratch_repl = true,
@@ -11,3 +13,5 @@ if packer_plugins['iron.nvim'] and packer_plugins['iron.nvim'].loaded then
     },
   })
 end
+
+return M

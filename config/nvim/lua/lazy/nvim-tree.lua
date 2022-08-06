@@ -3,7 +3,9 @@
 -- https://github.com/kyazdani42/nvim-tree.lua
 --
 
-if packer_plugins['nvim-tree.lua'] and packer_plugins['nvim-tree.lua'].loaded then
+local M = {}
+
+function M.setup()
   require('nvim-tree').setup({
     view = {
       hide_root_folder = false,
@@ -15,3 +17,5 @@ if packer_plugins['nvim-tree.lua'] and packer_plugins['nvim-tree.lua'].loaded th
     },
   })
 end
+
+return M
