@@ -48,6 +48,14 @@ require('telescope').setup({
   },
 })
 
+-- luasnip
+keymap(
+  'n',
+  '<leader><leader>s',
+  '<cmd>source ' .. os.getenv('HOME') .. '/.config/nvim/after/plugin/luasnip.lua<CR>',
+  opts
+)
+
 -- bufferline.nvim
 keymap('n', ']b', '<cmd>BufferLineCycleNext<CR>', opts)
 keymap('n', '[b', '<cmd>BufferLineCyclePrev<CR>', opts)
