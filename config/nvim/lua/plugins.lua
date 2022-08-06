@@ -52,6 +52,9 @@ function M.setup()
       config = require('lazy.nvim-web-devicons').setup(),
     })
 
+    -- startup screen
+    use('goolord/alpha-nvim')
+
     -- git
     use({
       'tpope/vim-fugitive',
