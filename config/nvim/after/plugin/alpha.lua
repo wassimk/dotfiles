@@ -177,6 +177,7 @@ local buttons = {
     dashboard.button('e', '  New file', '<cmd>ene<CR>'),
     dashboard.button('<C-f> f', '  Find file'),
     dashboard.button('<C-f> g', '  Live grep'),
+    dashboard.button('<C-f> h', '  Search help'),
     dashboard.button('u', '  Update plugins', '<cmd>PackerSync<CR>'),
     dashboard.button('q', '  Quit', '<cmd>qa<CR>'),
   },
