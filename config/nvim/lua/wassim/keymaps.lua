@@ -1,7 +1,7 @@
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
--- Remap leader and local leader to <Space>
+-- remap leader and local leader to <Space>
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -24,7 +24,7 @@ keymap('n', '<Leader>pc', "<cmd>lua require('iron.core').close_repl()<CR>", opts
 keymap('n', '<Leader>pr', "<cmd>lua require('iron.core').repl_restart()<CR>", opts)
 
 -- telescope
-keymap('n', '<C-f>', '', opts) -- i keep typing this and it scrolls the screen!
+keymap('n', '<C-f>', '', opts) -- i keep hitting this and it scrolls the screen!
 keymap('n', '<C-f>f', '<cmd>Telescope find_files<CR>', opts)
 keymap('n', '<C-f>w', '<cmd>Telescope grep_string<CR>', opts)
 keymap('n', '<C-f>g', '<cmd>Telescope live_grep<CR>', opts)
@@ -61,8 +61,7 @@ keymap('n', ']b', '<cmd>BufferLineCycleNext<CR>', opts)
 keymap('n', '[b', '<cmd>BufferLineCyclePrev<CR>', opts)
 
 -- vim-easy-align
-keymap('x', 'ga', '<Plug>(EasyAlign)<CR>', opts)
-keymap('n', 'ga', '<Plug>(EasyAlign)<CR>', opts)
+keymap({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)<CR>', opts)
 
 -- split resizing (defaults taken over by yabai)
 keymap('n', '<M-i>', '<cmd>resize -5<CR>')
