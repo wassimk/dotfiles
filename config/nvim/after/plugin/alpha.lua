@@ -35,6 +35,17 @@ local function icon(fn)
   return nwd.get_icon(fn, ext, { default = true })
 end
 
+local function version()
+  local v = vim.version()
+  local version_string = nil
+  version_string = v.major .. '.' .. v.minor .. '.' .. v.patch
+  if v.prerelease then
+    version_string = version_string .. '-beta'
+  end
+
+  return version_string
+end
+
 local function file_button(fn, sc, short_fn)
   short_fn = short_fn or fn
   local ico_txt
@@ -145,6 +156,16 @@ local default_header = {
   },
 }
 
+local section_version = {
+  type = 'text',
+  val = { version() },
+  opts = {
+    position = 'center',
+    hl = 'Type',
+    -- wrap = "overflow";
+  },
+}
+
 local section_mru = {
   type = 'group',
   val = {
@@ -188,6 +209,7 @@ local config = {
   layout = {
     { type = 'padding', val = 2 },
     default_header,
+    section_version,
     { type = 'padding', val = 2 },
     section_mru,
     { type = 'padding', val = 2 },
