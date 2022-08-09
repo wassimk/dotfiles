@@ -72,7 +72,13 @@ require('lspconfig').vimls.setup({
 require('lspconfig').yamlls.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- json
-require('lspconfig').jsonls.setup({ capabilities = capabilities, on_attach = on_attach })
+require('lspconfig').jsonls.setup({
+  init_options = {
+    provideFormatter = true,
+  },
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
 
 -- html
 require('lspconfig').html.setup({ capabilities = capabilities, on_attach = on_attach })
