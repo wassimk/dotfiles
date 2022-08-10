@@ -24,9 +24,6 @@ opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.tabstop = 2
 
--- use only the system clipboard
-opt.clipboard = opt.clipboard + 'unnamedplus'
-
 -- HACK: winbar is neovim 0.8 only
 require('wassim.winbar').setup()
 
