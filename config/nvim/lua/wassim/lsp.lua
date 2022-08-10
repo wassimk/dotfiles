@@ -114,21 +114,21 @@ if require('wassim.utils').installed_via_bundler('syntax_tree') then
 end
 
 -- ruby / solargraph
-if require('wassim.utils').installed_via_bundler('solargraph') then
-  require('lspconfig').solargraph.setup({
-    cmd = { 'bundle', 'exec', 'solargraph', 'stdio' },
-    init_options = {
-      formatting = false,
-    },
-    settings = {
-      solargraph = {
-        diagnostics = true,
-      },
-    },
-    capabilities = capabilities,
-    on_attach = on_attach,
-  })
-end
+-- if require('wassim.utils').installed_via_bundler('solargraph') then
+--   require('lspconfig').solargraph.setup({
+--     cmd = { 'bundle', 'exec', 'solargraph', 'stdio' },
+--     init_options = {
+--       formatting = false,
+--     },
+--     settings = {
+--       solargraph = {
+--         diagnostics = true,
+--       },
+--     },
+--     capabilities = capabilities,
+--     on_attach = on_attach,
+--   })
+-- end
 
 -- javascript / typescript
 -- this plugin calls lspconfig and sets up tsserver
@@ -185,10 +185,9 @@ local null_ls = require('null-ls')
 
 null_ls.setup({
   sources = {
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.prettierd.with({ extra_filetypes = { 'ruby' } }),
-    null_ls.builtins.diagnostics.codespell, -- TODO: if it works well switch to formatting version
-    null_ls.builtins.code_actions.shellcheck,
-    null_ls.builtins.code_actions.refactoring.with({ extra_filetypes = { 'ruby' } }),
+    null_ls.builtins.diagnostics.rubocop.with({
+      command = 'bundle',
+      args = vim.list_extend({ 'exec', 'rubocop' }, null_ls.builtins.diagnostics.rubocop._opts.args),
+    }),
   },
 })
