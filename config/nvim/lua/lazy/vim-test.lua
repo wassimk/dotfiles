@@ -7,13 +7,12 @@ local M = {}
 
 function M.setup()
   -- vim-test custom run strategy using vim-floaterm
-  -- vim-test hard codes this floaterm autoclose = 0,
-  -- which is why we are creating our own strategy
+  -- because vim-test hard codes its floaterm autoclose to 0
   -- TODO: maybe put the test command here with --title=a:cmd
   vim.api.nvim_exec(
     [[
   function! FloatermAutocloseStrategy(cmd)
-    execute 'FloatermNew '. a:cmd
+    execute 'FloatermNew --autoclose=1 '. a:cmd
 
   endfunction
 ]],

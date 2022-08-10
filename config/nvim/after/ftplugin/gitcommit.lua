@@ -2,5 +2,5 @@ vim.o.spell = true
 
 require('wassim.cmp_handles').setup()
 
--- TODO: move the git handle out of wassim.cmp.handles and back into cmp/init.lua
+-- TODO: move this source out of wassim.cmp_handles and into nvim-cmp.lua
 require('cmp_git').setup()
