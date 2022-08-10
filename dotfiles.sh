@@ -15,7 +15,7 @@ rcup -v -x "*.sh" -x "*.md" -x "iterm/com*" -x "config/karabiner" -x "config/laz
 
 # vcs-jump installed by packer plugin manager in vim
 vcs_jump_link="$HOME"/.bin/vcs-jump
-vcs_jump_cmd="$HOME"/.local/share/nvim/site/pack/packer/start/vcs-jump/bin/vcs-jump
+vcs_jump_cmd="$HOME"/.local/share/nvim/site/pack/packer/opt/vcs-jump/bin/vcs-jump
 if ! command -v "$vcs_jump_link" >/dev/null 2>&1; then
   if command -v "$vcs_jump_cmd" >/dev/null 2>&1; then
     ln -sf "$vcs_jump_cmd" "$vcs_jump_link"
