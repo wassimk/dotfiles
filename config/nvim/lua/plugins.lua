@@ -199,7 +199,6 @@ function M.setup()
 
     use({
       'kylechui/nvim-surround',
-      keys = { 'cs', 'ds', 'ys' },
       config = function()
         require('nvim-surround').setup()
       end,
