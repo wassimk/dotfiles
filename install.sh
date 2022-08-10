@@ -247,26 +247,6 @@ installGh() {
   esac
 }
 
-installTig() {
-  case $os in
-    $macOS*)
-      installOrUpdate "tig"
-      ;;
-    $ubuntu*)
-      if ! command -v tig >/dev/null 2>&1; then
-        gh release download --pattern "tig-*.tar.gz" --repo jonas/tig
-        tar -xvf tig-*.tar.gz
-        cd tig-*/ || exit
-        make prefix=/usr/local
-        sudo make install prefix=/usr/local
-        cd ..
-        rm -rf tig-*/
-        rm tig-*.tar.gz
-      fi
-      ;;
-  esac
-}
-
 installTerminal() {
   case $os in
     $macOS*)
@@ -598,7 +578,6 @@ installProcs
 installCtags
 installGrc
 installHub
-installTig
 installTerminal
 installWindowManager
 installShortcutManager
