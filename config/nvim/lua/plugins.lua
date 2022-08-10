@@ -65,7 +65,6 @@ function M.setup()
       },
     })
 
-    use({ 'christoomey/vim-conflicted', cmd = 'Conflicted' })
     use({ 'wincent/vcs-jump', cmd = 'VcsJump' })
     use('lewis6991/gitsigns.nvim')
 
