@@ -19,12 +19,9 @@ local on_attach = function(client)
   vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, opts)
   vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, opts)
-
-  -- HACK: neovim 0.8 changed formatting_seq_sync to format
   vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts)
 
   if client.name == 'tsserver' then
-    -- HACK: neovim 0.8 change client_capabilities => server_capabilities
     client.server_capabilities.document_formatting = false
     client.server_capabilities.document_range_formatting = false
   end
@@ -41,7 +38,7 @@ vim.diagnostic.config({
 })
 
 -- automatic lsp server installs
-require('mason').setup() -- does more but the lspconfig extension is all we use it for
+require('mason').setup()
 require('mason-lspconfig').setup({ automatic_installation = { exclude = { 'solargraph' } } })
 
 -- mason auto-update

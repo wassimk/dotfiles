@@ -32,7 +32,7 @@ api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
   group = wamGrp,
 })
 
--- close certain windows to close with "q"
+-- close certain windows with "q"
 api.nvim_create_autocmd('FileType', {
   pattern = { 'help', 'startuptime', 'qf', 'lspinfo' },
   command = 'nnoremap <buffer><silent> q :close<CR>',

@@ -4,7 +4,7 @@ function M.setup()
   -- used for first time install check
   local packer_bootstrap = false
 
-  -- packer.nvim use popup window instead of a split
+  -- packer.nvim config options for init
   local conf = {
     profile = {
       enable = true,
@@ -18,7 +18,7 @@ function M.setup()
     max_jobs = 20, -- prevent stalling on sync
   }
 
-  -- install packer.nvim if not installed
+  -- install packer.nvim, if not installed
   local function packer_init()
     local fn = vim.fn
     local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -27,7 +27,7 @@ function M.setup()
         fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
     end
 
-    -- install and sync plugins on file change
+    -- re-compile plugins on file change
     vim.api.nvim_create_autocmd('BufWritePost', {
       pattern = { 'plugins.lua' },
       command = 'source <afile> | PackerCompile',
@@ -43,7 +43,7 @@ function M.setup()
     use('lewis6991/impatient.nvim')
     use('dstein64/vim-startuptime')
 
-    -- many plugins use these, so not listed as required per plugin
+    -- many plugins use these, so not listed as required on them
     use({ 'nvim-lua/plenary.nvim', module = 'plenary' })
 
     use({
@@ -112,7 +112,7 @@ function M.setup()
     use({
       'neovim/nvim-lspconfig',
       requires = {
-        { 'williamboman/mason-lspconfig.nvim' },
+        'williamboman/mason-lspconfig.nvim',
         'jose-elias-alvarez/typescript.nvim',
       },
     })
@@ -173,7 +173,7 @@ function M.setup()
       cmd = 'Telescope',
       requires = {
         { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-        { 'nvim-telescope/telescope-ui-select.nvim' },
+        'nvim-telescope/telescope-ui-select.nvim',
       },
       config = function()
         require('lazy.telescope').setup()
@@ -210,15 +210,16 @@ function M.setup()
     use('kana/vim-textobj-line')
     use('kana/vim-textobj-entire')
     use('kana/vim-textobj-indent')
+    use('tpope/vim-repeat')
 
     -- miscellaneous / automatic
     use('beauwilliams/focus.nvim')
     use('wincent/vim-clipper')
-    use({ 'lukas-reineke/indent-blankline.nvim' })
-    use('tpope/vim-repeat')
+    use('lukas-reineke/indent-blankline.nvim')
     use('editorconfig/editorconfig-vim')
     use('ludovicchabant/vim-gutentags')
 
+    -- treesitter
     use({
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
@@ -231,7 +232,7 @@ function M.setup()
       },
     })
 
-    -- theme / status line / tmux / terminal / vim
+    -- theme / status line / tmux / terminal / quickfix / vim
     use('navarasu/onedark.nvim')
     use('christoomey/vim-tmux-navigator')
     use('wincent/terminus')
