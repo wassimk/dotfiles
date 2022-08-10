@@ -67,6 +67,13 @@ function M.setup()
 
     use({ 'wincent/vcs-jump', cmd = 'VcsJump' })
     use('lewis6991/gitsigns.nvim')
+    use({
+      'akinsho/git-conflict.nvim',
+      tag = '*',
+      config = function()
+        require('git-conflict').setup()
+      end,
+    })
 
     -- repl
     use({
