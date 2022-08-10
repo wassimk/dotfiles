@@ -159,18 +159,24 @@ require('lspconfig').eslint.setup({
 })
 
 -- lua
-require('lspconfig').sumneko_lua.setup({
-  settings = {
-    Lua = {
-      diagnostics = { globals = { 'vim', 'hs', 'packer_plugins' } },
-      workspace = { library = vim.api.nvim_get_runtime_file('', true) },
-      format = { enable = false },
-      telemetry = { enable = false },
+local luadev = require('lua-dev').setup({
+  lspconfig = {
+    settings = {
+      Lua = {
+        diagnostics = { globals = { 'vim', 'hs', 'packer_plugins' } },
+        workspace = { library = vim.api.nvim_get_runtime_file('', true) },
+        format = { enable = false },
+        telemetry = { enable = false },
+      },
     },
+    capabilities = capabilities,
+    on_attach = on_attach,
   },
-  capabilities = capabilities,
-  on_attach = on_attach,
 })
+
+-- TODO - luadev this is only for neovim development, add if/else to load
+-- sumneko without it if doing non-neovim work
+require('lspconfig').sumneko_lua.setup(luadev)
 
 ----
 -- null-ls

@@ -114,6 +114,7 @@ function M.setup()
       requires = {
         'williamboman/mason-lspconfig.nvim',
         'jose-elias-alvarez/typescript.nvim',
+        'folke/lua-dev.nvim',
       },
     })
 
@@ -142,7 +143,6 @@ function M.setup()
         'f3fora/cmp-spell',
         'ray-x/cmp-treesitter',
         'onsails/lspkind.nvim',
-        { 'hrsh7th/cmp-nvim-lua', ft = 'lua' },
         { '~/personal/neovim/cmp-rails-fixture-types', ft = 'ruby' },
         { '~/personal/neovim/cmp-rails-fixture-names', ft = 'ruby' },
         { '~/personal/neovim/cmp-feature-flipper', ft = 'ruby' },
