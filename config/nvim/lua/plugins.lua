@@ -110,8 +110,7 @@ function M.setup()
     use('WhoIsSethDaniel/mason-tool-installer.nvim')
 
     use({
-      'wassimk/nvim-lspconfig',
-      branch = 'add-syntax_tree',
+      'neovim/nvim-lspconfig',
       requires = {
         { 'williamboman/mason-lspconfig.nvim' },
         'jose-elias-alvarez/typescript.nvim',
