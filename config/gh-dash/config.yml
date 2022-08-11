@@ -1,0 +1,26 @@
+prSections:
+- title: My Pull Requests
+  filters: is:open author:@me
+- title: Review Requested
+  filters: is:open review-requested:@me
+- title: Needs Review
+  filters: repo:ministrycentered/giving repo:ministrycentered/login repo:ministrycentered/accounts is:open archived:false draft:false sort:created-asc -label:+2 -label:"not ready" -label:dependencies -reviewed-by:wassimk -author:wassimk 
+- title: Subscribed
+  filters: is:open -author:@me archived:false
+issuesSections:
+- title: My Issues
+  filters: is:open author:@me archived:false
+- title: Assigned
+  filters: is:open assignee:@me archived:false
+- title: Subscribed
+  filters: is:open -author:@me archived:false
+defaults:
+  preview:
+    open: true
+    width: 50
+  prsLimit: 30
+  issuesLimit: 20
+  view: prs
+keybindings:
+  prs: []
+repoPaths: {}

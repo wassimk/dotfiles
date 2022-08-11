@@ -245,6 +245,8 @@ installGh() {
       gh completion -s zsh | sudo tee /usr/local/share/zsh/site-functions/_gh > /dev/null
       ;;
   esac
+
+  gh extension install dlvhdr/gh-dash
 }
 
 installTerminal() {
