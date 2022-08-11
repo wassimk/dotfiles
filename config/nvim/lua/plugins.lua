@@ -177,6 +177,7 @@ function M.setup()
     use({
       'nvim-telescope/telescope.nvim',
       cmd = 'Telescope',
+      tag = '*',
       requires = {
         { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
         'nvim-telescope/telescope-ui-select.nvim',
