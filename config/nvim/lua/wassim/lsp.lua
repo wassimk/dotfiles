@@ -1,6 +1,8 @@
 ----
 -- lsp
 ----
+local installed_via_bundler = require('wassim.utils').installed_via_bundler
+
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local on_attach = function(client)
@@ -105,7 +107,7 @@ require('lspconfig').rust_analyzer.setup({
 })
 
 -- syntax_tree
-if require('wassim.utils').installed_via_bundler('syntax_tree') then
+if installed_via_bundler('syntax_tree') then
   require('lspconfig').syntax_tree.setup({
     cmd = { 'bundle', 'exec', 'stree', 'lsp' },
     capabilities = capabilities,
@@ -114,7 +116,7 @@ if require('wassim.utils').installed_via_bundler('syntax_tree') then
 end
 
 -- ruby / solargraph
-if require('wassim.utils').installed_via_bundler('solargraph') then
+if installed_via_bundler('solargraph') then
   require('lspconfig').solargraph.setup({
     cmd = { 'bundle', 'exec', 'solargraph', 'stdio' },
     init_options = {
@@ -174,7 +176,7 @@ local luadev = require('lua-dev').setup({
   },
 })
 
--- TODO - luadev this is only for neovim development, add if/else to load
+-- TODO - luadev is only for neovim development, add if/else to load
 -- sumneko without it if doing non-neovim work
 require('lspconfig').sumneko_lua.setup(luadev)
 
@@ -182,13 +184,22 @@ require('lspconfig').sumneko_lua.setup(luadev)
 -- null-ls
 ----
 local null_ls = require('null-ls')
+local sources = {
+  null_ls.builtins.formatting.stylua,
+  null_ls.builtins.formatting.prettierd.with({ extra_filetypes = { 'ruby' } }),
+  null_ls.builtins.diagnostics.codespell, -- TODO: if it works well switch to formatting version
+  null_ls.builtins.code_actions.shellcheck,
+  null_ls.builtins.code_actions.refactoring.with({ extra_filetypes = { 'ruby' } }),
+}
 
-null_ls.setup({
-  sources = {
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.prettierd.with({ extra_filetypes = { 'ruby' } }),
-    null_ls.builtins.diagnostics.codespell, -- TODO: if it works well switch to formatting version
-    null_ls.builtins.code_actions.shellcheck,
-    null_ls.builtins.code_actions.refactoring.with({ extra_filetypes = { 'ruby' } }),
-  },
-})
+-- rubocop via null-ls if not using solargraph
+if not installed_via_bundler('solargraph') and installed_via_bundler('rubocop') then
+  local rubocop_source = null_ls.builtins.diagnostics.rubocop.with({
+    command = 'bundle',
+    args = vim.list_extend({ 'exec', 'rubocop' }, null_ls.builtins.diagnostics.rubocop._opts.args),
+  })
+
+  vim.list_extend(sources, { rubocop_source })
+end
+
+null_ls.setup({ sources = sources })
