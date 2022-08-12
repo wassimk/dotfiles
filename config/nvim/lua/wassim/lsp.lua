@@ -202,4 +202,4 @@ if not installed_via_bundler('solargraph') and installed_via_bundler('rubocop') 
   vim.list_extend(sources, { rubocop_source })
 end
 
-null_ls.setup({ sources = sources })
+null_ls.setup({ sources = sources, on_attach = on_attach })
