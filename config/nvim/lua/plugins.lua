@@ -125,7 +125,9 @@ function M.setup()
     })
 
     use('j-hui/fidget.nvim')
-    use('jose-elias-alvarez/null-ls.nvim')
+    -- use('jose-elias-alvarez/null-ls.nvim')
+    use('~/Personal/neovim/null-ls.nvim')
+
     use('github/copilot.vim')
 
     use({
