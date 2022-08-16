@@ -132,6 +132,39 @@ if installed_via_bundler('solargraph') then
   })
 end
 
+-- ruby-lsp
+if installed_via_bundler('ruby%-lsp') then
+  local lspconfig = require('lspconfig')
+  local configs = require('lspconfig.configs')
+  local util = require('lspconfig.util')
+
+  if not configs.ruby_lsp then
+    local enabled_features = {
+      'documentHighlights',
+      'documentSymbols',
+      'foldingRanges',
+      'selectionRanges',
+      'semanticHighlighting',
+      -- 'formatting',
+      'diagnostics',
+      'codeActions',
+    }
+
+    configs.ruby_lsp = {
+      default_config = {
+        cmd = { 'bundle', 'exec', 'ruby-lsp' },
+        filetypes = { 'ruby' },
+        root_dir = util.root_pattern('Gemfile', '.git'),
+        init_options = {
+          enabledFeatures = enabled_features,
+        },
+      },
+    }
+  end
+
+  lspconfig.ruby_lsp.setup({ on_attach = on_attach, capabilities = capabilities })
+end
+
 -- javascript / typescript
 -- this plugin calls lspconfig and sets up tsserver
 require('typescript').setup({
@@ -193,7 +226,10 @@ local sources = {
 }
 
 -- rubocop via null-ls if not using solargraph
-if not installed_via_bundler('solargraph') and installed_via_bundler('rubocop') then
+if
+  (not installed_via_bundler('solargraph') and not installed_via_bundler('ruby%-lsp'))
+  and installed_via_bundler('rubocop')
+then
   local rubocop_source = null_ls.builtins.diagnostics.rubocop.with({
     command = 'bundle',
     args = vim.list_extend({ 'exec', 'rubocop' }, null_ls.builtins.diagnostics.rubocop._opts.args),
