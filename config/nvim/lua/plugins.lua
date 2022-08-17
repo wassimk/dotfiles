@@ -246,7 +246,7 @@ function M.setup()
     use('kevinhwang91/nvim-bqf')
     use('milkypostman/vim-togglelist')
     use('nvim-lualine/lualine.nvim')
-    use('akinsho/bufferline.nvim')
+    use({ 'akinsho/bufferline.nvim', tag = '*' })
     use('tpope/vim-unimpaired')
     use('tpope/vim-abolish')
 
