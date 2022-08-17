@@ -11,7 +11,7 @@ echo ""
 echo "Installing dot files..."
 echo ""
 
-rcup -v -x "*.sh" -x "*.md" -x "iterm/com*" -x "config/karabiner" -x "config/lazygit*" -x "config/espanso*"
+rcup -v -x "*.sh" -x "*.md" -x "*.log" -x "iterm/com*" -x "config/karabiner" -x "config/lazygit*" -x "config/espanso*"
 
 # vcs-jump installed by packer plugin manager in vim
 vcs_jump_link="$HOME"/.bin/vcs-jump
@@ -42,4 +42,8 @@ fi
 echo ""
 echo "Cleaning up broken symlinks..."
 echo ""
+find -L "$HOME" -maxdepth 1 -type l -exec rm -i {} \;
+find -L "$HOME/.bin" -type l -exec rm -i {} \;
 find -L "$HOME/.config" -type l -exec rm -i {} \;
+find -L "$HOME/.hammerspoon" -type l -exec rm -i {} \;
+find -L "$HOME/.zsh" -type l -exec rm -i {} \;
