@@ -18,7 +18,7 @@ function M.disable()
   vim.g.loaded_logiPat = 1
   vim.g.loaded_rrhelper = 1
 
-  vim.g.loaded_netrw = 1
+  -- vim.g.loaded_netrw = 1 -- :GBrowse uses this
   vim.g.loaded_netrwPlugin = 1
   vim.g.loaded_netrwSettings = 1
 end
