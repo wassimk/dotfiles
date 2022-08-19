@@ -9,6 +9,16 @@ vim.g.maplocalleader = ' '
 -- clipboard
 keymap({ 'n', 'v' }, '<Leader>y', '"+y', opts)
 
+-- split resizing (defaults taken over by yabai)
+keymap('n', '<M-i>', '<cmd>resize -5<CR>')
+keymap('n', '<M-u>', '<cmd>resize +5<CR>')
+keymap('n', '<M-y>', '<cmd>vertical resize +5<CR>')
+keymap('n', '<M-o>', '<cmd>vertical resize -5<CR>')
+
+----
+-- Keymaps for Lazy Loaded Plugins
+----
+
 -- nvim-tree
 keymap('n', '<C-n>', '<cmd>NvimTreeToggle<CR>', opts)
 
@@ -38,9 +48,3 @@ keymap('n', '<C-f>k', '<cmd>Telescope keymaps<CR>', opts)
 
 -- vim-easy-align
 keymap({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)<CR>', opts)
-
--- split resizing (defaults taken over by yabai)
-keymap('n', '<M-i>', '<cmd>resize -5<CR>')
-keymap('n', '<M-u>', '<cmd>resize +5<CR>')
-keymap('n', '<M-y>', '<cmd>vertical resize +5<CR>')
-keymap('n', '<M-o>', '<cmd>vertical resize -5<CR>')
