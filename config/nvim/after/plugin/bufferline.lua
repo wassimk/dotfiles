@@ -31,3 +31,7 @@ require('bufferline').setup({
     end,
   },
 })
+
+-- keymaps
+vim.keymap.set('n', ']b', '<cmd>BufferLineCycleNext<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '[b', '<cmd>BufferLineCyclePrev<CR>', { noremap = true, silent = true })
