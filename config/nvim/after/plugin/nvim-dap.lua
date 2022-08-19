@@ -16,8 +16,13 @@ keymap('n', '<F10>', dap.step_over, opts)
 keymap('n', '<F11>', dap.step_into, opts)
 keymap('n', '<F12>', dap.step_out, opts)
 keymap('n', '<Leader>b', dap.toggle_breakpoint, opts)
-keymap('n', '<Leader>B', "lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
-keymap('n', '<Leader>lp', "lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", opts)
+keymap('n', '<Leader>B', "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
+keymap(
+  'n',
+  '<Leader>lp',
+  "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
+  opts
+)
 keymap('n', '<Leader>dr', dap.repl.open, opts)
 keymap('n', '<Leader>dl', dap.run_last, opts)
 
