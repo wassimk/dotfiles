@@ -37,4 +37,12 @@ vim.keymap.set({ 'i', 's' }, '<C-j>', function()
   end
 end, { silent = true })
 
+-- reload snippets
+vim.keymap.set(
+  'n',
+  '<leader><leader>s',
+  '<cmd>source ' .. os.getenv('HOME') .. '/.config/nvim/after/plugin/luasnip.lua<CR>',
+  { noremap = true, silent = true }
+)
+
 require('luasnip.loaders.from_lua').load({ paths = os.getenv('HOME') .. '/.config/nvim/lua/wassim/snippets' })
