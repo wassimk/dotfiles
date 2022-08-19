@@ -12,15 +12,29 @@ vim.api.nvim_set_hl(0, 'WinBarPath', { bg = '#282c34' })
 vim.api.nvim_set_hl(0, 'WinBarModified', { bg = '#282c34' })
 
 -- diagnostic icons in gutter
-local signs = {
+local diagnostic_signs = {
   Error = ' ',
   Warn = ' ',
   Info = ' ',
   Hint = ' ',
 }
 
-for type, icon in pairs(signs) do
+for type, icon in pairs(diagnostic_signs) do
   local hl = 'DiagnosticSign' .. type
+
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
+end
+
+local dap_signs = {
+  -- Breakpoint = 'B',
+  -- BreakpointCondition = 'C',
+  -- LogPoint = 'L',
+  -- Stopped = '→',
+  -- BreakpointRejected = 'R',
+}
+
+for type, icon in pairs(dap_signs) do
+  local hl = 'Dap' .. type
 
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
 end
