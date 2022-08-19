@@ -145,7 +145,6 @@ function M.setup()
       requires = {
         'rcarriga/nvim-dap-ui',
         'theHamsta/nvim-dap-virtual-text',
-        'nvim-telescope/telescope-dap.nvim',
       },
     })
 
@@ -190,15 +189,12 @@ function M.setup()
 
     use({
       'nvim-telescope/telescope.nvim',
-      cmd = 'Telescope',
       tag = '*',
       requires = {
         { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
         'nvim-telescope/telescope-ui-select.nvim',
+        'nvim-telescope/telescope-dap.nvim',
       },
-      config = function()
-        require('lazy.telescope').setup()
-      end,
     })
 
     use({
