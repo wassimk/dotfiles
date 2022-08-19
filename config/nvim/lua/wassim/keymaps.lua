@@ -36,15 +36,5 @@ keymap('n', '<Leader>pf', "<cmd>lua require('iron.core').send_file()<CR>", opts)
 keymap('n', '<Leader>pc', "<cmd>lua require('iron.core').close_repl()<CR>", opts)
 keymap('n', '<Leader>pr', "<cmd>lua require('iron.core').repl_restart()<CR>", opts)
 
--- telescope
-keymap('n', '<C-f>', '', opts) -- i keep hitting this and it scrolls the screen!
-keymap('n', '<C-f>f', '<cmd>Telescope find_files<CR>', opts)
-keymap('n', '<C-f>w', '<cmd>Telescope grep_string<CR>', opts)
-keymap('n', '<C-f>g', '<cmd>Telescope live_grep<CR>', opts)
-keymap('n', '<C-f>b', '<cmd>Telescope current_buffer_fuzzy_find<CR>', opts)
-keymap('n', '<C-f>h', '<cmd>Telescope help_tags<CR>', opts)
-keymap('n', '<C-f>c', '<cmd>Telescope commands<CR>', opts)
-keymap('n', '<C-f>k', '<cmd>Telescope keymaps<CR>', opts)
-
 -- vim-easy-align
 keymap({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)<CR>', opts)
