@@ -64,6 +64,7 @@ cmp.setup({
       before = function(entry, vim_item)
         vim_item.menu = ({
           buffer = '[Buffer]',
+          dap = '[DAP]',
           feature_flipper = '[Flipper]',
           git = '[GitHub]',
           luasnip = '[Snippet]',
@@ -130,4 +131,10 @@ cmp.setup.cmdline(':', {
   }, {
     { name = 'cmdline' },
   }),
+})
+
+cmp.setup.filetype({ 'dap-repl', 'dapui_watches' }, {
+  sources = {
+    { name = 'dap' },
+  },
 })

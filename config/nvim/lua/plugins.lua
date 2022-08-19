@@ -139,6 +139,16 @@ function M.setup()
       end,
     })
 
+    -- debugging
+    use({
+      'mfussenegger/nvim-dap',
+      requires = {
+        'rcarriga/nvim-dap-ui',
+        'theHamsta/nvim-dap-virtual-text',
+        'nvim-telescope/telescope-dap.nvim',
+      },
+    })
+
     -- completion / snippets
     use({
       'hrsh7th/nvim-cmp',
@@ -151,6 +161,7 @@ function M.setup()
         'hrsh7th/cmp-path',
         'f3fora/cmp-spell',
         'ray-x/cmp-treesitter',
+        'rcarriga/cmp-dap',
         'onsails/lspkind.nvim',
         { '~/personal/neovim/cmp-rails-fixture-types', ft = 'ruby' },
         { '~/personal/neovim/cmp-rails-fixture-names', ft = 'ruby' },
