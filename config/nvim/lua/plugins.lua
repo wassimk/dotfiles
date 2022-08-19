@@ -118,9 +118,10 @@ function M.setup()
     use({
       'neovim/nvim-lspconfig',
       requires = {
-        'williamboman/mason-lspconfig.nvim',
-        'jose-elias-alvarez/typescript.nvim',
         'folke/lua-dev.nvim',
+        'jose-elias-alvarez/typescript.nvim',
+        'simrat39/rust-tools.nvim',
+        'williamboman/mason-lspconfig.nvim',
       },
     })
 

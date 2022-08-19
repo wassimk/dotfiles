@@ -12,16 +12,22 @@ local on_attach = function(client)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', 'gS', vim.lsp.buf.signature_help, opts)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
   vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-  vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, opts)
   vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, opts)
   vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts)
+
+  if client.name == 'rust_analyzer' then
+    vim.keymap.set({ 'n', 'v' }, '<Leader>ca', require('rust-tools').code_action_group.code_action_group, opts)
+    vim.keymap.set('n', 'K', require('rust-tools').hover_actions.hover_actions, opts)
+  else
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+  end
 
   if client.name == 'tsserver' then
     client.server_capabilities.document_formatting = false
@@ -87,24 +93,12 @@ require('lspconfig').html.setup({ capabilities = capabilities, on_attach = on_at
 require('lspconfig').cssls.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- rust
-require('lspconfig').rust_analyzer.setup({
-  settings = {
-    ['rust-analyzer'] = {
-      checkOnSave = {
-        allFeatures = true,
-        overrideCommand = {
-          'cargo',
-          'clippy',
-          '--workspace',
-          '--message-format=json',
-          '--all-targets',
-          '--all-features',
-        },
-      },
-    },
+-- this plugin calls lspconfig and sets up rust-analyzer and nvim-dap
+require('rust-tools').setup({
+  server = {
+    capabilities = capabilities,
+    on_attach = on_attach,
   },
-  capabilities = capabilities,
-  on_attach = on_attach,
 })
 
 -- syntax_tree
