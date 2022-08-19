@@ -94,12 +94,23 @@ require('lspconfig').cssls.setup({ capabilities = capabilities, on_attach = on_a
 
 -- rust
 -- this plugin calls lspconfig and sets up rust-analyzer and nvim-dap
-require('rust-tools').setup({
+
+-- use debugging library from vscode CodeLLDB extension, install via vscode
+local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.7.4/'
+local codelldb_path = extension_path .. 'adapter/codelldb'
+local liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'
+
+local opts = {
   server = {
     capabilities = capabilities,
     on_attach = on_attach,
   },
-})
+  dap = {
+    adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path),
+  },
+}
+
+require('rust-tools').setup(opts)
 
 -- syntax_tree
 if utils.installed_via_bundler('syntax_tree') then
