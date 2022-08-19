@@ -6,9 +6,26 @@
 local M = {}
 
 function M.setup()
-  require('telescope').load_extension('dap')
-  require('telescope').load_extension('fzf')
-  require('telescope').load_extension('ui-select')
+  local telescope, actions = require('telescope'), require('telescope.actions')
+
+  telescope.load_extension('dap')
+  telescope.load_extension('fzf')
+  telescope.load_extension('ui-select')
+
+  telescope.setup({
+    defaults = {
+      mappings = {
+        i = {
+          ['<C-y>'] = actions.select_default,
+          ['<C-e>'] = actions.close,
+        },
+        n = {
+          ['<C-y>'] = actions.select_default,
+          ['<C-e>'] = actions.close,
+        },
+      },
+    },
+  })
 end
 
 return M
