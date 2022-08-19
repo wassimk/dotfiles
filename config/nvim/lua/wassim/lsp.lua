@@ -1,7 +1,7 @@
 ----
 -- lsp
 ----
-local installed_via_bundler = require('wassim.utils').installed_via_bundler
+local utils = require('wassim.utils')
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -49,6 +49,7 @@ require('mason-tool-installer').setup({
   ensure_installed = {
     'codespell',
     'prettierd',
+    'selene',
     'shellcheck', -- used by bash-language-server
     'stylua',
   },
@@ -107,7 +108,7 @@ require('lspconfig').rust_analyzer.setup({
 })
 
 -- syntax_tree
-if installed_via_bundler('syntax_tree') then
+if utils.installed_via_bundler('syntax_tree') then
   require('lspconfig').syntax_tree.setup({
     cmd = { 'bundle', 'exec', 'stree', 'lsp' },
     capabilities = capabilities,
@@ -116,7 +117,7 @@ if installed_via_bundler('syntax_tree') then
 end
 
 -- ruby / solargraph
-if installed_via_bundler('solargraph') then
+if utils.installed_via_bundler('solargraph') then
   require('lspconfig').solargraph.setup({
     cmd = { 'bundle', 'exec', 'solargraph', 'stdio' },
     init_options = {
@@ -133,7 +134,7 @@ if installed_via_bundler('solargraph') then
 end
 
 -- ruby-lsp
-if installed_via_bundler('ruby%-lsp') then
+if utils.installed_via_bundler('ruby%-lsp') then
   local lspconfig = require('lspconfig')
   local configs = require('lspconfig.configs')
   local util = require('lspconfig.util')
@@ -228,10 +229,14 @@ local sources = {
   null_ls.builtins.code_actions.refactoring.with({ extra_filetypes = { 'ruby' } }),
 }
 
+if utils.config_exists('selene.toml') then
+  vim.list_extend(sources, { null_ls.builtins.diagnostics.selene })
+end
+
 -- rubocop via null-ls if not using solargraph
 if
-  (not installed_via_bundler('solargraph') and not installed_via_bundler('ruby%-lsp'))
-  and installed_via_bundler('rubocop')
+  (not utils.installed_via_bundler('solargraph') and not utils.installed_via_bundler('ruby%-lsp'))
+  and utils.installed_via_bundler('rubocop')
 then
   local rubocop_source = null_ls.builtins.diagnostics.rubocop.with({
     command = 'bundle',
