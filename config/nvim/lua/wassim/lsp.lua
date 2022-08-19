@@ -92,26 +92,6 @@ require('lspconfig').html.setup({ capabilities = capabilities, on_attach = on_at
 -- css
 require('lspconfig').cssls.setup({ capabilities = capabilities, on_attach = on_attach })
 
--- rust
--- this plugin calls lspconfig and sets up rust-analyzer and nvim-dap
-
--- use debugging library from vscode CodeLLDB extension, install via vscode
-local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.7.4/'
-local codelldb_path = extension_path .. 'adapter/codelldb'
-local liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'
-
-local opts = {
-  server = {
-    capabilities = capabilities,
-    on_attach = on_attach,
-  },
-  dap = {
-    adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path),
-  },
-}
-
-require('rust-tools').setup(opts)
-
 -- syntax_tree
 if utils.installed_via_bundler('syntax_tree') then
   require('lspconfig').syntax_tree.setup({
@@ -199,7 +179,9 @@ require('lspconfig').eslint.setup({
   on_attach = on_attach,
 })
 
+----
 -- lua
+----
 local luadev = require('lua-dev').setup({
   lspconfig = {
     settings = {
@@ -218,6 +200,27 @@ local luadev = require('lua-dev').setup({
 -- TODO - luadev is only for neovim development, add if/else to load
 -- sumneko without it if doing non-neovim work
 require('lspconfig').sumneko_lua.setup(luadev)
+
+----
+-- rust
+----
+-- use library from vscode CodeLLDB extension
+local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.7.4/'
+local codelldb_path = extension_path .. 'adapter/codelldb'
+local liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'
+
+local opts = {
+  dap = {
+    adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path),
+  },
+  server = {
+    capabilities = capabilities,
+    on_attach = on_attach,
+  },
+}
+
+-- this plugin calls lspconfig and sets up rust-analyzer and nvim-dap
+require('rust-tools').setup(opts)
 
 ----
 -- null-ls
