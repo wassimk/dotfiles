@@ -220,7 +220,7 @@ local null_ls = require('null-ls')
 local sources = {
   null_ls.builtins.formatting.stylua,
   null_ls.builtins.formatting.prettierd.with({ extra_filetypes = { 'ruby' } }),
-  null_ls.builtins.diagnostics.codespell, -- TODO: if it works well switch to formatting version
+  null_ls.builtins.diagnostics.codespell,
   null_ls.builtins.diagnostics.commitlint.with({
     extra_args = { '--config', os.getenv('HOME') .. '/.commitlintrc.js' },
   }),
