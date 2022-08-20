@@ -31,7 +31,12 @@ keymap('n', '<Leader>dl', dap.run_last, opts)
 -- dapui
 local dapui = require('dapui')
 
-dapui.setup()
+dapui.setup({
+  mappings = {
+    expand = 'o',
+    open = 'O',
+  },
+})
 
 keymap('n', '<Leader>du', dapui.toggle, opts)
 
