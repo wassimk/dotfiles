@@ -1,17 +1,18 @@
 --
 -- nvim-dap, nvim-dap-ui, nvim-dap-virtual-text
 -- https://github.com/mfussenegger/nvim-dap
+-- https://github.com/rcarriga/nvim-dap-ui
+-- https://github.com/theHamsta/nvim-dap-virtual-text
 --
 
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
-local dap, dapui, dap_virtual_text = require('dap'), require('dapui'), require('nvim-dap-virtual-text')
+
+-- dap
+local dap = require('dap')
 
 dap.set_log_level('TRACE')
-dapui.setup()
-dap_virtual_text.setup()
 
--- dap keymaps
 keymap('n', '<F5>', dap.continue, opts)
 keymap('n', '<F10>', dap.step_over, opts)
 keymap('n', '<F11>', dap.step_into, opts)
@@ -27,5 +28,14 @@ keymap(
 keymap('n', '<Leader>dr', dap.repl.open, opts)
 keymap('n', '<Leader>dl', dap.run_last, opts)
 
--- dapui keymap
+-- dapui
+local dapui = require('dapui')
+
+dapui.setup()
+
 keymap('n', '<Leader>du', dapui.toggle, opts)
+
+-- dap-virtual-text
+local dap_virtual_text = require('nvim-dap-virtual-text')
+
+dap_virtual_text.setup()
