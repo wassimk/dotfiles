@@ -79,7 +79,8 @@ dap.configurations.ruby = {
     localfs = true,
     command = { 'bundle', 'exec', 'ruby' },
     script = function()
-      local line = vim.fn.line('.')
+      local line = vim.api.nvim_win_get_cursor(0)[1]
+
       return { 'bin/rails', 'test', '${relativeFile}:' .. line }
     end,
   },
