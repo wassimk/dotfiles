@@ -134,6 +134,20 @@ cmp.setup.cmdline(':', {
 })
 
 cmp.setup.filetype({ 'dap-repl', 'dapui_watches' }, {
+  -- nvim-cmp by defaults disables autocomplete for prompt buffers
+  -- https://github.com/rcarriga/cmp-dap/issues/3
+  -- https://github.com/hrsh7th/nvim-cmp/blob/76ba56ce962db88f8ca71c554c568106ca076dc3/lua/cmp/config/default.lua#L11
+  formatting = {
+    format = function(_, vim_item)
+      vim_item.kind = nil
+      vim_item.source = nil
+
+      return vim_item
+    end,
+  },
+  enabled = function()
+    return vim.api.nvim_buf_get_option(0, 'buftype') ~= 'prompt' or require('cmp_dap').is_dap_buffer()
+  end,
   sources = {
     { name = 'dap' },
   },
