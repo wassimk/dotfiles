@@ -18,7 +18,7 @@ local on_attach = function(client)
   vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
   vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
   vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, opts)
-  vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, opts)
+  vim.keymap.set('n', '<leader>ds', vim.diagnostic.setloclist, opts)
   vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts)
 
   if client.name == 'rust_analyzer' then
