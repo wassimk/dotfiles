@@ -8,4 +8,5 @@ esac
 # Load SSH keys stored in keychain
 ssh-add -A 2>/dev/null
 
-ensure_tmux_is_running
+# always be in tmux, except when vscode
+[[ "$TERM_PROGRAM" != "vscode" ]] && ensure_tmux_is_running
