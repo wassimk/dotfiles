@@ -7,6 +7,7 @@ local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 local dap, dapui, dap_virtual_text = require('dap'), require('dapui'), require('nvim-dap-virtual-text')
 
+dap.set_log_level('TRACE')
 dapui.setup()
 dap_virtual_text.setup()
 
