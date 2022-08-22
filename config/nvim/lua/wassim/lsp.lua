@@ -183,11 +183,13 @@ require('lspconfig').eslint.setup({
 -- lua
 ----
 local luadev = require('lua-dev').setup({
+  library = {
+    plugins = { 'nvim-treesitter', 'plenary.nvim', 'nvim-dap', 'gitsigns.nvim' },
+  },
   lspconfig = {
     settings = {
       Lua = {
         diagnostics = { globals = { 'vim', 'hs', 'packer_plugins' } },
-        workspace = { library = vim.api.nvim_get_runtime_file('', true) },
         format = { enable = false },
         telemetry = { enable = false },
       },
@@ -241,7 +243,7 @@ if utils.config_exists('selene.toml') then
   vim.list_extend(sources, { null_ls.builtins.diagnostics.selene })
 end
 
--- rubocop via null-ls if not using solargraph
+-- rubocop via null-ls if not using solargraph or ruby-lsp
 if
   (not utils.installed_via_bundler('solargraph') and not utils.installed_via_bundler('ruby%-lsp'))
   and utils.installed_via_bundler('rubocop')
