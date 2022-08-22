@@ -26,11 +26,11 @@ for type, icon in pairs(diagnostic_signs) do
 end
 
 local dap_signs = {
-  -- Breakpoint = 'B',
-  -- BreakpointCondition = 'C',
-  -- LogPoint = 'L',
-  -- Stopped = '→',
-  -- BreakpointRejected = 'R',
+  Breakpoint = 'ﰉ',
+  BreakpointCondition = 'ﰊ',
+  LogPoint = 'ﯶ',
+  Stopped = '',
+  BreakpointRejected = 'ﰸ',
 }
 
 for type, icon in pairs(dap_signs) do
