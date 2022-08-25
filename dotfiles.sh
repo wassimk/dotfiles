@@ -11,7 +11,7 @@ echo ""
 echo "Installing dot files..."
 echo ""
 
-rcup -v -x "*.sh" -x "*.md" -x "*.log" -x "iterm/com*" -x "config/karabiner" -x "config/lazygit*" -x "config/espanso*"
+rcup -v -x "./*.sh" -x "*.md" -x "*.log" -x "iterm/com*" -x "config/karabiner" -x "config/lazygit*" -x "config/espanso*"
 
 # vcs-jump installed by packer plugin manager in vim
 vcs_jump_link="$HOME"/.bin/vcs-jump
