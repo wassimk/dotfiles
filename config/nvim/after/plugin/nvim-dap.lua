@@ -45,3 +45,18 @@ keymap('n', '<Leader>du', dapui.toggle, opts)
 local dap_virtual_text = require('nvim-dap-virtual-text')
 
 dap_virtual_text.setup()
+
+-- icons in gutter
+local dap_signs = {
+  Breakpoint = 'ﰉ',
+  BreakpointCondition = 'ﰊ',
+  LogPoint = 'ﯶ',
+  Stopped = '',
+  BreakpointRejected = 'ﰸ',
+}
+
+for type, icon in pairs(dap_signs) do
+  local hl = 'Dap' .. type
+
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
+end
