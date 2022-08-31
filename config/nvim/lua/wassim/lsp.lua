@@ -35,16 +35,6 @@ local on_attach = function(client)
   end
 end
 
--- global diagnostic configuration
-vim.diagnostic.config({
-  virtual_text = false,
-  underline = false,
-  signs = { priority = 10 },
-  float = {
-    source = 'if_many',
-  },
-})
-
 -- bash scripting
 require('lspconfig').bashls.setup({ capabilities = capabilities, on_attach = on_attach })
 
