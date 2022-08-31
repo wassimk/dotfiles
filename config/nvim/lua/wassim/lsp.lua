@@ -218,6 +218,7 @@ end
 if
   (not utils.installed_via_bundler('solargraph') and not utils.installed_via_bundler('ruby%-lsp'))
   and utils.installed_via_bundler('rubocop')
+  and utils.config_exists('.rubocop.yml')
 then
   local rubocop_source = null_ls.builtins.diagnostics.rubocop.with({
     command = 'bundle',
