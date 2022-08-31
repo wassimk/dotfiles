@@ -45,25 +45,6 @@ vim.diagnostic.config({
   },
 })
 
--- automatic lsp server installs
-require('mason').setup()
-require('mason-lspconfig').setup({ automatic_installation = { exclude = { 'solargraph' } } })
-
--- mason auto-update
--- TODO: move to its own file, this isn't realy lsp specific
-require('mason-tool-installer').setup({
-  ensure_installed = {
-    'codespell',
-    'prettierd',
-    'selene',
-    'shellcheck', -- used by bash-language-server
-    'stylua',
-  },
-  auto_update = true,
-  run_on_start = true,
-  start_delay = 5000,
-})
-
 -- bash scripting
 require('lspconfig').bashls.setup({ capabilities = capabilities, on_attach = on_attach })
 
