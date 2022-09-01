@@ -84,4 +84,24 @@ dap.configurations.ruby = {
       return { 'bin/rails', 'test', '${relativeFile}:' .. line }
     end,
   },
+  {
+    type = 'ruby',
+    name = 'debug spec file',
+    request = 'attach',
+    localfs = true,
+    command = { 'bundle', 'exec', 'ruby' },
+    script = { 'bin/rspec', '${relativeFile}' },
+  },
+  {
+    type = 'ruby',
+    name = 'debug spec nearest',
+    request = 'attach',
+    localfs = true,
+    command = { 'bundle', 'exec', 'ruby' },
+    script = function()
+      local line = vim.api.nvim_win_get_cursor(0)[1]
+
+      return { 'bin/rspec', '${relativeFile}:' .. line }
+    end,
+  },
 }
