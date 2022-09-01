@@ -14,18 +14,18 @@ local dap = require('dap')
 dap.set_log_level('TRACE')
 
 keymap('n', '<F5>', dap.continue, opts)
-keymap('n', '<F17>', dap.terminate, opts)
-keymap('n', '<F10>', dap.step_over, opts)
-keymap('n', '<F11>', dap.step_into, opts)
-keymap('n', '<F22>', dap.step_out, opts)
+keymap('n', '<F17>', dap.terminate, opts) -- Shift-F5
 keymap('n', '<F9>', dap.toggle_breakpoint, opts)
-keymap('n', '<F21>', "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
+keymap('n', '<F21>', "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts) -- Shift-F9
 keymap(
   'n',
   '<Leader>lp',
   "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
   opts
 )
+keymap('n', '<F10>', dap.step_over, opts)
+keymap('n', '<F11>', dap.step_into, opts)
+keymap('n', '<F22>', dap.step_out, opts) -- Shift-F11
 keymap('n', '<Leader>dr', dap.repl.open, opts)
 keymap('n', '<Leader>dl', dap.run_last, opts)
 
