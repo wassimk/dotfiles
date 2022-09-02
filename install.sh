@@ -267,6 +267,7 @@ installTerminalPrompt() {
       ;;
   esac
 }
+
 installWindowManager() {
   case $os in
     $macOS*)
