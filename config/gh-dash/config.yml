@@ -2,9 +2,9 @@ prSections:
 - title: My Pull Requests
   filters: is:open author:@me
 - title: Review Requested
-  filters: is:open review-requested:@me
+  filters: is:open review-requested:@me -reviewed-by:@me
 - title: Needs Review
-  filters: repo:ministrycentered/giving repo:ministrycentered/login repo:ministrycentered/accounts is:open archived:false draft:false sort:created-asc -label:+2 -label:"not ready" -label:dependencies -reviewed-by:wassimk -author:wassimk 
+  filters: repo:ministrycentered/giving repo:ministrycentered/login repo:ministrycentered/accounts is:open archived:false draft:false sort:created-asc -label:+2 -label:"not ready" -label:dependencies -reviewed-by:wassimk -author:wassimk
 - title: Subscribed
   filters: is:open -author:@me archived:false
 issuesSections:
