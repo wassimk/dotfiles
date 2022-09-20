@@ -57,15 +57,15 @@ return {
     fmt(
       [[
         use_stripe_cassette("{}") do |cassette|
-          {} = stripe_object_from_cassette(cassette, path: "{}", http_method: :{})
+          {} = stripe_object_from_cassette(cassette, http_method: {}, path: "{}")
           {}
         end
       ]],
       {
         c(1, cassettes()),
         i(2, 'stripe_object_name'),
-        i(3, 'request-path'),
-        c(4, { t('get'), t('post'), t('put'), t('delete') }),
+        c(3, { t('get'), t('post'), t('put'), t('delete') }),
+        i(4, 'request-path'),
         i(0),
       }
     )
