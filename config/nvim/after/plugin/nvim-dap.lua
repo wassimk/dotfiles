@@ -34,7 +34,7 @@ local dapui = require('dapui')
 
 dapui.setup({
   mappings = {
-    expand = 'o',
+    expand = { 'o', '<2-LeftMouse>' },
     open = 'O',
   },
 })
