@@ -57,6 +57,9 @@ alias bi='bundle install'
 alias bu='bundle update'
 alias be='bundle exec'
 
+# because of alacritty terminfo not being on remote hosts
+alias ssh="TERM=xterm-256color ssh"
+
 # copy/paste
 case "$OSTYPE" in
   darwin*) alias clip="nc localhost 8377" ;;
