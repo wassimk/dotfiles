@@ -3,7 +3,7 @@
 ----
 local utils = require('wassim.utils')
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local on_attach = function(client)
   local opts = { buffer = 0, silent = true }
