@@ -4,7 +4,7 @@ prSections:
 - title: Review Requested
   filters: is:open review-requested:@me
 - title: Needs Review
-  filters: repo:ministrycentered/giving repo:ministrycentered/login repo:ministrycentered/accounts is:open archived:false draft:false sort:created-asc -label:+2 -label:"not ready" -label:dependencies -reviewed-by:wassimk -author:wassimk
+  filters: repo:planningcenter/giving repo:planningcenter/login repo:planningcenter/accounts repo:planningcenter/aci_delete_org repo:planningcenter/mailchimp3 is:open archived:false draft:false sort:created-asc -label:+2 -label:"not ready" -author:wassimk
 - title: Subscribed
   filters: is:open -author:@me archived:false
 issuesSections:
