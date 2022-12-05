@@ -37,6 +37,17 @@ dapui.setup({
     expand = { 'o', '<2-LeftMouse>' },
     open = 'O',
   },
+  icons = {
+    expanded = '▾',
+    collapsed = '▸',
+    current_frame = '▸',
+  },
+  controls = {
+    icons = {
+      step_back = '',
+      run_last = '↻',
+    },
+  },
 })
 
 keymap('n', '<Leader>du', dapui.toggle, opts)
