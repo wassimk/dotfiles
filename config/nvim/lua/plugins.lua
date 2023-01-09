@@ -229,7 +229,6 @@ function M.setup()
     use('beauwilliams/focus.nvim')
     use('wincent/vim-clipper')
     use('lukas-reineke/indent-blankline.nvim')
-    use('editorconfig/editorconfig-vim')
     use('ludovicchabant/vim-gutentags')
 
     -- treesitter
