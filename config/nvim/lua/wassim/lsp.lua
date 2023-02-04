@@ -155,7 +155,7 @@ require('lspconfig').eslint.setup({
 ----
 require('neodev').setup({
   library = {
-    plugins = { 'nvim-treesitter', 'plenary.nvim', 'nvim-dap', 'gitsigns.nvim' },
+    plugins = { 'nvim-treesitter', 'plenary.nvim', 'nvim-dap', 'gitsigns.nvim', 'nvim-dap-ui' },
   },
 })
 
