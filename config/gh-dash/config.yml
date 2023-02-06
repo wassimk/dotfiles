@@ -5,15 +5,11 @@ prSections:
   filters: is:open review-requested:@me
 - title: Needs Review
   filters: repo:planningcenter/giving repo:planningcenter/login repo:planningcenter/accounts repo:planningcenter/aci_delete_org repo:planningcenter/mailchimp3 is:open archived:false draft:false sort:created-asc -label:+2 -label:"not ready" -author:wassimk
-- title: Subscribed
-  filters: is:open -author:@me archived:false
 issuesSections:
 - title: My Issues
   filters: is:open author:@me archived:false
 - title: Assigned
   filters: is:open assignee:@me archived:false
-- title: Subscribed
-  filters: is:open -author:@me archived:false
 defaults:
   preview:
     open: true
