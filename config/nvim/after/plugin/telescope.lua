@@ -41,8 +41,10 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<C-f>', '', opts) -- i keep hitting this and it scrolls the screen!
 vim.keymap.set('n', '<C-f>f', builtin.find_files, opts)
 vim.keymap.set('n', '<C-f>w', builtin.grep_string, opts)
-vim.keymap.set('n', '<C-f>g', custom_pickers.live_grep, opts)
-vim.keymap.set('n', '<C-f>b', builtin.current_buffer_fuzzy_find, opts)
+vim.keymap.set('n', '<C-f>l', custom_pickers.live_grep, opts)
+vim.keymap.set('n', '<C-f>gs', builtin.git_status, opts)
+vim.keymap.set('n', '<C-f>gt', builtin.git_stash, opts)
+vim.keymap.set('n', '<C-f>gc', builtin.git_commits, opts)
 vim.keymap.set('n', '<C-f>h', builtin.help_tags, opts)
 vim.keymap.set('n', '<C-f>c', builtin.commands, opts)
 vim.keymap.set('n', '<C-f>k', builtin.keymaps, opts)

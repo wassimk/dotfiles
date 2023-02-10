@@ -3,14 +3,10 @@
 -- https://github.com/folke/todo-comments.nvim
 --
 
--- NOTE: workaround until issue is fixed upstream
--- https://github.com/folke/todo-comments.nvim/issues/97
-local hl = require('todo-comments.highlight')
-local highlight_win = hl.highlight_win
-hl.highlight_win = function(win, force)
-  pcall(highlight_win, win, force)
-end
+local has_todo_comments, todo_comments = pcall(require, 'todo-comments')
 
-require('todo-comments').setup({
-  sign_priority = 5, -- lower than gitsigns
-})
+if has_todo_comments then
+  todo_comments.setup({
+    sign_priority = 5, -- lower than gitsigns
+  })
+end

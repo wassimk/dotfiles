@@ -3,10 +3,14 @@
 -- https://github.com/j-hui/fidget.nvim
 --
 
-require('fidget').setup({
-  sources = {
-    ['null-ls'] = {
-      ignore = true,
+local has_fidget, fidget = pcall(require, 'fidget')
+
+if has_fidget then
+  fidget.setup({
+    sources = {
+      ['null-ls'] = {
+        ignore = true,
+      },
     },
-  },
-})
+  })
+end
