@@ -3,7 +3,11 @@
 -- https://github.com/beauwilliams/focus.nvim
 --
 
-require('focus').setup({
-  width = 120,
-  excluded_buftypes = { 'nofile', 'prompt', 'popup', 'quickfix' },
-})
+local has_focus, focus = pcall(require, 'focus')
+
+if has_focus then
+  focus.setup({
+    width = 120,
+    excluded_buftypes = { 'nofile', 'prompt', 'popup', 'quickfix' },
+  })
+end

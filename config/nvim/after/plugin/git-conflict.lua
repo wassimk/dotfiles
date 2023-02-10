@@ -3,7 +3,11 @@
 -- https://github.com/akinsho/git-conflict.nvim
 --
 
-require('git-conflict').setup({
-  default_mappings = false,
-  disable_diagnostics = true,
-})
+local has_git_conflict, git_conflict = pcall(require, 'git-conflict')
+
+if has_git_conflict then
+  git_conflict.setup({
+    default_mappings = false,
+    disable_diagnostics = true,
+  })
+end
