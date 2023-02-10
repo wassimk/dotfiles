@@ -1,0 +1,7 @@
+--skip-action-text
+--skip-action-cable
+--skip-jbuilder
+--skip-action-mailbox
+--skip-active-storage
+--database=postgresql
+--css=tailwind
