@@ -4,9 +4,10 @@
 --
 
 local has_indent_blankline, indent_blankline = pcall(require, 'luasnip')
-
-if has_indent_blankline then
-  indent_blankline.setup({
-    show_current_context = false,
-  })
+if not has_indent_blankline then
+  return
 end
+
+indent_blankline.setup({
+  show_current_context = false,
+})
