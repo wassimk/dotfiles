@@ -5,8 +5,10 @@
 
 local has_todo_comments, todo_comments = pcall(require, 'todo-comments')
 
-if has_todo_comments then
-  todo_comments.setup({
-    sign_priority = 5, -- lower than gitsigns
-  })
+if not has_todo_comments then
+  return
 end
+
+todo_comments.setup({
+  sign_priority = 5, -- lower than gitsigns
+})

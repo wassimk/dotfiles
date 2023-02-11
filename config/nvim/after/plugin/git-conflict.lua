@@ -5,9 +5,11 @@
 
 local has_git_conflict, git_conflict = pcall(require, 'git-conflict')
 
-if has_git_conflict then
-  git_conflict.setup({
-    default_mappings = false,
-    disable_diagnostics = true,
-  })
+if not has_git_conflict then
+  return
 end
+
+git_conflict.setup({
+  default_mappings = false,
+  disable_diagnostics = true,
+})
