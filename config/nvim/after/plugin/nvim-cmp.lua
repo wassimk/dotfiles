@@ -80,6 +80,9 @@ cmp.setup({
           spell = '[Spell]',
           treesitter = '[Treesitter]',
         })[entry.source.name]
+
+        vim_item.dup = { feature_flipper = 1, nvim_lsp = 0 }
+
         return vim_item
       end,
     }),
