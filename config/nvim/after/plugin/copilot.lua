@@ -3,12 +3,6 @@
 -- https://github.com/github/copilot.vim
 --
 
-local has_copilot, _ = pcall(require, 'copilot')
-
-if not has_copilot then
-  return
-end
-
 -- it breaks dap and dapui
 vim.g.copilot_filetypes = {
   ['dapui_scopes'] = false,
@@ -18,3 +12,6 @@ vim.g.copilot_filetypes = {
   ['dap-repl'] = false,
   ['dapui_console'] = false,
 }
+
+-- my current default is too old
+vim.g.copilot_node_command = os.getenv('HOME') .. '/.asdf/installs/nodejs/18.13.0/bin/node'

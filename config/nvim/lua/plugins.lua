@@ -125,8 +125,7 @@ function M.setup()
     use('j-hui/fidget.nvim')
     use('jose-elias-alvarez/null-ls.nvim')
 
-    -- incredibly slow, likely because system node is to old
-    -- use('github/copilot.vim')
+    use('github/copilot.vim')
 
     use({
       'ThePrimeagen/refactoring.nvim',
