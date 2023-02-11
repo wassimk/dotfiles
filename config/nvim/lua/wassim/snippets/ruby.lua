@@ -57,7 +57,7 @@ return {
     fmt(
       [[
         use_stripe_cassette("{}") do |cassette|
-          {} = stripe_object_from_cassette(cassette, http_method: {}, path: "{}")
+          {} = stripe_object_from_cassette(cassette, http_method: :{}, path: "{}")
           {}
         end
       ]],
