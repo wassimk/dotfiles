@@ -22,7 +22,7 @@ end)
 -- Watch for Launching Applications and Move to Space
 --
 
-APPS_TO_WINDOWS = {
+APP_TO_SPACE = {
   Alacritty = 1,
   Calendar = 4,
   Mail = 4,
@@ -33,7 +33,7 @@ APPS_TO_WINDOWS = {
 }
 
 local function moveableApp(appName)
-  local moveableAppNames = u.tbl_keys(APPS_TO_WINDOWS)
+  local moveableAppNames = u.tbl_keys(APP_TO_SPACE)
 
   if u.tbl_contains(moveableAppNames, appName) then
     return true
@@ -42,10 +42,10 @@ end
 
 local function moveApp(app)
   local appWindow = app:mainWindow()
-  local spaceId = APPS_TO_WINDOWS[app:name()] + 1
+  local spaceId = APP_TO_SPACE[app:name()] + 1
 
   if appWindow and spaceId then
-    log.i('Moved ' .. app:name() .. ' to space ' .. APPS_TO_WINDOWS[app:name()])
+    log.i('Moved ' .. app:name() .. ' to space ' .. APP_TO_SPACE[app:name()])
     hs.spaces.moveWindowToSpace(appWindow, spaceId)
   end
 end
