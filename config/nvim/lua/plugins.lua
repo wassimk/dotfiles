@@ -122,10 +122,17 @@ function M.setup()
       },
     })
 
+    use({
+      'zbirenbaum/copilot.lua',
+      cmd = 'Copilot',
+      event = 'InsertEnter',
+      config = function()
+        require('lazy.copilot').setup()
+      end,
+    })
+
     use('j-hui/fidget.nvim')
     use('jose-elias-alvarez/null-ls.nvim')
-
-    use('github/copilot.vim')
 
     use({
       'ThePrimeagen/refactoring.nvim',
