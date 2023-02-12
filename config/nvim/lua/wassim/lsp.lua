@@ -159,7 +159,7 @@ require('neodev').setup({
   },
 })
 
-require('lspconfig').sumneko_lua.setup({
+require('lspconfig').lua_ls.setup({
   settings = {
     Lua = {
       diagnostics = { globals = { 'vim', 'hs', 'packer_plugins' } },
