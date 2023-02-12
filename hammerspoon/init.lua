@@ -23,7 +23,7 @@ end)
 --
 
 APPS_TO_WINDOWS = {
-  Allacrity = 1,
+  Alacritty = 1,
   Calendar = 4,
   Mail = 4,
   Messages = 5,
