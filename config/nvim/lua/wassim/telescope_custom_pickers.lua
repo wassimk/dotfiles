@@ -34,8 +34,8 @@ end
 
 M.actions = transform_mod({
   ---Ask for a file extension and open a new `live_grep` filtering by it
-  set_extension = function(prompt_bufnr)
-    local current_picker = action_state.get_current_picker(prompt_bufnr)
+  set_extension = function(live_grep_prompt_bufnr)
+    local current_picker = action_state.get_current_picker(live_grep_prompt_bufnr)
     local current_input = action_state.get_current_line()
 
     vim.ui.input({ prompt = '*.' }, function(input)
@@ -45,13 +45,13 @@ M.actions = transform_mod({
 
       live_grep_filters.extension = input
 
-      actions._close(prompt_bufnr, current_picker.initial_mode == 'insert')
+      actions._close(live_grep_prompt_bufnr, current_picker.initial_mode == 'insert')
       run_live_grep(current_input)
     end)
   end,
   ---Ask the user for a folder and olen a new `live_grep` filtering by it
-  set_folders = function(prompt_bufnr)
-    local current_picker = action_state.get_current_picker(prompt_bufnr)
+  set_folders = function(live_grep_prompt_bufnr)
+    local current_picker = action_state.get_current_picker(live_grep_prompt_bufnr)
     local current_input = action_state.get_current_line()
 
     local data = {}
@@ -64,17 +64,16 @@ M.actions = transform_mod({
     })
     table.insert(data, 1, '.' .. os_sep)
 
-    actions._close(prompt_bufnr, current_picker.initial_mode == 'insert')
+    actions._close(live_grep_prompt_bufnr, current_picker.initial_mode == 'insert')
     pickers
       .new({}, {
         prompt_title = 'Folders for Live Grep',
         finder = finders.new_table({ results = data, entry_maker = make_entry.gen_from_file({}) }),
         previewer = conf.file_previewer({}),
         sorter = conf.file_sorter({}),
-        attach_mappings = function(prompt_bufnr)
+        attach_mappings = function(folder_picker_prompt_bufnr)
           action_set.select:replace(function()
-            local folder_picker = action_state.get_current_picker(prompt_bufnr)
-
+            local folder_picker = action_state.get_current_picker(folder_picker_prompt_bufnr)
             local dirs = {}
             local selections = folder_picker:get_multi_selection()
             if vim.tbl_isempty(selections) then
@@ -86,7 +85,7 @@ M.actions = transform_mod({
             end
             live_grep_filters.directories = dirs
 
-            actions.close(prompt_bufnr)
+            actions.close(folder_picker_prompt_bufnr)
             run_live_grep(current_input)
           end)
           return true
