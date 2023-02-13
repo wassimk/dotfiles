@@ -56,7 +56,6 @@ M.actions = transform_mod({
 
     local data = {}
     scan.scan_dir(vim.loop.cwd(), {
-      hidden = true,
       only_dirs = true,
       respect_gitignore = true,
       on_insert = function(entry)
