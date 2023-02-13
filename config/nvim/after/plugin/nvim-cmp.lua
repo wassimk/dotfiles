@@ -91,9 +91,9 @@ cmp.setup({
   mapping = key_mappings,
 
   sources = {
-    { name = 'rails_fixture_names' },
-    { name = 'rails_fixture_types' },
-    { name = 'feature_flipper' },
+    { name = 'rails_fixture_types', priority = 100 },
+    { name = 'rails_fixture_names', priority = 101 },
+    { name = 'feature_flipper', priority = 102 },
     { name = 'luasnip' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
