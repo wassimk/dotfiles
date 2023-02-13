@@ -5,9 +5,9 @@
 
 hs.window.animationDuration = 0 -- disable animations
 
-local reloader = require('reloader')
-local log = require('logger')
-local u = require('utils')
+RELOADER = require('reloader')
+LOG = require('logger')
+U = require('utils')
 
 --
 -- Keybindings
@@ -32,28 +32,28 @@ APP_TO_SPACE = {
   Slack = 6,
 }
 
-local function moveableApp(appName)
-  local moveableAppNames = u.tbl_keys(APP_TO_SPACE)
+function MOVEABLE_APP(appName)
+  local moveableAppNames = U.tbl_keys(APP_TO_SPACE)
 
-  if u.tbl_contains(moveableAppNames, appName) then
+  if U.tbl_contains(moveableAppNames, appName) then
     return true
   end
 end
 
-local function moveApp(app)
+function MOVE_APP(app)
   local appWindow = app:mainWindow()
   local spaceId = APP_TO_SPACE[app:name()] + 1
 
   if appWindow and spaceId then
-    log.i('Moved ' .. app:name() .. ' to space ' .. APP_TO_SPACE[app:name()])
     hs.spaces.moveWindowToSpace(appWindow, spaceId)
   end
 end
 
 WATCHER = hs.application.watcher
-  .new(function(name, _, app)
-    if moveableApp(name) then
-      moveApp(app)
+  .new(function(name, event, app)
+    -- LOG.i('App event: ' .. name .. ' ' .. event .. ' ' .. app:name())
+    if event == hs.application.watcher.launched and MOVEABLE_APP(name) then
+      MOVE_APP(app)
     end
   end)
   :start()
@@ -61,6 +61,6 @@ WATCHER = hs.application.watcher
 --
 -- Auto-reload config on change.
 --
-reloader.init()
+RELOADER.init()
 
-log.i('Config loaded')
+LOG.i('Config loaded')
