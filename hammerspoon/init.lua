@@ -24,6 +24,8 @@ end)
 
 APP_TO_SPACE = {
   Alacritty = 1,
+  Asana = 3,
+  ['zoom.us'] = 3,
   Calendar = 4,
   Mail = 4,
   Messages = 5,
@@ -32,27 +34,34 @@ APP_TO_SPACE = {
   Slack = 6,
 }
 
-function MOVEABLE_APP(appName)
+function MOVEABLE_APP(app)
   local moveableAppNames = U.tbl_keys(APP_TO_SPACE)
+  local appName = app:name()
 
   if U.tbl_contains(moveableAppNames, appName) then
     return true
   end
 end
 
-function MOVE_APP(app)
-  local appWindow = app:mainWindow()
-  local spaceId = APP_TO_SPACE[app:name()] + 1
+function YABAI_WINDOW_ID(app)
+  local appPid = app:pid()
+  local yabaiWindowIdCommand = 'yabai -m query --windows | jq \'.[] | select(.pid=="' .. appPid .. '") | .id\''
+  local yabaiWindowId, _, _, _ = hs.execute(yabaiWindowIdCommand, true)
 
-  if appWindow and spaceId then
-    hs.spaces.moveWindowToSpace(appWindow, spaceId)
-  end
+  return yabaiWindowId:gsub('[\n\r]', '')
+end
+
+function MOVE_APP(app)
+  local spaceId = APP_TO_SPACE[app:name()]
+  local yabaiWindowId = YABAI_WINDOW_ID(app)
+
+  local yabaiMoveCommand = 'yabai -m window ' .. yabaiWindowId .. ' --space ' .. spaceId
+  hs.execute(yabaiMoveCommand, true)
 end
 
 WATCHER = hs.application.watcher
-  .new(function(name, event, app)
-    -- LOG.i('App event: ' .. name .. ' ' .. event .. ' ' .. app:name())
-    if event == hs.application.watcher.launched and MOVEABLE_APP(name) then
+  .new(function(_, event, app)
+    if event == hs.application.watcher.launched and MOVEABLE_APP(app) then
       MOVE_APP(app)
     end
   end)
