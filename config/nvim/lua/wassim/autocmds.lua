@@ -7,13 +7,6 @@ api.nvim_create_autocmd('TextYankPost', {
   group = wamGrp,
 })
 
--- wrap long text in quickfix windows
-api.nvim_create_autocmd('FileType', {
-  pattern = 'qf',
-  command = 'setlocal wrap',
-  group = wamGrp,
-})
-
 -- markdown
 api.nvim_create_autocmd('FileType', {
   pattern = 'markdown',
