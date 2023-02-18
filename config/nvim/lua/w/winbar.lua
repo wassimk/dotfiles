@@ -24,7 +24,7 @@ function M.statusline()
 end
 
 function M.setup()
-  vim.opt.winbar = "%{%v:lua.require'wassim.winbar'.statusline()%}"
+  vim.opt.winbar = "%{%v:lua.require'w.winbar'.statusline()%}"
 end
 
 return M
