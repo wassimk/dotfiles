@@ -1,8 +1,0 @@
-require('wassim.globals')
-require('wassim.defaults')
-require('wassim.keymaps')
-require('wassim.treesitter')
-require('wassim.lsp')
-require('wassim.diagnostic')
-require('wassim.autocmds')
-require('wassim.usercmds')

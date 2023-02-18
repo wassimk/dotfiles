@@ -1,0 +1,8 @@
+require('w.globals')
+require('w.defaults')
+require('w.keymaps')
+require('w.treesitter')
+require('w.lsp')
+require('w.diagnostic')
+require('w.autocmds')
+require('w.usercmds')
