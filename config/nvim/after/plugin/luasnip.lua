@@ -13,7 +13,7 @@ local types = require('luasnip.util.types')
 
 luasnip.config.setup({
   history = true,
-  updateevents = 'TextChanged,TextChangedI',
+  update_events = 'TextChanged,TextChangedI',
   ext_opts = {
     [types.choiceNode] = {
       active = {
