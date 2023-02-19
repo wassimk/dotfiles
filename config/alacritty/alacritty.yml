@@ -113,9 +113,9 @@ key_bindings:
 
   # [shell] makes these work as they are
   - { key: Delete, chars: "\x04" }
-  - { key: B, mods: Alt, chars: "\x1bb" }
-  - { key: C, mods: Alt, chars: "\x1bc" }
-  - { key: F, mods: Alt, chars: "\x1bf" }
+  - { key: B, mods: Alt, chars: "\x1b\x62" }
+  - { key: C, mods: Alt, chars: "\x1b\x63" }
+  - { key: F, mods: Alt, chars: "\x1b\x66" }
   - { key: Q, mods: Alt, chars: "\x1b\x71" }
   - { key: Y, mods: Alt, chars: "\x1b\x79" }
   - { key: U, mods: Alt, chars: "\x1b\x75" }
