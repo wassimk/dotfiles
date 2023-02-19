@@ -5,9 +5,6 @@ local utils = require('w.utils')
 local capabilities = require('w.lsp').capabilities()
 local on_attach = require('w.lsp').on_attach
 
--- bash scripting
-require('lspconfig').bashls.setup({ capabilities = capabilities, on_attach = on_attach })
-
 -- vimscript
 require('lspconfig').vimls.setup({
   init_options = { isNeovim = true },
