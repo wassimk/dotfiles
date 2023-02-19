@@ -1,5 +1,6 @@
 --
 -- sh filetype
+--
 
 -- language server
 require('lspconfig').bashls.setup({
