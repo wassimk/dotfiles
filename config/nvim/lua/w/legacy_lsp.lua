@@ -1,7 +1,6 @@
 ----
 -- lsp
 ----
-local utils = require('w.utils')
 local capabilities = require('w.lsp').capabilities()
 local on_attach = require('w.lsp').on_attach
 
@@ -86,38 +85,3 @@ local opts = {
 
 -- this plugin calls lspconfig and sets up rust-analyzer and nvim-dap
 require('rust-tools').setup(opts)
-
-----
--- null-ls
-----
-local null_ls = require('null-ls')
-local sources = {
-  null_ls.builtins.formatting.stylua,
-  null_ls.builtins.formatting.prettierd,
-  null_ls.builtins.diagnostics.codespell,
-  null_ls.builtins.diagnostics.commitlint.with({
-    extra_args = { '--config', os.getenv('HOME') .. '/.commitlintrc.js' },
-  }),
-  null_ls.builtins.code_actions.shellcheck,
-  null_ls.builtins.code_actions.refactoring.with({ extra_filetypes = { 'ruby' } }),
-}
-
-if utils.config_exists('selene.toml') then
-  vim.list_extend(sources, { null_ls.builtins.diagnostics.selene })
-end
-
--- rubocop via null-ls if not using solargraph or ruby-lsp
-if
-  (not utils.installed_via_bundler('solargraph') and not utils.installed_via_bundler('ruby%-lsp'))
-  and utils.installed_via_bundler('rubocop')
-  and utils.config_exists('.rubocop.yml')
-then
-  local rubocop_source = null_ls.builtins.diagnostics.rubocop.with({
-    command = 'bundle',
-    args = vim.list_extend({ 'exec', 'rubocop' }, null_ls.builtins.diagnostics.rubocop._opts.args),
-  })
-
-  vim.list_extend(sources, { rubocop_source })
-end
-
-null_ls.setup({ sources = sources, on_attach = on_attach })
