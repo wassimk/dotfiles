@@ -11,9 +11,6 @@ require('lspconfig').vimls.setup({
   on_attach = on_attach,
 })
 
--- html
-require('lspconfig').html.setup({ capabilities = capabilities, on_attach = on_attach })
-
 -- css
 require('lspconfig').cssls.setup({ capabilities = capabilities, on_attach = on_attach })
 
