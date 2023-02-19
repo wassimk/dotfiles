@@ -14,6 +14,72 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   group = vim.api.nvim_create_augroup('WamAutocmdsRubyFormatting', {}),
 })
 
+----
+-- lsp
+----
+local utils = require('w.utils')
+local capabilities = require('w.lsp').capabilities()
+local on_attach = require('w.lsp').on_attach
+
+-- solargraph
+if utils.installed_via_bundler('solargraph') then
+  require('lspconfig').solargraph.setup({
+    cmd = { 'bundle', 'exec', 'solargraph', 'stdio' },
+    init_options = {
+      formatting = false,
+    },
+    settings = {
+      solargraph = {
+        diagnostics = true,
+      },
+    },
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
+end
+
+-- ruby-lsp
+if utils.installed_via_bundler('ruby%-lsp') then
+  local lspconfig = require('lspconfig')
+  local configs = require('lspconfig.configs')
+  local util = require('lspconfig.util')
+
+  if not configs.ruby_lsp then
+    local enabled_features = {
+      'documentHighlights',
+      'documentSymbols',
+      'foldingRanges',
+      'selectionRanges',
+      'semanticHighlighting',
+      -- 'formatting',
+      'diagnostics',
+      'codeActions',
+    }
+
+    configs.ruby_lsp = {
+      default_config = {
+        cmd = { 'bundle', 'exec', 'ruby-lsp' },
+        filetypes = { 'ruby' },
+        root_dir = util.root_pattern('Gemfile', '.git'),
+        init_options = {
+          enabledFeatures = enabled_features,
+        },
+      },
+    }
+  end
+
+  lspconfig.ruby_lsp.setup({ on_attach = on_attach, capabilities = capabilities })
+end
+
+-- syntax_tree
+if utils.installed_via_bundler('syntax_tree') then
+  require('lspconfig').syntax_tree.setup({
+    cmd = { 'bundle', 'exec', 'stree', 'lsp' },
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
+end
+
 -- debugging
 local dap = require('dap')
 
