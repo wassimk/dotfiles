@@ -190,6 +190,8 @@ function M.setup()
     use('wincent/ferret')
     use({ 'wincent/scalpel', keys = '<Leader>e' })
 
+    use('ThePrimeagen/harpoon')
+
     use({
       'nvim-telescope/telescope.nvim',
       tag = '*',

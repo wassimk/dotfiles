@@ -117,6 +117,7 @@ key_bindings:
   - { key: C, mods: Alt, chars: "\x1b\x63" }
   - { key: F, mods: Alt, chars: "\x1b\x66" }
   - { key: Q, mods: Alt, chars: "\x1b\x71" }
+  - { key: R, mods: Alt, chars: "\x1b\x72" }
   - { key: Y, mods: Alt, chars: "\x1b\x79" }
   - { key: U, mods: Alt, chars: "\x1b\x75" }
   - { key: I, mods: Alt, chars: "\x1b\x69" }

@@ -34,6 +34,7 @@ telescope.setup({
 telescope.load_extension('dap')
 telescope.load_extension('fzf')
 telescope.load_extension('ui-select')
+telescope.load_extension('harpoon')
 
 -- keymaps
 local opts = { noremap = true, silent = true }
