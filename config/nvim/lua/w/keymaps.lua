@@ -9,12 +9,6 @@ vim.g.maplocalleader = ' '
 -- clipboard
 keymap({ 'n', 'v' }, '<Leader>y', '"+y', opts)
 
--- split resizing (defaults taken over by yabai)
-keymap('n', '<M-i>', '<cmd>resize -5<CR>')
-keymap('n', '<M-u>', '<cmd>resize +5<CR>')
-keymap('n', '<M-y>', '<cmd>vertical resize +5<CR>')
-keymap('n', '<M-o>', '<cmd>vertical resize -5<CR>')
-
 ----
 -- Keymaps for Lazy Loaded Plugins
 ----
