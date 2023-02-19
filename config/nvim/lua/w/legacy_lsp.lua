@@ -11,9 +11,6 @@ require('lspconfig').vimls.setup({
   on_attach = on_attach,
 })
 
--- yaml
-require('lspconfig').yamlls.setup({ capabilities = capabilities, on_attach = on_attach })
-
 -- json
 require('lspconfig').jsonls.setup({
   init_options = {
