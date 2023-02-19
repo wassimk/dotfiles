@@ -1,6 +1,7 @@
 --
 -- json filetype
 --
+
 require('lspconfig').jsonls.setup({
   init_options = {
     provideFormatter = true,
