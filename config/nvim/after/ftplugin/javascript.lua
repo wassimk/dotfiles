@@ -21,5 +21,5 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   group = auGroup,
 })
 
--- lsp
+-- language server
 require('w.lsp.javascript').setup()

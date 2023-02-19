@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 ----
--- lsp
+-- language server
 ----
 -- use library from vscode CodeLLDB extension
 local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.7.4/'

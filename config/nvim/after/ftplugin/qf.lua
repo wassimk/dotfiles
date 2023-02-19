@@ -1,5 +1,5 @@
 --
--- ruby qf
+-- qf filetype
 --
 
 -- wrap long text in quickfix windows

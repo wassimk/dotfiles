@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 ----
--- lsp
+-- language servers
 ----
 local utils = require('w.utils')
 local capabilities = require('w.lsp').capabilities()

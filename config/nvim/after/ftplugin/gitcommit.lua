@@ -1,3 +1,7 @@
+--
+-- gitcommit filetype
+--
+
 vim.o.spell = true
 
 require('w.cmp_handles').setup()

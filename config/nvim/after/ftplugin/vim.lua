@@ -2,6 +2,7 @@
 -- vim filetype
 --
 
+-- language server
 require('lspconfig').vimls.setup({
   init_options = { isNeovim = true },
   capabilities = require('w.lsp').capabilities(),
