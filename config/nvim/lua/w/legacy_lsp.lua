@@ -11,15 +11,6 @@ require('lspconfig').vimls.setup({
   on_attach = on_attach,
 })
 
--- json
-require('lspconfig').jsonls.setup({
-  init_options = {
-    provideFormatter = true,
-  },
-  capabilities = capabilities,
-  on_attach = on_attach,
-})
-
 -- html
 require('lspconfig').html.setup({ capabilities = capabilities, on_attach = on_attach })
 
