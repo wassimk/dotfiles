@@ -2,9 +2,7 @@
 -- lsp
 ----
 local utils = require('w.utils')
-
 local capabilities = require('w.lsp').capabilities()
-
 local on_attach = require('w.lsp').on_attach
 
 -- bash scripting
@@ -116,27 +114,6 @@ require('lspconfig').eslint.setup({
       showDocumentation = {
         enable = true,
       },
-    },
-  },
-  capabilities = capabilities,
-  on_attach = on_attach,
-})
-
-----
--- lua
-----
-require('neodev').setup({
-  library = {
-    plugins = { 'nvim-treesitter', 'plenary.nvim', 'nvim-dap', 'gitsigns.nvim', 'nvim-dap-ui' },
-  },
-})
-
-require('lspconfig').lua_ls.setup({
-  settings = {
-    Lua = {
-      diagnostics = { globals = { 'vim', 'hs', 'packer_plugins' } },
-      format = { enable = false },
-      telemetry = { enable = false },
     },
   },
   capabilities = capabilities,
