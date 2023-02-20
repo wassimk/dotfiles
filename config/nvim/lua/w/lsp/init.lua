@@ -3,6 +3,14 @@
 ----
 local M = {}
 
+function M.setup()
+  local lsp = vim.api.nvim_create_augroup('WamAutocmdsLsp', { clear = true })
+  vim.api.nvim_create_autocmd('LspAttach', {
+    group = lsp,
+    callback = M.on_attach,
+  })
+end
+
 function M.capabilities()
   return require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 end
