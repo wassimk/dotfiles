@@ -1,6 +1,6 @@
-----
+--
 -- lua language server
-----
+--
 
 require('neodev').setup({
   library = {

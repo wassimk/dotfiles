@@ -1,8 +1,7 @@
 --
--- json filetype
+-- json language server
 --
 
--- language server
 require('lspconfig').jsonls.setup({
   init_options = {
     provideFormatter = true,
