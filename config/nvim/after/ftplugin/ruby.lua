@@ -18,13 +18,22 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- language servers
 ----
 local utils = require('w.utils')
-local capabilities = require('w.lsp').capabilities()
-local on_attach = require('w.lsp').on_attach
+
+local root_files = {
+  'Gemfile',
+  '.git',
+  '.solargraph.yml',
+  '.rubocop.yml',
+  '.streerc',
+}
 
 -- solargraph
 if utils.installed_via_bundler('solargraph') then
-  require('lspconfig').solargraph.setup({
+  vim.lsp.start({
+    name = 'solargraph',
     cmd = { 'bundle', 'exec', 'solargraph', 'stdio' },
+    root_dir = vim.fs.dirname(vim.fs.find(root_files, { upward = true })[1]),
+    filetypes = { 'ruby' },
     init_options = {
       formatting = false,
     },
@@ -33,50 +42,42 @@ if utils.installed_via_bundler('solargraph') then
         diagnostics = true,
       },
     },
-    capabilities = capabilities,
-    on_attach = on_attach,
+    capabilities = require('w.lsp').capabilities(),
   })
 end
 
 -- ruby-lsp
 if utils.installed_via_bundler('ruby%-lsp') then
-  local lspconfig = require('lspconfig')
-  local configs = require('lspconfig.configs')
-  local util = require('lspconfig.util')
+  local enabled_features = {
+    'documentHighlights',
+    'documentSymbols',
+    'foldingRanges',
+    'selectionRanges',
+    'semanticHighlighting',
+    -- 'formatting',
+    'diagnostics',
+    'codeActions',
+  }
 
-  if not configs.ruby_lsp then
-    local enabled_features = {
-      'documentHighlights',
-      'documentSymbols',
-      'foldingRanges',
-      'selectionRanges',
-      'semanticHighlighting',
-      -- 'formatting',
-      'diagnostics',
-      'codeActions',
-    }
-
-    configs.ruby_lsp = {
-      default_config = {
-        cmd = { 'bundle', 'exec', 'ruby-lsp' },
-        filetypes = { 'ruby' },
-        root_dir = util.root_pattern('Gemfile', '.git'),
-        init_options = {
-          enabledFeatures = enabled_features,
-        },
-      },
-    }
-  end
-
-  lspconfig.ruby_lsp.setup({ on_attach = on_attach, capabilities = capabilities })
+  vim.lsp.start({
+    name = 'ruby-lsp',
+    cmd = { 'bundle', 'exec', 'ruby-lsp' },
+    root_dir = vim.fs.dirname(vim.fs.find(root_files, { upward = true })[1]),
+    init_options = {
+      enabledFeatures = enabled_features,
+    },
+    capabilities = require('w.lsp').capabilities(),
+  })
 end
 
 -- syntax_tree
 if utils.installed_via_bundler('syntax_tree') then
-  require('lspconfig').syntax_tree.setup({
+  vim.lsp.start({
+    name = 'syntax-tree',
     cmd = { 'bundle', 'exec', 'stree', 'lsp' },
-    capabilities = capabilities,
-    on_attach = on_attach,
+    root_dir = vim.fs.dirname(vim.fs.find(root_files, { upward = true })[1]),
+    filetypes = { 'ruby' },
+    capabilities = require('w.lsp').capabilities(),
   })
 end
 
