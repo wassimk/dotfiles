@@ -4,11 +4,9 @@
 local M = {}
 
 function M.setup()
-  local lsp = vim.api.nvim_create_augroup('WamAutocmdsLsp', { clear = true })
-  vim.api.nvim_create_autocmd('LspAttach', {
-    group = lsp,
-    callback = M.on_attach,
-  })
+  require('w.lsp.javascript')
+  require('w.lsp.ruby')
+  require('w.lsp.lua')
 end
 
 function M.capabilities()

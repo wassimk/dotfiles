@@ -1,40 +1,34 @@
 --
--- javascript lsp
+-- javascript language servers
 --
 
-local M = {}
+local capabilities = require('w.lsp').capabilities()
+local on_attach = require('w.lsp').on_attach
 
-function M.setup()
-  local capabilities = require('w.lsp').capabilities()
-  local on_attach = require('w.lsp').on_attach
-
-  -- javascript / typescript
-  -- this plugin calls lspconfig and sets up tsserver
-  require('typescript').setup({
-    disable_commands = false, -- :Typescript* commands
-    debug = false,
-    server = {
-      capabilities = capabilities,
-      on_attach = on_attach,
-    },
-  })
-
-  -- eslint
-  require('lspconfig').eslint.setup({
-    settings = {
-      validate = 'on',
-      codeAction = {
-        disableRuleComment = {
-          location = 'separateLine',
-        },
-        showDocumentation = {
-          enable = true,
-        },
-      },
-    },
+-- javascript / typescript
+-- this plugin calls lspconfig and sets up tsserver
+require('typescript').setup({
+  disable_commands = false, -- :Typescript* commands
+  debug = false,
+  server = {
     capabilities = capabilities,
     on_attach = on_attach,
-  })
-end
+  },
+})
 
-return M
+-- eslint
+require('lspconfig').eslint.setup({
+  settings = {
+    validate = 'on',
+    codeAction = {
+      disableRuleComment = {
+        location = 'separateLine',
+      },
+      showDocumentation = {
+        enable = true,
+      },
+    },
+  },
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
