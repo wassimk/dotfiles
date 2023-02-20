@@ -13,23 +13,37 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 ----
 -- language servers
 ----
-local capabilities = require('w.lsp').capabilities()
-local on_attach = require('w.lsp').on_attach
-
 require('neodev').setup({
   library = {
     plugins = { 'nvim-treesitter', 'plenary.nvim', 'nvim-dap', 'gitsigns.nvim', 'nvim-dap-ui' },
   },
 })
 
-require('lspconfig').lua_ls.setup({
+local root_files = {
+  '.luarc.json',
+  '.luarc.jsonc',
+  '.luacheckrc',
+  '.stylua.toml',
+  'stylua.toml',
+  'selene.toml',
+  'selene.yml',
+  '.git',
+}
+
+vim.lsp.start({
+  name = 'lua-language-server',
+  cmd = { 'lua-language-server' },
+  root_dir = vim.fs.dirname(vim.fs.find(root_files, { upward = true })[1]),
+  filetypes = { 'lua' },
   settings = {
     Lua = {
+      -- https://github.com/LuaLS/lua-language-server/wiki/Settings
+      completion = { enable = true, showWord = 'Disable' },
       diagnostics = { globals = { 'vim', 'hs', 'packer_plugins' } },
       format = { enable = false },
+      runtime = { version = 'LuaJIT' },
       telemetry = { enable = false },
     },
   },
-  capabilities = capabilities,
-  on_attach = on_attach,
+  capabilities = require('w.lsp').capabilities(),
 })
