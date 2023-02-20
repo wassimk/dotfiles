@@ -65,12 +65,9 @@ function M.setup()
       },
     })
 
-    use({ 'wincent/vcs-jump', cmd = 'VcsJump' })
-    use('lewis6991/gitsigns.nvim')
-    use({
-      'akinsho/git-conflict.nvim',
-      tag = '*',
-    })
+    use({ 'wincent/vcs-jump', cmd = 'VcsJump', tag = '*' })
+    use({ 'lewis6991/gitsigns.nvim', tag = '*' })
+    use({ 'akinsho/git-conflict.nvim', tag = '*' })
 
     -- repl
     use({
@@ -145,8 +142,9 @@ function M.setup()
     -- debugging
     use({
       'mfussenegger/nvim-dap',
+      tag = '*',
       requires = {
-        'rcarriga/nvim-dap-ui',
+        { 'rcarriga/nvim-dap-ui', tag = '*' },
         'theHamsta/nvim-dap-virtual-text',
       },
     })
@@ -173,6 +171,7 @@ function M.setup()
 
     use({
       'L3MON4D3/LuaSnip',
+      tag = '*',
       requires = 'saadparwaiz1/cmp_luasnip',
     })
 
@@ -186,9 +185,9 @@ function M.setup()
     })
 
     -- files and search
-    use('wincent/loupe')
-    use('wincent/ferret')
-    use({ 'wincent/scalpel', keys = '<Leader>e' })
+    use({ 'wincent/loupe', tag = '*' })
+    use({ 'wincent/ferret', tag = '*' })
+    use({ 'wincent/scalpel', keys = '<Leader>e', tag = '*' })
 
     use('ThePrimeagen/harpoon')
 
@@ -213,6 +212,7 @@ function M.setup()
     -- text objects / motions
     use({
       'numToStr/Comment.nvim',
+      tag = '*',
       keys = { 'gc', 'gcc', 'gbc' },
       config = function()
         require('Comment').setup()
@@ -221,6 +221,7 @@ function M.setup()
 
     use({
       'kylechui/nvim-surround',
+      tag = '*',
       config = function()
         require('nvim-surround').setup()
       end,
@@ -236,8 +237,8 @@ function M.setup()
 
     -- miscellaneous / automatic
     use('beauwilliams/focus.nvim')
-    use('wincent/vim-clipper')
-    use('lukas-reineke/indent-blankline.nvim')
+    use({ 'wincent/vim-clipper', tag = '*' })
+    use({ 'lukas-reineke/indent-blankline.nvim', tag = '*' })
     use('ludovicchabant/vim-gutentags')
 
     -- treesitter
@@ -256,7 +257,7 @@ function M.setup()
     -- theme / status line / tmux / terminal / quickfix / vim
     use('navarasu/onedark.nvim')
     use('christoomey/vim-tmux-navigator')
-    use('wincent/terminus')
+    use({ 'wincent/terminus', tag = '*' })
     use({ 'kevinhwang91/nvim-bqf', tag = '*' })
     use('milkypostman/vim-togglelist')
     use('nvim-lualine/lualine.nvim')
