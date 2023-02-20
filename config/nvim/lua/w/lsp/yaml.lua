@@ -1,9 +1,8 @@
 --
--- css filetype
+-- yaml language server
 --
 
--- language server
-require('lspconfig').cssls.setup({
+require('lspconfig').yamlls.setup({
   capabilities = require('w.lsp').capabilities(),
   on_attach = require('w.lsp').on_attach,
 })

@@ -1,12 +1,20 @@
-----
+--
 -- lsp
-----
+--
+
 local M = {}
 
 function M.setup()
+  require('w.lsp.bash')
+  require('w.lsp.css')
+  require('w.lsp.html')
   require('w.lsp.javascript')
-  require('w.lsp.ruby')
+  require('w.lsp.json')
   require('w.lsp.lua')
+  require('w.lsp.ruby')
+  require('w.lsp.rust')
+  require('w.lsp.vim')
+  require('w.lsp.yaml')
 end
 
 function M.capabilities()

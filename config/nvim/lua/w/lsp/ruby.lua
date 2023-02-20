@@ -1,6 +1,6 @@
-----
+--
 -- ruby language servers
-----
+--
 
 local utils = require('w.utils')
 local capabilities = require('w.lsp').capabilities()
