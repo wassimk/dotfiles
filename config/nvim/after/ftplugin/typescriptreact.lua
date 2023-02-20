@@ -20,6 +20,3 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   command = 'silent! EslintFixAll',
   group = auGroup,
 })
-
--- language server
-require('w.lsp.javascript').setup()
