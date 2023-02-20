@@ -15,6 +15,7 @@ local sources = {
   }),
   null_ls.builtins.code_actions.shellcheck,
   null_ls.builtins.code_actions.refactoring.with({ extra_filetypes = { 'ruby' } }),
+  require('typescript.extensions.null-ls.code-actions'),
 }
 
 if utils.config_exists('selene.toml') then
