@@ -50,4 +50,4 @@ vim.keymap.set(
   { noremap = true, silent = true }
 )
 
-require('luasnip.loaders.from_lua').load({ paths = os.getenv('HOME') .. '/.config/nvim/lua/wassim/snippets' })
+require('luasnip.loaders.from_lua').load({ paths = os.getenv('HOME') .. '/.config/nvim/lua/w/snippets' })
