@@ -46,7 +46,7 @@ end, { silent = true })
 vim.keymap.set(
   'n',
   '<leader><leader>s',
-  '<cmd>source ' .. os.getenv('HOME') .. '/.config/nvim/after/plugin/luasnip.lua<CR>',
+  '<cmd>source ' .. os.getenv('HOME') .. '/.config/nvim/after/plugin/luasnip.lua<cr>',
   { noremap = true, silent = true }
 )
 

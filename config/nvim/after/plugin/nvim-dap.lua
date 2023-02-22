@@ -17,11 +17,11 @@ if has_dap then
   keymap('n', '<F5>', dap.continue, opts)
   keymap('n', '<F17>', dap.terminate, opts) -- Shift-F5
   keymap('n', '<F9>', dap.toggle_breakpoint, opts)
-  keymap('n', '<F21>', "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts) -- Shift-F9
+  keymap('n', '<F21>', "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", opts) -- Shift-F9
   keymap(
     'n',
     '<Leader>lp',
-    "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
+    "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>",
     opts
   )
   keymap('n', '<F10>', dap.step_over, opts)
