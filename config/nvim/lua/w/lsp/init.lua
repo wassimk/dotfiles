@@ -25,14 +25,14 @@ function M.on_attach(client)
   local opts = { buffer = 0, silent = true }
 
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+  vim.keymap.set('n', 'gd', '<cmd>TroubleToggle lsp_definitions<cr>', opts)
+  vim.keymap.set('n', 'gi', '<cmd>TroubleToggle lsp_implementations<cr>', opts)
+  vim.keymap.set('n', 'gr', '<cmd>TroubleToggle lsp_references<cr>', opts)
   vim.keymap.set('n', 'gS', vim.lsp.buf.signature_help, opts)
   vim.keymap.set('n', 'gd$', vim.lsp.buf.document_symbol, opts)
   vim.keymap.set('n', 'gw$', vim.lsp.buf.workspace_symbol, opts)
   vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
-  vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
+  vim.keymap.set('n', '<leader>D', 'TroubleToggle lsp_type_definitions<cr>', opts)
   vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts)
 
   if client.name == 'rust_analyzer' then
