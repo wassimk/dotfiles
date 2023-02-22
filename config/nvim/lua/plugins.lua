@@ -109,7 +109,7 @@ function M.setup()
       cmd = 'Trouble',
       'folke/trouble.nvim',
       config = function()
-        require('trouble').setup()
+        require('lazy.trouble').setup()
       end,
     })
 
