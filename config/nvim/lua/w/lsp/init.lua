@@ -27,7 +27,7 @@ function M.on_attach(client)
       buffer = 0,
       silent = true,
       noremap = true,
-      desc = 'LSP ' .. desc,
+      desc = 'LSP: ' .. desc,
     }
   end
 
