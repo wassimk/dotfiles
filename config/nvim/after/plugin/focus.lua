@@ -11,5 +11,6 @@ end
 
 focus.setup({
   width = 120,
-  excluded_buftypes = { 'nofile', 'prompt', 'popup', 'quickfix' },
+  excluded_filetypes = { 'harpoon', 'telescoperesults', 'telescopeprompt', 'tsplayground' },
+  excluded_buftypes = { 'nofile', 'prompt', 'popup', 'trouble' },
 })
