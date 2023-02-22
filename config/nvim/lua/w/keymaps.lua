@@ -38,6 +38,9 @@ vim.keymap.set('n', '<Leader>pr', "<cmd>lua require('iron.core').repl_restart()<
 -- vim-easy-align
 vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)<cr>', opts('MOTION', 'align'))
 
+-- trouble
+vim.keymap.set('n', '<leader>t', '<cmd>TroubleToggle<cr>', opts('TROUBLE', 'toggle window'))
+
 -- apple = red
 -- grass += green
 -- sky -= blue
