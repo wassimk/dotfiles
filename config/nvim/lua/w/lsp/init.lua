@@ -32,14 +32,14 @@ function M.on_attach(client)
   end
 
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts('goto declaration'))
-  vim.keymap.set('n', 'gd', '<cmd>TroubleToggle lsp_definitions<cr>', opts('goto definitions'))
-  vim.keymap.set('n', 'gi', '<cmd>TroubleToggle lsp_implementations<cr>', opts('goto implementations'))
-  vim.keymap.set('n', 'gr', '<cmd>TroubleToggle lsp_references<cr>', opts('goto references'))
+  vim.keymap.set('n', 'gd', '<cmd>Trouble lsp_definitions<cr>', opts('goto definitions'))
+  vim.keymap.set('n', 'gi', '<cmd>Trouble lsp_implementations<cr>', opts('goto implementations'))
+  vim.keymap.set('n', 'gr', '<cmd>Trouble lsp_references<cr>', opts('goto references'))
   vim.keymap.set('n', 'gS', vim.lsp.buf.signature_help, opts('signature help'))
   vim.keymap.set('n', 'gd$', vim.lsp.buf.document_symbol, opts('document symbols'))
   vim.keymap.set('n', 'gw$', vim.lsp.buf.workspace_symbol, opts('workspace symbols'))
   vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts('rename'))
-  vim.keymap.set('n', '<leader>D', 'TroubleToggle lsp_type_definitions<cr>', opts('goto type definitions'))
+  vim.keymap.set('n', '<leader>D', 'Trouble lsp_type_definitions<cr>', opts('goto type definitions'))
   vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts('format'))
 
   if client.name == 'rust_analyzer' then
