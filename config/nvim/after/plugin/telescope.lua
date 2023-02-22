@@ -39,8 +39,6 @@ telescope.load_extension('harpoon')
 -- keymaps
 local function opts(desc)
   return {
-    noremap = true,
-    silent = true,
     desc = 'TELESCOPE: ' .. desc,
   }
 end

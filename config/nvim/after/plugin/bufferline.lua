@@ -39,5 +39,5 @@ bufferline.setup({
 })
 
 -- keymaps
-vim.keymap.set('n', ']b', '<cmd>BufferLineCycleNext<cr>', { noremap = true, desc = 'BUFFERLINE: next' })
-vim.keymap.set('n', '[b', '<cmd>BufferLineCyclePrev<cr>', { noremap = true, desc = 'BUFFERLINE: previous' })
+vim.keymap.set('n', ']b', '<cmd>BufferLineCycleNext<cr>', { desc = 'BUFFERLINE: next' })
+vim.keymap.set('n', '[b', '<cmd>BufferLineCyclePrev<cr>', { desc = 'BUFFERLINE: previous' })

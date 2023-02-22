@@ -11,8 +11,6 @@ end
 
 local function opts(desc)
   return {
-    noremap = true,
-    silent = true,
     desc = 'HARPOON: ' .. desc,
   }
 end
