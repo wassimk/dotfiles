@@ -13,11 +13,18 @@ vim.diagnostic.config({
 })
 
 -- keymaps
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>dd', '<cmd>TroubleToggle document_diagnostics<cr>')
-vim.keymap.set('n', '<leader>wd', '<cmd>TroubleToggle workspace_diagnostics<cr>')
+local function opts(desc)
+  return {
+    noremap = true,
+    silent = true,
+    desc = 'DIAGNOSTIC: ' .. desc,
+  }
+end
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts('next'))
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts('previous'))
+vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, opts('open float'))
+vim.keymap.set('n', '<leader>dd', '<cmd>TroubleToggle document_diagnostics<cr>', opts('document list'))
+vim.keymap.set('n', '<leader>wd', '<cmd>TroubleToggle workspace_diagnostics<cr>', opts('workspace list'))
 
 -- icons in gutter
 local diagnostic_signs = {
