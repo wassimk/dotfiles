@@ -106,7 +106,7 @@ function M.setup()
     })
 
     use({
-      cmd = { 'Trouble', 'TroubleToggle' },
+      cmd = 'Trouble',
       'folke/trouble.nvim',
       config = function()
         require('trouble').setup()
