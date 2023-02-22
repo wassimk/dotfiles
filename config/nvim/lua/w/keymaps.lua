@@ -1,5 +1,10 @@
-local keymap = vim.keymap.set
-local opts = { noremap = true, silent = true }
+local function opts(prefix, desc)
+  return {
+    noremap = true,
+    silent = true,
+    desc = prefix .. ': ' .. desc,
+  }
+end
 
 -- remap leader and local leader to <Space>
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
@@ -7,28 +12,32 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- clipboard
-keymap({ 'n', 'v' }, '<Leader>y', '"+y', opts)
+vim.keymap.set({ 'n', 'v' }, '<Leader>y', '"+y', opts('CLIPBOARD', 'copy to system'))
 
 ----
 -- Keymaps for Lazy Loaded Plugins
 ----
 
 -- nvim-tree
-keymap('n', '<C-n>', '<cmd>NvimTreeToggle<cr>', opts)
+vim.keymap.set('n', '<C-n>', '<cmd>NvimTreeToggle<cr>', opts('FILES', 'toggle file tree'))
 
 -- vim-test
-keymap('n', 't<C-n>', '<cmd>TestNearest<cr>', opts)
-keymap('n', 't<C-f>', '<cmd>TestFile<cr>', opts)
-keymap('n', 't<C-a>', '<cmd>TestSuite<cr>', opts)
-keymap('n', 't<C-l>', '<cmd>TestLast<cr>', opts)
-keymap('n', 't<C-g>', '<cmd>TestVisit<cr>', opts)
+vim.keymap.set('n', 't<C-n>', '<cmd>TestNearest<cr>', opts('TEST', 'test nearest'))
+vim.keymap.set('n', 't<C-f>', '<cmd>TestFile<cr>', opts('TEST', 'file'))
+vim.keymap.set('n', 't<C-a>', '<cmd>TestSuite<cr>', opts('TEST', 'suite'))
+vim.keymap.set('n', 't<C-l>', '<cmd>TestLast<cr>', opts('TEST', 'last'))
+vim.keymap.set('n', 't<C-g>', '<cmd>TestVisit<cr>', opts('TEST', 'visit'))
 
 -- iron
-keymap('n', '<Leader>pl', "<cmd>lua require('iron.core').send_line()<cr>", opts)
-keymap('v', '<Leader>pv', "<cmd>lua require('iron.core').visual_send()<cr>", opts)
-keymap('n', '<Leader>pf', "<cmd>lua require('iron.core').send_file()<cr>", opts)
-keymap('n', '<Leader>pc', "<cmd>lua require('iron.core').close_repl()<cr>", opts)
-keymap('n', '<Leader>pr', "<cmd>lua require('iron.core').repl_restart()<cr>", opts)
+vim.keymap.set('n', '<Leader>pl', "<cmd>lua require('iron.core').send_line()<cr>", opts('REPL', 'send line'))
+vim.keymap.set('v', '<Leader>pv', "<cmd>lua require('iron.core').visual_send()<cr>", opts('REPL', 'send line (visual)'))
+vim.keymap.set('n', '<Leader>pf', "<cmd>lua require('iron.core').send_file()<cr>", opts('REPL', 'send file'))
+vim.keymap.set('n', '<Leader>pc', "<cmd>lua require('iron.core').close_repl()<cr>", opts('REPL', 'close'))
+vim.keymap.set('n', '<Leader>pr', "<cmd>lua require('iron.core').repl_restart()<cr>", opts('REPL', 'restart'))
 
 -- vim-easy-align
-keymap({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)<cr>', opts)
+vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)<cr>', opts('MOTION', 'align'))
+
+-- apple = red
+-- grass += green
+-- sky -= blue

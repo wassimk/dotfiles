@@ -9,21 +9,29 @@ if not has_harpoon then
   return
 end
 
+local function opts(desc)
+  return {
+    noremap = true,
+    silent = true,
+    desc = 'HARPOON: ' .. desc,
+  }
+end
+
 local mark = require('harpoon.mark')
 local ui = require('harpoon.ui')
 
-vim.keymap.set('n', '<leader>h', mark.add_file)
-vim.keymap.set('n', '<C-e>', '<cmd>Telescope harpoon marks<cr>')
+vim.keymap.set('n', '<leader>h', mark.add_file, opts('mark file'))
+vim.keymap.set('n', '<C-e>', '<cmd>Telescope harpoon marks<cr>', opts('toggle UI'))
 
 vim.keymap.set('n', '<M-r>1', function()
   ui.nav_file(1)
-end)
+end, opts('goto file 1'))
 vim.keymap.set('n', '<M-r>2', function()
   ui.nav_file(2)
-end)
+end, opts('goto file 2'))
 vim.keymap.set('n', '<M-r>3', function()
   ui.nav_file(3)
-end)
+end, opts('goto file 3'))
 vim.keymap.set('n', '<M-r>4', function()
   ui.nav_file(4)
-end)
+end, opts('goto file 4'))

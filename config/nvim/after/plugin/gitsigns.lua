@@ -17,6 +17,7 @@ gitsigns.setup({
     local function keymap(mode, l, r, opts)
       opts = opts or { noremap = true, silent = true }
       opts.buffer = bufnr
+      opts.desc = 'GIT: ' .. opts.desc
       vim.keymap.set(mode, l, r, opts)
     end
 
@@ -31,7 +32,7 @@ gitsigns.setup({
       end)
 
       return '<Ignore>'
-    end, { expr = true })
+    end, { expr = true, desc = 'goto next hunk' })
 
     keymap('n', '[h', function()
       if vim.wo.diff then
@@ -43,26 +44,26 @@ gitsigns.setup({
       end)
 
       return '<Ignore>'
-    end, { expr = true })
+    end, { expr = true, desc = 'goto previous hunk' })
 
     -- actions
-    keymap({ 'n', 'v' }, '<leader>hs', gs.stage_hunk)
-    keymap({ 'n', 'v' }, '<leader>hr', gs.reset_hunk)
-    keymap('n', '<leader>hS', gs.stage_buffer)
-    keymap('n', '<leader>hu', gs.undo_stage_hunk)
-    keymap('n', '<leader>hR', gs.reset_buffer)
-    keymap('n', '<leader>hp', gs.preview_hunk)
+    keymap({ 'n', 'v' }, '<leader>hs', gs.stage_hunk, { desc = 'stage hunk' })
+    keymap({ 'n', 'v' }, '<leader>hr', gs.reset_hunk, { desc = 'reset hunk' })
+    keymap('n', '<leader>hS', gs.stage_buffer, { desc = 'stage buffer' })
+    keymap('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
+    keymap('n', '<leader>hR', gs.reset_buffer, { desc = 'reset buffer' })
+    keymap('n', '<leader>hp', gs.preview_hunk, { desc = 'preview hunk' })
     keymap('n', '<leader>hb', function()
       gs.blame_line({ full = true })
-    end)
-    keymap('n', '<leader>tb', gs.toggle_current_line_blame)
-    keymap('n', '<leader>hd', gs.diffthis)
+    end, { desc = 'blame line' })
+    keymap('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'toggle current line blame' })
+    keymap('n', '<leader>hd', gs.diffthis, { desc = 'diff this' })
     keymap('n', '<leader>hD', function()
       gs.diffthis('~')
-    end)
-    keymap('n', '<leader>td', gs.toggle_deleted)
+    end, { desc = 'diff this (other)' })
+    keymap('n', '<leader>td', gs.toggle_deleted, { desc = 'toggle deleted' })
 
     -- text object
-    keymap({ 'o', 'x' }, 'ih', gs.select_hunk)
+    keymap({ 'o', 'x' }, 'ih', gs.select_hunk, { desc = 'select hunk' })
   end,
 })

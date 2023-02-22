@@ -235,7 +235,7 @@ function M.setup()
     })
 
     use({ 'christoomey/vim-sort-motion', keys = 'gs' })
-    use({ 'junegunn/vim-easy-align', keys = 'ga' })
+    use({ 'junegunn/vim-easy-align' })
     use('kana/vim-textobj-user')
     use('kana/vim-textobj-line')
     use('kana/vim-textobj-entire')
