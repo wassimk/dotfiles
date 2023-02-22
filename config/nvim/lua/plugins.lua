@@ -99,7 +99,7 @@ function M.setup()
     use('folke/todo-comments.nvim')
 
     use({
-      cmd = 'Trouble',
+      cmd = { 'Trouble', 'TroubleToggle' },
       'folke/trouble.nvim',
       config = function()
         require('trouble').setup()
