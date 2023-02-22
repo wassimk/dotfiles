@@ -17,7 +17,7 @@ local has_dap, dap = pcall(require, 'dap')
 if has_dap then
   dap.set_log_level('TRACE')
 
-  vim.keymap.set('n', '<F5>', dap.continue, opts('continue'))
+  vim.keymap.set('n', '<F5>', dap.continue, opts('start / continue menu'))
   vim.keymap.set('n', '<F17>', dap.terminate, opts('terminate, Shift-F5')) -- Shift-F5
   vim.keymap.set('n', '<F9>', dap.toggle_breakpoint, opts('toggle breakpoint'))
   vim.keymap.set(
