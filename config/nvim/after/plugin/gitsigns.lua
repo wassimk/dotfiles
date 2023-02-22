@@ -16,7 +16,7 @@ gitsigns.setup({
 
     local function keymap(mode, l, r, opts)
       opts.buffer = bufnr
-      opts.desc = 'GIT: ' .. opts.desc
+      opts.desc = 'GITSIGNS: ' .. opts.desc
       vim.keymap.set(mode, l, r, opts)
     end
 
