@@ -14,21 +14,21 @@ keymap({ 'n', 'v' }, '<Leader>y', '"+y', opts)
 ----
 
 -- nvim-tree
-keymap('n', '<C-n>', '<cmd>NvimTreeToggle<CR>', opts)
+keymap('n', '<C-n>', '<cmd>NvimTreeToggle<cr>', opts)
 
 -- vim-test
-keymap('n', 't<C-n>', '<cmd>TestNearest<CR>', opts)
-keymap('n', 't<C-f>', '<cmd>TestFile<CR>', opts)
-keymap('n', 't<C-a>', '<cmd>TestSuite<CR>', opts)
-keymap('n', 't<C-l>', '<cmd>TestLast<CR>', opts)
-keymap('n', 't<C-g>', '<cmd>TestVisit<CR>', opts)
+keymap('n', 't<C-n>', '<cmd>TestNearest<cr>', opts)
+keymap('n', 't<C-f>', '<cmd>TestFile<cr>', opts)
+keymap('n', 't<C-a>', '<cmd>TestSuite<cr>', opts)
+keymap('n', 't<C-l>', '<cmd>TestLast<cr>', opts)
+keymap('n', 't<C-g>', '<cmd>TestVisit<cr>', opts)
 
 -- iron
-keymap('n', '<Leader>pl', "<cmd>lua require('iron.core').send_line()<CR>", opts)
-keymap('v', '<Leader>pv', "<cmd>lua require('iron.core').visual_send()<CR>", opts)
-keymap('n', '<Leader>pf', "<cmd>lua require('iron.core').send_file()<CR>", opts)
-keymap('n', '<Leader>pc', "<cmd>lua require('iron.core').close_repl()<CR>", opts)
-keymap('n', '<Leader>pr', "<cmd>lua require('iron.core').repl_restart()<CR>", opts)
+keymap('n', '<Leader>pl', "<cmd>lua require('iron.core').send_line()<cr>", opts)
+keymap('v', '<Leader>pv', "<cmd>lua require('iron.core').visual_send()<cr>", opts)
+keymap('n', '<Leader>pf', "<cmd>lua require('iron.core').send_file()<cr>", opts)
+keymap('n', '<Leader>pc', "<cmd>lua require('iron.core').close_repl()<cr>", opts)
+keymap('n', '<Leader>pr', "<cmd>lua require('iron.core').repl_restart()<cr>", opts)
 
 -- vim-easy-align
-keymap({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)<CR>', opts)
+keymap({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)<cr>', opts)

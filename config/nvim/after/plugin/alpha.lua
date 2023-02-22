@@ -71,7 +71,7 @@ local function file_button(fn, sc, short_fn)
   else
     ico_txt = ''
   end
-  local file_button_el = dashboard.button(sc, ico_txt .. short_fn, '<cmd>e ' .. fn .. ' <CR>')
+  local file_button_el = dashboard.button(sc, ico_txt .. short_fn, '<cmd>e ' .. fn .. ' <cr>')
   local fn_start = short_fn:match('.*[/\\]')
   if fn_start ~= nil then
     table.insert(fb_hl, { 'Comment', #ico_txt - 2, #fn_start + #ico_txt })
@@ -200,12 +200,12 @@ local buttons = {
     { type = 'text', val = 'Quick links', opts = { hl = 'SpecialComment', position = 'center' } },
     { type = 'padding', val = 1 },
 
-    dashboard.button('e', '  New file', '<cmd>ene<CR>'),
+    dashboard.button('e', '  New file', '<cmd>ene<cr>'),
     dashboard.button('<C-f> f', '  Find file'),
     dashboard.button('<C-f> l', '  Live grep'),
     dashboard.button('<C-f> h', '  Search help'),
-    dashboard.button('u', '  Update plugins', '<cmd>PackerSync<CR>'),
-    dashboard.button('q', '  Quit', '<cmd>qa<CR>'),
+    dashboard.button('u', '  Update plugins', '<cmd>PackerSync<cr>'),
+    dashboard.button('q', '  Quit', '<cmd>qa<cr>'),
   },
   position = 'center',
 }
