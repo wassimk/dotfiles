@@ -15,8 +15,6 @@ vim.diagnostic.config({
 -- keymaps
 local function opts(desc)
   return {
-    noremap = true,
-    silent = true,
     desc = 'DIAGNOSTIC: ' .. desc,
   }
 end

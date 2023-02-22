@@ -7,8 +7,6 @@
 
 local function opts(desc)
   return {
-    silent = true,
-    noremap = true,
     desc = 'DAP: ' .. desc,
   }
 end

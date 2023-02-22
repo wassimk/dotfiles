@@ -25,8 +25,6 @@ function M.on_attach(client)
   local function opts(desc)
     return {
       buffer = 0,
-      silent = true,
-      noremap = true,
       desc = 'LSP: ' .. desc,
     }
   end

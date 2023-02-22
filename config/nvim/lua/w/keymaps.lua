@@ -1,13 +1,11 @@
 local function opts(prefix, desc)
   return {
-    noremap = true,
-    silent = true,
     desc = prefix .. ': ' .. desc,
   }
 end
 
 -- remap leader and local leader to <Space>
-vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('', '<Space>', '<Nop>', {})
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 

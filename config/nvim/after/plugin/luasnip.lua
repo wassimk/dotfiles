@@ -34,20 +34,20 @@ vim.keymap.set({ 'i', 's' }, '<C-k>', function()
   if luasnip.expand_or_jumpable() then
     luasnip.expand_or_jump()
   end
-end, { silent = true, desc = 'LUASNIP: expand or jump next' })
+end, { desc = 'LUASNIP: expand or jump next' })
 
 vim.keymap.set({ 'i', 's' }, '<C-j>', function()
   if luasnip.jumpable(-1) then
     luasnip.jump(-1)
   end
-end, { silent = true, desc = 'LUASNIP: jump previous' })
+end, { desc = 'LUASNIP: jump previous' })
 
 -- reload snippets
 vim.keymap.set(
   'n',
   '<leader><leader>s',
   '<cmd>source ' .. os.getenv('HOME') .. '/.config/nvim/after/plugin/luasnip.lua<cr>',
-  { noremap = true, silent = true, desc = 'LUASNIP: reload keymaps' }
+  { desc = 'LUASNIP: reload keymaps' }
 )
 
 require('luasnip.loaders.from_lua').load({ paths = os.getenv('HOME') .. '/.config/nvim/lua/w/snippets' })
