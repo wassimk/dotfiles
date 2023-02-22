@@ -39,7 +39,9 @@ yabai -m rule --add app="^Kaleidoscope$" manage=off
 yabai -m rule --add app="^Drop$" manage=off
 yabai -m rule --add app="^Hammerspoon$" manage=off
 yabai -m rule --add app="^CleanMyMac X$" manage=off
+yabai -m rule --add app="^Deliveries$" manage=off
 yabai -m rule --add app="^Camtasia" manage=off
 yabai -m rule --add app="^Snagit" manage=off
+yabai -m rule --add app="^Raycast" manage=off
 
 echo "yabai configuration loaded..."
