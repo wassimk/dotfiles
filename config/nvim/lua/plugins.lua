@@ -97,6 +97,13 @@ function M.setup()
 
     -- lsp / copilot / diagnostics
     use('folke/todo-comments.nvim')
+    use({
+      cmd = 'SymbolsOutline',
+      'simrat39/symbols-outline.nvim',
+      config = function()
+        require('symbols-outline').setup()
+      end,
+    })
 
     use({
       cmd = { 'Trouble', 'TroubleToggle' },
