@@ -20,3 +20,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   command = 'silent! EslintFixAll',
   group = auGroup,
 })
+
+-- add Rails JS/TS files to path
+vim.opt.path:append('app/javascript')
