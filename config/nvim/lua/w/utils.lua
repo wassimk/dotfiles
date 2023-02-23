@@ -34,4 +34,17 @@ function M.root_dir_of_git_repo()
   end
 end
 
+function M.is_dir(filename)
+  return M.exists(filename) == 'directory'
+end
+
+function M.is_file(filename)
+  return M.exists(filename) == 'file'
+end
+
+function M.exists(filename)
+  local stat = vim.loop.fs_stat(filename)
+  return stat and stat.type or false
+end
+
 return M
