@@ -1,7 +1,7 @@
 local M = {}
 
 function M.installed_via_bundler(gemname)
-  local gemfile = vim.fs.find('Gemfile.lock')[1]
+  local gemfile = M.root_dir_of_git_repo() .. 'Gemfile.lock'
 
   if vim.fn.filereadable(gemfile) == 0 then
     return
@@ -19,8 +19,19 @@ function M.installed_via_bundler(gemname)
 end
 
 function M.config_exists(filename)
-  local file = vim.fs.find(filename)[1]
+  local file = M.root_dir_of_git_repo() .. filename
 
   return vim.fn.filereadable(file) == 1
 end
+
+function M.root_dir_of_git_repo()
+  local root_dir = vim.fs.find('.git', { type = 'directory' })
+
+  if root_dir then
+    return root_dir[1]:gsub('%.git', '')
+  else
+    return './'
+  end
+end
+
 return M
