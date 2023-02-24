@@ -3,6 +3,7 @@
 -- Custom nvim-cmp source for GitHub handles.
 -- GitHub handles; eg. @wassimk → Wassim Metallaoui <wassimk@github.com>
 -- Read from ~/.git-handles.json.
+--
 
 local M = {}
 

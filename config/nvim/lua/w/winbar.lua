@@ -24,6 +24,9 @@ function M.statusline()
 end
 
 function M.setup()
+  vim.api.nvim_set_hl(0, 'WinBarPath', { bg = '#282c34' })
+  vim.api.nvim_set_hl(0, 'WinBarModified', { bg = '#282c34' })
+
   vim.opt.winbar = "%{%v:lua.require'w.winbar'.statusline()%}"
 end
 
