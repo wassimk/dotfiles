@@ -53,7 +53,7 @@ M.setup = function()
             range = {
               start = {
                 line = request.context.cursor.row - 1,
-                character = request.context.cursor.col - 1 - #input,
+                character = request.context.cursor.col - 2 - #input,
               },
               ['end'] = {
                 line = request.context.cursor.row - 1,
