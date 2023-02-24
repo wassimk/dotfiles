@@ -7,3 +7,4 @@ require('w.autocmds')
 require('w.usercmds')
 
 require('w.lsp').setup()
+require('w.winbar').setup()
