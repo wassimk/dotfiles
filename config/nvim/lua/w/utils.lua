@@ -1,14 +1,14 @@
 local M = {}
 
 function M.installed_via_bundler(gemname)
-  local gemfile = M.root_dir_of_git_repo() .. 'Gemfile.lock'
+  local gemfile_lock = vim.fn.getcwd() .. '/Gemfile.lock'
 
-  if vim.fn.filereadable(gemfile) == 0 then
+  if vim.fn.filereadable(gemfile_lock) == 0 then
     return
   end
 
   local found = false
-  for line in io.lines(gemfile) do
+  for line in io.lines(gemfile_lock) do
     if string.find(line, gemname) then
       found = true
       break
@@ -19,19 +19,9 @@ function M.installed_via_bundler(gemname)
 end
 
 function M.config_exists(filename)
-  local file = M.root_dir_of_git_repo() .. filename
+  local file = vim.fn.getcwd() .. '/' .. filename
 
   return vim.fn.filereadable(file) == 1
-end
-
-function M.root_dir_of_git_repo()
-  local root_dir = vim.fs.find('.git', { type = 'directory' })
-
-  if root_dir then
-    return root_dir[1]:gsub('%.git', '')
-  else
-    return './'
-  end
 end
 
 function M.is_dir(filename)
