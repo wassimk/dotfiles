@@ -1,3 +1,7 @@
+--
+-- winbar
+--
+
 local M = {}
 
 local winbar_filetype_exclude = {

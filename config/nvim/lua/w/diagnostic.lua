@@ -1,6 +1,6 @@
-----
+--
 -- diagnostic
-----
+--
 
 -- global configuration
 vim.diagnostic.config({
