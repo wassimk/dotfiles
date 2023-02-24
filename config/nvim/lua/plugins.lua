@@ -65,9 +65,9 @@ function M.setup()
       },
     })
 
-    use({ 'wincent/vcs-jump', cmd = 'VcsJump', tag = '*' })
-    use({ 'lewis6991/gitsigns.nvim', tag = '*' })
     use({ 'akinsho/git-conflict.nvim', tag = '*' })
+    use({ 'lewis6991/gitsigns.nvim', tag = '*' })
+    use({ 'wincent/vcs-jump', cmd = 'VcsJump', tag = '*' })
 
     -- repl
     use({
@@ -192,8 +192,8 @@ function M.setup()
     })
 
     -- files and search
-    use({ 'wincent/loupe', tag = '*' })
     use({ 'wincent/ferret', tag = '*' })
+    use({ 'wincent/loupe', tag = '*' })
     use({ 'wincent/scalpel', keys = '<Leader>e', tag = '*' })
 
     use({
@@ -208,9 +208,9 @@ function M.setup()
       'nvim-telescope/telescope.nvim',
       tag = '*',
       requires = {
-        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-        'nvim-telescope/telescope-ui-select.nvim',
         'nvim-telescope/telescope-dap.nvim',
+        'nvim-telescope/telescope-ui-select.nvim',
+        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       },
     })
 
@@ -240,43 +240,43 @@ function M.setup()
       end,
     })
 
-    use({ 'christoomey/vim-sort-motion', keys = 'gs' })
-    use({ 'junegunn/vim-easy-align' })
-    use('kana/vim-textobj-user')
-    use('kana/vim-textobj-line')
     use('kana/vim-textobj-entire')
     use('kana/vim-textobj-indent')
+    use('kana/vim-textobj-line')
+    use('kana/vim-textobj-user')
     use('tpope/vim-repeat')
+    use({ 'christoomey/vim-sort-motion', keys = 'gs' })
+    use({ 'junegunn/vim-easy-align' })
 
     -- miscellaneous / automatic
     use('beauwilliams/focus.nvim')
-    use({ 'wincent/vim-clipper', tag = '*' })
-    use({ 'lukas-reineke/indent-blankline.nvim', tag = '*' })
     use('ludovicchabant/vim-gutentags')
+    use({ 'lukas-reineke/indent-blankline.nvim', tag = '*' })
+    use({ 'wincent/vim-clipper', tag = '*' })
 
     -- treesitter
     use({
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
       requires = {
-        'nvim-treesitter/playground',
-        'windwp/nvim-ts-autotag',
         'RRethy/nvim-treesitter-endwise',
-        'windwp/nvim-autopairs',
         'andymass/vim-matchup',
+        'nvim-treesitter/playground',
+        'windwp/nvim-autopairs',
+        'windwp/nvim-ts-autotag',
       },
     })
 
     -- theme / status line / tmux / terminal / quickfix / vim
-    use('navarasu/onedark.nvim')
     use('christoomey/vim-tmux-navigator')
-    use({ 'wincent/terminus', tag = '*' })
-    use({ 'kevinhwang91/nvim-bqf', tag = '*' })
     use('milkypostman/vim-togglelist')
+    use('navarasu/onedark.nvim')
     use('nvim-lualine/lualine.nvim')
-    use({ 'akinsho/bufferline.nvim', tag = '*' })
-    use('tpope/vim-unimpaired')
     use('tpope/vim-abolish')
+    use('tpope/vim-unimpaired')
+    use({ 'akinsho/bufferline.nvim', tag = '*' })
+    use({ 'kevinhwang91/nvim-bqf', tag = '*' })
+    use({ 'wincent/terminus', tag = '*' })
 
     if packer_bootstrap then
       vim.notify('packer.nvim installed with plugins, restart neovim!')
