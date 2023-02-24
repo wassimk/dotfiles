@@ -1,3 +1,7 @@
+--
+-- globals
+--
+
 local reloader = nil
 local ok, plenary_reload = pcall(require, 'plenary.reload')
 if not ok then

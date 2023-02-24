@@ -1,3 +1,7 @@
+--
+-- autocmds
+--
+
 local api = vim.api
 local wamGrp = api.nvim_create_augroup('WamAutocmds', {})
 
