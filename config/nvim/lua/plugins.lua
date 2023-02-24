@@ -160,16 +160,16 @@ function M.setup()
     use({
       'hrsh7th/nvim-cmp',
       requires = {
+        'f3fora/cmp-spell',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-cmdline',
-        'hrsh7th/cmp-nvim-lsp-signature-help',
         'hrsh7th/cmp-nvim-lsp',
-        'petertriho/cmp-git',
+        'hrsh7th/cmp-nvim-lsp-signature-help',
         'hrsh7th/cmp-path',
-        'f3fora/cmp-spell',
+        'onsails/lspkind.nvim',
+        'petertriho/cmp-git',
         'ray-x/cmp-treesitter',
         'rcarriga/cmp-dap',
-        'onsails/lspkind.nvim',
         { '~/personal/neovim/cmp-rails-fixture-types', ft = 'ruby' },
         { '~/personal/neovim/cmp-rails-fixture-names', ft = 'ruby' },
         { '~/personal/neovim/cmp-feature-flipper', ft = 'ruby' },
@@ -196,7 +196,13 @@ function M.setup()
     use({ 'wincent/ferret', tag = '*' })
     use({ 'wincent/scalpel', keys = '<Leader>e', tag = '*' })
 
-    use('ThePrimeagen/harpoon')
+    use({
+      'ThePrimeagen/harpoon',
+      keys = { '<Leader>h', '<C-e>' },
+      config = function()
+        require('lazy.harpoon').setup()
+      end,
+    })
 
     use({
       'nvim-telescope/telescope.nvim',
