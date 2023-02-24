@@ -4,7 +4,7 @@
 --
 
 local telescope, builtin, actions = require('telescope'), require('telescope.builtin'), require('telescope.actions')
-local custom_pickers = require('w.telescope_custom_pickers')
+local custom_pickers = require('w.plugin.telescope.custom_pickers')
 
 telescope.setup({
   defaults = {
