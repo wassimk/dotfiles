@@ -24,8 +24,6 @@ opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.tabstop = 2
 
-require('w.winbar').setup()
-
 if vim.fn.executable('rg') == 1 then
   -- use rg for grep
   opt.grepprg = 'rg -H --no-heading --vimgrep'
