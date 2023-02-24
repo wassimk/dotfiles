@@ -50,4 +50,4 @@ vim.keymap.set(
   { desc = 'LUASNIP: reload keymaps' }
 )
 
-require('luasnip.loaders.from_lua').load({ paths = os.getenv('HOME') .. '/.config/nvim/lua/w/snippets' })
+require('luasnip.loaders.from_lua').load({ paths = os.getenv('HOME') .. '/.config/nvim/lua/w/plugin/luasnip/snippets' })
