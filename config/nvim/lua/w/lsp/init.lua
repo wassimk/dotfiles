@@ -5,6 +5,15 @@
 local M = {}
 
 function M.setup()
+  -- change border for lsp floats to single
+  local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+  function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.border = opts.border or 'single'
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+  end
+
+  -- configure servers
   require('w.lsp.bash')
   require('w.lsp.css')
   require('w.lsp.html')
