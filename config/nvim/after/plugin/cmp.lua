@@ -91,9 +91,9 @@ cmp.setup({
   mapping = key_mappings,
 
   sources = {
-    { name = 'rails_fixture_types', priority = 100 },
-    { name = 'rails_fixture_names', priority = 101 },
-    { name = 'feature_flipper', priority = 102 },
+    { name = 'rails_fixture_types', priority = 10 },
+    { name = 'rails_fixture_names', priority = 9 },
+    { name = 'feature_flipper', priority = 8 },
     { name = 'luasnip' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
@@ -157,12 +157,11 @@ cmp.setup.filetype({ 'dap-repl', 'dapui_watches', 'dapui_hover' }, {
 
 cmp.setup.filetype('gitcommit', {
   sources = cmp.config.sources({
+    { name = 'luasnip' }, -- for cab~
     { name = 'buffer' },
     { name = 'path' },
-    { name = 'git' },
+    { name = 'git_handles', priority = 10 },
+    { name = 'git', priority = 9 },
     { name = 'spell', keyword_length = 4 },
-
-    -- My custom sources.
-    { name = 'git_handles' },
   }),
 })
