@@ -20,6 +20,14 @@ telescope.setup({
     },
   },
   pickers = {
+    git_status = {
+      mappings = {
+        i = {
+          ['<cr>'] = actions.select_default,
+          ['<C-y>'] = actions.select_default,
+        },
+      },
+    },
     live_grep = {
       mappings = {
         i = {
