@@ -154,3 +154,15 @@ cmp.setup.filetype({ 'dap-repl', 'dapui_watches', 'dapui_hover' }, {
     { name = 'dap' },
   },
 })
+
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    { name = 'buffer' },
+    { name = 'path' },
+    { name = 'git' },
+    { name = 'spell', keyword_length = 4 },
+
+    -- My custom sources.
+    { name = 'git_handles' },
+  }),
+})
