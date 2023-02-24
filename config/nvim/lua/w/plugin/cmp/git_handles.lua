@@ -1,22 +1,19 @@
+--
+-- git_handles.lua
 -- Custom nvim-cmp source for GitHub handles.
+-- GitHub handles; eg. @wassimk → Wassim Metallaoui <wassimk@github.com>
+-- Read from ~/.git-handles.json.
 
-local handles = {}
+local M = {}
 
-local registered = false
-
-handles.setup = function()
-  if registered then
-    return
-  end
-  registered = true
-
+M.setup = function()
   local has_cmp, cmp = pcall(require, 'cmp')
   if not has_cmp then
     return
   end
 
   local success, handles_with_names_and_emails = pcall(function()
-    local json_path = vim.fn.expand('~/.github-handles.json')
+    local json_path = vim.fn.expand('~/.git-handles.json')
     if vim.fn.filereadable(json_path) == 0 then
       error(json_path .. ' not readable')
     end
@@ -75,20 +72,7 @@ handles.setup = function()
     end
   end
 
-  cmp.register_source('handles', source.new())
-
-  cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-      { name = 'luasnip' },
-      { name = 'buffer' },
-      { name = 'path' },
-      { name = 'git' },
-      { name = 'spell', keyword_length = 4 },
-
-      -- My custom sources.
-      { name = 'handles' }, -- GitHub handles; eg. @wassimk → Wassim Metallaoui <wassimk@github.com>
-    }),
-  })
+  cmp.register_source('git_handles', source.new())
 end
 
-return handles
+return M
