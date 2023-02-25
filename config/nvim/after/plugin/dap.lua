@@ -59,12 +59,6 @@ if has_dapui then
       collapsed = '▸',
       current_frame = '▸',
     },
-    controls = {
-      icons = {
-        step_back = '',
-        run_last = '↻',
-      },
-    },
   })
 
   vim.keymap.set('n', '<Leader>du', dapui.toggle, opts('UI toggle'))
