@@ -3,17 +3,10 @@
 --
 
 -- use library from vscode CodeLLDB extension
-local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.7.4/'
+-- TODO: make sure use the latest version
+local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.8.1/'
 local codelldb_path = extension_path .. 'adapter/codelldb'
 local liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'
-
-require('dap').adapters.lldb = {
-  type = 'executable',
-  attach = { pidProperty = 'pid', pidSelect = 'ask' },
-  command = 'lldb-vscode',
-  name = 'lldb',
-  env = { LLDB_LAUNCH_FLAG_LAUNCH_IN_TTY = 'YES' },
-}
 
 local opts = {
   dap = {
