@@ -16,6 +16,33 @@ if utils.installed_via_bundler('solargraph') then
     settings = {
       solargraph = {
         diagnostics = true,
+        logLevel = 'debug',
+      },
+    },
+    commands = {
+      SolargraphDocumentGems = {
+        function()
+          vim.lsp.buf_notify(0, '$/solargraph/documentGems')
+        end,
+        description = 'Build YARD documentation for installed gems',
+      },
+      SolargraphDocumentGemsWithRebuild = {
+        function()
+          vim.lsp.buf_notify(0, '$/solargraph/documentGems', { rebuild = true })
+        end,
+        description = 'Build YARD documentation for installed gems',
+      },
+      SolargraphCheckGemVersion = {
+        function()
+          vim.lsp.buf_notify(0, '$/solargraph/checkGemVersion', { verbose = true })
+        end,
+        description = 'Check if a newer version of the gem is available',
+      },
+      SolargraphRestartServer = {
+        function()
+          vim.lsp.buf_notify(0, '$/solargraph/restartServer')
+        end,
+        description = 'A notification sent from the server to the client requesting that the client shut down and restart the server',
       },
     },
     capabilities = capabilities,
