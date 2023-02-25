@@ -28,9 +28,15 @@ if has_dap then
   ) -- Shift-F9
   vim.keymap.set(
     'n',
-    '<Leader>lp',
+    '<Leader>dp',
     "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>",
     opts('log point')
+  )
+  vim.keymap.set(
+    'n',
+    '<Leader>de',
+    "<cmd>lua require('dap').set_exception_breakpoints()<cr>",
+    opts('exception breakpoints')
   )
   vim.keymap.set('n', '<F10>', dap.step_over, opts('step over'))
   vim.keymap.set('n', '<F11>', dap.step_into, opts('step into'))
