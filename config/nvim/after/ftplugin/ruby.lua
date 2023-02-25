@@ -27,6 +27,8 @@ dap.adapters.ruby = function(callback, config)
     '${port}',
     '--command',
     '--',
+    'bundle',
+    'exec',
   }
 
   vim.list_extend(args, config.command)
@@ -53,7 +55,7 @@ dap.configurations.ruby = {
     name = 'debug file',
     request = 'attach',
     localfs = true,
-    command = { 'bundle', 'exec', 'ruby' },
+    command = { 'ruby' },
     script = { '${relativeFile}' },
   },
   {
@@ -61,7 +63,7 @@ dap.configurations.ruby = {
     name = 'debug file (prompt)',
     request = 'attach',
     localfs = true,
-    command = { 'bundle', 'exec', 'ruby' },
+    command = { 'ruby' },
     script = { '${relativeFile}' },
     script_args = function()
       local argument_string = vim.fn.input('Program arguments: ')
@@ -73,19 +75,19 @@ dap.configurations.ruby = {
     name = 'debug test file',
     request = 'attach',
     localfs = true,
-    command = { 'bundle', 'exec', 'ruby' },
-    script = { 'bin/rails', 'test', '${relativeFile}' },
+    command = { 'bin/rails', 'test' },
+    script = { '${relativeFile}' },
   },
   {
     type = 'ruby',
     name = 'debug test nearest',
     request = 'attach',
     localfs = true,
-    command = { 'bundle', 'exec', 'ruby' },
+    command = { 'bin/rails', 'test' },
     script = function()
       local line = vim.api.nvim_win_get_cursor(0)[1]
 
-      return { 'bin/rails', 'test', '${relativeFile}:' .. line }
+      return { '${relativeFile}:' .. line }
     end,
   },
   {
@@ -93,19 +95,20 @@ dap.configurations.ruby = {
     name = 'debug spec file',
     request = 'attach',
     localfs = true,
-    command = { 'bundle', 'exec', 'ruby' },
-    script = { 'bin/rspec', '${relativeFile}' },
+    command = { 'bin/rspec' },
+    script = { '${relativeFile}' },
   },
   {
     type = 'ruby',
     name = 'debug spec nearest',
     request = 'attach',
     localfs = true,
-    command = { 'bundle', 'exec', 'ruby' },
+    command = { 'bin/rspec' },
+
     script = function()
       local line = vim.api.nvim_win_get_cursor(0)[1]
 
-      return { 'bin/rspec', '${relativeFile}:' .. line }
+      return { '${relativeFile}:' .. line }
     end,
   },
 }
