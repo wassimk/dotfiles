@@ -85,17 +85,9 @@ end
 
 -- icons in gutter
 if has_dapui then
-  local dap_signs = {
-    Breakpoint = 'ﰉ',
-    BreakpointCondition = 'ﰊ',
-    LogPoint = 'ﯶ',
-    Stopped = '',
-    BreakpointRejected = 'ﰸ',
-  }
-
-  for type, icon in pairs(dap_signs) do
-    local hl = 'Dap' .. type
-
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
-  end
+  vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DapUIWatchesError' })
+  vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'DapUIWatchesError' })
+  vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'DapUIWatchesError' })
+  vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = 'DapUIWatchesError' })
+  vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapUIPlayPause' })
 end
