@@ -50,6 +50,7 @@ function M.on_attach(client)
   vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts('format'))
 
   if client.name == 'rust_analyzer' then
+    vim.keymap.set('n', '<F5>', '<cmd>RustDebuggables<cr>', { desc = 'RUST: debug menu' })
     vim.keymap.set(
       { 'n', 'v' },
       '<Leader>ca',
