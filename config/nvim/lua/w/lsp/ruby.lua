@@ -54,13 +54,16 @@ end
 if utils.installed_via_bundler('ruby%-lsp') then
   local enabled_features = {
     'documentHighlights',
+    -- 'documentLink',
     'documentSymbols',
     'foldingRanges',
     'selectionRanges',
     'semanticHighlighting',
-    -- 'formatting',
-    'diagnostics',
+    'formatting',
+    -- 'onTypeFormatting',
     'codeActions',
+    'diagnostics',
+    'hover',
   }
 
   require('lspconfig').ruby_ls.setup({
@@ -69,12 +72,36 @@ if utils.installed_via_bundler('ruby%-lsp') then
       enabledFeatures = enabled_features,
     },
     capabilities = capabilities,
-    on_attach = on_attach,
+    on_attach = function(client, bufnr)
+      local request_diagnostics = function()
+        local params = vim.lsp.util.make_text_document_params(bufnr)
+
+        client.request('textDocument/diagnostic', { textDocument = params }, function(err, result)
+          if err or not result then
+            return
+          end
+
+          vim.lsp.diagnostic.on_publish_diagnostics(
+            nil,
+            vim.tbl_extend('keep', params, { diagnostics = result.items }),
+            { client_id = client.id }
+          )
+        end)
+      end
+
+      on_attach(client, bufnr)
+      request_diagnostics() -- call on attach
+
+      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePre', 'BufReadPost', 'InsertLeave', 'TextChanged' }, {
+        buffer = bufnr,
+        callback = request_diagnostics,
+      })
+    end,
   })
 end
 
 -- syntax_tree
-if utils.installed_via_bundler('syntax_tree') then
+if utils.installed_via_bundler('syntax_tree') and not utils.installed_via_bundler('ruby%-lsp') then
   require('lspconfig').syntax_tree.setup({
     cmd = { 'bundle', 'exec', 'stree', 'lsp' },
     capabilities = capabilities,
