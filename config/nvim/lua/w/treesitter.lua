@@ -31,7 +31,15 @@ require('nvim-treesitter.configs').setup({
     'yaml',
   },
   highlight = { enable = true, additional_vim_regex_highlighting = false },
-  incremental_selection = { enable = false },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = 'gli',
+      node_incremental = 'gln',
+      scope_incremental = 'gls',
+      node_decremental = 'glm',
+    },
+  },
   indent = { enable = true },
   playground = { enable = true }, -- nvim-treesitter/playground
   query_linter = { enable = true }, -- nvim-treesitter/playground
