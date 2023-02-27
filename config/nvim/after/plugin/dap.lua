@@ -43,6 +43,7 @@ if has_dap then
   vim.keymap.set('n', '<F22>', dap.step_out, opts('step out, Shift-F11'))
   vim.keymap.set('n', '<Leader>dr', dap.repl.open, opts('REPL open'))
   vim.keymap.set('n', '<Leader>dl', dap.run_last, opts('run last'))
+  vim.keymap.set('n', '<Leader>dh', "<cmd>lua require('dap.ui.widgets').hover()<cr>", opts('hover popup'))
 end
 
 -- dapui
