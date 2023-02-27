@@ -42,7 +42,6 @@ yabai -m rule --add app="^CleanMyMac X$" manage=off
 yabai -m rule --add app="^Music$" manage=off
 yabai -m rule --add app="^Deliveries$" manage=off
 yabai -m rule --add app="^Bartender" manage=off
-yabai -m rule --add app="^Grammarly" manage=off
 yabai -m rule --add app="^Camtasia" manage=off
 yabai -m rule --add app="^Snagit" manage=off
 yabai -m rule --add app="^Raycast" manage=off
