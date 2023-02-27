@@ -50,3 +50,6 @@ case "$OSTYPE" in
   darwin*) source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ;;
   linux*)  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ;;
 esac
+
+# always be in tmux, except when vscode
+[[ "$TERM_PROGRAM" != "vscode" ]] && ensure_tmux_is_running
