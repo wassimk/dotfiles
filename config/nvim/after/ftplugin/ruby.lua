@@ -105,7 +105,6 @@ dap.configurations.ruby = {
     request = 'attach',
     localfs = true,
     command = { 'ruby', 'bin/rspec' },
-
     script = function()
       local line = vim.api.nvim_win_get_cursor(0)[1]
 
