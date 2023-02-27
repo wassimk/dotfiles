@@ -58,7 +58,6 @@ end
 
 lualine.setup({
   options = {
-    disabled_filetypes = { 'NvimTree' },
     globalstatus = true,
   },
   theme = 'onedark',
@@ -82,5 +81,5 @@ lualine.setup({
     lualine_y = {},
     lualine_z = {},
   },
-  extensions = { 'quickfix', 'fugitive' },
+  extensions = { 'quickfix', 'fugitive', 'nvim-tree', 'nvim-dap-ui', 'symbols-outline' },
 })
