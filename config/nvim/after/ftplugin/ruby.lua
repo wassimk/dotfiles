@@ -75,7 +75,7 @@ dap.configurations.ruby = {
     name = 'debug test file',
     request = 'attach',
     localfs = true,
-    command = { 'bin/rails', 'test' },
+    command = { 'ruby', 'bin/rails', 'test' },
     script = { '${relativeFile}' },
   },
   {
@@ -83,7 +83,7 @@ dap.configurations.ruby = {
     name = 'debug test nearest',
     request = 'attach',
     localfs = true,
-    command = { 'bin/rails', 'test' },
+    command = { 'ruby', 'bin/rails', 'test' },
     script = function()
       local line = vim.api.nvim_win_get_cursor(0)[1]
 
@@ -95,7 +95,7 @@ dap.configurations.ruby = {
     name = 'debug spec file',
     request = 'attach',
     localfs = true,
-    command = { 'bin/rspec' },
+    command = { 'ruby', 'bin/rspec' },
     script = { '${relativeFile}' },
   },
   {
@@ -103,7 +103,7 @@ dap.configurations.ruby = {
     name = 'debug spec nearest',
     request = 'attach',
     localfs = true,
-    command = { 'bin/rspec' },
+    command = { 'ruby', 'bin/rspec' },
 
     script = function()
       local line = vim.api.nvim_win_get_cursor(0)[1]
