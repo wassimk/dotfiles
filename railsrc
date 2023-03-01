@@ -5,6 +5,6 @@
 --skip-active-storage
 --skip-spring
 --database=postgresql
---assett-pipeline=propshaf
+--asset-pipeline=propshaft
 --css=tailwind
 --javascript=esbuild
