@@ -91,7 +91,7 @@ function M.setup()
     use({
       'akinsho/toggleterm.nvim',
       tag = '*',
-      cmd = { 'Lg', 'ToggleTerm' },
+      cmd = { 'ToggleTerm', 'TermExec' },
       module = 'toggleterm.terminal',
       config = function()
         require('lazy.toggleterm').setup()
