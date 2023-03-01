@@ -6,21 +6,24 @@
 local M = {}
 
 function M.setup()
-  -- vim-test custom run strategy using vim-floaterm
-  -- because vim-test hard codes its floaterm autoclose to 0
-  -- TODO: maybe put the test command here with --title=a:cmd
-  vim.api.nvim_exec(
-    [[
-  function! FloatermAutocloseStrategy(cmd)
-    execute 'FloatermNew --autoclose=1 '. a:cmd
+  vim.g['test#custom_strategies'] = {
+    custom_toggleterm = function(cmd)
+      local Terminal = require('toggleterm.terminal').Terminal
 
-  endfunction
-]],
-    false
-  )
+      Terminal:new({
+        cmd = cmd,
+        close_on_exit = false,
+        on_exit = function(terminal, _, exit_code)
+          if exit_code == 0 then
+            terminal:close()
+          end
+        end,
+      }):toggle()
+    end,
+  }
 
-  vim.g['test#custom_strategies'] = { floaterm_autoclose = vim.fn['FloatermAutocloseStrategy'] }
-  vim.g['test#strategy'] = 'floaterm_autoclose'
+  vim.g['test#strategy'] = 'custom_toggleterm'
+  vim.g['test#echo_command'] = 0
 end
 
 return M
