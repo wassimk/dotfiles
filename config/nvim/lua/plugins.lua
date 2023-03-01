@@ -69,15 +69,6 @@ function M.setup()
     use({ 'lewis6991/gitsigns.nvim', tag = '*' })
     use({ 'wincent/vcs-jump', cmd = 'VcsJump', tag = '*' })
 
-    -- repl
-    use({
-      'hkupty/iron.nvim',
-      module = 'iron.core',
-      config = function()
-        require('lazy.iron').setup()
-      end,
-    })
-
     -- testing
     use({
       'janko-m/vim-test',
