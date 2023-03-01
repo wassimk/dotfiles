@@ -7,4 +7,4 @@ vim.api.nvim_create_user_command('Lg', function()
   local lazygit = Terminal:new({ cmd = 'lazygit', direction = 'float', hidden = true })
 
   lazygit:toggle()
-end, { desc = 'LAZYGIT: launch with floaterm' })
+end, { desc = 'LAZYGIT: launch with toggleterm' })
