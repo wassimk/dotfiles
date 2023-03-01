@@ -13,6 +13,7 @@ function M.setup()
       Terminal:new({
         cmd = cmd,
         close_on_exit = false,
+        direction = 'float',
         on_exit = function(terminal, _, exit_code)
           if exit_code == 0 then
             terminal:close()
