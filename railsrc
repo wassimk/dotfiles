@@ -3,6 +3,8 @@
 --skip-jbuilder
 --skip-action-mailbox
 --skip-active-storage
+--skip-spring
 --database=postgresql
 --assett-pipeline=propshaf
 --css=tailwind
+--javascript=esbuild
