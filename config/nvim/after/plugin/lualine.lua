@@ -61,7 +61,12 @@ local function toggleterm_statusline()
   return 'T' .. vim.b.toggle_number
 end
 
+local function nvimtree_statusline()
+  return 'NVIMTREE'
+end
+
 local my_toggleterm_extension = { sections = { lualine_a = { toggleterm_statusline } }, filetypes = { 'toggleterm' } }
+local my_nvimtree_extension = { sections = { lualine_a = { nvimtree_statusline } }, filetypes = { 'NvimTree' } }
 
 lualine.setup({
   options = {
@@ -88,5 +93,12 @@ lualine.setup({
     lualine_y = {},
     lualine_z = {},
   },
-  extensions = { 'quickfix', 'fugitive', 'nvim-tree', 'nvim-dap-ui', 'symbols-outline', my_toggleterm_extension },
+  extensions = {
+    'quickfix',
+    'fugitive',
+    'nvim-dap-ui',
+    'symbols-outline',
+    my_toggleterm_extension,
+    my_nvimtree_extension,
+  },
 })
