@@ -87,14 +87,6 @@ function M.setup()
       end,
     })
 
-    use({
-      'voldikss/vim-floaterm',
-      cmd = 'FloatermNew',
-      config = function()
-        require('lazy.vim-floaterm').setup()
-      end,
-    })
-
     -- terminal
     use({
       'akinsho/toggleterm.nvim',
