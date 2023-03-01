@@ -7,7 +7,7 @@ local M = {}
 
 function M.setup()
   vim.g['test#custom_strategies'] = {
-    custom_toggleterm = function(cmd)
+    my_toggleterm = function(cmd)
       local Terminal = require('toggleterm.terminal').Terminal
 
       Terminal:new({
@@ -22,8 +22,7 @@ function M.setup()
     end,
   }
 
-  vim.g['test#strategy'] = 'custom_toggleterm'
-  vim.g['test#echo_command'] = 0
+  vim.g['test#strategy'] = 'my_toggleterm'
 end
 
 return M
