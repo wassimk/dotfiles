@@ -56,6 +56,13 @@ local function rhs_character_and_word_counts()
   return rhs
 end
 
+local function toggleterm_statusline()
+  ---@diagnostic disable-next-line: undefined-field
+  return 'T' .. vim.b.toggle_number
+end
+
+local my_toggleterm_extension = { sections = { lualine_a = { toggleterm_statusline } }, filetypes = { 'toggleterm' } }
+
 lualine.setup({
   options = {
     globalstatus = true,
@@ -81,5 +88,5 @@ lualine.setup({
     lualine_y = {},
     lualine_z = {},
   },
-  extensions = { 'quickfix', 'fugitive', 'nvim-tree', 'nvim-dap-ui', 'symbols-outline' },
+  extensions = { 'quickfix', 'fugitive', 'nvim-tree', 'nvim-dap-ui', 'symbols-outline', my_toggleterm_extension },
 })
