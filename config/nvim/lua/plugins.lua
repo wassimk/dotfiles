@@ -79,15 +79,7 @@ function M.setup()
     })
 
     -- terminal
-    use({
-      'akinsho/toggleterm.nvim',
-      tag = '*',
-      cmd = { 'ToggleTerm', 'TermExec' },
-      module = 'toggleterm.terminal',
-      config = function()
-        require('lazy.toggleterm').setup()
-      end,
-    })
+    use({ 'akinsho/toggleterm.nvim', tag = '*' })
 
     -- lsp / copilot / diagnostics
     use('folke/todo-comments.nvim')
