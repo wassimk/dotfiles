@@ -101,7 +101,7 @@ if utils.installed_via_bundler('ruby%-lsp') then
 end
 
 -- syntax_tree
-if utils.installed_via_bundler('syntax_tree') and not utils.installed_via_bundler('ruby%-lsp') then
+if utils.installed_via_bundler('syntax_tree') then
   require('lspconfig').syntax_tree.setup({
     cmd = { 'bundle', 'exec', 'stree', 'lsp' },
     capabilities = capabilities,
