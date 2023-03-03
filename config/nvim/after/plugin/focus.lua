@@ -12,6 +12,6 @@ end
 focus.setup({
   width = 120,
   quickfixheight = 10,
-  excluded_filetypes = { 'qf', 'harpoon', 'tsplayground', 'Trouble', 'help' },
-  excluded_buftypes = { 'quickfix', 'nofile', 'prompt', 'popup', 'quickfix' },
+  excluded_filetypes = { 'qf', 'harpoon', 'tsplayground', 'Trouble', 'help', 'toggleterm' },
+  excluded_buftypes = { 'quickfix', 'nofile', 'prompt', 'popup', 'quickfix', 'TelescopePrompt' },
 })
