@@ -54,7 +54,7 @@ end
 if utils.installed_via_bundler('ruby%-lsp') then
   local enabled_features = {
     'documentHighlights',
-    -- 'documentLink',
+    'documentLink',
     'documentSymbols',
     'foldingRanges',
     'selectionRanges',
