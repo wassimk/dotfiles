@@ -42,6 +42,25 @@ function _tw() {
 }
 compdef _tw tw
 
+# completion for "tp" alias (ta cool-project)
+tp() {
+  if ! $(tmux list-sessions | sed -E 's/:.*$//' | grep -q "^$1$"); then
+    (TMUX='' tmux new-session -Ad -s "$1" -c "$HOME"/Personal/"$1")
+  fi
+
+  ta "$1"
+}
+
+function _tp() {
+  for session in $(tmux list-sessions -F "#S"); do
+    compadd -J "active" "$session"
+  done
+
+  for dir in $(ls -D -1 "$HOME"/Personal); do
+    compadd -J "inactive" "$dir"
+  done
+}
+compdef _tp tp
 # kill session
 tk() {
     if [ "$1" != "" ]
