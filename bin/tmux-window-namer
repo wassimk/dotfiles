@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+NAME=$1
+PATH=$2 # not used yet
+
+case $NAME in
+tmux)
+	echo ""
+	;;
+zsh | bash)
+	echo " $NAME"
+	;;
+vi | vim | nvim)
+	echo " $NAME"
+	;;
+lazygit | git)
+	echo " $NAME"
+	;;
+ruby)
+	echo " $NAME"
+	;;
+node)
+	echo " $NAME"
+	;;
+rustc | rustup | cargo)
+  echo " $NAME"
+  ;;
+go)
+	echo "ﳑ $NAME"
+	;;
+lf | lfcd)
+	echo " $NAME"
+	;;
+tail)
+  echo "󱂅 $NAME"
+  ;;
+*)
+	echo "$NAME"
+	;;
+esac
