@@ -124,6 +124,10 @@ installZshSyntaxHighlighting() {
   installOrUpdate "zsh-syntax-highlighting"
 }
 
+installZoxide() {
+  installOrUpdate "zoxide"
+}
+
 installReadline() {
   case $os in
     $macOS*)
@@ -583,6 +587,7 @@ installGnuPg
 installClipper
 installZsh
 installZshSyntaxHighlighting
+installZoxide
 installReadline
 installLess
 installFd
