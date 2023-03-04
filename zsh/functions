@@ -23,9 +23,10 @@ function _ta() {
 compdef _ta ta
 
 # completion for "tw" alias (ta work)
+WORK_DIR="$HOME"/Code
 tw() { 
   if ! $(tmux list-sessions | sed -E 's/:.*$//' | grep -q "^$1$"); then
-    (TMUX='' tmux new-session -Ad -s "$1" -c "$HOME"/Work/"$1")
+    (TMUX='' tmux new-session -Ad -s "$1" -c $WORK_DIR/"$1")
   fi
 
   ta "$1"
@@ -36,16 +37,17 @@ function _tw() {
     compadd -J "active" "$session"
   done
 
-  for dir in $(ls -D -1 "$HOME"/Work); do
+  for dir in $(ls -D -1 $WORK_DIR); do
     compadd -J "inactive" "$dir"
   done
 }
 compdef _tw tw
 
 # completion for "tp" alias (ta cool-project)
+PERSONAL_DIR="$HOME"/Personal
 tp() {
   if ! $(tmux list-sessions | sed -E 's/:.*$//' | grep -q "^$1$"); then
-    (TMUX='' tmux new-session -Ad -s "$1" -c "$HOME"/Personal/"$1")
+    (TMUX='' tmux new-session -Ad -s "$1" -c $PERSONAL_DIR/"$1")
   fi
 
   ta "$1"
@@ -56,7 +58,7 @@ function _tp() {
     compadd -J "active" "$session"
   done
 
-  for dir in $(ls -D -1 "$HOME"/Personal); do
+  for dir in $(ls -D -1 $PERSONAL_DIR); do
     compadd -J "inactive" "$dir"
   done
 }
