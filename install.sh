@@ -135,6 +135,10 @@ installReadline() {
   esac
 }
 
+installLess() {
+  installOrUpdate "less"
+}
+
 installFzf() {
   installOrUpdate "fzf"
 }
@@ -188,6 +192,18 @@ installYq() {
 
 installSd() {
   installOrUpdate "sd"
+}
+
+installTealdeer() {
+  installOrUpdate "tealdeer"
+}
+
+installGrex() {
+  installOrUpdate "grex"
+}
+
+installHyperfine() {
+  installOrUpdate "hyperfine"
 }
 
 installDust() {
@@ -568,6 +584,7 @@ installClipper
 installZsh
 installZshSyntaxHighlighting
 installReadline
+installLess
 installFd
 installFzf
 installAg
@@ -576,6 +593,9 @@ installAck
 installJq
 installYq
 installSd
+installTealdeer # tldr
+installGrex
+installHyperfine
 installDust
 installProcs
 installCtags
