@@ -42,6 +42,9 @@ esac
 # Rust
 [ -f "$HOME"/.cargo/env ] && source "$HOME"/.cargo/env
 
+# Zoxide
+eval "$(zoxide init zsh --cmd cd)"
+
 # Auto-suggestions
 source "$HOME"/.zsh/external/zsh-autosuggestions/zsh-autosuggestions.zsh
 
