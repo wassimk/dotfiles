@@ -18,6 +18,10 @@ installLazygit() {
   esac
 }
 
+installDelta() {
+  installOrUpdate "git-delta"
+}
+
 installGo() {
   case $os in
     $macOS*)
@@ -432,23 +436,6 @@ installLf() {
   esac
 }
 
-installDiffSoFancy() {
-  case $os in
-    $macOS*)
-      installOrUpdate "diff-so-fancy"
-      ;;
-    $ubuntu*)
-      if ! command -v diff-so-fancy >/dev/null 2>&1; then
-        cd "/usr/local" || exit
-        sudo git clone https://github.com/so-fancy/diff-so-fancy.git
-        ln -s /usr/local/diff-so-fancy/diff-so-fancy /usr/local/bin/diff-so-fancy
-      else
-        cd "/usr/local/diff-so-fancy" || exit
-        sudo git pull
-      fi
-  esac
-}
-
 installTrash() {
   case $os in
     $macOS*)
@@ -574,6 +561,8 @@ updateOsPackages
 installWget
 installGh
 installGit
+installLazygit
+installDelta
 installGo
 installRuby
 installPython
@@ -616,7 +605,6 @@ installTree
 installExa
 installBat
 installLf
-installDiffSoFancy
 installTrash
 installBottom
 installBandwhich
