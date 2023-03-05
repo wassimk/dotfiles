@@ -39,9 +39,9 @@ telescope.setup({
   },
 })
 
-telescope.load_extension('dap')
-telescope.load_extension('fzf')
-telescope.load_extension('ui-select')
+pcall(telescope.load_extension('dap'))
+pcall(telescope.load_extension('fzf'))
+pcall(telescope.load_extension('ui-select'))
 
 -- keymaps
 local function opts(desc)
