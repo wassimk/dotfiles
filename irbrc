@@ -1,3 +1,7 @@
+#
+# .irbrc - interactive ruby shell configuration
+#
+
 class Prompt
   class << self
     def app_name
@@ -38,3 +42,29 @@ prompt =
 IRB.conf[:USE_AUTOCOMPLETE] = false
 IRB.conf[:PROMPT_MODE] = prompt
 
+#
+# Useful debugging methods
+# 
+
+class Class
+  public :include
+
+  def class_methods
+    (methods - Class.instance_methods - Object.methods).sort
+  end
+
+  def defined_methods
+    methods = {}
+
+    methods[:instance] = new.local_methods
+    methods[:class] = class_methods
+
+    methods
+  end
+end
+
+class Object
+  def defined_methods
+    (methods - Object.instance_methods).sort
+  end
+end
