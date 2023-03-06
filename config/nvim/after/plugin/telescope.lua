@@ -56,14 +56,33 @@ local function opts(desc)
 end
 
 vim.keymap.set('n', '<C-f>', '', opts('unmap neovim default'))
-vim.keymap.set('n', '<C-f>f', builtin.find_files, opts('files'))
-vim.keymap.set('n', '<C-f>w', builtin.grep_string, opts('grep word'))
-vim.keymap.set('n', '<C-f>l', custom_pickers.live_grep, opts('live grep'))
-vim.keymap.set('n', '<C-f>gs', function()
-  builtin.git_status({ layout_strategy = 'vertical', layout_config = { width = 0.9 } })
-end, opts('git status'))
-vim.keymap.set('n', '<C-f>gt', builtin.git_stash, opts('git stash'))
-vim.keymap.set('n', '<C-f>gc', builtin.git_commits, opts('git commits'))
-vim.keymap.set('n', '<C-f>h', builtin.help_tags, opts('help tags'))
 vim.keymap.set('n', '<C-f>c', builtin.commands, opts('commands'))
 vim.keymap.set('n', '<C-f>k', builtin.keymaps, opts('keymaps'))
+
+vim.keymap.set('n', '<C-f>f', function()
+  builtin.find_files({ layout_strategy = 'vertical', layout_config = { mirror = true } })
+end, opts('find files'))
+
+vim.keymap.set('n', '<C-f>w', function()
+  builtin.grep_string({ layout_strategy = 'vertical', layout_config = { mirror = true } })
+end, opts('grep word'))
+
+vim.keymap.set('n', '<C-f>l', function()
+  builtin.live_string({ layout_strategy = 'vertical', layout_config = { mirror = true } })
+end, opts('live grep'))
+
+vim.keymap.set('n', '<C-f>gs', function()
+  builtin.git_status({ layout_strategy = 'vertical', layout_config = { mirror = true } })
+end, opts('git status'))
+
+vim.keymap.set('n', '<C-f>gt', function()
+  builtin.git_stash({ layout_strategy = 'vertical', layout_config = { mirror = true } })
+end, opts('git stash'))
+
+vim.keymap.set('n', '<C-f>gc', function()
+  builtin.git_commits({ layout_strategy = 'vertical', layout_config = { mirror = true } })
+end, opts('git commits'))
+
+vim.keymap.set('n', '<C-f>h', function()
+  builtin.help_tags({ layout_strategy = 'vertical', layout_config = { mirror = true, width = 0.6 } })
+end, opts('help tags'))
