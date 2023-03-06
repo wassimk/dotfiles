@@ -15,7 +15,30 @@ function M.setup()
 
   vim.opt.rtp:prepend(lazypath)
 
-  local opts = {}
+  local configuration = {
+    dev = {
+      path = '~/Personal/neovim',
+    },
+    checker = {
+      enabled = true,
+      notify = true,
+      frequency = 24 * 60 * 60, -- check for updates every 24 hours
+    },
+    performance = {
+      rtp = {
+        disabled_plugins = {
+          'gzip',
+          'matchit',
+          'matchparen',
+          'netrwPlugin',
+          'tarPlugin',
+          'tohtml',
+          'tutor',
+          'zipPlugin',
+        },
+      },
+    },
+  }
 
   local plugins = {
     -- profile neovim
@@ -133,9 +156,9 @@ function M.setup()
         'petertriho/cmp-git',
         'ray-x/cmp-treesitter',
         'rcarriga/cmp-dap',
-        { dir = '~/personal/neovim/cmp-rails-fixture-types', ft = 'ruby' },
-        { dir = '~/personal/neovim/cmp-rails-fixture-names', ft = 'ruby' },
-        { dir = '~/personal/neovim/cmp-feature-flipper', ft = 'ruby' },
+        { 'wassimk/cmp-rails-fixture-types', ft = 'ruby', dev = true },
+        { 'wassimk/cmp-rails-fixture-names', ft = 'ruby', dev = true },
+        { 'wassimk/cmp-feature-flipper', ft = 'ruby', dev = true },
       },
     },
 
@@ -233,7 +256,7 @@ function M.setup()
     { 'wincent/terminus', version = '*' },
   }
 
-  require('lazy').setup(plugins, opts)
+  require('lazy').setup(plugins, configuration)
 end
 
 return M
