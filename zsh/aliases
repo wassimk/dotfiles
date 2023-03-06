@@ -52,10 +52,12 @@ alias etl='e ~/.tmux.conf.linux'
 alias tl='tmux ls -F #S'
 alias tka='tmux kill-server'
 
-# bundler
+# bundler / rspec / minitest
 alias bi='bundle install'
 alias bu='bundle update'
 alias be='bundle exec'
+alias br='bundle exec rspec'
+alias bt='bin/rails test'
 
 # because of alacritty terminfo not being on remote hosts
 alias ssh="TERM=xterm-256color ssh"
