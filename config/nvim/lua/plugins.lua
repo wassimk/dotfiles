@@ -1,151 +1,128 @@
 local M = {}
 
 function M.setup()
-  -- used for first time install check
-  local packer_bootstrap = false
-
-  -- packer.nvim config options for init
-  local conf = {
-    profile = {
-      enable = true,
-      threshold = 0, -- load time before included in reporting
-    },
-    display = {
-      open_fn = function()
-        return require('packer.util').float({ border = 'rounded' })
-      end,
-    },
-    max_jobs = 20, -- prevent stalling on sync
-  }
-
-  -- install packer.nvim, if not installed
-  local function packer_init()
-    local fn = vim.fn
-    local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-    if fn.empty(fn.glob(install_path)) > 0 then
-      packer_bootstrap =
-        fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-    end
-
-    -- re-compile plugins on file change
-    vim.api.nvim_create_autocmd('BufWritePost', {
-      pattern = { 'plugins.lua' },
-      command = 'source <afile> | PackerCompile',
-      group = vim.api.nvim_create_augroup('WamPackerCompile', {}),
-      desc = 'Reload the plugins.lua file and run PackerCompile on save',
+  local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+  if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+      'git',
+      'clone',
+      '--filter=blob:none',
+      'https://github.com/folke/lazy.nvim.git',
+      '--branch=stable',
+      lazypath,
     })
   end
 
-  local function plugins(use)
-    use('wbthomason/packer.nvim')
+  vim.opt.rtp:prepend(lazypath)
 
+  local opts = {}
+
+  local plugins = {
     -- profile neovim
-    use('lewis6991/impatient.nvim')
-    use('dstein64/vim-startuptime')
+    'lewis6991/impatient.nvim',
+    { 'dstein64/vim-startuptime', cmd = 'StartupTime' },
 
     -- many plugins use these, so not listed as required on them
-    use({ 'nvim-lua/plenary.nvim', module = 'plenary' })
-
-    use({
-      'kyazdani42/nvim-web-devicons',
-      module = 'nvim-web-devicons',
-      config = require('lazy.nvim-web-devicons').setup(),
-    })
+    'nvim-lua/plenary.nvim',
+    'kyazdani42/nvim-web-devicons',
 
     -- startup screen
-    use('goolord/alpha-nvim')
+    'goolord/alpha-nvim',
 
     -- git
-    use({
+    {
       'tpope/vim-fugitive',
       cmd = { 'GBrowse', 'Gdiff' },
-      requires = {
-        { 'tpope/vim-rhubarb', after = 'vim-fugitive' },
-        { 'tpope/vim-dispatch', after = 'vim-rhubarb' },
+      dependencies = {
+        { 'tpope/vim-rhubarb' },
+        { 'tpope/vim-dispatch' },
       },
-    })
+    },
 
-    use({ 'akinsho/git-conflict.nvim', tag = '*' })
-    use({ 'lewis6991/gitsigns.nvim', tag = '*' })
-    use({ 'wincent/vcs-jump', cmd = 'VcsJump', tag = '*' })
+    { 'akinsho/git-conflict.nvim', version = '*' },
+    { 'lewis6991/gitsigns.nvim', version = '*' },
+    { 'wincent/vcs-jump', cmd = 'VcsJump', version = '*' },
 
     -- testing
-    use({
+    {
       'janko-m/vim-test',
       cmd = { 'TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit' },
       config = function()
         require('lazy.vim-test').setup()
       end,
-    })
+    },
 
     -- terminal
-    use({ 'akinsho/toggleterm.nvim', tag = '*' })
+    {
+      'akinsho/toggleterm.nvim',
+      version = '*',
+      cmd = { 'ToggleTerm', 'TermExec' },
+      keys = {
+        { '<C-Bslash>', '<cmd>ToggleTerm<cr>', desc = 'ToggleTerm: toggle main terminal' },
+      },
+      config = function()
+        require('lazy.toggleterm').setup()
+      end,
+    },
 
     -- lsp / copilot / diagnostics
-    use('folke/todo-comments.nvim')
-    use({
-      cmd = 'SymbolsOutline',
-      'simrat39/symbols-outline.nvim',
-      config = function()
-        require('symbols-outline').setup()
-      end,
-    })
+    'folke/todo-comments.nvim',
 
-    use({
+    {
+      'simrat39/symbols-outline.nvim',
+      cmd = 'SymbolsOutline',
+      config = true,
+    },
+
+    {
       cmd = 'Trouble',
       'folke/trouble.nvim',
       config = function()
         require('lazy.trouble').setup()
       end,
-    })
+    },
 
-    use('williamboman/mason.nvim')
-    use('WhoIsSethDaniel/mason-tool-installer.nvim')
+    'williamboman/mason.nvim',
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-    use({
+    {
       'neovim/nvim-lspconfig',
-      requires = {
+      dependencies = {
         'folke/neodev.nvim',
         'jose-elias-alvarez/typescript.nvim',
         'simrat39/rust-tools.nvim',
         'williamboman/mason-lspconfig.nvim',
       },
-    })
+    },
 
-    use({
+    {
       'zbirenbaum/copilot.lua',
       cmd = 'Copilot',
       event = 'InsertEnter',
       config = function()
         require('lazy.copilot').setup()
       end,
-    })
+    },
 
-    use('j-hui/fidget.nvim')
-    use('jose-elias-alvarez/null-ls.nvim')
+    'j-hui/fidget.nvim',
+    'jose-elias-alvarez/null-ls.nvim',
 
-    use({
-      'ThePrimeagen/refactoring.nvim',
-      module = 'refactoring',
-      config = function()
-        require('refactoring').setup()
-      end,
-    })
+    { 'ThePrimeagen/refactoring.nvim', config = true },
 
     -- debugging
-    use({
+    {
       'mfussenegger/nvim-dap',
-      tag = '*',
-      requires = {
-        { 'rcarriga/nvim-dap-ui', tag = '*' },
+      version = '*',
+      dependencies = {
+        { 'rcarriga/nvim-dap-ui', version = '*' },
         'theHamsta/nvim-dap-virtual-text',
       },
-    })
+    },
 
     -- completion / snippets
-    use({
+    {
       'hrsh7th/nvim-cmp',
-      requires = {
+      dependencies = {
         'f3fora/cmp-spell',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-cmdline',
@@ -156,127 +133,107 @@ function M.setup()
         'petertriho/cmp-git',
         'ray-x/cmp-treesitter',
         'rcarriga/cmp-dap',
-        { '~/personal/neovim/cmp-rails-fixture-types', ft = 'ruby' },
-        { '~/personal/neovim/cmp-rails-fixture-names', ft = 'ruby' },
-        { '~/personal/neovim/cmp-feature-flipper', ft = 'ruby' },
+        { dir = '~/personal/neovim/cmp-rails-fixture-types', ft = 'ruby' },
+        { dir = '~/personal/neovim/cmp-rails-fixture-names', ft = 'ruby' },
+        { dir = '~/personal/neovim/cmp-feature-flipper', ft = 'ruby' },
       },
-    })
+    },
 
-    use({
+    {
       'L3MON4D3/LuaSnip',
-      tag = '*',
-      requires = 'saadparwaiz1/cmp_luasnip',
-    })
+      version = '*',
+      dependencies = 'saadparwaiz1/cmp_luasnip',
+    },
 
     -- ruby / rails
-    use({
+    {
       'vim-ruby/vim-ruby',
       ft = 'ruby',
-      requires = {
-        { 'tpope/vim-rails', after = 'vim-ruby' },
+      dependencies = {
+        { 'tpope/vim-rails' },
       },
-    })
+    },
 
     -- files and search
-    use({ 'wincent/ferret', tag = '*' })
-    use({ 'wincent/loupe', tag = '*' })
-    use({ 'wincent/scalpel', keys = '<Leader>e', tag = '*' })
+    { 'wincent/ferret', version = '*', keys = { '<Leader>a', '<Leader>s', '<Leader>r' } },
+    { 'wincent/loupe', version = '*' },
+    { 'wincent/scalpel', keys = '<Leader>e', version = '*' },
 
-    use({
+    {
       'ThePrimeagen/harpoon',
       keys = { '<Leader>h', '<C-e>' },
       config = function()
         require('lazy.harpoon').setup()
       end,
-    })
+    },
 
-    use({
+    {
       'nvim-telescope/telescope.nvim',
-      tag = '*',
-      requires = {
+      version = '*',
+      dependencies = {
         'nvim-telescope/telescope-dap.nvim',
         'nvim-telescope/telescope-ui-select.nvim',
-        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
       },
-    })
+    },
 
-    use({
+    {
       'kyazdani42/nvim-tree.lua',
       cmd = 'NvimTreeToggle',
       config = function()
         require('lazy.nvim-tree').setup()
       end,
-    })
+    },
 
     -- text objects / motions
-    use({
+    {
       'numToStr/Comment.nvim',
-      tag = '*',
+      version = '*',
       keys = { 'gc', 'gcc', 'gbc' },
-      config = function()
-        require('Comment').setup()
-      end,
-    })
+      config = true,
+    },
 
-    use({
-      'kylechui/nvim-surround',
-      tag = '*',
-      config = function()
-        require('nvim-surround').setup()
-      end,
-    })
+    { 'kylechui/nvim-surround', version = '*', config = true },
 
-    use('kana/vim-textobj-entire')
-    use('kana/vim-textobj-indent')
-    use('kana/vim-textobj-line')
-    use('kana/vim-textobj-user')
-    use('tpope/vim-repeat')
-    use({ 'christoomey/vim-sort-motion', keys = 'gs' })
-    use({ 'junegunn/vim-easy-align' })
+    { 'kana/vim-textobj-entire', dependencies = 'kana/vim-textobj-user' },
+    { 'kana/vim-textobj-indent', dependencies = 'kana/vim-textobj-user' },
+    { 'kana/vim-textobj-line', dependencies = 'kana/vim-textobj-user' },
+
+    'tpope/vim-repeat',
+    'christoomey/vim-sort-motion',
+    'junegunn/vim-easy-align',
 
     -- miscellaneous / automatic
-    use('beauwilliams/focus.nvim')
-    use('ludovicchabant/vim-gutentags')
-    use({ 'lukas-reineke/indent-blankline.nvim', tag = '*' })
-    use({ 'wincent/vim-clipper', tag = '*' })
+    'beauwilliams/focus.nvim',
+    'ludovicchabant/vim-gutentags',
+    { 'lukas-reineke/indent-blankline.nvim', version = '*' },
+    { 'wincent/vim-clipper', version = '*' },
 
     -- treesitter
-    use({
+    {
       'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate',
-      requires = {
+      build = ':TSUpdate',
+      dependencies = {
         'RRethy/nvim-treesitter-endwise',
         'andymass/vim-matchup',
         'nvim-treesitter/playground',
         'windwp/nvim-autopairs',
         'windwp/nvim-ts-autotag',
       },
-    })
+    },
 
     -- theme / status line / tmux / terminal / quickfix / vim
-    use('christoomey/vim-tmux-navigator')
-    use('milkypostman/vim-togglelist')
-    use('navarasu/onedark.nvim')
-    use('nvim-lualine/lualine.nvim')
-    use('tpope/vim-abolish')
-    use('tpope/vim-unimpaired')
-    use({ 'akinsho/bufferline.nvim', tag = '*' })
-    use({ 'kevinhwang91/nvim-bqf', tag = '*' })
-    use({ 'wincent/terminus', tag = '*' })
+    'christoomey/vim-tmux-navigator',
+    'navarasu/onedark.nvim',
+    'nvim-lualine/lualine.nvim',
+    'tpope/vim-abolish',
+    'tpope/vim-unimpaired',
+    { 'akinsho/bufferline.nvim', version = '*' },
+    { 'kevinhwang91/nvim-bqf', version = '*' },
+    { 'wincent/terminus', version = '*' },
+  }
 
-    if packer_bootstrap then
-      vim.notify('packer.nvim installed with plugins, restart neovim!')
-      require('packer').sync()
-    end
-  end
-
-  -- first install and sync
-  packer_init()
-
-  -- load packer.nvim and plugins
-  local packer = require('packer')
-  packer.init(conf)
-  packer.startup(plugins)
+  require('lazy').setup(plugins, opts)
 end
 
 return M
