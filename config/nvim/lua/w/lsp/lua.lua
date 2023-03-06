@@ -19,9 +19,8 @@ require('lspconfig').lua_ls.setup({
     Lua = {
       -- https://github.com/LuaLS/lua-language-server/wiki/Settings
       completion = { enable = true, showWord = 'Disable' },
-      diagnostics = { globals = { 'vim', 'hs', 'packer_plugins' } },
+      diagnostics = { globals = { 'hs' } },
       format = { enable = false },
-      runtime = { version = 'LuaJIT' },
       telemetry = { enable = false },
     },
   },
