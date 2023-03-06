@@ -252,7 +252,14 @@ function M.setup()
     'tpope/vim-abolish',
     'tpope/vim-unimpaired',
     { 'akinsho/bufferline.nvim', version = '*' },
-    { 'kevinhwang91/nvim-bqf', version = '*' },
+    {
+      'kevinhwang91/nvim-bqf',
+      ft = 'qf',
+      version = '*',
+      config = function()
+        require('lazy.bqf').setup()
+      end,
+    },
     { 'wincent/terminus', version = '*' },
   }
 
