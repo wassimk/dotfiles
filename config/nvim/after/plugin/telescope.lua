@@ -37,6 +37,11 @@ telescope.setup({
       },
     },
   },
+  extensions = {
+    ['ui-select'] = {
+      require('telescope.themes').get_dropdown(),
+    },
+  },
 })
 
 pcall(telescope.load_extension('dap'))
