@@ -66,6 +66,13 @@ if has_dapui then
 
   dap.listeners.after.event_initialized['dapui_config'] = function()
     dapui.open()
+    require('focus').focus_disable_window()
+  end
+  dap.listeners.before.event_terminated['dapui_config'] = function()
+    require('focus').focus_enable_window()
+  end
+  dap.listeners.before.event_exited['dapui_config'] = function()
+    require('focus').focus_enable_window()
   end
 end
 
