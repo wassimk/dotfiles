@@ -51,9 +51,19 @@ local has_dapui, dapui = pcall(require, 'dapui')
 
 if has_dapui then
   dapui.setup({
-    mappings = {
-      expand = { '<cr>', 'o' },
-      open = { 'O', '<2-LeftMouse>' },
+    element_mappings = {
+      scopes = {
+        expand = { '<cr>', 'o', '<2-LeftMouse>' },
+      },
+      breakpoints = {
+        open = { 'o' },
+        toggle = { 't', '<2-LeftMouse>' },
+        expand = {},
+      },
+      stacks = {
+        open = { 'o', '<2-LeftMouse>' },
+        expand = {},
+      },
     },
     icons = {
       expanded = '▾',
