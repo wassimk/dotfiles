@@ -52,8 +52,8 @@ local has_dapui, dapui = pcall(require, 'dapui')
 if has_dapui then
   dapui.setup({
     mappings = {
-      expand = { 'o', '<2-LeftMouse>' },
-      open = 'O',
+      expand = { '<cr>', 'o' },
+      open = { 'O', '<2-LeftMouse>' },
     },
     icons = {
       expanded = '▾',
