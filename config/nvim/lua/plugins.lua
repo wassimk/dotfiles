@@ -153,7 +153,7 @@ function M.setup()
         'rcarriga/cmp-dap',
         { 'wassimk/cmp-rails-fixture-types', ft = 'ruby', dev = true },
         { 'wassimk/cmp-rails-fixture-names', ft = 'ruby', dev = true },
-        { 'wassimk/cmp-feature-flipper', ft = 'ruby', dev = true },
+        { 'wassimk/cmp-feature-flipper', dev = true },
       },
     },
 
