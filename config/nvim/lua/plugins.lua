@@ -19,11 +19,6 @@ function M.setup()
     dev = {
       path = '~/Personal/neovim',
     },
-    checker = {
-      enabled = true,
-      notify = true,
-      frequency = 24 * 60 * 60, -- check for updates every 24 hours
-    },
     performance = {
       rtp = {
         disabled_plugins = {
