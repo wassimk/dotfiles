@@ -65,6 +65,7 @@ cmp.setup({
   formatting = {
     format = lspkind.cmp_format({
       mode = 'symbol',
+      preset = 'codicons',
       before = function(entry, vim_item)
         vim_item.menu = ({
           buffer = '[Buffer]',
