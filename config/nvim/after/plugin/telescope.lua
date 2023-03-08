@@ -55,11 +55,11 @@ local function opts(desc)
   }
 end
 
-vim.keymap.set('n', '<C-f>', '', opts('unmap neovim default'))
+vim.keymap.set({ 'n', 'c' }, '<C-f>', '', opts('unmap neovim default'))
 vim.keymap.set('n', '<C-f>c', builtin.commands, opts('commands'))
 vim.keymap.set('n', '<C-f>k', builtin.keymaps, opts('keymaps'))
 
-vim.keymap.set('n', '<C-f>f', function()
+vim.keymap.set({ 'n', 'c' }, '<C-f>f', function()
   builtin.find_files({ layout_strategy = 'vertical', layout_config = { mirror = true } })
 end, opts('find files'))
 
@@ -86,3 +86,7 @@ end, opts('git commits'))
 vim.keymap.set('n', '<C-f>h', function()
   builtin.help_tags({ layout_strategy = 'vertical', layout_config = { mirror = true, width = 0.6 } })
 end, opts('help tags'))
+
+vim.keymap.set({ 'c' }, '<C-r>', function()
+  builtin.command_history({ layout_strategy = 'vertical', layout_config = { mirror = true } })
+end, opts('command history'))
