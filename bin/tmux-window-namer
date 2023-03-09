@@ -34,6 +34,9 @@ lf | lfcd)
 tail)
   echo "󱂅 $NAME"
   ;;
+ssh)
+  echo "󰣀 $NAME"
+  ;;
 *)
 	echo "$NAME"
 	;;
