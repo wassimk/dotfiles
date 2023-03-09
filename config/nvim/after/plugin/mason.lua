@@ -21,6 +21,7 @@ require('mason-tool-installer').setup({
     'selene',
     'shellcheck', -- used by bash-language-server
     'stylua',
+    'tailwindcss-language-server',
   },
   auto_update = true,
   run_on_start = true,
