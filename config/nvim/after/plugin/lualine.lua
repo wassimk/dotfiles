@@ -81,7 +81,7 @@ lualine.setup({
     },
     lualine_b = { 'branch', 'diff' },
     lualine_c = {},
-    lualine_x = { 'filetype', "require('lsp-status').status()" },
+    lualine_x = { 'filetype' },
     lualine_y = { 'diagnostics' },
     lualine_z = { rhs_character_and_word_counts },
   },
