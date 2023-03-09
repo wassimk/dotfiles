@@ -224,6 +224,7 @@ function M.setup()
     -- miscellaneous / automatic
     'beauwilliams/focus.nvim',
     'ludovicchabant/vim-gutentags',
+    'NvChad/nvim-colorizer.lua',
     { 'lukas-reineke/indent-blankline.nvim', version = '*' },
     { 'wincent/vim-clipper', version = '*' },
 

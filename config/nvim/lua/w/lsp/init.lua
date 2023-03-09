@@ -22,6 +22,7 @@ function M.setup()
   require('w.lsp.lua')
   require('w.lsp.ruby')
   require('w.lsp.rust')
+  require('w.lsp.tailwind')
   require('w.lsp.vim')
   require('w.lsp.yaml')
 end
