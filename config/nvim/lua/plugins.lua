@@ -124,6 +124,7 @@ function M.setup()
 
     'j-hui/fidget.nvim',
     'jose-elias-alvarez/null-ls.nvim',
+    'kosayoda/nvim-lightbulb',
 
     { 'ThePrimeagen/refactoring.nvim', config = true },
 
