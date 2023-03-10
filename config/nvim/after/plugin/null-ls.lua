@@ -7,14 +7,15 @@ local null_ls = require('null-ls')
 local utils = require('w.utils')
 
 local sources = {
-  null_ls.builtins.formatting.stylua,
-  null_ls.builtins.formatting.prettierd,
   null_ls.builtins.diagnostics.codespell,
   null_ls.builtins.diagnostics.commitlint.with({
     extra_args = { '--config', os.getenv('HOME') .. '/.commitlintrc.js' },
   }),
-  null_ls.builtins.code_actions.shellcheck,
+  null_ls.builtins.diagnostics.luacheck,
+  null_ls.builtins.formatting.prettierd,
   null_ls.builtins.code_actions.refactoring.with({ extra_filetypes = { 'ruby' } }),
+  null_ls.builtins.code_actions.shellcheck,
+  null_ls.builtins.formatting.stylua,
   require('typescript.extensions.null-ls.code-actions'),
 }
 

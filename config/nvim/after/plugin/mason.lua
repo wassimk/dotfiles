@@ -18,6 +18,7 @@ require('mason-tool-installer').setup({
   ensure_installed = {
     'codespell',
     'commitlint',
+    'luacheck',
     'prettierd',
     'selene',
     'shellcheck', -- used by bash-language-server
