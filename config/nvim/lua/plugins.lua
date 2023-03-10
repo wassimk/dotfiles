@@ -59,6 +59,13 @@ function M.setup()
 
     { 'akinsho/git-conflict.nvim', version = '*' },
     { 'lewis6991/gitsigns.nvim', version = '*' },
+    {
+      'sindrets/diffview.nvim',
+      cmd = { 'DiffviewFileHistory' },
+      config = function()
+        require('lay.diffview').setup()
+      end,
+    },
     { 'wincent/vcs-jump', cmd = 'VcsJump', version = '*' },
 
     -- testing
