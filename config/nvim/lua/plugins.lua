@@ -245,7 +245,9 @@ function M.setup()
     { 'lukas-reineke/indent-blankline.nvim', version = '*' },
     { 'wincent/vim-clipper', version = '*' },
 
-    -- treesitter
+    -- treesitter / autopairs / autotag / endwise
+    'hrsh7th/nvim-insx',
+
     {
       'nvim-treesitter/nvim-treesitter',
       build = ':TSUpdate',
