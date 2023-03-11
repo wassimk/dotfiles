@@ -18,6 +18,7 @@ require('mason-tool-installer').setup({
   ensure_installed = {
     'codespell',
     'commitlint',
+    'glow',
     'luacheck',
     'prettierd',
     'selene',
