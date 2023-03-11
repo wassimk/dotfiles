@@ -11,13 +11,6 @@ api.nvim_create_autocmd('TextYankPost', {
   group = wamGrp,
 })
 
--- markdown
-api.nvim_create_autocmd('FileType', {
-  pattern = 'markdown',
-  command = 'setlocal spell | setlocal textwidth=100',
-  group = wamGrp,
-})
-
 -- show cursor line only in active window
 api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
   command = 'set cursorline',

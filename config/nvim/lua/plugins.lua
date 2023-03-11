@@ -211,6 +211,8 @@ function M.setup()
       end,
     },
 
+    -- markdown
+    { 'ellisonleao/glow.nvim', config = true, cmd = 'Glow' },
     -- text objects / motions
     {
       'numToStr/Comment.nvim',
