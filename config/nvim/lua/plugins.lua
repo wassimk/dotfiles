@@ -212,7 +212,14 @@ function M.setup()
     },
 
     -- markdown
-    { 'ellisonleao/glow.nvim', config = true, cmd = 'Glow' },
+    {
+      'ellisonleao/glow.nvim',
+      cmd = 'Glow',
+      config = function()
+        require('lazy.glow').setup()
+      end,
+    },
+
     -- text objects / motions
     {
       'numToStr/Comment.nvim',

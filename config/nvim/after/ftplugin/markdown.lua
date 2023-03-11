@@ -11,4 +11,3 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 vim.o.spell = true
-vim.o.textwidth = 100
