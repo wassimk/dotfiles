@@ -211,13 +211,19 @@ function M.setup()
       end,
     },
 
-    -- markdown
+    -- markdown / gitcommit / text
     {
       'ellisonleao/glow.nvim',
       cmd = 'Glow',
       config = function()
         require('lazy.glow').setup()
       end,
+    },
+
+    {
+      'andrewferrier/wrapping.nvim',
+      config = true,
+      ft = { 'markdown', 'gitcommit', 'text' },
     },
 
     -- text objects / motions
