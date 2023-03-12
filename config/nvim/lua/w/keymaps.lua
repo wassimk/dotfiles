@@ -26,6 +26,10 @@ vim.keymap.set('n', '<leader>q', require('w.utils').toggle_qf, opts('QUICKFIX', 
 -- nvim-tree
 vim.keymap.set('n', '<C-n>', '<cmd>NvimTreeToggle<cr>', opts('FILES', 'toggle file tree'))
 
+-- sort.nvim
+vim.keymap.set('n', 'gs', '<cmd>Sort<cr>', { desc = 'SORT: sort line(s)' })
+vim.keymap.set('x', 'gs', '<esc><cmd>Sort<cr>', { desc = 'SORT: sort visual selection' })
+
 -- trouble
 vim.keymap.set('n', '<leader>t', '<cmd>TroubleToggle<cr>', opts('TROUBLE', 'toggle window'))
 
