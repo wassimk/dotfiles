@@ -240,8 +240,9 @@ function M.setup()
     { 'kana/vim-textobj-line', dependencies = 'kana/vim-textobj-user' },
 
     'tpope/vim-repeat',
-    'sQVe/sort.nvim',
+
     'junegunn/vim-easy-align',
+    { 'sQVe/sort.nvim', config = true, cmd = 'Sort' },
 
     -- miscellaneous / automatic
     'beauwilliams/focus.nvim',
