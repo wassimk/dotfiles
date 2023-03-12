@@ -241,7 +241,7 @@ function M.setup()
     { 'kana/vim-textobj-line', dependencies = 'kana/vim-textobj-user' },
 
     'tpope/vim-repeat',
-    'christoomey/vim-sort-motion',
+    'sQVe/sort.nvim',
     'junegunn/vim-easy-align',
 
     -- miscellaneous / automatic
