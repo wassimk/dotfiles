@@ -67,7 +67,7 @@ vim.keymap.set('n', '<C-f>w', function()
 end, opts('grep word'))
 
 vim.keymap.set('n', '<C-f>l', function()
-  builtin.live_string({ layout_strategy = 'vertical', layout_config = { mirror = true } })
+  builtin.live_grep({ layout_strategy = 'vertical', layout_config = { mirror = true } })
 end, opts('live grep'))
 
 vim.keymap.set('n', '<C-f>gs', function()
