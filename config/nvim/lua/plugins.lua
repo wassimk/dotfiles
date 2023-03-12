@@ -100,7 +100,7 @@ function M.setup()
     },
 
     {
-      cmd = 'Trouble',
+      cmd = { 'Trouble', 'TroubleToggle' },
       'folke/trouble.nvim',
       config = function()
         require('lazy.trouble').setup()
