@@ -44,7 +44,6 @@ telescope.setup({
   },
 })
 
-pcall(telescope.load_extension('dap'))
 pcall(telescope.load_extension('fzf'))
 pcall(telescope.load_extension('ui-select'))
 

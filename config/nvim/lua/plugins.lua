@@ -197,7 +197,6 @@ function M.setup()
       'nvim-telescope/telescope.nvim',
       version = '*',
       dependencies = {
-        'nvim-telescope/telescope-dap.nvim',
         'nvim-telescope/telescope-ui-select.nvim',
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
       },
