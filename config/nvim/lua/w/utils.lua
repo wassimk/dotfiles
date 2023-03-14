@@ -59,4 +59,19 @@ function M.toggle_qf()
   end
 end
 
+function M.toggle_loclist()
+  for _, win in ipairs(vim.fn.getwininfo()) do
+    if win['loclist'] == 1 then
+      vim.cmd('lclose')
+      return
+    end
+  end
+
+  if next(vim.fn.getloclist(0)) == nil then
+    vim.notify('location list empty', vim.log.levels.WARN)
+    return
+  end
+  vim.cmd('lopen')
+end
+
 return M
