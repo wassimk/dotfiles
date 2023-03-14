@@ -156,7 +156,6 @@ lualine.setup({
     lualine_z = {},
   },
   extensions = {
-    'fugitive',
     'nvim-dap-ui',
     'symbols-outline',
     my_dap_extension,
