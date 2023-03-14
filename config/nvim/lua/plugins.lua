@@ -292,7 +292,6 @@ function M.setup()
         end,
       },
     },
-    { 'wincent/terminus', version = '*' },
   }
 
   require('lazy').setup(plugins, configuration)
