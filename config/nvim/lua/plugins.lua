@@ -280,6 +280,12 @@ function M.setup()
       config = function()
         require('lazy.bqf').setup()
       end,
+      dependencies = {
+        'junegunn/fzf',
+        run = function()
+          vim.fn['fzf#install']()
+        end,
+      },
     },
     { 'wincent/terminus', version = '*' },
   }
