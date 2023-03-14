@@ -104,6 +104,32 @@ local my_quickfix_extension = {
   },
   filetypes = { 'qf' },
 }
+
+local function dap_status()
+  local status = require('dap').status()
+
+  if status == nil or status == '' then
+    return ''
+  else
+    return 'DAP: ' .. status
+  end
+end
+
+local my_dap_extension = {
+  sections = {
+    lualine_a = { { 'filename', file_status = false } },
+    lualine_x = { dap_status },
+  },
+  filetypes = {
+    'dap-repl',
+    'dapui_console',
+    'dapui_watches',
+    'dapui_stacks',
+    'dapui_breakpoints',
+    'dapui_scopes',
+  },
+}
+
 lualine.setup({
   options = {
     globalstatus = true,
@@ -133,6 +159,7 @@ lualine.setup({
     'fugitive',
     'nvim-dap-ui',
     'symbols-outline',
+    my_dap_extension,
     my_nvimtree_extension,
     my_quickfix_extension,
     my_toggleterm_extension,
