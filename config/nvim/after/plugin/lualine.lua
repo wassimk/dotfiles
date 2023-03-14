@@ -65,9 +65,45 @@ local function nvimtree_statusline()
   return 'NVIMTREE'
 end
 
+local function is_loclist()
+  return vim.fn.getloclist(0, { filewinid = 1 }).filewinid ~= 0
+end
+
+local function quickfix_label()
+  return is_loclist() and 'Location List' or 'Quickfix List'
+end
+
+local function quickfix_title()
+  if is_loclist() then
+    return vim.fn.getloclist(0, { title = 0 }).title
+  end
+  return vim.fn.getqflist({ title = 0 }).title
+end
+
+local function quickfix_line_count()
+  local line = vim.api.nvim_win_get_cursor(0)[1]
+  local size = 0
+
+  if is_loclist() then
+    size = vim.fn.getloclist(0, { title = 0, size = true }).size
+  end
+  size = vim.fn.getqflist({ title = 0, size = true }).size
+
+  return line .. '/' .. size
+end
+
 local my_toggleterm_extension = { sections = { lualine_a = { toggleterm_statusline } }, filetypes = { 'toggleterm' } }
+
 local my_nvimtree_extension = { sections = { lualine_a = { nvimtree_statusline } }, filetypes = { 'NvimTree' } }
 
+local my_quickfix_extension = {
+  sections = {
+    lualine_a = { quickfix_label },
+    lualine_b = { quickfix_title },
+    lualine_z = { quickfix_line_count },
+  },
+  filetypes = { 'qf' },
+}
 lualine.setup({
   options = {
     globalstatus = true,
@@ -94,11 +130,11 @@ lualine.setup({
     lualine_z = {},
   },
   extensions = {
-    'quickfix',
     'fugitive',
     'nvim-dap-ui',
     'symbols-outline',
-    my_toggleterm_extension,
     my_nvimtree_extension,
+    my_quickfix_extension,
+    my_toggleterm_extension,
   },
 })
