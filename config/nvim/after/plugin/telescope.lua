@@ -5,6 +5,7 @@
 
 local telescope, builtin, actions = require('telescope'), require('telescope.builtin'), require('telescope.actions')
 local custom_pickers = require('w.plugin.telescope.custom_pickers')
+local trouble = require('trouble.providers.telescope')
 
 telescope.setup({
   defaults = {
@@ -12,10 +13,12 @@ telescope.setup({
       i = {
         ['<C-y>'] = actions.select_default,
         ['<C-e>'] = actions.close,
+        ['<C-r>'] = trouble.open_with_trouble,
       },
       n = {
         ['<C-y>'] = actions.select_default,
         ['<C-e>'] = actions.close,
+        ['<C-r>'] = trouble.open_with_trouble,
       },
     },
   },
