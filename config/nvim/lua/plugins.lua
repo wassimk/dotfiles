@@ -82,9 +82,7 @@ function M.setup()
       'akinsho/toggleterm.nvim',
       version = '*',
       cmd = { 'ToggleTerm', 'TermExec' },
-      keys = {
-        { '<C-Bslash>', '<cmd>ToggleTerm<cr>', desc = 'ToggleTerm: toggle main terminal' },
-      },
+      keys = { '<C-Bslash>' },
       config = function()
         require('lazy.toggleterm').setup()
       end,
