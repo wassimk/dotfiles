@@ -10,5 +10,6 @@ if not has_todo_comments then
 end
 
 todo_comments.setup({
+  signs = false,
   sign_priority = 5, -- lower than gitsigns
 })
