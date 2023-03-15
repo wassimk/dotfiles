@@ -181,12 +181,6 @@ function M.setup()
     },
 
     -- files and search
-    {
-      'wincent/ferret',
-      version = '*',
-      cmd = { 'Back', 'Quack' },
-      keys = { '<Leader>a', '<Leader>s', '<Leader>r' },
-    },
     { 'wincent/loupe', version = '*' },
     { 'wincent/scalpel', keys = '<Leader>e', version = '*' },
 
