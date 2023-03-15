@@ -73,6 +73,10 @@ vim.keymap.set({ 'n', 'c' }, '<C-f>l', function()
   builtin.live_grep({ layout_strategy = 'vertical', layout_config = { mirror = true } })
 end, opts('live grep'))
 
+vim.keymap.set({ 'n' }, '<C-f>s', function()
+  builtin.spell_suggest(require('telescope.themes').get_cursor())
+end, opts('spell suggest'))
+
 vim.keymap.set('n', '<C-f>gs', function()
   builtin.git_status({ layout_strategy = 'vertical', layout_config = { mirror = true } })
 end, opts('git status'))
