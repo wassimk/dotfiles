@@ -2,7 +2,14 @@ git:
   paging:
     colorArg: always
     pager: delta --dark --paging=never
+gui:
+  showIcons: true
+  theme:
+    selectedLineBgColor:
+      - default
+    selectedRangeBgColor:
+      - default
 keybinding:
   universal:
-    scrollUpMain: <c-u>
     scrollDownMain: <c-d>
+    scrollUpMain: <c-u>
