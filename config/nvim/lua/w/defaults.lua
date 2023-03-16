@@ -21,6 +21,7 @@ opt.swapfile = false -- don't create useless swap files
 opt.termguicolors = true -- use guifg/guibg instead of ctermfg/ctermbg in terminal
 opt.undofile = true -- allow undo even after closing a file
 opt.winwidth = 100 -- set minimum width of current window
+opt.spelloptions:append('camel') -- spell check camelCase words
 g.qf_disable_statusline = true -- we'll set a custom statusline for quickfix
 
 -- preferred default tabs/spaces
