@@ -10,7 +10,7 @@ if not has_lightbulb then
 end
 
 lightbulb.setup({
-  ignore = { 'null-ls' },
+  ignore = { 'null_ls', 'null-ls' },
   sign = {
     enabled = true,
     priority = 20,
