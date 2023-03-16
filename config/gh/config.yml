@@ -3,4 +3,4 @@ editor: nvim
 prompt: enabled
 pager: !!null cat
 aliases:
-    co: pr checkout
+    co: '!id="$(gh pr list -L100 | fzf | cut -f1)"; [ -n "$id" ] && gh pr checkout "$id"'
