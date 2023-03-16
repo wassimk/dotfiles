@@ -20,7 +20,7 @@ function M.statusline()
   end
 
   local file_path = vim.api.nvim_eval_statusline('%f', {}).str
-  local modified = vim.api.nvim_eval_statusline('%M', {}).str == '+' and '[+]' or ''
+  local modified = vim.api.nvim_eval_statusline('%M', {}).str == '+' and ' ●' or ''
 
   -- file_path = file_path:gsub('/', ' > ')
 
@@ -29,7 +29,7 @@ end
 
 function M.setup()
   vim.api.nvim_set_hl(0, 'WinBarPath', { bg = '#282c34' })
-  vim.api.nvim_set_hl(0, 'WinBarModified', { bg = '#282c34' })
+  vim.api.nvim_set_hl(0, 'WinBarModified', { fg = '#8EBD6B', bg = '#282c34' })
 
   vim.opt.winbar = "%{%v:lua.require'w.winbar'.statusline()%}"
 end
