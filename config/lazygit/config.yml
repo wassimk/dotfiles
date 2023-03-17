@@ -4,11 +4,6 @@ git:
     pager: delta --dark --paging=never
 gui:
   showIcons: true
-  theme:
-    selectedLineBgColor:
-      - default
-    selectedRangeBgColor:
-      - default
 keybinding:
   universal:
     scrollDownMain: <c-d>
