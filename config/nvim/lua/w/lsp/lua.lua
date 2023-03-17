@@ -2,17 +2,7 @@
 -- lua language server
 --
 
-require('neodev').setup({
-  library = {
-    plugins = {
-      'gitsigns.nvim',
-      'nvim-dap',
-      'nvim-dap-ui',
-      'nvim-treesitter',
-      'plenary.nvim',
-    },
-  },
-})
+require('neodev').setup()
 
 require('lspconfig').lua_ls.setup({
   settings = {
