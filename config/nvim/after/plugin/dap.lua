@@ -25,7 +25,7 @@ if has_dap then
     '<F21>',
     "<cmd>lua require('dap').toggle_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
     opts('conditional breakpoint, Shift-F9')
-  ) -- Shift-F9
+  )
   vim.keymap.set(
     'n',
     '<Leader>dp',
