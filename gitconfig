@@ -27,7 +27,6 @@
 [alias]
   br = branch -v
   st = status
-  co = checkout
   cl = clone
   pf = push --force-with-lease
   df = diff
