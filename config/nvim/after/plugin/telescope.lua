@@ -58,24 +58,26 @@ local function opts(desc)
 end
 
 vim.keymap.set({ 'n', 'c' }, '<C-f>', '', opts('unmap neovim default'))
-vim.keymap.set('n', '<C-f>c', builtin.commands, opts('commands'))
-vim.keymap.set('n', '<C-f>k', builtin.keymaps, opts('keymaps'))
 
-vim.keymap.set({ 'n', 'c' }, '<C-f>f', function()
+vim.keymap.set('n', '<leader>f', function()
   builtin.find_files({ layout_strategy = 'vertical', layout_config = { mirror = true } })
 end, opts('find files'))
 
-vim.keymap.set('n', '<C-f>w', function()
-  builtin.grep_string({ layout_strategy = 'vertical', layout_config = { mirror = true } })
-end, opts('grep word'))
-
-vim.keymap.set({ 'n', 'c' }, '<C-f>l', function()
+vim.keymap.set('n', '<leader>s', function()
   builtin.live_grep({ layout_strategy = 'vertical', layout_config = { mirror = true } })
 end, opts('live grep'))
 
-vim.keymap.set({ 'n' }, 'z=', function()
-  builtin.spell_suggest(require('telescope.themes').get_cursor())
-end, opts('spell suggest'))
+vim.keymap.set('n', '<leader>w', function()
+  builtin.grep_string({ layout_strategy = 'vertical', layout_config = { mirror = true } })
+end, opts('grep word'))
+
+vim.keymap.set('n', '<C-f>s', builtin.search_history, opts('grep history'))
+
+vim.keymap.set('n', '<C-f>c', builtin.commands, opts('commands'))
+
+vim.keymap.set('c', '<C-r>', builtin.command_history, opts('command history'))
+
+vim.keymap.set('n', '<C-f>k', builtin.keymaps, opts('keymaps'))
 
 vim.keymap.set('n', '<C-f>gs', function()
   builtin.git_status({ layout_strategy = 'vertical', layout_config = { mirror = true } })
@@ -93,6 +95,6 @@ vim.keymap.set('n', '<C-f>h', function()
   builtin.help_tags({ layout_strategy = 'vertical', layout_config = { mirror = true, width = 0.6 } })
 end, opts('help tags'))
 
-vim.keymap.set({ 'c' }, '<C-r>', function()
-  builtin.command_history({ layout_strategy = 'vertical', layout_config = { mirror = true } })
-end, opts('command history'))
+vim.keymap.set('n', 'z=', function()
+  builtin.spell_suggest(require('telescope.themes').get_cursor())
+end, opts('spell suggest'))
