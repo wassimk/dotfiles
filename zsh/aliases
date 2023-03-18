@@ -33,7 +33,7 @@ fi
 
 # Editor
 alias v=$EDITOR
-alias e="v"
+alias e="fd --type f --hidden --exclude .git | fzf-tmux | xargs nvim"
 if command -v nvim 2>&1 >/dev/null; then
   alias vim="nvim"
 fi
