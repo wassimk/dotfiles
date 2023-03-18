@@ -2,7 +2,7 @@
 
 if [ "$#" -eq  "0" ]
  then
-  git branch | fzf | xargs git checkout
+  git branch | fzf-tmux | xargs git checkout
 else
   git checkout "$1"
 fi
