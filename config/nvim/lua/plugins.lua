@@ -239,7 +239,7 @@ function M.setup()
     'tpope/vim-repeat',
 
     'junegunn/vim-easy-align',
-    { 'sQVe/sort.nvim', config = true, cmd = 'Sort' },
+    { 'sQVe/sort.nvim', config = true, cmd = 'Sort', keys = 'gs' },
 
     -- miscellaneous / automatic
     'beauwilliams/focus.nvim',
