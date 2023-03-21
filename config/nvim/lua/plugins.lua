@@ -226,7 +226,7 @@ function M.setup()
     {
       'numToStr/Comment.nvim',
       version = '*',
-      keys = { 'gc', 'gcc', 'gbc' },
+      keys = { { 'gc', mode = { 'n', 'x' } }, 'gcc', 'gbc' },
       config = true,
     },
 
