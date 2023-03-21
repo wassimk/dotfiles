@@ -201,8 +201,8 @@ local buttons = {
     { type = 'padding', val = 1 },
 
     dashboard.button('e', '  New file', '<cmd>ene<cr>'),
-    dashboard.button('<C-f> f', '  Find file'),
-    dashboard.button('<C-f> l', '  Live grep'),
+    dashboard.button('<leader>f', '  Find file'),
+    dashboard.button('<leader>s', '  Live grep'),
     dashboard.button('<C-f> h', '  Search help'),
     dashboard.button('u', '  Update plugins', '<cmd>Lazy sync<cr>'),
     dashboard.button('q', '  Quit', '<cmd>qa<cr>'),
