@@ -52,24 +52,11 @@ end
 
 -- ruby-lsp
 if utils.installed_via_bundler('ruby%-lsp') then
-  local enabled_features = {
-    'documentHighlights',
-    'documentLink',
-    'documentSymbols',
-    'foldingRanges',
-    'selectionRanges',
-    'semanticHighlighting',
-    'formatting',
-    -- 'onTypeFormatting',
-    'codeActions',
-    'diagnostics',
-    'hover',
-  }
-
   require('lspconfig').ruby_ls.setup({
     cmd = { 'bundle', 'exec', 'ruby-lsp' },
     init_options = {
-      enabledFeatures = enabled_features,
+      enabledFeatures = { onTypeFormatting = false },
+      formatter = 'syntax_tree',
     },
     capabilities = capabilities,
     on_attach = function(client, bufnr)
