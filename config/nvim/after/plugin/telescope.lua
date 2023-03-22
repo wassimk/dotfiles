@@ -59,11 +59,11 @@ end
 
 vim.keymap.set({ 'n', 'c' }, '<C-f>', '', opts('unmap neovim default'))
 
-vim.keymap.set('n', '<leader>f', function()
+vim.keymap.set({ 'n', 'x' }, '<leader>f', function()
   builtin.find_files({ layout_strategy = 'vertical', layout_config = { mirror = true } })
 end, opts('find files'))
 
-vim.keymap.set('n', '<leader>s', function()
+vim.keymap.set({ 'n', 'x' }, '<leader>s', function()
   builtin.live_grep({ layout_strategy = 'vertical', layout_config = { mirror = true } })
 end, opts('live grep'))
 
