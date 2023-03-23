@@ -28,6 +28,9 @@ rustc | rustup | cargo)
 go)
 	echo "ﳑ $NAME"
 	;;
+Python)
+  echo " $NAME"
+  ;;
 lf | lfcd)
 	echo " $NAME"
 	;;
