@@ -9,7 +9,7 @@ require('mason').setup()
 -- automatic lsp server installs
 require('mason-lspconfig').setup({
   automatic_installation = {
-    exclude = { 'solargraph', 'ruby%-lsp', 'syntax_tree' },
+    exclude = { 'solargraph', 'ruby_ls', 'syntax_tree' },
   },
 })
 
