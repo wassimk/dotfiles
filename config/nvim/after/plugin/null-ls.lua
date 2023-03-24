@@ -13,7 +13,6 @@ local sources = {
   }),
   null_ls.builtins.code_actions.refactoring.with({ extra_filetypes = { 'ruby' } }),
   null_ls.builtins.code_actions.shellcheck,
-  null_ls.builtins.formatting.stylua,
   require('typescript.extensions.null-ls.code-actions'),
 }
 
@@ -27,6 +26,10 @@ end
 
 if utils.config_exists('selene.toml') then
   vim.list_extend(sources, { null_ls.builtins.diagnostics.selene })
+end
+
+if utils.config_exists('stylua.toml') then
+  vim.list_extend(sources, { null_ls.builtins.formatting.stylua })
 end
 
 -- rubocop via null-ls if not using solargraph or ruby-lsp
