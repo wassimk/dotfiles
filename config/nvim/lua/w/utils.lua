@@ -5,14 +5,14 @@
 local M = {}
 
 function M.installed_via_bundler(gemname)
-  local gemfile_lock = vim.fn.getcwd() .. '/Gemfile.lock'
+  local gemfile = vim.fn.getcwd() .. '/Gemfile'
 
-  if vim.fn.filereadable(gemfile_lock) == 0 then
+  if vim.fn.filereadable(gemfile) == 0 then
     return
   end
 
   local found = false
-  for line in io.lines(gemfile_lock) do
+  for line in io.lines(gemfile) do
     if string.find(line, gemname) then
       found = true
       break
