@@ -12,6 +12,7 @@ require('lspconfig').lua_ls.setup({
       diagnostics = { globals = { 'hs' } },
       format = { enable = false },
       telemetry = { enable = false },
+      workspace = { checkThirdParty = false },
     },
   },
   capabilities = require('w.lsp').capabilities(),
