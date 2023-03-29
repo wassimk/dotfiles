@@ -92,9 +92,18 @@ local function quickfix_line_count()
   return line .. '/' .. size
 end
 
+local function mode()
+  return mode_map[vim.api.nvim_get_mode().mode] or '__'
+end
+
 local my_toggleterm_extension = { sections = { lualine_a = { toggleterm_statusline } }, filetypes = { 'toggleterm' } }
 
 local my_nvimtree_extension = { sections = { lualine_a = { nvimtree_statusline } }, filetypes = { 'NvimTree' } }
+
+local my_telescope_extension = {
+  sections = { lualine_a = { mode }, lualine_b = { 'branch', 'diff' }, lualine_x = { 'filetype' } },
+  filetypes = { 'TelescopePrompt' },
+}
 
 local my_quickfix_extension = {
   sections = {
@@ -136,11 +145,7 @@ lualine.setup({
   },
   theme = 'onedark',
   sections = {
-    lualine_a = {
-      function()
-        return mode_map[vim.api.nvim_get_mode().mode] or '__'
-      end,
-    },
+    lualine_a = { mode },
     lualine_b = { 'branch', 'diff' },
     lualine_c = {},
     lualine_x = { 'filetype' },
@@ -161,5 +166,6 @@ lualine.setup({
     my_nvimtree_extension,
     my_quickfix_extension,
     my_toggleterm_extension,
+    my_telescope_extension,
   },
 })
