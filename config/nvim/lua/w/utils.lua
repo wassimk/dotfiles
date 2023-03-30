@@ -5,7 +5,7 @@
 local M = {}
 
 function M.installed_via_bundler(gemname)
-  local gemfile = vim.fn.getcwd() .. '/Gemfile'
+  local gemfile = vim.fn.getcwd() .. '/Gemfile.lock'
 
   if vim.fn.filereadable(gemfile) == 0 then
     return
