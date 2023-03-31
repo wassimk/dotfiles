@@ -28,6 +28,7 @@ APP_TO_SPACE = {
   ['zoom.us'] = 3,
   Calendar = 4,
   Mail = 4,
+  Mimestream = 4,
   Messages = 5,
   Reminders = 5,
   Things = 5,
