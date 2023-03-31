@@ -115,7 +115,13 @@ local my_quickfix_extension = {
 }
 
 local function dap_status()
-  local status = require('dap').status()
+  local has_dap, dap = pcall(require, 'dap')
+
+  if not has_dap then
+    return ''
+  end
+
+  local status = dap.status()
 
   if status == nil or status == '' then
     return ''
@@ -123,21 +129,6 @@ local function dap_status()
     return 'DAP: ' .. status
   end
 end
-
-local my_dap_extension = {
-  sections = {
-    lualine_a = { { 'filename', file_status = false } },
-    lualine_x = { dap_status },
-  },
-  filetypes = {
-    'dap-repl',
-    'dapui_console',
-    'dapui_watches',
-    'dapui_stacks',
-    'dapui_breakpoints',
-    'dapui_scopes',
-  },
-}
 
 lualine.setup({
   options = {
@@ -148,7 +139,7 @@ lualine.setup({
     lualine_a = { mode },
     lualine_b = { 'branch', 'diff' },
     lualine_c = {},
-    lualine_x = { 'filetype' },
+    lualine_x = { dap_status, 'filetype' },
     lualine_y = { 'diagnostics' },
     lualine_z = { rhs_character_and_word_counts },
   },
@@ -162,7 +153,6 @@ lualine.setup({
   },
   extensions = {
     'symbols-outline',
-    my_dap_extension,
     my_nvimtree_extension,
     my_quickfix_extension,
     my_toggleterm_extension,
