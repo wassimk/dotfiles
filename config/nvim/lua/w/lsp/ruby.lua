@@ -3,12 +3,13 @@
 --
 
 local utils = require('w.utils')
+local lspconfig = require('lspconfig')
 local capabilities = require('w.lsp').capabilities()
 local on_attach = require('w.lsp').on_attach
 
 -- solargraph
 if utils.installed_via_bundler('solargraph') then
-  require('lspconfig').solargraph.setup({
+  lspconfig.solargraph.setup({
     cmd = { 'bundle', 'exec', 'solargraph', 'stdio' },
     init_options = {
       formatting = false,
@@ -52,7 +53,7 @@ end
 
 -- ruby-lsp
 if utils.installed_via_bundler('ruby%-lsp') then
-  require('lspconfig').ruby_ls.setup({
+  lspconfig.ruby_ls.setup({
     cmd = { 'bundle', 'exec', 'ruby-lsp' },
     init_options = {
       enabledFeatures = { onTypeFormatting = false },
@@ -89,7 +90,7 @@ end
 
 -- syntax_tree
 if utils.installed_via_bundler('syntax_tree') and not utils.installed_via_bundler('ruby%-lsp') then
-  require('lspconfig').syntax_tree.setup({
+  lspconfig.syntax_tree.setup({
     cmd = { 'bundle', 'exec', 'stree', 'lsp' },
     capabilities = capabilities,
     on_attach = on_attach,
