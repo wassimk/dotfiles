@@ -143,6 +143,9 @@ function M.setup()
       },
     },
 
+    -- status column
+    'luukvbaal/statuscol.nvim',
+
     -- completion / snippets
     {
       'hrsh7th/nvim-cmp',
