@@ -35,3 +35,6 @@ if vim.fn.executable('rg') == 1 then
   -- use rg for ack
   vim.g.ackprg = 'rg --vimgrep'
 end
+
+-- make netrw use the system's default file/url browser
+vim.g.netrw_browsex_viewer = 'open'
