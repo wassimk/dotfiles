@@ -4,6 +4,7 @@ require('w.keymaps')
 require('w.treesitter')
 require('w.autocmds')
 require('w.usercmds')
+require('w.qf')
 
 require('w.lsp').setup()
 require('w.diagnostic').setup()
