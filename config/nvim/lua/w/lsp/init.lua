@@ -16,6 +16,7 @@ function M.setup()
   -- configure servers
   require('w.lsp.bash')
   require('w.lsp.css')
+  require('w.lsp.emmet')
   require('w.lsp.html')
   require('w.lsp.javascript')
   require('w.lsp.json')
