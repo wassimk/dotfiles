@@ -48,9 +48,6 @@ require('nvim-treesitter.configs').setup({
   matchup = { enable = true }, -- vim-matchup
 })
 
--- nvim-autopairs - not a treesitter module but uses it
-require('nvim-autopairs').setup({ check_ts = true, map_cr = true })
-
 -- folding
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'

@@ -261,10 +261,11 @@ function M.setup()
         'RRethy/nvim-treesitter-endwise',
         'andymass/vim-matchup',
         'nvim-treesitter/playground',
-        'windwp/nvim-autopairs',
         'windwp/nvim-ts-autotag',
       },
     },
+
+    'windwp/nvim-autopairs',
 
     -- theme / status line / tmux / terminal / quickfix / vim
     'christoomey/vim-tmux-navigator',
