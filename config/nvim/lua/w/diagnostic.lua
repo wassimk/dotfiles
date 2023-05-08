@@ -6,10 +6,10 @@ local M = {}
 
 function M.signs()
   return {
-    Error = '',
-    Warn = '',
-    Info = '',
-    Hint = '',
+    Error = '',
+    Warn = '',
+    Info = '',
+    Hint = '',
   }
 end
 
