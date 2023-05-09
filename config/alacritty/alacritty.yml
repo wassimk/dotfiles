@@ -47,6 +47,9 @@ colors:
 
   save_to_clipboard: true
 
+scrolling:
+  history: 20000
+
 key_bindings:
   # [alacritty] launch new instance (doesn't work)
   - { key: N, mods: Command|Alt, action: SpawnNewInstance }
