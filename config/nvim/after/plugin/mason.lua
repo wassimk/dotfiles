@@ -16,6 +16,7 @@ require('mason-lspconfig').setup({
 -- mason auto-update
 require('mason-tool-installer').setup({
   ensure_installed = {
+    'codelldb',
     'codespell',
     'commitlint',
     'glow',
