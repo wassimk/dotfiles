@@ -2,9 +2,9 @@
 -- rust dap & language server
 --
 
--- use library from vscode CodeLLDB extension
--- TODO: make sure use the latest version
-local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.8.1/'
+local mason_registry = require('mason-registry')
+local codelldb = mason_registry.get_package('codelldb')
+local extension_path = codelldb:get_install_path() .. '/extension/'
 local codelldb_path = extension_path .. 'adapter/codelldb'
 local liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'
 
