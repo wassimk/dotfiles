@@ -18,7 +18,7 @@
   diff-so-fancy = true
   syntax-theme = OneHalfDark
   side-by-side = false
-  line-numbers = true
+  line-numbers = false
   hyperlinks = true
 
 [diff]
