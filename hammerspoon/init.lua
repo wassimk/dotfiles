@@ -13,7 +13,7 @@ U = require('utils')
 -- Keybindings
 --
 
-hs.hotkey.bind({ 'ctrl', 'alt', 'cmd' }, 'f5', function()
+hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, 'f5', function()
   hs.notify.new({ title = 'Hammerspoon', informativeText = 'Config reloaded' }):send()
   hs.reload()
 end)
