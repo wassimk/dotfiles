@@ -1,10 +1,12 @@
 prSections:
-- title: My Pull Requests
+- title: Mine
   filters: is:open author:@me
+- title: Assigned
+  filters: is:open assignee:@me
 - title: Review Requested
-  filters: is:open review-requested:@me
+  filters: is:open user-review-requested:@me
 - title: Needs Review
-  filters: repo:planningcenter/giving repo:planningcenter/login repo:planningcenter/accounts repo:planningcenter/aci_delete_org repo:planningcenter/mailchimp3 is:open archived:false draft:false sort:created-asc -label:+2 -label:"not ready" -author:wassimk
+  filters: repo:planningcenter/giving repo:planningcenter/login repo:planningcenter/accounts repo:planningcenter/aci_delete_org repo:planningcenter/mailchimp3 repo:planningcenter/pco-session is:open archived:false draft:false sort:created-asc -label:+2 -label:"not ready" -author:wassimk
 issuesSections:
 - title: My Issues
   filters: is:open author:@me archived:false
