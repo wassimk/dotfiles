@@ -11,7 +11,7 @@ echo ""
 echo "Installing dot files..."
 echo ""
 
-rcup -v -x "./*.sh" -x "*.md" -x "*.log" -x "iterm/com*" -x "config/karabiner" -x "config/lazygit*" -x "config/espanso*"
+rcup -v -x "./*.sh" -x "*.md" -x "*.log" -x "iterm/com*" -x "config/karabiner" -x "config/lazygit*"
 
 # vcs-jump installed by packer plugin manager in vim
 vcs_jump_link="$HOME"/.bin/vcs-jump
@@ -25,12 +25,6 @@ fi
 # must symlink the directory for these apps
 ln -sf "$HOME"/.dotfiles/config/karabiner "$HOME"/.config
 ln -sf "$HOME"/.dotfiles/iterm "$HOME"/.config
-
-# config is in a weird spot and i don't want to commit it
-espanso_dir="$HOME/Library/Application Support/espanso"
-if [ -d "$espanso_dir" ]; then
-  ln -sf "$espanso_dir" "$HOME"/.dotfiles/config
-fi
 
 # lazygit config wants to live somewhere odd, let's symlink it
 real_lazygit_config_dir="$HOME/Library/Application Support/lazygit"
