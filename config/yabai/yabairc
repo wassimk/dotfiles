@@ -37,6 +37,7 @@ yabai -m rule --add app="^CheatSheet$" manage=off
 yabai -m rule --add app="^Pastebot$" manage=off
 yabai -m rule --add app="^Kaleidoscope$" manage=off
 yabai -m rule --add app="^Drop$" manage=off
+yabai -m rule --add app="^Home$" manage=off
 yabai -m rule --add app="^Hammerspoon$" manage=off
 yabai -m rule --add app="^MacGPT$" manage=off
 yabai -m rule --add app="^CleanMyMac X$" manage=off
