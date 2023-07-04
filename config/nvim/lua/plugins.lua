@@ -127,7 +127,7 @@ function M.setup()
       end,
     },
 
-    'j-hui/fidget.nvim',
+    { 'j-hui/fidget.nvim', tag = 'legacy' },
     'jose-elias-alvarez/null-ls.nvim',
     'kosayoda/nvim-lightbulb',
 
