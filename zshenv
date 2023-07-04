@@ -2,6 +2,11 @@ export VISUAL='nvim'
 export EDITOR=$VISUAL
 export DOTFILES="$HOME"/.dotfiles
 
+# set to prevent ruby related issue
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # Fix for fork issue introduced in macOS High Sierra
 # https://blog.phusion.nl/2017/10/13/why-ruby-app-servers-break-on-macos-high-sierra-and-what-can-be-done-about-it/
 case "$OSTYPE" in
