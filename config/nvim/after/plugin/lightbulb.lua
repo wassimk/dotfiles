@@ -10,14 +10,14 @@ if not has_lightbulb then
 end
 
 lightbulb.setup({
-  ignore = { 'null_ls', 'null-ls' },
+  ignore = {
+    clients = { 'null_ls', 'null-ls' },
+  },
   sign = {
     enabled = true,
     priority = 20,
   },
   autocmd = {
     enabled = true,
-    pattern = { '*' },
-    events = { 'CursorHold', 'CursorHoldI' },
   },
 })
