@@ -245,7 +245,7 @@ function M.setup()
     { 'sQVe/sort.nvim', config = true, cmd = 'Sort', keys = 'gs' },
 
     -- miscellaneous / automatic
-    'beauwilliams/focus.nvim',
+    { 'nvim-focus/focus.nvim', version = '*' },
     'ludovicchabant/vim-gutentags',
     'NvChad/nvim-colorizer.lua',
     { 'lukas-reineke/indent-blankline.nvim', version = '*' },
