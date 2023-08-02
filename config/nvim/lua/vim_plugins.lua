@@ -11,6 +11,10 @@ function M.setup()
 
   --vim-tmux-navigator
   vim.g.tmux_navigator_no_mappings = 1
+
+  --vim-gutentags
+  vim.g.gutentags_ctags_executable_ruby = 'ripper-tags'
+  vim.g.gutentags_ctags_extra_args = { '--ignore-unsupported-options', '--recursive' }
 end
 
 return M
