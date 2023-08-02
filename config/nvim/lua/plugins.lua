@@ -48,14 +48,7 @@ function M.setup()
     'goolord/alpha-nvim',
 
     -- git
-    {
-      'tpope/vim-fugitive',
-      cmd = { 'GBrowse', 'Gdiff' },
-      dependencies = {
-        { 'tpope/vim-rhubarb' },
-        { 'tpope/vim-dispatch' },
-      },
-    },
+    'almo7aya/openingh.nvim',
 
     { 'akinsho/git-conflict.nvim', version = '*' },
     { 'lewis6991/gitsigns.nvim', version = '*' },
