@@ -22,6 +22,7 @@ require('mason-tool-installer').setup({
     'glow',
     'luacheck',
     'prettierd',
+    'ripper-tags', -- used by vim-gutentags
     'selene',
     'shellcheck', -- used by bash-language-server
     'stylua',
