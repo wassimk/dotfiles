@@ -96,3 +96,16 @@ if utils.installed_via_bundler('syntax_tree') and not utils.installed_via_bundle
     on_attach = on_attach,
   })
 end
+
+-- rubocop
+if
+  (not utils.installed_via_bundler('solargraph') and not utils.installed_via_bundler('ruby%-lsp'))
+  and utils.installed_via_bundler('rubocop')
+  and utils.config_exists('.rubocop.yml')
+then
+  lspconfig.rubocop.setup({
+    cmd = { 'bundle', 'exec', 'rubocop', '--lsp' },
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
+end
