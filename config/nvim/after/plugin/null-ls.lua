@@ -55,18 +55,4 @@ if utils.config_exists('.erb-lint.yml') then
   vim.list_extend(sources, { diagnostic_source, formatting_source })
 end
 
--- rubocop via null-ls if not using solargraph or ruby-lsp
-if
-  (not utils.installed_via_bundler('solargraph') and not utils.installed_via_bundler('ruby%-lsp'))
-  and utils.installed_via_bundler('rubocop')
-  and utils.config_exists('.rubocop.yml')
-then
-  local rubocop_source = null_ls.builtins.diagnostics.rubocop.with({
-    command = 'bundle',
-    args = vim.list_extend({ 'exec', 'rubocop' }, null_ls.builtins.diagnostics.rubocop._opts.args),
-  })
-
-  vim.list_extend(sources, { rubocop_source })
-end
-
 null_ls.setup({ sources = sources, on_attach = require('w.lsp').on_attach })
