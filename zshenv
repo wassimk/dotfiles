@@ -23,7 +23,6 @@ esac
 #
 export ZSH_AUTOSUGGEST_HISTORY_IGNORE="g *|git *|cd *|ls *|ll *|la *|l *|"
 export HOMEBREW_NO_ENV_HINTS=false # no suggestions in the UI
-export HOMEBREW_NO_GOOGLE_ANALYTICS=true # no analytics to Google
 export CARGO_NET_GIT_FETCH_WITH_CLI=true # fix odd github issue
 export TEALDEER_CONFIG_DIR="$HOME"/.config/tealdeer # for teeldear (tldr)
 export DISABLE_SPRING="1" # more problems than it's worth
