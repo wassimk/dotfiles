@@ -5,9 +5,8 @@
 local M = {}
 
 function M.installed_via_bundler(gemname)
-  local gemfile = vim.fn.getcwd() .. '/Gemfile.lock'
-
-  if vim.fn.filereadable(gemfile) == 0 then
+  local gemfile = M.gemfile()
+  if not gemfile then
     return
   end
 
@@ -20,6 +19,43 @@ function M.installed_via_bundler(gemname)
   end
 
   return found
+end
+
+function M.gemfile()
+  local gemfile = vim.fn.getcwd() .. '/Gemfile.lock'
+
+  if vim.fn.filereadable(gemfile) == 0 then
+    return
+  end
+
+  return gemfile
+end
+
+function M.installed_gem_version(gemname)
+  -- TODO: support version number for non-bundler gems, default bundler = true param
+
+  local gemfile = M.gemfile()
+  if not gemfile then
+    return
+  end
+
+  local version = nil
+
+  for line in io.lines(gemfile) do
+    if string.find(line, '%s+' .. gemname .. ' %(= ') then
+      -- version must be major.minor for number based version compare
+      version = string.match(line, '%d+%.%d+')
+      break
+    end
+  end
+
+  return tonumber(version)
+end
+
+function M.rubocop_supports_lsp()
+  local version = M.installed_gem_version('rubocop')
+
+  return version and version >= 1.53
 end
 
 function M.config_exists(filename)
