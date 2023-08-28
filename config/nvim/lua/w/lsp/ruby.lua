@@ -16,7 +16,7 @@ if utils.installed_via_bundler('solargraph') then
     },
     settings = {
       solargraph = {
-        diagnostics = true,
+        diagnostics = not utils.rubocop_supports_lsp(),
         logLevel = 'debug',
       },
     },
@@ -99,9 +99,10 @@ end
 
 -- rubocop
 if
-  (not utils.installed_via_bundler('solargraph') and not utils.installed_via_bundler('ruby%-lsp'))
+  not utils.installed_via_bundler('ruby%-lsp')
   and utils.installed_via_bundler('rubocop')
   and utils.config_exists('.rubocop.yml')
+  and utils.rubocop_supports_lsp()
 then
   lspconfig.rubocop.setup({
     cmd = { 'bundle', 'exec', 'rubocop', '--lsp' },
