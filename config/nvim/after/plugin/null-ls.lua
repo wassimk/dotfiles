@@ -11,9 +11,6 @@ local sources = {
   null_ls.builtins.diagnostics.commitlint.with({
     extra_args = { '--config', os.getenv('HOME') .. '/.commitlintrc.js' },
   }),
-  null_ls.builtins.code_actions.refactoring.with({ extra_filetypes = { 'ruby' } }),
-  null_ls.builtins.code_actions.shellcheck,
-  require('typescript.extensions.null-ls.code-actions'),
 }
 
 if utils.config_exists('.prettierrc') then
