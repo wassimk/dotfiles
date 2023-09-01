@@ -6,28 +6,49 @@ if not has_luasnip then
   return
 end
 
--- TODO: don't require plenary, can do this with Lua easier because we don't need folder depth
-local cassettes = function()
-  local cassettes_dir = './test/vcr_cassettes'
+local cassettes_dir = function()
+  local folders = { './test/vcr_cassettes', './spec/vcr_cassettes' }
 
-  local files = require('plenary.scandir').scan_dir(
-    cassettes_dir,
-    { search_pattern = '.yml', respect_gitignore = true, depth = 1, silent = true }
-  )
+  local cassettes_dir = ''
 
-  local cassettes = {}
-  for _, file in ipairs(files) do
-    local cassette = file:match(cassettes_dir .. '/stripe%-(.+)%.yml$')
-
-    if cassette ~= nil then
-      table.insert(cassettes, t(cassette))
+  for _, folder_path in ipairs(folders) do
+    if vim.fn.isdirectory(folder_path) == 1 then
+      cassettes_dir = folder_path
     end
   end
 
-  if not next(cassettes) then
-    return { t('unable to load cassette choices from ' .. cassettes_dir) }
+  return cassettes_dir
+end
+
+local cassettes = function()
+  local cassettes = {}
+
+  vim.fs.find(function(name, _)
+    local cassette = name:match('^stripe%-(.+)%.yml$')
+
+    if cassette ~= nil then
+      table.insert(cassettes, cassette)
+    end
+
+    return false
+  end, { upward = false, path = cassettes_dir(), limit = math.huge, type = 'file' })
+
+  table.sort(cassettes)
+
+  return cassettes
+end
+
+local cassette_choices = function()
+  local cassette_nodes = {}
+
+  for _, cassette in ipairs(cassettes()) do
+    table.insert(cassette_nodes, t(cassette))
+  end
+
+  if not next(cassette_nodes) then
+    return { t('unable to load cassette choices from ' .. cassettes_dir()) }
   else
-    return cassettes
+    return cassette_nodes
   end
 end
 
@@ -62,7 +83,7 @@ return {
         end
       ]],
       {
-        c(1, cassettes()),
+        c(1, cassette_choices()),
         i(2, 'stripe_object_name'),
         c(3, { t('get'), t('post'), t('put'), t('delete') }),
         i(4, 'request-path'),
@@ -83,7 +104,7 @@ return {
           {}
         end
       ]],
-      { c(1, cassettes()), i(0) }
+      { c(1, cassette_choices()), i(0) }
     )
   ),
 }
