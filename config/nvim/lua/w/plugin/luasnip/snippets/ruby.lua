@@ -6,6 +6,20 @@ if not has_luasnip then
   return
 end
 
+local table_to_choices = function(tbl)
+  local choices = {}
+
+  for _, choice in pairs(tbl or {}) do
+    table.insert(choices, t(choice))
+  end
+
+  if vim.tbl_isempty(choices) then
+    return { t('unable to load choices') }
+  else
+    return choices
+  end
+end
+
 local cassettes_dir = function()
   local folders = { './test/vcr_cassettes', './spec/vcr_cassettes' }
 
@@ -22,6 +36,7 @@ end
 
 local cassettes = function()
   local cassettes = {}
+  -- let's ignore boolegs for now
   local bootlegs_dir = cassettes_dir() .. '/bootlegs'
 
   vim.fs.find(function(name, _)
@@ -31,7 +46,7 @@ local cassettes = function()
       table.insert(cassettes, cassette)
     end
 
-    return false
+    return false -- a boolean return is expected
   end, { upward = false, stop = bootlegs_dir, path = cassettes_dir(), limit = math.huge, type = 'file' })
 
   table.sort(cassettes)
@@ -39,18 +54,34 @@ local cassettes = function()
   return cassettes
 end
 
-local cassette_choices = function()
-  local cassette_nodes = {}
+local clean_stripe_path = function(path)
+  local prefixes = {
+    'tok',
+    'btok',
+    'src',
+    'cus',
+    'card',
+    'ba',
+    'ch',
+    'py',
+    're',
+    'txn',
+    'tr',
+    'po',
+    'acct',
+    'dp',
+    'evt',
+    'pm',
+    'seti',
+    'pi',
+    'mandate',
+  }
 
-  for _, cassette in ipairs(cassettes()) do
-    table.insert(cassette_nodes, t(cassette))
+  for _, prefix in ipairs(prefixes) do
+    path = string.gsub(path, prefix .. '_%w+', prefix .. '_xxx')
   end
 
-  if not next(cassette_nodes) then
-    return { t('unable to load cassette choices from ' .. cassettes_dir()) }
-  else
-    return cassette_nodes
-  end
+  return path
 end
 
 local cassette_paths = function(cassette_name)
@@ -59,16 +90,19 @@ local cassette_paths = function(cassette_name)
   local cassette = io.open(filename, 'r')
 
   if not cassette then
-    vim.notify('Cannot open file: ' .. filename, vim.log.levels.ERROR)
+    vim.notify('Cannot open cassette file: ' .. filename, vim.log.levels.ERROR)
     return
   end
 
   local paths = {}
   for line in cassette:lines() do
-    local path = line:match('uri: (.+)')
+    local path = line:match('uri: .+api.stripe.com/v1/(.+)')
 
-    if path ~= nil and not vim.tbl_contains(paths, path) then
-      table.insert(paths, path)
+    if path ~= nil then
+      path = clean_stripe_path(path)
+      if not vim.tbl_contains(paths, path) then
+        table.insert(paths, path)
+      end
     end
   end
 
@@ -79,18 +113,12 @@ local cassette_paths = function(cassette_name)
   return paths
 end
 
+local cassette_choices = function()
+  return table_to_choices(cassettes())
+end
+
 local cassette_path_choices = function(cassette_name)
-  local path_choices = {}
-
-  for _, path in pairs(cassette_paths(cassette_name) or {}) do
-    if v == path then
-      return
-    else
-      table.insert(path_choices, t(path))
-    end
-  end
-
-  return c(1, path_choices)
+  return table_to_choices(cassette_paths(cassette_name))
 end
 
 return {
@@ -128,7 +156,7 @@ return {
         i(2, 'stripe_object_name'),
         c(3, { t('get'), t('post'), t('put'), t('delete') }),
         d(4, function(args)
-          return sn(nil, { cassette_path_choices(args[1][1]) })
+          return sn(nil, { c(1, cassette_path_choices(args[1][1])) })
         end, { 1 }),
         i(0),
       }
