@@ -22,6 +22,7 @@ end
 
 local cassettes = function()
   local cassettes = {}
+  local bootlegs_dir = cassettes_dir() .. '/bootlegs'
 
   vim.fs.find(function(name, _)
     local cassette = name:match('^stripe%-(.+)%.yml$')
@@ -31,7 +32,7 @@ local cassettes = function()
     end
 
     return false
-  end, { upward = false, path = cassettes_dir(), limit = math.huge, type = 'file' })
+  end, { upward = false, stop = bootlegs_dir, path = cassettes_dir(), limit = math.huge, type = 'file' })
 
   table.sort(cassettes)
 
