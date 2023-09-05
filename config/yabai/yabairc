@@ -49,5 +49,6 @@ yabai -m rule --add app="^Bartender" manage=off
 yabai -m rule --add app="^Camtasia" manage=off
 yabai -m rule --add app="^Snagit" manage=off
 yabai -m rule --add app="^Raycast" manage=off
+yabai -m rule --add app="^krisp" manage=off
 
 echo "yabai configuration loaded..."
