@@ -1,9 +1,4 @@
 return {
-  -- profile neovim
-  'lewis6991/impatient.nvim',
-
-  { 'dstein64/vim-startuptime', cmd = 'StartupTime' },
-
   -- many plugins use these, so not listed as dependencies on them
   { 'nvim-lua/plenary.nvim', lazy = true },
 
