@@ -73,6 +73,12 @@ function M.on_attach(client)
     client.server_capabilities.document_formatting = false
     client.server_capabilities.document_range_formatting = false
   end
+
+  if client.server_capabilities.inlayHintProvider then
+    if client.name ~= 'tsserver' then -- need newer typescript in my projects
+      vim.lsp.inlay_hint(0, true)
+    end
+  end
 end
 
 return M

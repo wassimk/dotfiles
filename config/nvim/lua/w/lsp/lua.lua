@@ -10,6 +10,7 @@ require('lspconfig').lua_ls.setup({
       -- https://github.com/LuaLS/lua-language-server/wiki/Settings
       completion = { enable = true, showWord = 'Disable' },
       diagnostics = { globals = { 'hs' } },
+      hint = { enable = true },
       format = { enable = false },
       telemetry = { enable = false },
       workspace = { checkThirdParty = false },
