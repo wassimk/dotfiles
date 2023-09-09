@@ -8,11 +8,6 @@ local function opts(prefix, desc)
   }
 end
 
--- remap leader and local leader to <Space>
-vim.api.nvim_set_keymap('', '<Space>', '<Nop>', {})
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
 -- clipboard
 vim.keymap.set({ 'n', 'v' }, '<Leader>y', '"+y', opts('CLIPBOARD', 'copy to system'))
 
