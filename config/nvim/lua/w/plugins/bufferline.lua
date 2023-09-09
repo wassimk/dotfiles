@@ -5,6 +5,7 @@
 
 return {
   'akinsho/bufferline.nvim',
+  event = 'BufRead',
   version = '*',
   config = function()
     require('bufferline').setup({
