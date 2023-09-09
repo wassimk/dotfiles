@@ -6,9 +6,7 @@
 return {
   'ellisonleao/glow.nvim',
   cmd = 'Glow',
-  config = function()
-    require('glow').setup({
-      width = 105,
-    })
-  end,
+  opts = {
+    width = 105,
+  },
 }

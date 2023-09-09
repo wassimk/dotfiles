@@ -5,6 +5,6 @@
 
 return {
   'wincent/scalpel',
-  keys = '<Leader>e',
   version = '*',
+  keys = '<Leader>e',
 }
