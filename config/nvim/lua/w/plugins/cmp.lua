@@ -5,6 +5,7 @@
 
 return {
   'hrsh7th/nvim-cmp',
+  event = { 'InsertEnter', 'CmdlineEnter' },
   dependencies = {
     'f3fora/cmp-spell',
     'hrsh7th/cmp-buffer',
@@ -184,5 +185,11 @@ return {
         { name = 'spell', keyword_length = 4 },
       }),
     })
+
+    -- support nvim-autopairs with cmp
+    local has_auto_pairs, cmp_autopairs = pcall(require, 'nvim-autopairs.completion.cmp')
+    if has_auto_pairs then
+      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+    end
   end,
 }
