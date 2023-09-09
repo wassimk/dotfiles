@@ -12,7 +12,7 @@ return {
   },
   config = function()
     local telescope, builtin, actions = require('telescope'), require('telescope.builtin'), require('telescope.actions')
-    local custom_pickers = require('w.plugin.telescope.custom_pickers')
+    local custom_pickers = require('w.custom.telescope.custom_pickers')
     local trouble = require('trouble.providers.telescope')
 
     telescope.setup({

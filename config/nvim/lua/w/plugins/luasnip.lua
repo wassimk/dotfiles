@@ -52,7 +52,7 @@ return {
     )
 
     require('luasnip.loaders.from_lua').load({
-      paths = os.getenv('HOME') .. '/.config/nvim/lua/w/plugin/luasnip/snippets',
+      paths = os.getenv('HOME') .. '/.config/nvim/lua/w/custom/luasnip/snippets',
     })
   end,
 }
