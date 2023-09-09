@@ -42,8 +42,8 @@ require('nvim-treesitter.configs').setup({
     },
   },
   indent = { enable = true },
-  playground = { enable = true }, -- nvim-treesitter/playground
-  query_linter = { enable = true }, -- nvim-treesitter/playground
+  playground = { enable = true },
+  query_linter = { enable = true },
   autotag = { enable = true }, -- nvim-ts-autotag
   endwise = { enable = true }, -- nvim-treesitter-endwise
   matchup = { enable = true }, -- vim-matchup
