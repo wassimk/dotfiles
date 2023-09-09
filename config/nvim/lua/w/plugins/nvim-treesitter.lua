@@ -14,7 +14,7 @@ return {
     'andymass/vim-matchup',
     'windwp/nvim-ts-autotag',
   },
-  config = {
-    vim.api.nvim_set_hl(0, 'MatchWord', { italic = true }),
-  },
+  config = function()
+    vim.api.nvim_set_hl(0, 'MatchWord', { italic = true })
+  end,
 }
