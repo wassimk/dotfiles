@@ -6,6 +6,7 @@
 return {
   'lewis6991/gitsigns.nvim',
   version = '*',
+  event = 'BufRead',
   config = function()
     require('gitsigns').setup({
       sign_priority = 6, -- higher than todo-comments
