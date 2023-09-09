@@ -10,7 +10,7 @@ return {
   keys = {
     { '<leader>o', '<cmd>Other<cr>', { desc = 'OTHER: other file' } },
   },
-  config = {
+  opts = {
     showMissingFiles = false,
     mappings = {
       'rails',

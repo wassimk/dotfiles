@@ -5,7 +5,7 @@
 
 return {
   'sQVe/sort.nvim',
-  config = true,
   cmd = 'Sort',
   keys = 'gs',
+  config = true,
 }

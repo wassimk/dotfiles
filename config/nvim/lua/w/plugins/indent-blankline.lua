@@ -6,9 +6,7 @@
 return {
   'lukas-reineke/indent-blankline.nvim',
   version = '*',
-  config = function()
-    require('indent_blankline').setup({
-      show_current_context = false,
-    })
-  end,
+  opts = {
+    show_current_context = false,
+  },
 }
