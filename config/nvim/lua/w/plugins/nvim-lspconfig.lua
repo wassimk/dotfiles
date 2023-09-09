@@ -10,5 +10,16 @@ return {
     'jose-elias-alvarez/typescript.nvim',
     'simrat39/rust-tools.nvim',
     'williamboman/mason-lspconfig.nvim',
+    {
+      'j-hui/fidget.nvim',
+      tag = 'legacy',
+      opts = {
+        sources = {
+          ['null-ls'] = {
+            ignore = true,
+          },
+        },
+      },
+    },
   },
 }
