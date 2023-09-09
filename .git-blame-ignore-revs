@@ -6,3 +6,6 @@ c1af37413dac8849707a77c3df3f33670fefc071
 
 # Rename wassim lua module to w
 c12af4f7b86cd7aa448aa78a487501650c630304
+
+# Switch to lazy.nvim plugin structure
+7979ef15f202c2981257465e67a24eff813f12c2
