@@ -35,9 +35,6 @@ vim.keymap.set('n', '<leader>t', '<cmd>TroubleToggle<cr>', opts('TROUBLE', 'togg
 -- vim-easy-align
 vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)<cr>', opts('VIM-EASY-ALIGN', 'align'))
 
--- vim-rails
-vim.keymap.set({ 'n', 'x' }, '<leader>a', '<cmd>A<cr>', opts('VIM-RAILS', 'alternate file'))
-
 -- vim-test
 vim.keymap.set('n', 't<C-n>', '<cmd>TestNearest<cr>', opts('VIM-TEST', 'test nearest'))
 vim.keymap.set('n', 't<C-f>', '<cmd>TestFile<cr>', opts('VIM-TEST', 'file'))
