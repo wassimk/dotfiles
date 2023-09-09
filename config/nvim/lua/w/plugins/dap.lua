@@ -7,6 +7,7 @@
 
 return {
   'mfussenegger/nvim-dap',
+  lazy = true,
   version = '*',
   dependencies = {
     { 'rcarriga/nvim-dap-ui', version = '*' },
