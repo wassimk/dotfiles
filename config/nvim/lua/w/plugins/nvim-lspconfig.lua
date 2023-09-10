@@ -11,6 +11,7 @@ return {
     'jose-elias-alvarez/typescript.nvim',
     'simrat39/rust-tools.nvim',
     'williamboman/mason-lspconfig.nvim',
+    { 'antosha417/nvim-lsp-file-operations', config = true },
     {
       'j-hui/fidget.nvim',
       tag = 'legacy',
