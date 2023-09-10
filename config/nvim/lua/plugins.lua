@@ -19,6 +19,14 @@ function M.setup()
     dev = {
       path = '~/Personal/neovim',
     },
+    checker = {
+      enabled = true,
+      notify = true,
+      frequency = 3600 * 24,
+    },
+    change_detection = {
+      notify = false,
+    },
     performance = {
       rtp = {
         disabled_plugins = {
