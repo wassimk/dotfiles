@@ -5,6 +5,7 @@
 
 return {
   'neovim/nvim-lspconfig',
+  event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     { 'folke/neodev.nvim', version = '*' },
     'jose-elias-alvarez/typescript.nvim',
