@@ -33,6 +33,7 @@ function M.setup()
           'gzip',
           'matchit',
           'matchparen',
+          'netrw',
           'netrwPlugin',
           'tarPlugin',
           'tohtml',
