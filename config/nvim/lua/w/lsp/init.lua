@@ -53,7 +53,7 @@ function M.on_attach(client)
   vim.keymap.set('n', 'gd$', vim.lsp.buf.document_symbol, opts('document symbols'))
   vim.keymap.set('n', 'gw$', vim.lsp.buf.workspace_symbol, opts('workspace symbols'))
   vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts('rename'))
-  vim.keymap.set('n', '<leader>D', 'Trouble lsp_type_definitions<cr>', opts('goto type definitions'))
+  vim.keymap.set('n', '<leader>D', '<cmd>Trouble lsp_type_definitions<cr>', opts('goto type definitions'))
 
   if client.name == 'rust_analyzer' then
     vim.keymap.set('n', '<F5>', '<cmd>RustDebuggables<cr>', { desc = 'RUST: debug menu' })
