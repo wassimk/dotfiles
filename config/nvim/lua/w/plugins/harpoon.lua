@@ -18,9 +18,7 @@ return {
 
     vim.keymap.set('n', '<leader>h', mark.add_file, opts('mark file'))
     vim.keymap.set('n', '<C-e>', function()
-      require('focus').focus_disable()
       require('harpoon.ui').toggle_quick_menu()
-      require('focus').focus_enable()
     end, opts('toggle UI'))
 
     vim.keymap.set('n', '<M-r>1', function()
