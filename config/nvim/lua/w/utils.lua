@@ -42,7 +42,7 @@ function M.installed_gem_version(gemname)
   local version = nil
 
   for line in io.lines(gemfile) do
-    if string.find(line, '%s+' .. gemname .. ' %(= ') then
+    if string.find(line, '%s+' .. gemname .. ' %(') then
       -- version must be major.minor for number based version compare
       version = string.match(line, '%d+%.%d+')
       break
@@ -56,6 +56,12 @@ function M.rubocop_supports_lsp()
   local version = M.installed_gem_version('rubocop')
 
   return version and version >= 1.53
+end
+
+function M.ruby_lsp_installed()
+  local directory = vim.fn.getcwd() .. '/.ruby-lsp'
+
+  return M.is_dir(directory)
 end
 
 function M.config_exists(filename)

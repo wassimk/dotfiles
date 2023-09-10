@@ -52,44 +52,18 @@ if utils.installed_via_bundler('solargraph') then
 end
 
 -- ruby-lsp
-if utils.installed_via_bundler('ruby%-lsp') then
+if not utils.installed_via_bundler('solargraph') then
   lspconfig.ruby_ls.setup({
-    cmd = { 'bundle', 'exec', 'ruby-lsp' },
     init_options = {
-      enabledFeatures = { onTypeFormatting = false },
-      formatter = 'syntax_tree',
+      formatter = 'rubocop',
     },
     capabilities = capabilities,
-    on_attach = function(client, bufnr)
-      local request_diagnostics = function()
-        local params = vim.lsp.util.make_text_document_params(bufnr)
-
-        client.request('textDocument/diagnostic', { textDocument = params }, function(err, result)
-          if err or not result then
-            return
-          end
-
-          vim.lsp.diagnostic.on_publish_diagnostics(
-            nil,
-            vim.tbl_extend('keep', params, { diagnostics = result.items }),
-            { client_id = client.id }
-          )
-        end)
-      end
-
-      on_attach(client, bufnr)
-      request_diagnostics() -- call on attach
-
-      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePre', 'BufReadPost', 'InsertLeave', 'TextChanged' }, {
-        buffer = bufnr,
-        callback = request_diagnostics,
-      })
-    end,
+    on_attach = on_attach,
   })
 end
 
 -- syntax_tree
-if utils.installed_via_bundler('syntax_tree') and not utils.installed_via_bundler('ruby%-lsp') then
+if utils.installed_via_bundler('syntax_tree') then
   lspconfig.syntax_tree.setup({
     cmd = { 'bundle', 'exec', 'stree', 'lsp' },
     capabilities = capabilities,
@@ -99,7 +73,7 @@ end
 
 -- rubocop
 if
-  not utils.installed_via_bundler('ruby%-lsp')
+  not utils.ruby_lsp_installed()
   and utils.installed_via_bundler('rubocop')
   and utils.config_exists('.rubocop.yml')
   and utils.rubocop_supports_lsp()
