@@ -7,7 +7,6 @@ return {
   'nvim-telescope/telescope.nvim',
   -- version = '*',
   dependencies = {
-    'nvim-telescope/telescope-ui-select.nvim',
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   },
   config = function()
@@ -48,15 +47,9 @@ return {
           },
         },
       },
-      extensions = {
-        ['ui-select'] = {
-          require('telescope.themes').get_dropdown(),
-        },
-      },
     })
 
     pcall(telescope.load_extension('fzf'))
-    pcall(telescope.load_extension('ui-select'))
 
     -- keymaps
     local function opts(desc)
