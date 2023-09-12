@@ -20,8 +20,8 @@ function M.setup()
       path = '~/Personal/neovim',
     },
     checker = {
-      enabled = true,
-      notify = true,
+      enabled = false, -- auto-updates
+      notify = false,
       frequency = 3600 * 24,
     },
     change_detection = {
