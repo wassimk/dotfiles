@@ -8,7 +8,7 @@ return {
   version = '*',
   event = 'BufRead',
   opts = {
-    default_mappings = false,
+    default_mappings = true,
     disable_diagnostics = true,
   },
 }
