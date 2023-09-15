@@ -8,5 +8,5 @@ vim.api.nvim_set_keymap('', '<Space>', '<Nop>', {})
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-require('plugins').setup()
+require('lazy-plugin').setup()
 require('w')
