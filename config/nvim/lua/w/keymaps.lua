@@ -36,8 +36,9 @@ vim.keymap.set('n', '<leader>t', '<cmd>TroubleToggle<cr>', opts('TROUBLE', 'togg
 vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)<cr>', opts('VIM-EASY-ALIGN', 'align'))
 
 -- vim-test
-vim.keymap.set('n', 't<C-n>', '<cmd>TestNearest<cr>', opts('VIM-TEST', 'test nearest'))
-vim.keymap.set('n', 't<C-f>', '<cmd>TestFile<cr>', opts('VIM-TEST', 'file'))
-vim.keymap.set('n', 't<C-a>', '<cmd>TestSuite<cr>', opts('VIM-TEST', 'suite'))
-vim.keymap.set('n', 't<C-l>', '<cmd>TestLast<cr>', opts('VIM-TEST', 'last'))
-vim.keymap.set('n', 't<C-g>', '<cmd>TestVisit<cr>', opts('VIM-TEST', 'visit'))
+vim.keymap.set('n', 't<C-n>', '<cmd>Neotest run<cr>', opts('NEOTEST', 'nearest'))
+vim.keymap.set('n', 't<C-f>', '<cmd>Neotest run file<cr>', opts('NEOTEST', 'file'))
+vim.keymap.set('n', 't<C-l>', '<cmd>Neotest run last<cr>', opts('NEOTEST', 'last'))
+vim.keymap.set('n', '<leader>ht', '<cmd>Neotest output<cr>', opts('NEOTEST', 'output float'))
+vim.keymap.set('n', 't<C-o>', '<cmd>Neotest output-panel<cr>', opts('NEOTEST', 'output panel'))
+vim.keymap.set('n', 't<C-u>', '<cmd>Neotest summary<cr>', opts('NEOTEST', 'summary sidebar'))
