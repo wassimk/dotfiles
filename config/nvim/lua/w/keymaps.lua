@@ -38,6 +38,9 @@ vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)<cr>', opts('VIM-EASY-ALIGN
 -- vim-test
 vim.keymap.set('n', 't<C-n>', '<cmd>Neotest run<cr>', opts('NEOTEST', 'nearest'))
 vim.keymap.set('n', 't<C-f>', '<cmd>Neotest run file<cr>', opts('NEOTEST', 'file'))
+vim.keymap.set('n', 't<C-a>', function()
+  require('neotest').run.run({ suite = true })
+end, opts('NEOTEST', 'suite'))
 vim.keymap.set('n', 't<C-l>', '<cmd>Neotest run last<cr>', opts('NEOTEST', 'last'))
 vim.keymap.set('n', '<leader>ht', '<cmd>Neotest output<cr>', opts('NEOTEST', 'output float'))
 vim.keymap.set('n', 't<C-o>', '<cmd>Neotest output-panel<cr>', opts('NEOTEST', 'output panel'))
