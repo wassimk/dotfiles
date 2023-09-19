@@ -10,8 +10,11 @@ return {
       clients = { 'null_ls', 'null-ls' },
     },
     sign = {
-      enabled = true,
+      enabled = false,
       priority = 20,
+    },
+    virtual_text = {
+      enabled = true,
     },
     autocmd = {
       enabled = true,
