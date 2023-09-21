@@ -35,13 +35,23 @@ vim.keymap.set('n', '<leader>t', '<cmd>TroubleToggle<cr>', opts('TROUBLE', 'togg
 -- vim-easy-align
 vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)<cr>', opts('VIM-EASY-ALIGN', 'align'))
 
--- vim-test
-vim.keymap.set('n', 't<C-n>', '<cmd>Neotest run<cr>', opts('NEOTEST', 'nearest'))
-vim.keymap.set('n', 't<C-f>', '<cmd>Neotest run file<cr>', opts('NEOTEST', 'file'))
-vim.keymap.set('n', 't<C-a>', function()
-  require('neotest').run.run({ suite = true })
-end, opts('NEOTEST', 'suite'))
-vim.keymap.set('n', 't<C-l>', '<cmd>Neotest run last<cr>', opts('NEOTEST', 'last'))
-vim.keymap.set('n', '<leader>ht', '<cmd>Neotest output<cr>', opts('NEOTEST', 'output float'))
-vim.keymap.set('n', 't<C-o>', '<cmd>Neotest output-panel<cr>', opts('NEOTEST', 'output panel'))
-vim.keymap.set('n', 't<C-u>', '<cmd>Neotest summary<cr>', opts('NEOTEST', 'summary sidebar'))
+-- neotest
+local has_neotest, neotest = pcall(require, 'neotest')
+if has_neotest then
+  vim.keymap.set('n', 't<C-n>', neotest.run.run, opts('NEOTEST', 'nearest'))
+
+  vim.keymap.set('n', 't<C-f>', function()
+    neotest.run.run(vim.fn.expand('%'))
+  end, opts('NEOTEST', 'file'))
+
+  vim.keymap.set('n', 't<C-a>', function()
+    neotest.run.run({ suite = true })
+  end, opts('NEOTEST', 'suite'))
+
+  vim.keymap.set('n', 't<C-l>', neotest.run.run_last, opts('NEOTEST', 'last'))
+  vim.keymap.set('n', '<leader>ht', function()
+    neotest.output.open({ short = true })
+  end, opts('NEOTEST', 'output float'))
+  vim.keymap.set('n', 't<C-o>', neotest.output_panel.toggle, opts('NEOTEST', 'output panel'))
+  vim.keymap.set('n', 't<C-u>', neotest.summary.toggle, opts('NEOTEST', 'summary sidebar'))
+end
