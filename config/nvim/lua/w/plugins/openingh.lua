@@ -4,6 +4,10 @@
 --
 
 return {
-  cmd = { 'OpenInGHFile', 'OpenInGhFileLines', 'OpenInGHRepo' },
+  cmd = {
+    'OpenInGHFile',
+    'OpenInGHRepo',
+    'OpenInGhFileLines',
+  },
   'almo7aya/openingh.nvim',
 }

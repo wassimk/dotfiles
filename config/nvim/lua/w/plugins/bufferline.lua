@@ -27,7 +27,6 @@ return {
           vim.bo[buf_number].filetype ~= 'NvimTree'
           and vim.bo[buf_number].filetype ~= 'TelescopePrompt'
           and vim.bo[buf_number].filetype ~= 'terminal'
-          and vim.bo[buf_number].filetype ~= 'packer'
         then
           return true
         else
