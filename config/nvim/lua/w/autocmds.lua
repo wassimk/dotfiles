@@ -32,6 +32,7 @@ api.nvim_create_autocmd('FileType', {
     'neotest-output-panel',
     'neotest-summary',
     'qf',
+    'query', -- :InspectTree
     'startuptime',
   },
   command = 'nnoremap <buffer><silent> q :close<cr>',
