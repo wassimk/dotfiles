@@ -22,6 +22,5 @@ return {
       dapui_stacks = false,
       dapui_watches = false,
     },
-    copilot_node_command = os.getenv('HOME') .. '/.asdf/installs/nodejs/18.13.0/bin/node',
   },
 }
