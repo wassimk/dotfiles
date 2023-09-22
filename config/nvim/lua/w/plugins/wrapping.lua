@@ -5,6 +5,6 @@
 
 return {
   'andrewferrier/wrapping.nvim',
-  ft = { 'markdown', 'gitcommit', 'text' },
+  ft = { 'markdown', 'text' },
   config = true,
 }
