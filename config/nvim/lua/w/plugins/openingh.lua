@@ -7,7 +7,7 @@ return {
   cmd = {
     'OpenInGHFile',
     'OpenInGHRepo',
-    'OpenInGhFileLines',
+    'OpenInGHFileLines',
   },
   'almo7aya/openingh.nvim',
 }
