@@ -44,16 +44,17 @@ return {
       end
     end, { desc = 'LUASNIP: jump previous' })
 
-    -- reload snippets
-    vim.keymap.set(
-      'n',
-      '<leader><leader>s',
-      '<cmd>source ' .. os.getenv('HOME') .. '/.config/nvim/after/plugin/luasnip.lua<cr>',
-      { desc = 'LUASNIP: reload keymaps' }
-    )
+    local snippets_dir = os.getenv('HOME') .. '/.config/nvim/lua/w/custom/luasnip/snippets'
+    local load_snippets = function()
+      require('luasnip.loaders.from_lua').load({
+        paths = snippets_dir,
+      })
+    end
 
-    require('luasnip.loaders.from_lua').load({
-      paths = os.getenv('HOME') .. '/.config/nvim/lua/w/custom/luasnip/snippets',
-    })
+    -- reload snippets helper keymap
+    vim.keymap.set('n', '<leader><leader>s', load_snippets, { desc = 'LUASNIP: reload keymaps' })
+
+    -- initial snippet load
+    load_snippets()
   end,
 }
