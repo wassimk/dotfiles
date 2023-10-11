@@ -81,18 +81,11 @@ key_bindings:
   # [tmux] kill the current pane (and window if last pane)
   - { key: W, mods: Command, chars: "\x13\x78" }
 
-  # [tmux] kill the current window (and exit if last window)
-  - { key: X, mods: Command, chars: "\x13\x26" }
-
   # [tmux] rename the current window
   - { key: Comma, mods: Command, chars: "\x13\x2c" }
 
   # [tmux] rename the current session
   - { key: Period, mods: Command, chars: "\x13\x24" }
-
-  # [tmux] go to the previous and next windoww
-  - { key: LBracket, mods: Command|Shift, chars: "\x13\x70" }
-  - { key: RBracket, mods: Command|Shift, chars: "\x13\x6e" }
 
   # [tmux] select windows 1-9
   - { key: Key1, mods: Command, chars: "\x13\x31" }
