@@ -6,7 +6,5 @@
 return {
   'lukas-reineke/indent-blankline.nvim',
   version = '*',
-  opts = {
-    show_current_context = false,
-  },
+  main = 'ibl',
 }
