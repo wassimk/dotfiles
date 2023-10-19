@@ -56,22 +56,6 @@ if utils.ruby_lsp_installed() or not utils.installed_via_bundler('solargraph') t
   lspconfig.ruby_ls.setup({
     init_options = {
       formatter = 'rubocop',
-      enabledFeatures = {
-        'codeActions',
-        'codeLens',
-        'completion',
-        'diagnostics',
-        'documentHighlights',
-        'documentLink',
-        'documentSymbols',
-        'foldingRanges',
-        'formatting',
-        'hover',
-        'inlayHint',
-        -- 'onTypeFormatting',
-        'selectionRanges',
-        'semanticHighlighting',
-      },
     },
     capabilities = capabilities,
     on_attach = on_attach,
