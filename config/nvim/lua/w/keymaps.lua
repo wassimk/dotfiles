@@ -45,8 +45,8 @@ if has_neotest then
   end, opts('NEOTEST', 'file'))
 
   vim.keymap.set('n', 't<C-a>', function()
-    neotest.run.run({ suite = true })
-  end, opts('NEOTEST', 'suite'))
+    neotest.run.attach()
+  end, opts('NEOTEST', 'attach'))
 
   vim.keymap.set('n', 't<C-l>', neotest.run.run_last, opts('NEOTEST', 'last'))
   vim.keymap.set('n', '<leader>ht', function()
