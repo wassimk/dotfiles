@@ -11,6 +11,9 @@ font:
     family: MonoLisa Nerd Font
   size: 12.0
 
+env:
+  TERM: xterm-256color
+
 # (One Dark)
 colors:
   primary:
