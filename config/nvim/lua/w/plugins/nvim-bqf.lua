@@ -7,7 +7,7 @@ return {
   'kevinhwang91/nvim-bqf',
   ft = 'qf',
   version = '*',
-  config = { auto_resize_height = true },
+  opts = { auto_resize_height = true },
   dependencies = {
     'junegunn/fzf',
     build = function()
