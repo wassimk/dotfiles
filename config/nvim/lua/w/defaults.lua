@@ -38,3 +38,7 @@ end
 
 -- make netrw use the system's default file/url browser
 vim.g.netrw_browsex_viewer = 'open'
+
+-- disable providers i don't use
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
