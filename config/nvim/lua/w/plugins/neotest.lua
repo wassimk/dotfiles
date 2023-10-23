@@ -19,6 +19,18 @@ return {
   },
   config = function()
     require('neotest').setup({
+      log_level = vim.log.levels.DEBUG,
+      watch = {
+        enabled = true,
+        symbol_queries = {
+          ruby = [[
+                  (call
+                    method: (identifier) @_ (#match? @_ "^(describe|context)")
+                    arguments: (argument_list (constant) @symbol )
+                  )
+          ]],
+        },
+      },
       adapters = {
         require('neotest-rspec'),
         require('neotest-minitest'),
