@@ -44,6 +44,8 @@ if has_neotest then
     neotest.run.run(vim.fn.expand('%'))
   end, opts('NEOTEST', 'file'))
 
+  vim.keymap.set('n', 't<C-w>', neotest.watch.watch, opts('NEOTEST', 'watch nearest'))
+
   vim.keymap.set('n', 't<C-a>', function()
     neotest.run.attach()
   end, opts('NEOTEST', 'attach'))
