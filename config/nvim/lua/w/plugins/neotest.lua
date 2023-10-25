@@ -24,9 +24,18 @@ return {
         enabled = true,
         symbol_queries = {
           ruby = [[
+                  ;; rspec - class name
                   (call
                     method: (identifier) @_ (#match? @_ "^(describe|context)")
                     arguments: (argument_list (constant) @symbol )
+                  )
+
+                  ;; rspec - namespaced class name
+                  (call
+                    method: (identifier)
+                    arguments: (argument_list
+                      (scope_resolution
+                        name: (constant) @symbol))
                   )
           ]],
         },
