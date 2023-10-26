@@ -30,7 +30,7 @@ vim.keymap.set('x', 'gs', '<esc><cmd>Sort<cr>', { desc = 'SORT: sort visual sele
 vim.keymap.set('n', '<C-Bslash>', '<cmd>ToggleTerm<cr>', opts('TOGGLETERM', 'toggle terminal'))
 
 -- trouble
-vim.keymap.set('n', '<leader>t', '<cmd>TroubleToggle<cr>', opts('TROUBLE', 'toggle window'))
+vim.keymap.set('n', '<leader>tr', '<cmd>TroubleToggle<cr>', opts('TROUBLE', 'toggle window'))
 
 -- vim-easy-align
 vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)<cr>', opts('VIM-EASY-ALIGN', 'align'))
@@ -38,22 +38,22 @@ vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)<cr>', opts('VIM-EASY-ALIGN
 -- neotest
 local has_neotest, neotest = pcall(require, 'neotest')
 if has_neotest then
-  vim.keymap.set('n', 't<C-n>', neotest.run.run, opts('NEOTEST', 'nearest'))
+  vim.keymap.set('n', '<leader>tn', neotest.run.run, opts('NEOTEST', 'nearest'))
 
-  vim.keymap.set('n', 't<C-f>', function()
+  vim.keymap.set('n', '<leader>tf', function()
     neotest.run.run(vim.fn.expand('%'))
   end, opts('NEOTEST', 'file'))
 
-  vim.keymap.set('n', 't<C-w>', neotest.watch.watch, opts('NEOTEST', 'watch nearest'))
+  vim.keymap.set('n', '<leader>tw', neotest.watch.watch, opts('NEOTEST', 'watch nearest'))
 
-  vim.keymap.set('n', 't<C-a>', function()
+  vim.keymap.set('n', '<leader>ta', function()
     neotest.run.attach()
   end, opts('NEOTEST', 'attach'))
 
-  vim.keymap.set('n', 't<C-l>', neotest.run.run_last, opts('NEOTEST', 'last'))
+  vim.keymap.set('n', '<leader>tl', neotest.run.run_last, opts('NEOTEST', 'last'))
   vim.keymap.set('n', '<leader>ht', function()
     neotest.output.open({ short = true })
   end, opts('NEOTEST', 'output float'))
-  vim.keymap.set('n', 't<C-o>', neotest.output_panel.toggle, opts('NEOTEST', 'output panel'))
-  vim.keymap.set('n', 't<C-u>', neotest.summary.toggle, opts('NEOTEST', 'summary sidebar'))
+  vim.keymap.set('n', '<leader>to', neotest.output_panel.toggle, opts('NEOTEST', 'output panel'))
+  vim.keymap.set('n', '<leader>ts', neotest.summary.toggle, opts('NEOTEST', 'summary sidebar'))
 end
