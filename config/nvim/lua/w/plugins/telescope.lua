@@ -60,7 +60,7 @@ return {
       desc = 'TELESCOPE: command history',
     },
     {
-      '<C-k>',
+      '<C-f>k',
       function()
         require('telescope.builtin').keymaps()
       end,
