@@ -1,6 +1,16 @@
 local M = {}
 
 function M.setup()
+  -- remap leader and local leader to <Space>
+  -- here because lazy.nvim wants this to happen first
+  vim.api.nvim_set_keymap('', '<Space>', '<Nop>', {})
+  vim.g.mapleader = ' '
+  vim.g.maplocalleader = ' '
+
+  -- vim style plugin configs before they load
+  vim.keymap.set({ 'n', 'c' }, '<C-f>', '', { desc = 'unmap neovim default for telescope' })
+  vim.g.tmux_navigator_no_mappings = 1
+
   local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
   if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
