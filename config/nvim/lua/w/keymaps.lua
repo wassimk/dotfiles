@@ -32,9 +32,6 @@ vim.keymap.set('n', '<C-Bslash>', '<cmd>ToggleTerm<cr>', opts('TOGGLETERM', 'tog
 -- trouble
 vim.keymap.set('n', '<leader>tr', '<cmd>TroubleToggle<cr>', opts('TROUBLE', 'toggle window'))
 
--- vim-easy-align
-vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)<cr>', opts('VIM-EASY-ALIGN', 'align'))
-
 -- neotest
 local has_neotest, neotest = pcall(require, 'neotest')
 if has_neotest then
