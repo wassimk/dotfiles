@@ -11,7 +11,5 @@ return {
 
   'tpope/vim-repeat',
 
-  'junegunn/vim-easy-align',
-
   'tpope/vim-unimpaired',
 }
