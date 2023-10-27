@@ -22,13 +22,6 @@ vim.keymap.set('n', '<leader>l', require('w.utils').toggle_loclist, opts('LOCLIS
 -- nvim-tree
 vim.keymap.set('n', '<C-n>', '<cmd>NvimTreeToggle<cr>', opts('FILES', 'toggle file tree'))
 
--- sort.nvim
-vim.keymap.set('n', 'gs', '<cmd>Sort<cr>', { desc = 'SORT: sort line(s)' })
-vim.keymap.set('x', 'gs', '<esc><cmd>Sort<cr>', { desc = 'SORT: sort visual selection' })
-
--- toggleterm
-vim.keymap.set('n', '<C-Bslash>', '<cmd>ToggleTerm<cr>', opts('TOGGLETERM', 'toggle terminal'))
-
 -- trouble
 vim.keymap.set('n', '<leader>tr', '<cmd>TroubleToggle<cr>', opts('TROUBLE', 'toggle window'))
 
