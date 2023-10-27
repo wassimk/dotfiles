@@ -7,7 +7,7 @@ return {
   'ThePrimeagen/harpoon',
   keys = {
     {
-      '<leader>h',
+      '<leader>hh',
       function()
         require('harpoon.mark').add_file()
       end,
