@@ -45,15 +45,15 @@ function M.on_attach(client)
     vim.lsp.buf.format()
   end, { desc = 'LSP: format with language servers' })
 
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts('goto declaration'))
-  vim.keymap.set('n', 'gd', '<cmd>Trouble lsp_definitions<cr>', opts('goto definitions'))
-  vim.keymap.set('n', 'gi', '<cmd>Trouble lsp_implementations<cr>', opts('goto implementations'))
-  vim.keymap.set('n', 'gr', '<cmd>Trouble lsp_references<cr>', opts('goto references'))
-  vim.keymap.set('n', 'gS', vim.lsp.buf.signature_help, opts('signature help'))
-  vim.keymap.set('n', 'gd$', vim.lsp.buf.document_symbol, opts('document symbols'))
-  vim.keymap.set('n', 'gw$', vim.lsp.buf.workspace_symbol, opts('workspace symbols'))
+  vim.keymap.set('n', 'gld', '<cmd>Trouble lsp_definitions<cr>', opts('goto definitions'))
+  vim.keymap.set('n', 'glt', '<cmd>Trouble lsp_type_definitions<cr>', opts('goto type definitions'))
+  vim.keymap.set('n', 'glD', vim.lsp.buf.declaration, opts('goto declaration'))
+  vim.keymap.set('n', 'gli', '<cmd>Trouble lsp_implementations<cr>', opts('goto implementations'))
+  vim.keymap.set('n', 'glr', '<cmd>Trouble lsp_references<cr>', opts('goto references'))
+  vim.keymap.set('n', 'glS', vim.lsp.buf.signature_help, opts('signature help'))
+  vim.keymap.set('n', 'gls', vim.lsp.buf.document_symbol, opts('document symbols'))
+  vim.keymap.set('n', 'glw', vim.lsp.buf.workspace_symbol, opts('workspace symbols'))
   vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts('rename'))
-  vim.keymap.set('n', '<leader>D', '<cmd>Trouble lsp_type_definitions<cr>', opts('goto type definitions'))
 
   if client.name == 'rust_analyzer' then
     vim.keymap.set('n', '<F5>', '<cmd>RustDebuggables<cr>', { desc = 'RUST: debug menu' })
@@ -66,7 +66,7 @@ function M.on_attach(client)
     vim.keymap.set('n', 'K', require('rust-tools').hover_actions.hover_actions, opts('hover'))
   else
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts('hover'))
-    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts('code actions'))
+    vim.keymap.set({ 'n', 'v' }, 'gla', vim.lsp.buf.code_action, opts('code actions'))
   end
 
   if client.name == 'ruby_ls' then

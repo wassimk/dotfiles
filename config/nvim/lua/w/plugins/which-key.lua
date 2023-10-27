@@ -42,6 +42,12 @@ return {
       -- ['T'] = 'which_key_ignore',
       ['Y'] = 'Yank to end of line',
       ['<2-LeftMouse>'] = 'Match double clicked word',
+      ['gl'] = 'lsp prefix',
+      ['<leader>d'] = 'dap/diagnostics prefix',
+      ['<leader>h'] = 'gitsigns / harpoon prefix',
+      ['<leader>t'] = 'testing prefix',
+      ['<C-f>'] = 'telescope prefix',
+      ['<M-r>'] = 'harpoon prefix',
     })
   end,
 }
