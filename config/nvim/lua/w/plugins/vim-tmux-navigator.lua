@@ -8,9 +8,9 @@ return {
   config = function()
     vim.g.tmux_navigator_no_mappings = 1
 
-    vim.keymap.set({ 'n' }, '<C-h>', '<cmd>TmuxNavigateLeft<cr>')
-    vim.keymap.set({ 'n' }, '<C-l>', '<cmd>TmuxNavigateRight<cr>')
-    vim.keymap.set({ 'n' }, '<C-j>', '<cmd>TmuxNavigateDown<cr>')
-    vim.keymap.set({ 'n' }, '<C-k>', '<cmd>TmuxNavigateUp<cr>')
+    vim.keymap.set({ 'n' }, '<C-h>', '<cmd>TmuxNavigateLeft<cr>', { desc = 'which_key_ignore' })
+    vim.keymap.set({ 'n' }, '<C-l>', '<cmd>TmuxNavigateRight<cr>', { desc = 'which_key_ignore' })
+    vim.keymap.set({ 'n' }, '<C-j>', '<cmd>TmuxNavigateDown<cr>', { desc = 'which_key_ignore' })
+    vim.keymap.set({ 'n' }, '<C-k>', '<cmd>TmuxNavigateUp<cr>', { desc = 'which_key_ignore' })
   end,
 }
