@@ -51,7 +51,7 @@ if has_neotest then
   end, opts('NEOTEST', 'attach'))
 
   vim.keymap.set('n', '<leader>tl', neotest.run.run_last, opts('NEOTEST', 'last'))
-  vim.keymap.set('n', '<leader>ht', function()
+  vim.keymap.set('n', '<leader>th', function()
     neotest.output.open({ short = true })
   end, opts('NEOTEST', 'output float'))
   vim.keymap.set('n', '<leader>to', neotest.output_panel.toggle, opts('NEOTEST', 'output panel'))
