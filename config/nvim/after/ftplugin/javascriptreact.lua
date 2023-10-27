@@ -7,6 +7,7 @@ local auGroup = vim.api.nvim_create_augroup('WamAutocmdsJavaScriptReactFormattin
 vim.api.nvim_create_autocmd('BufWritePre', {
   callback = function()
     vim.lsp.buf.format()
+    require('conform').format()
 
     -- https://github.com/pmizio/typescript-tools.nvim/blob/master/lua/typescript-tools/user_commands.lua
     -- require('typescript-tools.api').sort_imports(true)

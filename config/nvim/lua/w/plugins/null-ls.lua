@@ -16,20 +16,12 @@ return {
       }),
     }
 
-    if utils.config_exists('.prettierrc') then
-      vim.list_extend(sources, { null_ls.builtins.formatting.prettierd })
-    end
-
     if utils.config_exists('.luacheckrc') then
       vim.list_extend(sources, { null_ls.builtins.diagnostics.luacheck })
     end
 
     if utils.config_exists('selene.toml') then
       vim.list_extend(sources, { null_ls.builtins.diagnostics.selene })
-    end
-
-    if utils.config_exists('stylua.toml') then
-      vim.list_extend(sources, { null_ls.builtins.formatting.stylua })
     end
 
     if utils.installed_via_bundler('erb%-formatter') then
