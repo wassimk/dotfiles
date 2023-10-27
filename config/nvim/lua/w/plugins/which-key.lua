@@ -5,9 +5,37 @@ return {
     vim.o.timeout = true
     vim.o.timeoutlen = 300
   end,
-  opts = {
-    spelling = {
-      enabled = false,
-    },
-  },
+  config = function()
+    local wk = require('which-key')
+
+    wk.setup({
+      plugins = {
+        spelling = {
+          enabled = false,
+        },
+      },
+    })
+
+    wk.register({
+      ['#'] = 'which_key_ignore',
+      ['g#'] = 'which_key_ignore',
+      ['*'] = 'which_key_ignore',
+      ['g*'] = 'which_key_ignore',
+      ['n'] = 'which_key_ignore',
+      ['N'] = 'which_key_ignore',
+      ['/'] = 'which_key_ignore',
+      ['?'] = 'which_key_ignore',
+      ['<leader>n'] = 'which_key_ignore',
+      ['h'] = 'which_key_ignore',
+      ['j'] = 'which_key_ignore',
+      ['k'] = 'which_key_ignore',
+      ['l'] = 'which_key_ignore',
+      -- ['f'] = 'which_key_ignore',
+      -- ['F'] = 'which_key_ignore',
+      -- ['t'] = 'which_key_ignore',
+      -- ['T'] = 'which_key_ignore',
+      ['Y'] = 'Yank to end of line',
+      ['<2-LeftMouse>'] = 'Match double clicked word',
+    })
+  end,
 }
