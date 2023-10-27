@@ -7,9 +7,26 @@ return {
   'numToStr/Comment.nvim',
   version = '*',
   keys = {
-    { 'gc', mode = { 'n', 'x' } },
-    'gcc',
-    'gbc',
+    {
+      'gc',
+      mode = 'v',
+      desc = 'Comment visual lines',
+    },
+    {
+      'gb',
+      mode = 'v',
+      desc = 'Comment visual block',
+    },
+    {
+      'gcc',
+      mode = 'n',
+      desc = 'Comment line',
+    },
+    {
+      'gbc',
+      mode = 'n',
+      desc = 'Comment block',
+    },
   },
   config = true,
 }

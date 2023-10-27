@@ -6,9 +6,13 @@
 return {
   'rgroli/other.nvim',
   main = 'other-nvim',
-  cmd = 'Other',
+  -- cmd = 'Other',
   keys = {
-    { '<leader>o', '<cmd>Other<cr>', { desc = 'OTHER: other file' } },
+    {
+      '<leader>o',
+      '<cmd>Other<cr>',
+      desc = 'Other file',
+    },
   },
   opts = {
     showMissingFiles = false,

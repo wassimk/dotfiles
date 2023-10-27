@@ -7,7 +7,12 @@ return {
   'akinsho/toggleterm.nvim',
   version = '*',
   cmd = { 'ToggleTerm', 'TermExec' },
-  keys = { '<C-Bslash>' },
+  keys = {
+    {
+      '<C-Bslash>',
+      desc = 'TOGGLETERM: toggle terminal',
+    },
+  },
   config = function()
     require('toggleterm').setup({
       open_mapping = '<c-\\>',
