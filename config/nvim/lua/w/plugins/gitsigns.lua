@@ -54,12 +54,12 @@ return {
       keymap('n', '<leader>hb', function()
         gs.blame_line({ full = true })
       end, { desc = 'blame line' })
-      keymap('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'toggle current line blame' })
+      keymap('n', '<leader>hb', gs.toggle_current_line_blame, { desc = 'toggle current line blame' })
       keymap('n', '<leader>hd', gs.diffthis, { desc = 'diff this' })
       keymap('n', '<leader>hD', function()
         gs.diffthis('~')
       end, { desc = 'diff this (other)' })
-      keymap('n', '<leader>td', gs.toggle_deleted, { desc = 'toggle deleted' })
+      keymap('n', '<leader>hd', gs.toggle_deleted, { desc = 'toggle deleted' })
 
       -- text object
       keymap({ 'o', 'x' }, 'ih', gs.select_hunk, { desc = 'select hunk' })
