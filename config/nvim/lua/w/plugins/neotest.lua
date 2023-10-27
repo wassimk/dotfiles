@@ -11,6 +11,72 @@ return {
   'nvim-neotest/neotest',
   lazy = true,
   cmd = { 'Neotest' },
+  keys = {
+    {
+      '<leader>tn',
+      function()
+        require('neotest').run.run()
+      end,
+      mode = 'n',
+      desc = 'NEOTEST: nearest',
+    },
+    {
+      '<leader>tf',
+      function()
+        require('neotest').run.run(vim.fn.expand('%'))
+      end,
+      mode = 'n',
+      desc = 'NEOTEST: file',
+    },
+    {
+      '<leader>tw',
+      function()
+        require('neotest').watch.watch()
+      end,
+      mode = 'n',
+      desc = 'NEOTEST: watch nearest',
+    },
+    {
+      '<leader>ta',
+      function()
+        require('neotest').run.attach()
+      end,
+      mode = 'n',
+      desc = 'NEOTEST: attach',
+    },
+    {
+      '<leader>tl',
+      function()
+        require('neotest').run.run_last()
+      end,
+      mode = 'n',
+      desc = 'NEOTEST: last',
+    },
+    {
+      '<leader>th',
+      function()
+        require('neotest').output.open({ short = true })
+      end,
+      mode = 'n',
+      desc = 'NEOTEST: output float',
+    },
+    {
+      '<leader>to',
+      function()
+        require('neotest').output_panel.toggle()
+      end,
+      mode = 'n',
+      desc = 'NEOTEST: output panel',
+    },
+    {
+      '<leader>ts',
+      function()
+        require('neotest').summary.toggle()
+      end,
+      mode = 'n',
+      desc = 'NEOTEST: summary sidebar',
+    },
+  },
   dependencies = {
     'olimorris/neotest-rspec',
     { 'zidhuss/neotest-minitest', dev = true },
@@ -39,6 +105,12 @@ return {
                     arguments: (argument_list
                       (scope_resolution
                         name: (constant) @symbol))
+                  )
+
+                  ;; minitest - class being tested
+                  (class
+                    name: ((constant) @symbol)
+                    (#gsub! @symbol "(.*)Test$" "%1")
                   )
           ]],
         },
