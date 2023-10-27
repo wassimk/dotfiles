@@ -6,6 +6,9 @@
 return {
   'kyazdani42/nvim-tree.lua',
   cmd = 'NvimTreeToggle',
+  keys = {
+    { '<C-n>', '<cmd>NvimTreeToggle<cr>', mode = 'n', desc = 'FILES: toggle file tree' },
+  },
   opts = {
     view = {
       width = {
