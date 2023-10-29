@@ -45,6 +45,7 @@ return {
       ['gl'] = 'lsp prefix',
       ['<leader>d'] = 'dap/diagnostics prefix',
       ['<leader>h'] = 'gitsigns / harpoon prefix',
+      ['<leader>hd'] = 'diff prefix',
       ['<leader>t'] = 'testing prefix',
       ['<C-f>'] = 'telescope prefix',
       ['<M-r>'] = 'harpoon prefix',

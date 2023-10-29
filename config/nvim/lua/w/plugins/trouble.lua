@@ -7,7 +7,7 @@ return {
   'folke/trouble.nvim',
   cmd = { 'Trouble', 'TroubleToggle' },
   keys = {
-    { '<leader>tr', '<cmd>TroubleToggle<cr>', mode = 'n', desc = 'TROUBLE: toggle window' },
+    { '<leader>dr', '<cmd>TroubleToggle<cr>', mode = 'n', desc = 'DIAGNOSTICS: toggle trouble' },
   },
   opts = {
     padding = false,
