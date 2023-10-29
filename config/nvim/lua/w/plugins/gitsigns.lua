@@ -20,9 +20,9 @@ return {
       end
 
       -- navigation
-      keymap('n', ']h', function()
+      keymap('n', '<leader>hn', function()
         if vim.wo.diff then
-          return ']h'
+          return '<leader>hn'
         end
 
         vim.schedule(function()
@@ -30,11 +30,11 @@ return {
         end)
 
         return '<Ignore>'
-      end, { expr = true, desc = 'goto next hunk' })
+      end, { expr = true, desc = 'jump next hunk' })
 
-      keymap('n', '[h', function()
+      keymap('n', '<leader>hp', function()
         if vim.wo.diff then
-          return '[h'
+          return '<leader>hp'
         end
 
         vim.schedule(function()
@@ -42,7 +42,7 @@ return {
         end)
 
         return '<Ignore>'
-      end, { expr = true, desc = 'goto previous hunk' })
+      end, { expr = true, desc = 'jump previous hunk' })
 
       -- actions
       keymap({ 'n', 'v' }, '<leader>hs', gs.stage_hunk, { desc = 'stage hunk' })
@@ -50,11 +50,11 @@ return {
       keymap('n', '<leader>hS', gs.stage_buffer, { desc = 'stage buffer' })
       keymap('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
       keymap('n', '<leader>hR', gs.reset_buffer, { desc = 'reset buffer' })
-      keymap('n', '<leader>hp', gs.preview_hunk, { desc = 'preview hunk' })
+      keymap('n', '<leader>hP', gs.preview_hunk, { desc = 'preview hunk' })
       keymap('n', '<leader>hf', function()
         gs.blame_line({ full = true })
       end, { desc = 'blame line float' })
-      keymap('n', '<leader>htb', gs.toggle_current_line_blame, { desc = 'toggle current line blame' })
+      keymap('n', '<leader>hb', gs.toggle_current_line_blame, { desc = 'toggle current line blame' })
       keymap('n', '<leader>hdt', gs.diffthis, { desc = 'diff this' })
       keymap('n', '<leader>hdo', function()
         gs.diffthis('~')
