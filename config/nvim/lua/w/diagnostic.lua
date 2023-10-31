@@ -4,13 +4,28 @@
 
 local M = {}
 
-function M.signs()
-  return {
+function M.signs(abbreviated)
+  abbreviated = abbreviated or false
+
+  local full = {
     Error = '',
     Warn = '',
     Info = '',
     Hint = '',
   }
+
+  local abbrev = {
+    E = '',
+    W = '',
+    I = '',
+    H = '',
+  }
+
+  if abbreviated then
+    return abbrev
+  else
+    return full
+  end
 end
 
 function M.setup()

@@ -13,9 +13,12 @@ function _G.qftf(info)
   else
     items = vim.fn.getloclist(info.winid, { id = info.id, items = 0 }).items
   end
+
   local limit = 31
   local fnameFmt1, fnameFmt2 = '%-' .. limit .. 's', '…%.' .. (limit - 1) .. 's'
   local validFmt = '%s │%5d:%-3d│%s %s'
+  local diagnostic_signs = require('w.diagnostic').signs(true)
+
   for i = info.start_idx, info.end_idx do
     local e = items[i]
     local fname = ''
@@ -37,7 +40,8 @@ function _G.qftf(info)
       end
       local lnum = e.lnum > 99999 and -1 or e.lnum
       local col = e.col > 999 and -1 or e.col
-      local qtype = e.type == '' and '' or ' ' .. e.type:sub(1, 1):upper()
+
+      local qtype = e.type == '' and '' or ' ' .. diagnostic_signs[e.type:sub(1, 1):upper()]
       str = validFmt:format(fname, lnum, col, qtype, e.text)
     else
       str = e.text
