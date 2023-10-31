@@ -69,10 +69,6 @@ function M.on_attach(client)
     vim.keymap.set({ 'n', 'v' }, 'gla', vim.lsp.buf.code_action, opts('code actions'))
   end
 
-  if client.name == 'ruby_ls' then
-    -- vim.cmd('TSDisable highlight')
-  end
-
   if client.name == 'tsserver' then
     client.server_capabilities.document_formatting = false
     client.server_capabilities.document_range_formatting = false
