@@ -5,11 +5,11 @@
 
 return {
   'nvim-telescope/telescope.nvim',
-  lazy = true,
   version = '*',
   dependencies = {
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   },
+  cmd = 'Telescope',
   keys = {
     {
       '<leader>f',
