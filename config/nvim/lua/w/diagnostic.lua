@@ -33,8 +33,8 @@ function M.setup()
   vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, opts('jump next'))
   vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev, opts('jump previous'))
   vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, opts('open float'))
-  vim.keymap.set('n', '<leader>dd', '<cmd>Trouble document_diagnostics<cr>', opts('document list'))
-  vim.keymap.set('n', '<leader>dw', '<cmd>Trouble workspace_diagnostics<cr>', opts('workspace list'))
+  vim.keymap.set('n', '<leader>dd', vim.diagnostic.setloclist, opts('current document'))
+  vim.keymap.set('n', '<leader>dw', vim.diagnostic.setqflist, opts('current workspace'))
 
   -- icons in gutter
   for type, icon in pairs(M.signs()) do

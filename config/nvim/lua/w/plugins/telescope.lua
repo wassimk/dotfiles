@@ -90,7 +90,6 @@ return {
   config = function()
     local telescope, actions = require('telescope'), require('telescope.actions')
     local custom_pickers = require('w.custom.telescope.custom_pickers')
-    local trouble = require('trouble.providers.telescope')
 
     telescope.setup({
       defaults = {
@@ -98,12 +97,10 @@ return {
           i = {
             ['<C-y>'] = actions.select_default,
             ['<C-e>'] = actions.close,
-            ['<C-r>'] = trouble.open_with_trouble,
           },
           n = {
             ['<C-y>'] = actions.select_default,
             ['<C-e>'] = actions.close,
-            ['<C-r>'] = trouble.open_with_trouble,
           },
         },
       },

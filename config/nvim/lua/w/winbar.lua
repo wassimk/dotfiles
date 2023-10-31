@@ -6,7 +6,6 @@ local M = {}
 
 local winbar_filetype_exclude = {
   'NvimTree',
-  'Trouble',
   'fugitive',
   'help',
   'packer',

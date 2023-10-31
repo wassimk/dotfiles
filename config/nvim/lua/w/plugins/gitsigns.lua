@@ -9,7 +9,6 @@ return {
   event = 'BufRead',
   opts = {
     sign_priority = 6, -- higher than todo-comments
-    trouble = false, -- don't load trouble.nvim for the setqflist and setloclist feature
     on_attach = function(bufnr)
       local gs = package.loaded.gitsigns
 
