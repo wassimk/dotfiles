@@ -51,8 +51,8 @@ function M.on_attach(client)
   vim.keymap.set('n', 'gli', '<cmd>Telescope lsp_implementations<cr>', opts('goto implementations'))
   vim.keymap.set('n', 'glr', '<cmd>Telescope lsp_references<cr>', opts('goto references'))
   vim.keymap.set('n', 'glS', vim.lsp.buf.signature_help, opts('signature help'))
-  vim.keymap.set('n', 'gls', vim.lsp.buf.document_symbol, opts('document symbols'))
-  vim.keymap.set('n', 'glw', vim.lsp.buf.workspace_symbol, opts('workspace symbols'))
+  vim.keymap.set('n', 'gls', '<cmd>Telescope lsp_document_symbols<cr>', opts('document symbols'))
+  vim.keymap.set('n', 'glw', '<cmd>Telescope lsp_workspace_symbols<cr>', opts('workspace symbols'))
   vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts('rename'))
 
   if client.name == 'rust_analyzer' then
