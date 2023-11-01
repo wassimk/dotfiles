@@ -50,3 +50,10 @@ api.nvim_create_autocmd('FileType', {
   command = 'setlocal formatoptions-=o',
   group = wamGrp,
 })
+
+-- try linting via nvim-lint on save
+api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave', 'TextChanged' }, {
+  callback = function()
+    require('lint').try_lint()
+  end,
+})
