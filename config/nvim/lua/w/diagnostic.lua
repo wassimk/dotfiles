@@ -18,7 +18,7 @@ function M.signs(abbreviated)
     E = '',
     W = '',
     I = '',
-    H = '',
+    N = '',
   }
 
   if abbreviated then

@@ -26,7 +26,6 @@ return {
       typescript = javascriptLinters,
       typescriptreact = javascriptLinters,
       lua = luaLinters,
-      gitcommit = { 'commitlint' },
     }
   end,
 }
