@@ -61,6 +61,22 @@ return {
       desc = 'NEOTEST: output float',
     },
     {
+      '<leader>tJ',
+      function()
+        require('neotest').jump.next({ status = 'failed' })
+      end,
+      mode = 'n',
+      desc = 'NEOTEST: jump next failed',
+    },
+    {
+      '<leader>tK',
+      function()
+        require('neotest').jump.prev({ status = 'failed' })
+      end,
+      mode = 'n',
+      desc = 'NEOTEST: jump previous failed',
+    },
+    {
       '<leader>to',
       function()
         require('neotest').output_panel.toggle()
