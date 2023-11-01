@@ -10,19 +10,10 @@ return {
     local utils = require('w.utils')
 
     local sources = {
-      null_ls.builtins.diagnostics.codespell,
       null_ls.builtins.diagnostics.commitlint.with({
         extra_args = { '--config', os.getenv('HOME') .. '/.commitlintrc.js' },
       }),
     }
-
-    if utils.config_exists('.luacheckrc') then
-      vim.list_extend(sources, { null_ls.builtins.diagnostics.luacheck })
-    end
-
-    if utils.config_exists('selene.toml') then
-      vim.list_extend(sources, { null_ls.builtins.diagnostics.selene })
-    end
 
     if utils.installed_via_bundler('erb%-formatter') then
       local formatting_source = null_ls.builtins.formatting.erb_format.with({
