@@ -9,11 +9,7 @@ return {
     local null_ls = require('null-ls')
     local utils = require('w.utils')
 
-    local sources = {
-      null_ls.builtins.diagnostics.commitlint.with({
-        extra_args = { '--config', os.getenv('HOME') .. '/.commitlintrc.js' },
-      }),
-    }
+    local sources = {}
 
     if utils.installed_via_bundler('erb%-formatter') then
       local formatting_source = null_ls.builtins.formatting.erb_format.with({
