@@ -6,6 +6,8 @@
 return {
   'mfussenegger/nvim-lint',
   config = function()
+    require('w.custom.nvim-lint.commitlint').setup()
+
     local utils = require('w.utils')
 
     local luaLinters = { 'codespell' }
@@ -26,6 +28,7 @@ return {
       typescript = javascriptLinters,
       typescriptreact = javascriptLinters,
       lua = luaLinters,
+      gitcommit = { 'commitlint' },
     }
   end,
 }
