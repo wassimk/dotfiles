@@ -95,7 +95,7 @@ return {
   },
   dependencies = {
     'olimorris/neotest-rspec',
-    { 'zidhuss/neotest-minitest', dev = true },
+    'zidhuss/neotest-minitest',
     'nvim-neotest/neotest-jest',
     'nvim-neotest/neotest-plenary',
   },
