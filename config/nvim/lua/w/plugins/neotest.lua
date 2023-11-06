@@ -109,13 +109,14 @@ return {
         enabled = true,
         symbol_queries = {
           ruby = [[
-                  ;; rspec - class name
+                  ;query
+                  ; rspec - class name
                   (call
                     method: (identifier) @_ (#match? @_ "^(describe|context)")
                     arguments: (argument_list (constant) @symbol )
                   )
 
-                  ;; rspec - namespaced class name
+                  ; rspec - namespaced class name
                   (call
                     method: (identifier)
                     arguments: (argument_list
@@ -123,7 +124,7 @@ return {
                         name: (constant) @symbol))
                   )
 
-                  ;; minitest - class being tested
+                  ; minitest - class being tested
                   (class
                     name: ((constant) @symbol)
                     (#gsub! @symbol "(.*)Test$" "%1")
