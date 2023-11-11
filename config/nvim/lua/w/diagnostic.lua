@@ -15,10 +15,10 @@ function M.signs(abbreviated)
   }
 
   local abbrev = {
-    E = '',
-    W = '',
-    I = '',
-    N = '',
+    E = full.Error,
+    W = full.Warn,
+    I = full.Info,
+    N = full.Hint,
   }
 
   if abbreviated then
