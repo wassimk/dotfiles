@@ -101,7 +101,6 @@ return {
   },
   config = function()
     require('neotest').setup({
-      log_level = vim.log.levels.DEBUG,
       summary = {
         open = 'botright vsplit | vertical resize 70',
       },
