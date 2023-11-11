@@ -5,13 +5,69 @@
 -- https://github.com/theHamsta/nvim-dap-virtual-text
 --
 
+-- icons in gutter
+vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DapUIWatchesError' })
+vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'DapUIWatchesError' })
+vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'DapUIWatchesError' })
+vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = 'DapUIWatchesError' })
+vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapUIPlayPause' })
+
 return {
   'mfussenegger/nvim-dap',
-  lazy = true,
   version = '*',
   dependencies = {
     { 'rcarriga/nvim-dap-ui', version = '*' },
     'theHamsta/nvim-dap-virtual-text',
+  },
+  keys = {
+    {
+      '<F5>',
+      function()
+        require('dap').continue()
+      end,
+      mode = 'n',
+      desc = 'DAP: start / continue menu',
+    },
+    {
+      '<F9>',
+      function()
+        require('dap').toggle_breakpoint()
+      end,
+      mode = 'n',
+      desc = 'DAP: toggle breakpoint',
+    },
+    {
+      '<F21>',
+      function()
+        require('dap').toggle_breakpoint(vim.fn.input('Breakpoint condition: '))
+      end,
+      mode = 'n',
+      desc = 'DAP: conditional breakpoint, Shift-F9',
+    },
+    {
+      '<Leader>dp',
+      function()
+        require('dap').toggle_breakpoint(nil, nil, vim.fn.input('Log breakpoint message: '))
+      end,
+      mode = 'n',
+      desc = 'DAP: log breakpoint',
+    },
+    {
+      '<Leader>de',
+      function()
+        require('dap').set_exception_breakpoints()
+      end,
+      mode = 'n',
+      desc = 'DAP: exception breakpoint',
+    },
+    {
+      '<Leader>du',
+      function()
+        require('dapui').toggle()
+      end,
+      mode = 'n',
+      desc = 'DAP: UI toggle',
+    },
   },
   config = function()
     local function opts(desc)
@@ -23,29 +79,7 @@ return {
     -- dap
     local dap = require('dap')
 
-    dap.set_log_level('TRACE')
-
-    vim.keymap.set('n', '<F5>', dap.continue, opts('start / continue menu'))
     vim.keymap.set('n', '<F17>', dap.terminate, opts('terminate, Shift-F5'))
-    vim.keymap.set('n', '<F9>', dap.toggle_breakpoint, opts('toggle breakpoint'))
-    vim.keymap.set(
-      'n',
-      '<F21>',
-      "<cmd>lua require('dap').toggle_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
-      opts('conditional breakpoint, Shift-F9')
-    )
-    vim.keymap.set(
-      'n',
-      '<Leader>dp',
-      "<cmd>lua require('dap').toggle_breakpoint(nil, nil, vim.fn.input('Log breakpoint message: '))<cr>",
-      opts('log point')
-    )
-    vim.keymap.set(
-      'n',
-      '<Leader>de',
-      "<cmd>lua require('dap').set_exception_breakpoints()<cr>",
-      opts('exception breakpoints')
-    )
     vim.keymap.set('n', '<F10>', dap.step_over, opts('step over'))
     vim.keymap.set('n', '<F11>', dap.step_into, opts('step into'))
     vim.keymap.set('n', '<F22>', dap.step_out, opts('step out, Shift-F11'))
@@ -78,8 +112,6 @@ return {
       },
     })
 
-    vim.keymap.set('n', '<Leader>du', dapui.toggle, opts('UI toggle'))
-
     dap.listeners.after.event_initialized['dapui_config'] = function()
       dapui.open()
     end
@@ -92,12 +124,5 @@ return {
 
     -- dap-virtual-text
     require('nvim-dap-virtual-text').setup()
-
-    -- icons in gutter
-    vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DapUIWatchesError' })
-    vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'DapUIWatchesError' })
-    vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'DapUIWatchesError' })
-    vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = 'DapUIWatchesError' })
-    vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapUIPlayPause' })
   end,
 }
