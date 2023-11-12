@@ -75,6 +75,14 @@ installGnuPg() {
   installOrUpdate "gnupg"
 }
 
+install1PasswordCli() {
+  case $os in
+    $macOS*)
+      installOrUpdate "1password-cli"
+      ;;
+  esac
+}
+
 installClipper() {
   case $os in
     $macOS*)
