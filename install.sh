@@ -115,15 +115,6 @@ installDropbox() {
   esac
 }
 
-installEspanso() {
-  case $os in
-    $macOS*)
-      brew tap espanso/espanso
-      installOrUpdate "espanso"
-      ;;
-  esac
-}
-
 installZsh() {
   installOrUpdate "zsh"
 
@@ -305,15 +296,6 @@ installWindowManager() {
     $macOS*)
       if ! command -v yabai >/dev/null 2>&1; then
         installOrUpdate "koekeishiya/formulae/yabai"
-
-        echo -e "You need to disable SIP and do some other hackery to get this loading on macOS"
-        echo -e "https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)"
-        echo -e "Type 'OK' to acknowledge this!"
-        read -r confirm
-        if [ "$confirm" != "OK" ] ; then
-          echo "Get it done! Exiting."
-          exit 1
-        fi
       else
         brew services stop yabai
         brew upgrade yabai
@@ -579,7 +561,6 @@ installRust
 installHammerspoon
 installKarabinerElements
 installDropbox
-installEspanso
 installGnuPg
 installClipper
 installZsh
