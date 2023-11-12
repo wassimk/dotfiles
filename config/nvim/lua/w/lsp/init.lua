@@ -55,14 +55,13 @@ function M.on_attach(client)
   vim.keymap.set('n', 'glw', '<cmd>Telescope lsp_workspace_symbols<cr>', opts('workspace symbols'))
   vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts('rename'))
 
+  vim.keymap.set('n', 'glh', function()
+    vim.lsp.inlay_hint(0)
+  end, opts('toggle inlay hints'))
+
   if client.name == 'rust_analyzer' then
     vim.keymap.set('n', '<F5>', '<cmd>RustDebuggables<cr>', { desc = 'RUST: debug menu' })
-    vim.keymap.set(
-      { 'n', 'v' },
-      '<Leader>ca',
-      require('rust-tools').code_action_group.code_action_group,
-      opts('code actions')
-    )
+    vim.keymap.set({ 'n', 'v' }, 'gla', require('rust-tools').code_action_group.code_action_group, opts('code actions'))
     vim.keymap.set('n', 'K', require('rust-tools').hover_actions.hover_actions, opts('hover'))
   else
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts('hover'))
