@@ -90,6 +90,9 @@ installTerminal() {
 installGhExtensions() {
   gh extension install dlvhdr/gh-dash
   gh extension install mloberg/gh-view
+  gh extension install seachicken/gh-poi
+  gh extension install yusukebe/gh-markdown-preview
+  gh extensions upgrade --all
 }
 
 setupOS() {
