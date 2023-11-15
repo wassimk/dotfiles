@@ -1,10 +1,5 @@
 #!/bin/bash
 
-source utils.sh
-
-installPackageManagers
-installOrUpdate "rcm"
-
 cd "$HOME" || exit
 
 echo ""
@@ -32,6 +27,9 @@ lazygit_config_file="$HOME/.dotfiles/config/lazygit/config.yml"
 if [ -d "$real_lazygit_config_dir" ]; then
   ln -sf "$lazygit_config_file" "$real_lazygit_config_dir/config.yml"
 fi
+
+# symlink works Code directory
+(cd "$HOME" || exit; ln -sf Code Work)
 
 echo ""
 echo "Cleaning up broken symlinks..."

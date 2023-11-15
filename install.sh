@@ -1,66 +1,43 @@
 #!/bin/bash
 
-source utils.sh
+macOS="macOS"
+ubuntu="ubuntu"
+uname=$(uname -v)
+
+case $uname in
+  *Darwin*)
+    os=$macOS
+    ;;
+  *Ubuntu*)
+    os=$ubuntu
+    ;;
+  *)
+    echo "ERROR: Don't know how to handle this OS"
+    exit 1
+esac
 
 createPrivateFiles() {
   touch "$HOME"/.private
 }
 
-installGit() {
-  installOrUpdate "git"
+installPackageManager() {
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  if [ -d "/opt/homebrew" ]; then 
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [ -d "/home/linuxbrew/.linuxbrew" ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
+
+  brew bundle
 }
 
-installLazygit() {
-  case $os in
-    $macOS*)
-      installOrUpdate "jesseduffield/lazygit/lazygit"
-      ;;
-  esac
+setupDotFiles() {
+  (cd "$HOME"/.dotfiles || exit; bash dotfiles.sh)
 }
 
-installDelta() {
-  installOrUpdate "git-delta"
-}
-
-installGo() {
-  case $os in
-    $macOS*)
-      installOrUpdate "go"
-      ;;
-    $ubuntu*)
-      installOrUpdate "golang-go"
-      ;;
-  esac
-}
-
-installRuby() {
-  installOrUpdate "rbenv"
-
+setupRuby() {
   rbenv install 3.2.2 --skip-existing
   rbenv global 3.2.2
-}
-
-installPython() {
-  installOrUpdate "python"
-
-  case $os in
-    $ubuntu*)
-      installOrUpdate "python3"
-      installOrUpdate "python3-pip"
-      ;;
-  esac
-}
-
-installJava() {
-  case $os in
-    $macOS*)
-      installOrUpdate "openjdk"
-      if ! [ -L "/Library/Java/JavaVirtualMachines/openjdk.jdk" ] ; then
-        echo "Symlinking brew's version of Java..."
-        sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
-      fi
-      ;;
-  esac
 }
 
 installRust() {
@@ -71,183 +48,21 @@ installRust() {
   fi
 }
 
-installGnuPg() {
-  installOrUpdate "gnupg"
-}
 
-install1PasswordCli() {
+installEditor() {
   case $os in
     $macOS*)
-      installOrUpdate "1password-cli"
-      ;;
-  esac
-}
-
-installClipper() {
-  case $os in
-    $macOS*)
-      installOrUpdate "clipper"
-      ;;
-  esac
-}
-
-installHammerspoon() {
-  case $os in
-    $macOS*)
-      installOnceFromCask "hammerspoon"
-      ;;
-  esac
-}
-
-installKarabinerElements() {
-  case $os in
-    $macOS*)
-      installOnceFromCask "karabiner-elements"
-      ;;
-  esac
-}
-
-installZsh() {
-  installOrUpdate "zsh"
-
-  if [[ $SHELL != *zsh* ]]; then
-    sudo chsh -s "$(command -v zsh)" "$(whoami)"
-  fi
-}
-
-installZshSyntaxHighlighting() {
-  installOrUpdate "zsh-syntax-highlighting"
-}
-
-installZoxide() {
-  installOrUpdate "zoxide"
-}
-
-installReadline() {
-  case $os in
-    $macOS*)
-      installOrUpdate "readline"
+      bin/install-neovim.sh stable
       ;;
     $ubuntu*)
-      installOrUpdate "readline8"
-      ;;
-  esac
-}
-
-installLess() {
-  installOrUpdate "less"
-}
-
-installFzf() {
-  installOrUpdate "fzf"
-}
-
-installFd() {
-  case $os in
-    $macOS*)
-      installOrUpdate "fd"
-      ;;
-    $ubuntu*)
-      installOrUpdate "fd-find"
-      ;;
-  esac
-}
-
-installRg() {
-  case $os in
-    $macOS*)
-      installOrUpdate "ripgrep"
-      ;;
-    $ubuntu*)
-      # https://github.com/sharkdp/bat/issues/938
-      sudo apt -y install -o Dpkg::Options::="--force-overwrite" ripgrep
-      ;;
-  esac
-
-}
-
-installAck() {
-  installOrUpdate "ack"
-}
-
-installJq() {
-  installOrUpdate "jq"
-}
-
-installSd() {
-  installOrUpdate "sd"
-}
-
-installTealdeer() {
-  installOrUpdate "tealdeer"
-}
-
-installGrex() {
-  installOrUpdate "grex"
-}
-
-installHyperfine() {
-  installOrUpdate "hyperfine"
-}
-
-installDust() {
-  installOrUpdate "dust"
-}
-
-installProcs() {
-  installOrUpdate "procs"
-}
-
-installCtags() {
-  case $os in
-    $macOS*)
-      installOrUpdate "universal-ctags"
-      ;;
-    $ubuntu*)
-      if ! command -v universal-ctags >/dev/null 2>&1; then
-        sudo apt remove exuberant-ctags -y
-
-        cd "$HOME" || exit
-        git clone https://github.com/universal-ctags/ctags.git
-        cd ctags || exit
-        ./autogen.sh
-        ./configure
-        make && make install
-        cd ../
-        rm -rf ctags
-      fi
-      ;;
-  esac
-}
-
-installGrc() {
-  installOrUpdate "grc"
-}
-
-installHub() {
-  installOrUpdate "hub"
-}
-
-installGh() {
-  case $os in
-    $macOS*)
-      installOrUpdate "gh"
-      ;;
-    $ubuntu*)
-      if ! command -v gh >/dev/null 2>&1; then
-        curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
-        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-        updateAvailablePackages
+      if ! command -v nvim >/dev/null 2>&1; then
+        sudo snap install nvim --classic
+      else
+        sudo snap refresh nvim --classic
       fi
 
-      installOrUpdate "gh"
-
-      gh completion -s zsh | sudo tee /usr/local/share/zsh/site-functions/_gh > /dev/null
       ;;
   esac
-
-  gh extension install dlvhdr/gh-dash
-  gh extension install mloberg/gh-view
 }
 
 installTerminal() {
@@ -266,231 +81,35 @@ installTerminal() {
   esac
 }
 
-installTerminalPrompt() {
-  case $os in
-    $macOS*)
-      installOrUpdate "starship"
-      ;;
-    $ubuntu*)
-      sh -c "$(curl -fsSL https://starship.rs/install.sh)" -y -f
-      ;;
-  esac
+installGhExtensions() {
+  gh extension install dlvhdr/gh-dash
+  gh extension install mloberg/gh-view
 }
 
-installWindowManager() {
+setupOS() {
   case $os in
     $macOS*)
-      if ! command -v yabai >/dev/null 2>&1; then
-        installOrUpdate "koekeishiya/formulae/yabai"
+      echo -e "Make sure you've launched the Mac App Store and signed into your accounts!"
+      echo -e "Type 'done' when you're ready to continue."
+      read -r confirm
+      if [ "$confirm" != "done" ] ; then
+        echo "Glad I asked! Bye."
+        exit 1
       else
-        brew services stop yabai
-        brew upgrade yabai
-        brew services start yabai
-
-        sudo yabai --uninstall-sa
-
-        killall Dock
-      fi
-      ;;
-  esac
-}
-
-installShortcutManager() {
-  case $os in
-    $macOS*)
-      if ! command -v skhd >/dev/null 2>&1; then
-        installOrUpdate "koekeishiya/formulae/skhd"
-        brew services start skhd
-      fi
-      ;;
-  esac
-}
-
-installHeroku() {
-  installOrUpdate "heroku"
-}
-
-installAwsCli() {
-  case $os in
-    $macOS*)
-      installOrUpdate "awscli"
-      ;;
-    $ubuntu*)
-      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-      unzip -q awscliv2.zip
-      if ! command -v aws >/dev/null 2>&1; then
-        sudo ./aws/install
-      else
-        sudo ./aws/install --update
+        brew bundle --file="$HOME"/.Brewfile-macos_apps
       fi
 
-      rm -rf aws
-      rm awscliv2.zip
+      mackup restore
       ;;
-  esac
-}
-
-installStripeCli() {
-  case $os in
-    $macOS*)
-      installOrUpdate "stripe"
-      ;;
-    $ubuntu*)
-      if ! command -v stripe >/dev/null 2>&1; then
-        cd "/usr/local/bin" || exit
-        gh release download --pattern "stripe_*_linux_x86_64.tar.gz" --repo stripe/stripe-cli
-        sudo tar -xvf stripe_*_linux_x86_64.tar.gz
-        sudo rm stripe_*_linux_x86_64.tar.gz
-      fi
-      ;;
-  esac
-}
-
-installTree() {
-  installOrUpdate "tree"
-}
-
-installWget() {
-  installOrUpdate "wget"
-}
-
-installExa() {
-  case $os in
-    $macOS*)
-      installOrUpdate "exa"
-      ;;
-    $ubuntu*)
-      if ! command -v exa >/dev/null 2>&1; then
-        cd "$HOME" || exit
-        gh release download --pattern "exa-linux-x86_64-v*.zip" --repo ogham/exa
-        unzip -o exa-linux-x86_64-v*.zip -d exa
-        rm exa-linux-x86_64-v*.zip
-        sudo rm -rf /usr/local/exa
-        sudo mv exa /usr/local
-        ln -sf /usr/local/exa/bin/exa /usr/local/bin/exa
-      fi
-      ;;
-  esac
-}
-
-installBat() {
-  case $os in
-    $macOS*)
-      installOrUpdate "bat"
-      ;;
-    $ubuntu*)
-      # https://github.com/sharkdp/bat/issues/938
-      sudo apt -y install -o Dpkg::Options::="--force-overwrite" bat
-      if ! command -v bat >/dev/null 2>&1; then
-        ln -sf /usr/bin/batcat /usr/local/bin/bat
-      fi
-      ;;
-  esac
-}
-
-installLf() {
-  case $os in
-    $macOS*)
-      installOrUpdate "lf"
-      ;;
-    $ubuntu*)
-      if ! command -v lf >/dev/null 2>&1; then
-        gh release download --pattern "lf-linux-386.tar.gz" --repo gokcehan/lf
-        tar -xvf lf-linux-*.tar.gz
-        rm lf-linux-*.tar.gz
-        sudo rm -rf /usr/local/bin/lf
-        sudo mv lf /usr/local/bin
-      fi
-      ;;
-  esac
-}
-
-installTrash() {
-  case $os in
-    $macOS*)
-      installOrUpdate "trash"
-      ;;
-  esac
-}
-
-installBottom() {
-  case $os in
-    $macOS*)
-      installOrUpdate "bottom"
-      ;;
-  esac
-}
-
-installBandwhich() {
-  case $os in
-    $macOS*)
-      installOrUpdate "bandwhich"
-      ;;
-  esac
-}
-
-installSshCopyId() {
-  case $os in
-    $macOS*)
-      installOrUpdate "ssh-copy-id"
-      ;;
-    $ubuntu*)
-      installOrUpdate "openssh-client"
-      ;;
-  esac
-}
-
-installBattery() {
-  case $os in
-    $macOS*)
-      installOrUpdate "spark"
-      brew tap Goles/battery
-      installOrUpdate "battery"
-      ;;
-  esac
-}
-
-installAsimov() {
-  case $os in
-    $macOS*)
-      if ! command -v asimov >/dev/null 2>&1; then
-        installOrUpdate "asimov"
-        sudo brew services start asimov
-      else
-        installOrUpdate "asimov"
-      fi
-      ;;
-  esac
-}
-
-installNeovim() {
-  case $os in
-    $macOS*)
-      bin/install-neovim.sh stable
-      ;;
-    $ubuntu*)
-      if ! command -v nvim >/dev/null 2>&1; then
-        sudo snap install nvim --classic
-      else
-        sudo snap refresh nvim --classic
-      fi
-
-      ;;
-  esac
-}
-
-installTmux() {
-  installOrUpdate "tmux"
-}
-
-miscellaneousSetup() {
-  case $os in
     $ubuntu*)
       sudo timedatectl set-timezone America/Chicago
+      sudo apt-get -y update
+      sudo apt dist-upgrade -y
+      sudo apt auto-remove -y
       ;;
   esac
 
-  (cd "$HOME" || exit; ln -sf Code Work)
+  brew cleanup
 }
 
 echo ""
@@ -498,63 +117,14 @@ echo "Running installation for $os..."
 echo ""
 
 createPrivateFiles
-installPackageManagers
-updateAvailablePackages
-updateOsPackages
-installWget
-installGh
-installGit
-installLazygit
-installDelta
-installGo
-installRuby
-installPython
-# installJava
+installPackageManager
+setupDotFiles
+setupRuby
 installRust
-installHammerspoon
-installKarabinerElements
-installGnuPg
-installClipper
-installZsh
-installZshSyntaxHighlighting
-installZoxide
-installReadline
-installLess
-installFd
-installFzf
-installRg
-installAck
-installJq
-installSd
-installTealdeer # tldr
-installGrex
-installHyperfine
-installDust
-installProcs
-installCtags
-installGrc
-installHub
+installEditor
 installTerminal
-installWindowManager
-installShortcutManager
-installHeroku
-installAwsCli
-installStripeCli
-installTree
-installExa
-installBat
-installLf
-installTrash
-installBottom
-installBandwhich
-installSshCopyId
-installBattery
-installAsimov
-installNeovim
-installTmux
-cleanupPackages
-miscellaneousSetup
-(cd "$HOME"/.dotfiles || exit; bash dotfiles.sh)
+installGhExtensions
+setupOS
 
 echo ""
 echo "Done! You'll probably need to restart your shell/SSH session..."
