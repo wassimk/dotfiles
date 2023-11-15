@@ -54,7 +54,6 @@ installRust() {
   fi
 }
 
-
 installEditor() {
   case $os in
     $macOS*)
@@ -74,15 +73,7 @@ installEditor() {
 installTerminal() {
   case $os in
     $macOS*)
-      cd "/tmp" || exit
-      wget -O alacritty.zip https://github.com/alacritty/alacritty/archive/refs/tags/v0.12.3.zip
-      unzip -o alacritty.zip
-      rm alacritty.zip
-      cd alacritty/alacritty-0.12.3 || exit
-      make app
-      cp -r target/release/osx/Alacritty.app /Applications/
-      cd "../../" || exit
-      rm -rf alacritty
+      bin/install-alacritty.sh latest
       ;;
   esac
 }
