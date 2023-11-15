@@ -60,6 +60,7 @@ node_modules/
 # Ruby
 #############
 .bundle
+Brewfile.lock.json
 
 # Git
 ########
