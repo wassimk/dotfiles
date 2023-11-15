@@ -36,8 +36,8 @@ installGo() {
 installRuby() {
   installOrUpdate "rbenv"
 
-  rbenv install 2.7 --skip-existing
-  rbenv global 2.7
+  rbenv install 3.2.2 --skip-existing
+  rbenv global 3.2.2
 }
 
 installPython() {
@@ -545,7 +545,7 @@ echo "Running installation for $os..."
 echo ""
 
 createPrivateFiles
-installPackageManager
+installPackageManagers
 updateAvailablePackages
 updateOsPackages
 installWget
