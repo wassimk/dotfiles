@@ -247,12 +247,21 @@ installGh() {
   esac
 
   gh extension install dlvhdr/gh-dash
+  gh extension install mloberg/gh-view
 }
 
 installTerminal() {
   case $os in
     $macOS*)
-      installOnceFromCask "alacritty"
+      cd "/tmp" || exit
+      wget -O alacritty.zip https://github.com/alacritty/alacritty/archive/refs/tags/v0.12.3.zip
+      unzip -o alacritty.zip
+      rm alacritty.zip
+      cd alacritty/alacritty-0.12.3 || exit
+      make app
+      cp -r target/release/osx/Alacritty.app /Applications/
+      cd "../../" || exit
+      rm -rf alacritty
       ;;
   esac
 }
@@ -298,13 +307,7 @@ installShortcutManager() {
 }
 
 installHeroku() {
-  case $os in
-    $macOS*)
-      if ! command -v heroku >/dev/null 2>&1; then
-        curl https://cli-assets.heroku.com/install.sh | sh
-      fi
-      ;;
-  esac
+  installOrUpdate "heroku"
 }
 
 installAwsCli() {
@@ -463,7 +466,7 @@ installAsimov() {
 installNeovim() {
   case $os in
     $macOS*)
-      installOrUpdate "neovim"
+      bin/install-neovim.sh stable
       ;;
     $ubuntu*)
       if ! command -v nvim >/dev/null 2>&1; then
@@ -478,32 +481,6 @@ installNeovim() {
 
 installTmux() {
   installOrUpdate "tmux"
-}
-
-fixTmux256ColorTerm() {
-  curl -OL https://gist.githubusercontent.com/nicm/ea9cf3c93f22e0246ec858122d9abea1/raw/37ae29fc86e88b48dbc8a674478ad3e7a009f357/tmux-256color
-  echo '8f259a31649900b9a8f71cbc28be762aa55206316d33d51fd8d08e4275b5f6a3  tmux-256color' | shasum -a 256 -c
-  if [ $? == 0 ]
-  then
-    /usr/bin/tic -x tmux-256color
-  else
-    echo 'tmux-256color checksum has changed'
-  fi
-  rm tmux-256color
-}
-
-setupNeovim() {
-  mkdir -p "$HOME"/.config/nvim/
-
-  if [ ! -f "$HOME"/.local/share/nvim/site/pack/packer/start/packer.nvim ]; then
-    pip3 install neovim
-    yarn global add neovm
-  else
-    pip3 install neovim --upgrade
-    yarn global upgrade neovm
-  fi
-
-  nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 }
 
 miscellaneousSetup() {
@@ -575,11 +552,9 @@ installBattery
 installAsimov
 installNeovim
 installTmux
-fixTmux256ColorTerm
 cleanupPackages
-(cd "$HOME"/.dotfiles || exit; bash dotfiles.sh)
-setupNeovim
 miscellaneousSetup
+(cd "$HOME"/.dotfiles || exit; bash dotfiles.sh)
 
 echo ""
 echo "Done! You'll probably need to restart your shell/SSH session..."
