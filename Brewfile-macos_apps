@@ -1,0 +1,76 @@
+cask "1password"
+cask "1password-cli"
+cask "anylist"
+cask "asana"
+cask "autodesk-fusion360"
+cask "backblaze"
+cask "balenaetcher"
+cask "bambu-studio"
+cask "bartender"
+cask "brave-browser"
+cask "camtasia"
+cask "carbon-copy-cloner"
+cask "charles"
+cask "cleanshot"
+cask "dash"
+cask "discord"
+cask "elgato-control-center"
+cask "elgato-stream-deck"
+cask "fellow"
+cask "firefox"
+cask "garmin-express"
+cask "gemini"
+cask "grammarly"
+cask "hammerspoon"
+cask "kaleidoscope"
+cask "karabiner-elements"
+cask "keybase"
+cask "little-snitch"
+cask "mimestream"
+cask "notion"
+cask "obsidian"
+cask "opal-composer"
+cask "qmk-toolbox"
+cask "rapidapi"
+cask "raspberry-pi-imager"
+cask "raycast"
+cask "shapr3d"
+cask "slack"
+cask "snagit"
+cask "spacelauncher"
+cask "tableplus"
+cask "timemachineeditor"
+cask "trailer"
+cask "transmit"
+cask "tripmode"
+cask "tuple"
+cask "typora"
+cask "visual-studio-code"
+cask "yubico-yubikey-manager"
+cask "zoom"
+
+tap "homebrew/autoupdate"
+
+brew "asimov"
+brew "koekeishiya/formulae/skhd"
+brew "koekeishiya/formulae/yabai"
+brew "mackup"
+brew "ssh-copy-id"
+
+brew "mas"
+
+mas "Breaktime", id: 427475982
+mas "Color Picker", id: 1545870783
+mas "Deliveries", id: 290986013
+mas "Dynamic Wallpaper", id: 1453504509
+mas "In Your Face", id: 1476964367
+mas "Keynote", id: 409183694
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Pastebot", id: 1179623856
+mas "Patterns", id: 429449079
+mas "Save to Raindrop.io", id: 1549370672
+mas "The Unarchiver", id: 425424353
+mas "Things", id: 904280696
+mas "Velja", id: 1607635845
+mas "Xcode", id: 497799835
