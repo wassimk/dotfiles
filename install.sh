@@ -107,14 +107,6 @@ installKarabinerElements() {
   esac
 }
 
-installDropbox() {
-  case $os in
-    $macOS*)
-      installOnceFromCask "dropbox"
-      ;;
-  esac
-}
-
 installZsh() {
   installOrUpdate "zsh"
 
@@ -161,17 +153,6 @@ installFd() {
   esac
 }
 
-installAg() {
-  case $os in
-    $macOS*)
-      installOrUpdate "the_silver_searcher"
-      ;;
-    $ubuntu*)
-      installOrUpdate "silversearcher-ag"
-      ;;
-  esac
-}
-
 installRg() {
   case $os in
     $macOS*)
@@ -191,10 +172,6 @@ installAck() {
 
 installJq() {
   installOrUpdate "jq"
-}
-
-installYq() {
-  installOrUpdate "yq"
 }
 
 installSd() {
@@ -302,7 +279,6 @@ installWindowManager() {
         brew services start yabai
 
         sudo yabai --uninstall-sa
-        sudo yabai --install-sa
 
         killall Dock
       fi
@@ -556,11 +532,10 @@ installDelta
 installGo
 installRuby
 installPython
-installJava
+# installJava
 installRust
 installHammerspoon
 installKarabinerElements
-installDropbox
 installGnuPg
 installClipper
 installZsh
@@ -570,11 +545,9 @@ installReadline
 installLess
 installFd
 installFzf
-installAg
 installRg
 installAck
 installJq
-installYq
 installSd
 installTealdeer # tldr
 installGrex
