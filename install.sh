@@ -21,13 +21,19 @@ createPrivateFiles() {
 }
 
 installPackageManager() {
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  if [ -d "/opt/homebrew" ]; then 
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  elif [ -d "/home/linuxbrew/.linuxbrew" ]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  if ! command -v brew >/dev/null 2>&1; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    if [ -d "/opt/homebrew" ]; then 
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [ -d "/home/linuxbrew/.linuxbrew" ]; then
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    fi
+  else
+    brew update
   fi
+}
 
+installPackages() {
   brew bundle
 }
 
@@ -118,6 +124,7 @@ echo ""
 
 createPrivateFiles
 installPackageManager
+installPackages
 setupDotFiles
 setupRuby
 installRust
