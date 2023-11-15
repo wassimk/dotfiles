@@ -2,7 +2,7 @@
 
 source utils.sh
 
-installPackageManager
+installPackageManagers
 installOrUpdate "rcm"
 
 cd "$HOME" || exit
