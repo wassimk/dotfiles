@@ -98,8 +98,6 @@ setupOS() {
       else
         brew bundle --file="$HOME"/.Brewfile-macos_apps
       fi
-
-      mackup restore
       ;;
     $ubuntu*)
       sudo timedatectl set-timezone America/Chicago

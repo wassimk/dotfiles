@@ -51,7 +51,6 @@ cask "yubico-yubikey-manager"
 cask "zoom"
 
 brew "asimov"
-brew "mackup"
 brew "pinentry-mac"
 brew "ssh-copy-id"
 
