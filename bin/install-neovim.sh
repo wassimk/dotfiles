@@ -17,7 +17,7 @@ rm -f ./nvim-macos.tar.gz
 cd /usr/local/ || exit
 sudo rm -rf ./nvim-macos
 sudo mv /tmp/nvim-macos /usr/local/nvim-macos
-ln -sf /usr/local/nvim-macos/bin/nvim /usr/local/bin/nvim
+sudo ln -sf /usr/local/nvim-macos/bin/nvim /usr/local/bin/nvim
 
 new_version=$(nvim -v | head -n 1) 
 
