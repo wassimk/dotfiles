@@ -46,11 +46,14 @@ esac
 eval "$(zoxide init zsh --cmd cd)"
 
 # Auto-suggestions
-source "$HOME"/.zsh/external/zsh-autosuggestions/zsh-autosuggestions.zsh
+case "$OSTYPE" in
+  darwin*) source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ;;
+  linux*)  source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ;;
+esac
 
 # ZSH Syntax Highlighting
 case "$OSTYPE" in
-  darwin*) source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ;;
+  darwin*) source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ;;
   linux*)  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ;;
 esac
 
