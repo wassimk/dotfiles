@@ -1,5 +1,6 @@
 # setup shell and core tools first
 brew "git"
+brew "git-lfs"
 brew "wget"
 brew "zsh"
 
