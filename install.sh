@@ -1,5 +1,8 @@
 #!/bin/bash
 
+RUBY_VERSION=3.2.2
+NODE_VERSION=18.16.0
+
 macOS="macOS"
 ubuntu="ubuntu"
 uname=$(uname -v)
@@ -20,7 +23,7 @@ createPrivateFiles() {
   touch "$HOME"/.private
 }
 
-installPackageManager() {
+installHomebrew() {
   if ! command -v brew >/dev/null 2>&1; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     if [ -d "/opt/homebrew" ]; then 
@@ -33,8 +36,21 @@ installPackageManager() {
   fi
 }
 
-installPackages() {
+installHomebrewPackages() {
   brew bundle
+}
+
+installAsdf() {
+  if command -v asdf >/dev/null 2>&1; then
+    asdf update
+    asdf plugin update nodejs
+    asdf plugin update alias
+  else
+    git clone https://github.com/asdf-vm/asdf.git "$HOME"/.asdf --branch v0.11.1
+    asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+    asdf plugin add alias https://github.com/andrewthauer/asdf-alias.git
+    asdf install nodejs $NODE_VERSION
+  fi
 }
 
 setupDotFiles() {
@@ -42,8 +58,8 @@ setupDotFiles() {
 }
 
 setupRuby() {
-  rbenv install 3.2.2 --skip-existing
-  rbenv global 3.2.2
+  rbenv install $RUBY_VERSION --skip-existing
+  rbenv global $RUBY_VERSION
 }
 
 installRust() {
@@ -54,7 +70,7 @@ installRust() {
   fi
 }
 
-installEditor() {
+installNeovim() {
   case $os in
     $macOS*)
       bin/install-neovim.sh stable
@@ -115,12 +131,13 @@ echo "Running installation for $os..."
 echo ""
 
 createPrivateFiles
-installPackageManager
-installPackages
+installHomebrew
+installHomebrewPackages
+installAsdf
 setupDotFiles
 setupRuby
 installRust
-installEditor
+installNeovim
 installTerminal
 installGhExtensions
 setupOS
