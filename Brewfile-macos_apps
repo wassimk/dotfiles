@@ -50,16 +50,20 @@ cask "visual-studio-code"
 cask "yubico-yubikey-manager"
 cask "zoom"
 
-tap "homebrew/autoupdate"
-
 brew "asimov"
-brew "koekeishiya/formulae/skhd"
-brew "koekeishiya/formulae/yabai"
 brew "mackup"
+brew "pinentry-mac"
 brew "ssh-copy-id"
+
+tap "koekeishiya/formulae"
+brew "skhd"
+brew "yabai"
+
+tap "homebrew/autoupdate"
 
 brew "mas"
 
+mas "1Password for Safari", id: 1569813296
 mas "Breaktime", id: 427475982
 mas "Color Picker", id: 1545870783
 mas "Deliveries", id: 290986013

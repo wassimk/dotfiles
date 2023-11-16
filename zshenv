@@ -32,7 +32,7 @@ export DISABLE_SPRING="1" # more problems than it's worth
 #
 export PATH=$PATH:$HOME/bin/diff-so-fancy
 export PATH=$PATH:$HOME/.bin # from dot files
-export PATH=$PATH:"/usr/local/sbin" # for Homebrew
+export PATH=$PATH:"/opt/homebrew/bin" # for Homebrew
 
 #
 # Options
