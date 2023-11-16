@@ -30,7 +30,6 @@ fi
 
 # symlink works Code directory
 (cd "$HOME" || exit; ln -sf Code Work)
-ln -sf $(which aws) /usr/local/bin/aws
 
 echo ""
 echo "Cleaning up broken symlinks..."
