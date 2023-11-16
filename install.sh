@@ -131,6 +131,7 @@ miscellaneous() {
   yabai --restart-service
   skhd --restart-service
   sudo xcodebuild -license accept
+  yes | "$(brew --prefix)"/opt/fzf/install
   chmod 700 ~/.gnupg
   chmod 600 ~/.gnupg/*
 }
