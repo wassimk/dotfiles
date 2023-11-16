@@ -19,8 +19,11 @@ case $uname in
     exit 1
 esac
 
-createPrivateFiles() {
-  touch "$HOME"/.private
+verifyPrivateFileExists() {
+  if [[ ! -f "$HOME/.private" ]]; then
+    echo "$HOME/.private file must be present to continue..."
+    exit 1
+  fi
 }
 
 installHomebrew() {
@@ -140,7 +143,7 @@ echo ""
 echo "Running installation for $os..."
 echo ""
 
-createPrivateFiles
+verifyPrivateFileExists
 installHomebrew
 installHomebrewPackages
 installAsdf
