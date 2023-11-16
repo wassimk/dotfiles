@@ -45,6 +45,7 @@ installAsdf() {
     asdf update
     asdf plugin update nodejs
     asdf plugin update alias
+    echo "nodejs $NODE_VERSION" >> "$HOME"/.tool-versions
   else
     git clone https://github.com/asdf-vm/asdf.git "$HOME"/.asdf --branch v0.11.1
     asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
@@ -126,6 +127,14 @@ setupOS() {
   brew cleanup
 }
 
+miscellaneous() {
+  yabai --restart-service
+  skhd --restart-service
+  sudo xcodebuild -license accept
+  chmod 700 ~/.gnupg
+  chmod 600 ~/.gnupg/*
+}
+
 echo ""
 echo "Running installation for $os..."
 echo ""
@@ -141,6 +150,7 @@ installNeovim
 installTerminal
 installGhExtensions
 setupOS
+miscellaneous
 
 echo ""
 echo "Done! You'll probably need to restart your shell/SSH session..."
