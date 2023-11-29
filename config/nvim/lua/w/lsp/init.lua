@@ -56,8 +56,8 @@ function M.on_attach(client)
   vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts('rename'))
 
   vim.keymap.set('n', 'glh', function()
-    vim.lsp.inlay_hint(0)
-  end, opts('toggle inlay hints'))
+    vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
+  end)
 
   if client.name == 'rust_analyzer' then
     vim.keymap.set('n', '<F5>', '<cmd>RustDebuggables<cr>', { desc = 'RUST: debug menu' })
@@ -75,7 +75,7 @@ function M.on_attach(client)
 
   if client.server_capabilities.inlayHintProvider then
     if client.name ~= 'tsserver' then -- need newer typescript in my projects
-      vim.lsp.inlay_hint(0, true)
+      vim.lsp.inlay_hint.enable()
     end
   end
 end
