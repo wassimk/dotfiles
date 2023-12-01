@@ -42,3 +42,5 @@ vim.g.netrw_browsex_viewer = 'open'
 -- disable providers i don't use
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_node_provider = 0
