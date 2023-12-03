@@ -136,12 +136,15 @@ setupOS() {
 }
 
 miscellaneous() {
-  yabai --restart-service
-  skhd --restart-service
   sudo xcodebuild -license accept
   yes | "$(brew --prefix)"/opt/fzf/install >/dev/null 2>&1;
   chmod 700 ~/.gnupg
   chmod 600 ~/.gnupg/*
+
+  yabai --install-service >/dev/null 2>&1;
+  skhd --install-service >/dev/null 2>&1;
+  yabai --restart-service
+  skhd --restart-service
 }
 
 echo ""
