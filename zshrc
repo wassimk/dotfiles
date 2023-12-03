@@ -62,3 +62,6 @@ esac
 
 # always be in tmux, except when vscode
 [[ "$TERM_PROGRAM" != "vscode" ]] && ensure_tmux_is_running
+
+# gpg signing
+export GPG_TTY=$(tty)
