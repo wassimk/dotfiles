@@ -140,6 +140,7 @@ miscellaneous() {
   yes | "$(brew --prefix)"/opt/fzf/install >/dev/null 2>&1;
   chmod 700 ~/.gnupg
   chmod 600 ~/.gnupg/*
+  ln -s /opt/homebrew/bin/op /usr/local/bin/op
 
   yabai --install-service >/dev/null 2>&1;
   skhd --install-service >/dev/null 2>&1;
