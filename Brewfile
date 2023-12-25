@@ -51,3 +51,6 @@ brew "heroku"
 
 tap "stripe/stripe-cli"
 brew "stripe"
+
+tap "qmk/qmk"
+brew "qmk"
