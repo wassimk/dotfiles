@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RUBY_VERSION=3.2.2
+RUBY_VERSION=3.3
 NODE_VERSION=18.16.0
 
 macOS="macOS"
