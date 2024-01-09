@@ -1,17 +1,19 @@
 prSections:
-- title: Mine
-  filters: is:open author:@me
-- title: Assigned
-  filters: is:open assignee:@me
+- title: Needs Review
+  filters: repo:planningcenter/giving repo:planningcenter/plaid-ruby is:open archived:false draft:false sort:created-asc -label:+2 -label:"not ready" -author:wassimk
 - title: Review Requested
   filters: is:open user-review-requested:@me
-- title: Needs Review
-  filters: repo:planningcenter/giving repo:planningcenter/login repo:planningcenter/accounts repo:planningcenter/aci_delete_org repo:planningcenter/mailchimp3 repo:planningcenter/pco-session repo:planningcenter/yubikey is:open archived:false draft:false sort:created-asc -label:+2 -label:"not ready" -author:wassimk
+- title: Involved
+  filters: is:open involves:@me
+- title: Assigned
+  filters: is:open assignee:@me
+- title: Mine
+  filters: is:open author:@me
 issuesSections:
-- title: My Issues
-  filters: is:open author:@me archived:false
 - title: Assigned
   filters: is:open assignee:@me archived:false
+- title: My Issues
+  filters: is:open author:@me archived:false
 defaults:
   preview:
     open: true
