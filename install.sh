@@ -38,7 +38,6 @@ verifyGpgKeyExists() {
   fi
 }
 
-
 installHomebrew() {
   if ! command -v brew >/dev/null 2>&1; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -135,8 +134,16 @@ setupOS() {
   brew cleanup
 }
 
+acceptXcodeLicense() {
+  if xcodebuild -license check >/dev/null 2>&1; then
+    echo "Xcode license has been accepted."
+  else
+    sudo xcodebuild -license accept
+  fi
+}
+
 miscellaneous() {
-  sudo xcodebuild -license accept
+  acceptXcodeLicense
   yes | "$(brew --prefix)"/opt/fzf/install >/dev/null 2>&1;
   chmod 700 ~/.gnupg
   chmod 600 ~/.gnupg/*
