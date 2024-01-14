@@ -6,8 +6,20 @@ if ! [ "$version" == "nightly" ] && ! [ "$version" == "stable" ]; then
   echo "Must pass 'stable' or 'nightly' for which version to install!"
   exit 1
 fi
+ 
+current_version=$(nvim -v | head -n 1)
+new_version=""
 
-old_version=$(nvim -v | head -n 1) 
+if [ "$version" == "nightly" ]; then
+  new_version=$(curl -s "https://api.github.com/repos/neovim/neovim/releases" | jq '[.[] | select(.prerelease == true)] | first' | jq -r '.body' | awk -F"\r" '{print $1}' | sed -n '/NVIM/p')
+else
+  new_version=$(gh release view --repo neovim/neovim --json body | jq -r '.body' | awk -F"\r" '{print $1}' | sed -n '/NVIM/p' | head -n 1)
+fi
+
+if [ "$current_version" == "$new_version" ]; then
+  echo "No change in Neovim version. Still running $current_version."
+  exit 1
+fi
 
 cd /tmp || exit
 gh release download "$version" --pattern nvim-macos.tar.gz --repo neovim/neovim
@@ -21,8 +33,4 @@ sudo ln -sf /usr/local/nvim-macos/bin/nvim /usr/local/bin/nvim
 
 new_version=$(nvim -v | head -n 1) 
 
-if [ "$old_version" != "$new_version" ]; then
-  echo "Updated Neovim from $old_version to $new_version."
-else
-  echo "No change in Neovim version. Still running $old_version."
-fi
+echo "Updated Neovim from $current_version to $new_version."
