@@ -204,6 +204,7 @@ return {
         dashboard.button('<leader>f', '󰥩  Find file'),
         dashboard.button('<leader>s', '󰩊  Live grep'),
         dashboard.button('<C-f> h', '󰪸  Search help'),
+        dashboard.button('p', '󰄧  Profile', '<cmd>Lazy profile<cr>'),
         dashboard.button('u', '  Update plugins', '<cmd>Lazy sync<cr>'),
         dashboard.button('q', '󱎘  Quit', '<cmd>qa<cr>'),
       },
