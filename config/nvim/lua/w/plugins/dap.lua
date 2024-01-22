@@ -45,7 +45,7 @@ return {
       desc = 'DAP: conditional breakpoint, Shift-F9',
     },
     {
-      '<Leader>dp',
+      '<Leader>do',
       function()
         require('dap').toggle_breakpoint(nil, nil, vim.fn.input('Log breakpoint message: '))
       end,
