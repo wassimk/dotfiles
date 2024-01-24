@@ -8,7 +8,7 @@ local capabilities = require('w.lsp').capabilities()
 local on_attach = require('w.lsp').on_attach
 
 -- solargraph
-if not utils.ruby_lsp_installed() and utils.installed_via_bundler('solargraph') then
+if not utils.ruby_lsp_supported() and utils.installed_via_bundler('solargraph') then
   lspconfig.solargraph.setup({
     cmd = { 'bundle', 'exec', 'solargraph', 'stdio' },
     init_options = {
@@ -52,7 +52,7 @@ if not utils.ruby_lsp_installed() and utils.installed_via_bundler('solargraph') 
 end
 
 -- ruby-lsp
-if utils.ruby_lsp_installed() or not utils.installed_via_bundler('solargraph') then
+if utils.ruby_lsp_supported() or not utils.installed_via_bundler('solargraph') then
   lspconfig.ruby_ls.setup({
     init_options = {
       formatter = 'rubocop',
@@ -73,7 +73,7 @@ end
 
 -- rubocop
 if
-  not utils.ruby_lsp_installed()
+  not utils.ruby_lsp_supported()
   and utils.installed_via_bundler('rubocop')
   and utils.config_exists('.rubocop.yml')
   and utils.rubocop_supports_lsp()
