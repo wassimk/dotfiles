@@ -43,19 +43,20 @@ function M.installed_gem_version(gemname)
 
   for line in io.lines(gemfile) do
     if string.find(line, '%s+' .. gemname .. ' %(') then
-      -- version must be major.minor for number based version compare
-      version = string.match(line, '%d+%.%d+')
+      version = string.match(line, '%((.-)%)')
       break
     end
   end
 
-  return tonumber(version)
+  return version
 end
 
 function M.rubocop_supports_lsp()
   local version = M.installed_gem_version('rubocop')
 
-  return version and version >= 1.53
+  -- rubocop lsp was added in v1.53.0
+  -- TODO: switch to vim.version.ge(version, { 1, 53, 0 }) when neovim stable has the ge function
+  return version and vim.version.gt(version, { 1, 52, 1 })
 end
 
 function M.ruby_lsp_installed()
