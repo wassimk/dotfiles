@@ -20,6 +20,14 @@ return {
       desc = 'TELESCOPE: find files',
     },
     {
+      '<leader>b',
+      function()
+        require('telescope.builtin').buffers({ layout_strategy = 'vertical', layout_config = { mirror = true } })
+      end,
+      mode = { 'n', 'x' },
+      desc = 'TELESCOPE: find buffers',
+    },
+    {
       '<leader>s',
       function()
         require('telescope.builtin').live_grep({ layout_strategy = 'vertical', layout_config = { mirror = true } })
