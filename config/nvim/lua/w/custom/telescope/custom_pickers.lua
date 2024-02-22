@@ -13,7 +13,7 @@ local scan = require('plenary.scandir')
 local M = {}
 
 ---Keep track of the active extension and folders for `live_grep`
-local live_grep_filters = {
+local grep_filters = {
   ---@type nil|string
   extension = nil,
   ---@type nil|string[]
@@ -24,10 +24,10 @@ local live_grep_filters = {
 local function run_live_grep(current_input)
   -- TODO: Resume old one with same options somehow
   require('telescope.builtin').live_grep({
-    additional_args = live_grep_filters.extension and function()
-      return { '-g', '*.' .. live_grep_filters.extension }
+    additional_args = grep_filters.extension and function()
+      return { '-g', '*.' .. grep_filters.extension }
     end,
-    search_dirs = live_grep_filters.directories,
+    search_dirs = grep_filters.directories,
     default_text = current_input,
   })
 end
@@ -43,7 +43,7 @@ M.actions = transform_mod({
         return
       end
 
-      live_grep_filters.extension = input
+      grep_filters.extension = input
 
       actions._close(live_grep_prompt_bufnr, current_picker.initial_mode == 'insert')
       run_live_grep(current_input)
@@ -65,9 +65,10 @@ M.actions = transform_mod({
     table.insert(data, 1, '.' .. os_sep)
 
     actions._close(live_grep_prompt_bufnr, current_picker.initial_mode == 'insert')
+
     pickers
       .new({}, {
-        prompt_title = 'Folders for Live Grep',
+        prompt_title = 'Folders for Grep',
         finder = finders.new_table({ results = data, entry_maker = make_entry.gen_from_file({}) }),
         previewer = conf.file_previewer({}),
         sorter = conf.file_sorter({}),
@@ -83,7 +84,7 @@ M.actions = transform_mod({
                 table.insert(dirs, selection.value)
               end
             end
-            live_grep_filters.directories = dirs
+            grep_filters.directories = dirs
 
             actions.close(folder_picker_prompt_bufnr)
             run_live_grep(current_input)
@@ -97,8 +98,8 @@ M.actions = transform_mod({
 
 ---Small wrapper over `live_grep` to first reset our active filters
 M.live_grep = function()
-  live_grep_filters.extension = nil
-  live_grep_filters.directories = nil
+  grep_filters.extension = nil
+  grep_filters.directories = nil
 
   require('telescope.builtin').live_grep()
 end
