@@ -129,6 +129,14 @@ return {
             },
           },
         },
+        grep_string = {
+          mappings = {
+            i = {
+              ['<C-f>'] = custom_pickers.actions.set_extension,
+              ['<C-l>'] = custom_pickers.actions.set_folders,
+            },
+          },
+        },
       },
     })
 
