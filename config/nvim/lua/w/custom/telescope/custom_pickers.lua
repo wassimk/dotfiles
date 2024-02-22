@@ -32,6 +32,18 @@ local function run_live_grep(current_input)
   })
 end
 
+---Run `grep_string` with the active filters (extension and folders)
+local function run_grep_string(current_input)
+  -- TODO: Resume old one with same options somehow
+  require('telescope.builtin').grep_string({
+    additional_args = grep_filters.extension and function()
+      return { '-g', '*.' .. grep_filters.extension }
+    end,
+    search_dirs = grep_filters.directories,
+    default_text = current_input,
+  })
+end
+
 M.actions = transform_mod({
   ---Ask for a file extension and open a new `live_grep` filtering by it
   set_extension = function(live_grep_prompt_bufnr)
@@ -46,7 +58,12 @@ M.actions = transform_mod({
       grep_filters.extension = input
 
       actions._close(live_grep_prompt_bufnr, current_picker.initial_mode == 'insert')
-      run_live_grep(current_input)
+
+      if current_picker.prompt_title == 'Live Grep' then
+        run_live_grep(current_input)
+      else
+        run_grep_string(current_input)
+      end
     end)
   end,
   ---Ask the user for a folder and olen a new `live_grep` filtering by it
@@ -87,7 +104,12 @@ M.actions = transform_mod({
             grep_filters.directories = dirs
 
             actions.close(folder_picker_prompt_bufnr)
-            run_live_grep(current_input)
+
+            if current_picker.prompt_title == 'Live Grep' then
+              run_live_grep(current_input)
+            else
+              run_grep_string(current_input)
+            end
           end)
           return true
         end,
@@ -98,6 +120,13 @@ M.actions = transform_mod({
 
 ---Small wrapper over `live_grep` to first reset our active filters
 M.live_grep = function()
+  grep_filters.extension = nil
+  grep_filters.directories = nil
+
+  require('telescope.builtin').live_grep()
+end
+
+M.grep_string = function()
   grep_filters.extension = nil
   grep_filters.directories = nil
 
