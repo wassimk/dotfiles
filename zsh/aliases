@@ -2,10 +2,10 @@
 # plugins, and themes. For a full list of active aliases, run `alias`.
 
 # file / dir listing
-if command -v exa 2>&1 >/dev/null; then
-  alias ll='exa -lhg --group-directories-first --git --color=automatic'  # Pretty up the listing
-  alias la='exa -lahg --group-directories-first --git --color=automatic' # Include dot files / folders
-  alias lh='exa -lahdg --group-directories-first .*'                     # Show only dot files / folders
+if command -v eza 2>&1 >/dev/null; then
+  alias ll='eza -lhg --group-directories-first --git --color=automatic'  # Pretty up the listing
+  alias la='eza -lahg --group-directories-first --git --color=automatic' # Include dot files / folders
+  alias lh='eza -lahdg --group-directories-first .*'                     # Show only dot files / folders
 else
   # fallback to normal ls
   alias ll='ls -lF'
@@ -40,13 +40,6 @@ fi
 
 # Source shell and edit zsh, vim and tmux aliases
 alias sz='source ~/.zshrc'
-alias ez='e ~/.zshrc'
-alias eza='e ~/.zsh/aliases'
-alias ezf='e ~/.zsh/functions'
-alias ev='e ~/.config/nvim/init.lua'
-alias et='e ~/.tmux.conf'
-alias etm='e ~/.tmux.conf.osx'
-alias etl='e ~/.tmux.conf.linux'
 
 # tmux
 alias tl='tmux ls -F #S'
