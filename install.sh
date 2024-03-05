@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RUBY_VERSION=3.3
+RUBY_VERSION=3.3.0
 NODE_VERSION=18.16.0
 
 macOS="macOS"
@@ -121,7 +121,7 @@ installGhExtensions() {
 setupOS() {
   case $os in
     $macOS*)
-      brew bundle --file="$HOME"/.Brewfile-macos_apps
+      brew bundle --file="$HOME"/.dotfiles/Brewfile-macos_apps
       ;;
     $ubuntu*)
       sudo timedatectl set-timezone America/Chicago
