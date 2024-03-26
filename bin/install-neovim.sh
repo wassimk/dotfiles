@@ -21,15 +21,18 @@ if [ "$current_version" == "$new_version" ]; then
   exit 1
 fi
 
+file="nvim-macos-arm64.tar.gz"
+
 cd /tmp || exit
-gh release download "$version" --pattern nvim-macos.tar.gz --repo neovim/neovim
-xattr -c ./nvim-macos.tar.gz # avoid macOS not developer signed warnings
-tar xzf ./nvim-macos.tar.gz
-rm -f ./nvim-macos.tar.gz
+gh release download "$version" --pattern $file --clobber --repo neovim/neovim
+xattr -c ./$file # avoid macOS not developer signed warnings
+tar xzf ./$file
+rm -f ./$file
 cd /usr/local/ || exit
 sudo rm -rf ./nvim-macos
-sudo mv /tmp/nvim-macos /usr/local/nvim-macos
+sudo mv /tmp/nvim-macos-arm64 /usr/local/nvim-macos
 sudo ln -sf /usr/local/nvim-macos/bin/nvim /usr/local/bin/nvim
+
 
 new_version=$(nvim -v | head -n 1) 
 
