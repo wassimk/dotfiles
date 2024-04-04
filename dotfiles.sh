@@ -6,9 +6,9 @@ echo ""
 echo "Installing dot files..."
 echo ""
 
-rcup -v -x "./*.sh" -x "*.md" -x "*.log" -x "iterm/com*" -x "config/karabiner" -x "config/lazygit*" -x "Brewfile*"
+rcup -v -x "./*.sh" -x "*.md" -x "*.log" -x "iterm/com*" -x "config/karabiner" -x "config/lazygit*" -x "Library/Keybindings" -x "Brewfile*"
 
-# vcs-jump installed by packer plugin manager in vim
+# vcs-jump installed by lazy plugin manager in vim
 vcs_jump_link="$HOME"/.bin/vcs-jump
 vcs_jump_cmd="$HOME"/.local/share/nvim/lazy/vcs-jump/bin/vcs-jump
 if ! command -v "$vcs_jump_link" >/dev/null 2>&1; then
@@ -20,6 +20,7 @@ fi
 # must symlink the directory for these apps
 ln -sf "$HOME"/.dotfiles/config/karabiner "$HOME"/.config
 ln -sf "$HOME"/.dotfiles/iterm "$HOME"/.config
+ln -sf "$HOME"/.dotfiles/Library/Keybindings "$HOME"/Library
 
 # lazygit config wants to live somewhere odd, let's symlink it
 real_lazygit_config_dir="$HOME/Library/Application Support/lazygit"
