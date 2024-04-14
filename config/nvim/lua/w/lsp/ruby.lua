@@ -53,7 +53,7 @@ end
 
 -- ruby-lsp
 if utils.ruby_lsp_supported() or not utils.installed_via_bundler('solargraph') then
-  lspconfig.ruby_ls.setup({
+  lspconfig.ruby_lsp.setup({
     init_options = {
       formatter = 'rubocop',
     },
