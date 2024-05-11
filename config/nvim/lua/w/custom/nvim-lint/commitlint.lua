@@ -27,8 +27,6 @@ local function getDiagnosticDetails(details)
 end
 
 local function transform_json_to_diagnostics(output)
-  print(vim.inspect(output))
-
   local json = vim.fn.json_decode(output)
   local diagnostics = {}
 
