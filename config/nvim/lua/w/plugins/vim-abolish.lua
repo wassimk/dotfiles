@@ -1,7 +1,6 @@
 --
 -- vim-abolish
 -- https://github.com/tpope/vim-abolish
---
 
 return {
   'tpope/vim-abolish',
@@ -12,6 +11,7 @@ return {
       Abolish nofity notify
       Abolish beacuse because
       Abolish teste test
+      Abolish acknowledgement acknowledgment
     ]])
   end,
 }
