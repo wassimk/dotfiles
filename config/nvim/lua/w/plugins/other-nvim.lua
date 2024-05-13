@@ -41,6 +41,20 @@ return {
           { target = '%1/app/%4s/%3_%4.rb' },
         },
       },
+      -- javascript in rails
+      {
+        pattern = '(.+)/test/javascript/(.*)/(.*)_test.js',
+        target = {
+          { target = '%1/app/javascript/%2/%3.jsx' },
+          { target = '%1/app/javascript/%2/%3.js' },
+        },
+      },
+      {
+        pattern = '(.+)/app/javascript/(.*)/(.*).jsx?',
+        target = {
+          { target = '%1/test/javascript/%2/%3_test.js' },
+        },
+      },
     },
   },
 }
