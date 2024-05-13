@@ -56,7 +56,7 @@ function M.on_attach(client)
   vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts('rename'))
 
   vim.keymap.set('n', 'glh', function()
-    vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
+    vim.lsp.inlay_hint.enable(not vim.lsp.in_layhint.is_enabled())
   end, opts('toggle inlay hints'))
 
   if client.name == 'rust_analyzer' then
