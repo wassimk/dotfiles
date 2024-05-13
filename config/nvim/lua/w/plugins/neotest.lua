@@ -134,9 +134,7 @@ return {
       adapters = {
         require('neotest-rspec'),
         require('neotest-minitest'),
-        require('neotest-jest')({
-          jestCommand = 'yarn test',
-        }),
+        require('neotest-jest'),
         require('neotest-plenary'),
       },
     })
