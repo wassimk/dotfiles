@@ -115,6 +115,7 @@ installGhExtensions() {
   gh extension install mloberg/gh-view
   gh extension install seachicken/gh-poi
   gh extension install yusukebe/gh-markdown-preview
+  gh extension install github/gh-copilot
   gh extensions upgrade --all
 }
 
