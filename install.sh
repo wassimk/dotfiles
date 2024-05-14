@@ -153,6 +153,8 @@ miscellaneous() {
   # mason.nvim should be installing this but it doesn't seem to be working
   yarn global add @commitlint/config-conventional
 
+  gem update --system
+
   yabai --install-service >/dev/null 2>&1;
   skhd --install-service >/dev/null 2>&1;
   yabai --restart-service
