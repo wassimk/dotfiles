@@ -40,8 +40,13 @@ function M.statusline(root_path)
 end
 
 function M.setup()
-  vim.api.nvim_set_hl(0, 'WinBarPath', { bg = '#282c34' })
-  vim.api.nvim_set_hl(0, 'WinBarModified', { fg = '#8EBD6B', bg = '#282c34' })
+  local background_color = vim.api.nvim_get_hl(0, { name = 'Normal' })
+  local cursor_line_color = vim.api.nvim_get_hl(0, { name = 'CursorLine' })
+  local diff_added_color = vim.api.nvim_get_hl(0, { name = 'DiffAdded' })
+
+  vim.api.nvim_set_hl(0, 'WinBar', background_color)
+  vim.api.nvim_set_hl(0, 'WinBarPath', cursor_line_color)
+  vim.api.nvim_set_hl(0, 'WinBarModified', { fg = diff_added_color.fg, bg = cursor_line_color.bg })
 
   vim.opt.winbar = "%{%v:lua.require'w.winbar'.statusline('" .. root_path() .. "')%}"
 end
