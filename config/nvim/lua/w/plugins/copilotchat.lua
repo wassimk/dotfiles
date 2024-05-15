@@ -4,21 +4,20 @@
 --
 
 return {
-  {
-    'CopilotC-Nvim/CopilotChat.nvim',
-    branch = 'canary',
-    dependencies = {
-      { 'zbirenbaum/copilot.lua' }, -- or github/copilot.vim
-    },
-    opts = {
-      context = 'buffers',
-      window = {
-        layout = 'float',
-        relative = 'cursor',
-        width = 1,
-        height = 0.4,
-        row = 1,
-      },
+  'CopilotC-Nvim/CopilotChat.nvim',
+  cmd = { 'CopilotChat', 'CopilotChatExplain', 'CopilotChatCommitStaged' },
+  branch = 'canary',
+  dependencies = {
+    { 'zbirenbaum/copilot.lua' }, -- or github/copilot.vim
+  },
+  opts = {
+    context = 'buffers',
+    window = {
+      layout = 'float',
+      relative = 'cursor',
+      width = 1,
+      height = 0.4,
+      row = 1,
     },
   },
 }
