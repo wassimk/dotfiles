@@ -17,6 +17,7 @@ return {
     'petertriho/cmp-git',
     'ray-x/cmp-treesitter',
     'rcarriga/cmp-dap',
+    { 'kristijanhusak/vim-dadbod-completion', ft = 'sql' },
     { 'wassimk/cmp-rails-fixture-types', ft = 'ruby', dev = true },
     { 'wassimk/cmp-rails-fixture-names', ft = 'ruby', dev = true },
     { 'wassimk/cmp-feature-flipper', dev = true },
@@ -158,6 +159,13 @@ return {
       }, {
         { name = 'cmdline' },
       }),
+    })
+
+    cmp.setup.filetype({ 'sql' }, {
+      sources = {
+        { name = 'vim-dadbod-completion' },
+        { name = 'buffer' },
+      },
     })
 
     cmp.setup.filetype({ 'dap-repl', 'dapui_watches', 'dapui_hover' }, {
