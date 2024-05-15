@@ -6,7 +6,6 @@
 return {
   'akinsho/bufferline.nvim',
   event = 'BufRead',
-  version = '*',
   opts = {
     options = {
       separator_style = 'slant',
