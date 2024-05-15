@@ -5,6 +5,7 @@
 --
 
 return {
-  'tpope/vim-dadbod',
   'kristijanhusak/vim-dadbod-ui',
+  cmd = 'DBUI',
+  dependencies = { 'tpope/vim-dadbod' },
 }
