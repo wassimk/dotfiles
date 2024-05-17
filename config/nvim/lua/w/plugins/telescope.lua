@@ -28,6 +28,14 @@ return {
       desc = 'TELESCOPE: find buffers',
     },
     {
+      '<leader>g',
+      function()
+        require('telescope.builtin').git_status({ layout_strategy = 'vertical', layout_config = { mirror = true } })
+      end,
+      mode = { 'n', 'x' },
+      desc = 'TELESCOPE: find git status files',
+    },
+    {
       '<leader>s',
       function()
         require('telescope.builtin').live_grep({ layout_strategy = 'vertical', layout_config = { mirror = true } })
