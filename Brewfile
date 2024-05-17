@@ -21,7 +21,6 @@ brew "gnupg"
 brew "go"
 brew "grc"
 brew "grex"
-brew "hub"
 brew "hyperfine"
 brew "jq"
 brew "lf"
@@ -51,6 +50,9 @@ brew "heroku"
 
 tap "stripe/stripe-cli"
 brew "stripe"
+
+tap "jacobwgillespie/git-sync"
+brew "git-sync"
 
 tap "qmk/qmk"
 brew "qmk"
