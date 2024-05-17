@@ -55,16 +55,13 @@ function M.rubocop_supports_lsp()
   local version = M.installed_gem_version('rubocop')
 
   -- rubocop lsp was added in v1.53.0
-  -- TODO: switch to vim.version.ge(version, { 1, 53, 0 }) when neovim stable has the ge function
-  return version and vim.version.gt(version, { 1, 52, 1 })
+  return version and vim.version.ge(version, { 1, 53, 0 })
 end
 
-function M.ruby_lsp_supported()
+function M.ruby_lsp_setup()
   local directory = vim.fn.getcwd() .. '/.ruby-lsp'
 
-  -- ruby-lsp needs textDocument/publishDiagnostic added in neovim v0.10.0-dev-695+g58f948614
-  -- TODO: drop version check when stable is above the required version
-  return M.is_dir(directory) and vim.version.gt(vim.version(), { 0, 9, 10000 })
+  return M.is_dir(directory)
 end
 
 function M.config_exists(filename)
