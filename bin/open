@@ -9,7 +9,29 @@ if [[ -z "$1" ]]; then
   exit 1
 fi
 
-if [[ $1 =~ ^[0-9a-f]{4,40}$ ]] && git rev-parse --quiet --verify "$1^{commit}" > /dev/null; then
+if [[ $1 =~ ^[0-9a-f]{4,40}$ ]]; then
+  if ! command -v git &> /dev/null
+  then
+      echo "Error: git command not found."
+      exit 1
+  fi
+
+  if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+      echo "Error: the current directory is not a git repo."
+      exit 1
+  fi
+
+  if ! git rev-parse --quiet --verify "$1^{commit}" > /dev/null; then
+    echo "Error: commit sha is not in the current git repo."
+    exit 1
+  fi
+
+  if ! command -v gh &> /dev/null
+  then
+      echo "Error: gh command not found."
+      exit 1
+  fi
+
   gh browse "$(git rev-parse "$1")"
 else
   /usr/bin/open "$1"
