@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# This script is a wrapper around the `open` command.
+# If the argument is a valid commit hash, it will open the commit in the browser.
+# Otherwise, it will open the argument in the default system `open` application.
+
+if [[ -z "$1" ]]; then
+  echo "Error: No argument provided to open command."
+  exit 1
+fi
+
+if [[ $1 =~ ^[0-9a-f]{4,40}$ ]] && git rev-parse --quiet --verify "$1^{commit}" > /dev/null; then
+  gh browse "$(git rev-parse "$1")"
+else
+  /usr/bin/open "$1"
+fi
