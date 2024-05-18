@@ -8,9 +8,14 @@ require('lspconfig').gopls.setup({
     gopls = {
       completeUnimported = true,
       usePlaceholders = true,
+      formatting = {
+        gofumpt = true,
+      },
       -- https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md
       analyses = {
         unusedparams = true,
+        useany = true,
+        shadow = true,
       },
     },
   },
