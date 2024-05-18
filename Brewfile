@@ -51,7 +51,7 @@ brew "heroku"
 tap "stripe/stripe-cli"
 brew "stripe"
 
-tap "jacobwgillespie/git-sync"
+tap "jacobwgillespie/tap"
 brew "git-sync"
 
 tap "qmk/qmk"
