@@ -151,6 +151,8 @@ miscellaneous() {
   chmod 600 ~/.gnupg/*
   ln -s /opt/homebrew/bin/op /usr/local/bin/op >/dev/null 2>&1;
 
+  ln -s ~/.bin/open /usr/local/bin/open >/dev/null 2>&1;
+
   # mason.nvim should be installing this but it doesn't seem to be working
   yarn global add @commitlint/config-conventional
   
