@@ -34,6 +34,7 @@ api.nvim_create_autocmd('FileType', {
     'qf',
     'query', -- :InspectTree
     'startuptime',
+    'dap-float',
   },
   command = 'nnoremap <buffer><silent> q :close<cr>',
   group = wamGrp,
