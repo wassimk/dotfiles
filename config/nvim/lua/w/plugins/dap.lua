@@ -78,6 +78,7 @@ return {
 
     -- dap
     local dap = require('dap')
+    local widgets = require('dap.ui.widgets')
 
     vim.keymap.set('n', '<F17>', dap.terminate, opts('terminate, Shift-F5'))
     vim.keymap.set('n', '<F10>', dap.step_over, opts('step over'))
@@ -85,7 +86,15 @@ return {
     vim.keymap.set('n', '<F22>', dap.step_out, opts('step out, Shift-F11'))
     vim.keymap.set('n', '<Leader>dr', dap.repl.open, opts('REPL open'))
     vim.keymap.set('n', '<Leader>dl', dap.run_last, opts('run last'))
-    vim.keymap.set('n', '<Leader>dh', "<cmd>lua require('dap.ui.widgets').hover()<cr>", opts('hover popup'))
+    vim.keymap.set('n', '<Leader>dh', function()
+      widgets.hover()
+    end, opts('hover popup'))
+    vim.keymap.set('n', '<Leader>ds', function()
+      widgets.centered_float(widgets.scopes)
+    end, opts('float scopes'))
+    vim.keymap.set('n', '<Leader>dt', function()
+      widgets.centered_float(widgets.frames)
+    end, opts('float frames/stacks'))
 
     -- dapui
     local dapui = require('dapui')
