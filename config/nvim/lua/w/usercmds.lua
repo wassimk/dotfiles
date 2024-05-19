@@ -15,17 +15,17 @@ vim.api.nvim_create_user_command('OpenInGHPR', function(command)
     arg = vim.fn.expand('<cword>')
   end
 
-  local gh_cmd, url
+  local url
 
   if tonumber(arg) then
-    gh_cmd = 'gh pr view ' .. arg .. ' --json url'
+    local gh_cmd = 'gh pr view ' .. arg .. ' --json url'
     local result = vim.fn.system(gh_cmd)
 
     if not string.find(result, 'Could not resolve') then
       url = vim.json.decode(result).url
     end
   else
-    gh_cmd = 'gh pr list --search "' .. arg .. '" --state merged --json url'
+    local gh_cmd = 'gh pr list --search "' .. arg .. '" --state merged --json url'
     local result = vim.json.decode(vim.fn.system(gh_cmd))
 
     if not vim.tbl_isempty(result) then
