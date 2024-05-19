@@ -4,9 +4,9 @@
 typora() {
     if [ "$1" != "" ]
     then
-      open -a typora $1
+      /usr/bin/open -a typora $1
     else
-      open -a typora "$HOME"/Dropbox/docs
+      /usr/bin/open -a typora "$HOME"/Dropbox/docs
     fi
 }
 
