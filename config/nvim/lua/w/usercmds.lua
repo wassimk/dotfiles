@@ -9,8 +9,8 @@ vim.api.nvim_create_user_command('Lg', function()
   lazygit:toggle()
 end, { desc = 'LAZYGIT: launch with toggleterm' })
 
-vim.api.nvim_create_user_command('OpenInGHPR', function(args)
-  local arg = args.args
+vim.api.nvim_create_user_command('OpenInGHPR', function(command)
+  local arg = command.args
   if arg == '' then
     arg = vim.fn.expand('<cword>')
   end
@@ -30,4 +30,4 @@ vim.api.nvim_create_user_command('OpenInGHPR', function(args)
   end
 
   vim.ui.open(result.url)
-end, { nargs = '*', desc = 'Open PR in browser with number or commit sha' })
+end, { desc = 'Open PR in browser by number, commit sha or search params' })
