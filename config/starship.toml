@@ -32,3 +32,6 @@ disabled = true
 
 [lua]
 disabled = true
+
+[golang]
+disabled = true
