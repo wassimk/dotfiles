@@ -50,4 +50,4 @@ vim.api.nvim_create_user_command('OpenInGHPR', function(command)
       vim.notify('No PR found for: ' .. arg, vim.log.INFO, { title = ':OpenInGHPR' })
     end
   end
-end, { nargs = 1, desc = 'Open PR in browser with number, commit sha or search terms' })
+end, { nargs = 1, desc = 'Open PR in browser using number, commit sha, or search terms' })
