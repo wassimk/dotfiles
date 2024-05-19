@@ -30,4 +30,4 @@ vim.api.nvim_create_user_command('OpenInGHPR', function(command)
   end
 
   vim.ui.open(result.url)
-end, { desc = 'Open PR in browser by number, commit sha or search params' })
+end, { nargs = 1, desc = 'Open PR in browser with number or commit sha' })
