@@ -1,24 +1,13 @@
 --
--- go language server
+-- go language server and go.nvim plugin
 -- https://github.com/golang/tools/tree/master/gopls
+-- https://github.com/ray-x/go.nvim
 --
 
-require('lspconfig').gopls.setup({
-  settings = {
-    gopls = {
-      completeUnimported = true,
-      usePlaceholders = true,
-      formatting = {
-        gofumpt = true,
-      },
-      -- https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md
-      analyses = {
-        unusedparams = true,
-        useany = true,
-        shadow = true,
-      },
-    },
-  },
-  capabilities = require('w.lsp').capabilities(),
-  on_attach = require('w.lsp').on_attach,
-})
+-- make sure lsp_cfg is false in go.nvim plugin config
+local cfg = require('go.lsp').config()
+
+cfg.capabilities = require('w.lsp').capabilities()
+cfg.on_attach = require('w.lsp').on_attach
+
+require('lspconfig').gopls.setup(cfg)
