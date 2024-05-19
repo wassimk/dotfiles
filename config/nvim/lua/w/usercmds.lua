@@ -38,7 +38,7 @@ vim.api.nvim_create_user_command('OpenInGHPR', function(command)
           if pr.author.name then
             author = pr.author.name
           else
-            author = 'Bot'
+            author = 'Unknown Author'
           end
 
           return '#' .. tostring(pr.number) .. ' ' .. pr.title .. ' - ' .. author
