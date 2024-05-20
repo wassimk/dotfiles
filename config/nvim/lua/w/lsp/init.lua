@@ -46,14 +46,14 @@ function M.on_attach(client)
     vim.lsp.buf.format()
   end, { desc = 'LSP: format with language servers' })
 
-  vim.keymap.set('n', 'gld', '<cmd>Telescope lsp_definitions<cr>', opts('goto definitions'))
-  vim.keymap.set('n', 'glt', '<cmd>Telescope lsp_type_definitions<cr>', opts('goto type definitions'))
+  vim.keymap.set('n', 'gld', vim.lsp.buf.definition, opts('goto definitions'))
+  vim.keymap.set('n', 'glt', vim.lsp.buf.type_definition, opts('goto type definitions'))
   vim.keymap.set('n', 'glD', vim.lsp.buf.declaration, opts('goto declaration'))
-  vim.keymap.set('n', 'gli', '<cmd>Telescope lsp_implementations<cr>', opts('goto implementations'))
-  vim.keymap.set('n', 'glr', '<cmd>Telescope lsp_references<cr>', opts('goto references'))
+  vim.keymap.set('n', 'gli', vim.lsp.buf.implementation, opts('goto implementations'))
+  vim.keymap.set('n', 'glr', vim.lsp.buf.references, opts('goto references'))
   vim.keymap.set('n', 'glS', vim.lsp.buf.signature_help, opts('signature help'))
-  vim.keymap.set('n', 'gls', '<cmd>Telescope lsp_document_symbols<cr>', opts('document symbols'))
-  vim.keymap.set('n', 'glw', '<cmd>Telescope lsp_workspace_symbols<cr>', opts('workspace symbols'))
+  vim.keymap.set('n', 'gls', vim.lsp.buf.document_symbol, opts('document symbols'))
+  vim.keymap.set('n', 'glw', vim.lsp.buf.workspace_symbol, opts('workspace symbols'))
   vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts('rename'))
 
   vim.keymap.set('n', 'glh', function()
@@ -75,8 +75,8 @@ function M.on_attach(client)
   end
 
   if client.server_capabilities.inlayHintProvider then
-    if client.name ~= 'tsserver' then -- need newer typescript in my projects
-      vim.lsp.inlay_hint.enable()
+    if client.name == 'tsserver' then -- need newer typescript in my projects
+      vim.lsp.inlay_hint.disable()
     end
   end
 end
