@@ -58,7 +58,7 @@ function M.on_attach(client)
   vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts('rename'))
 
   vim.keymap.set('n', 'glh', function()
-    vim.lsp.inlay_hint.enable(not vim.lsp.in_layhint.is_enabled())
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
   end, opts('toggle inlay hints'))
 
   if client.name == 'rust_analyzer' then
@@ -78,6 +78,10 @@ function M.on_attach(client)
   if client.server_capabilities.inlayHintProvider then
     if client.name == 'tsserver' then -- need newer typescript in my projects
       vim.lsp.inlay_hint.disable()
+    elseif client.name == 'ruby_lsp' then -- crashes often
+      vim.lsp.inlay_hint.disable()
+    else
+      vim.lsp.inlay_hint.enable()
     end
   end
 
