@@ -80,6 +80,16 @@ function M.on_attach(client)
       vim.lsp.inlay_hint.disable()
     end
   end
+
+  if client.server_capabilities.codeLensProvider then
+    local wamGrp = vim.api.nvim_create_augroup('WamLspAutocmds', {})
+    vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+      callback = function()
+        vim.lsp.codelens.refresh({ bufnr = 0 })
+      end,
+      group = wamGrp,
+    })
+  end
 end
 
 return M
