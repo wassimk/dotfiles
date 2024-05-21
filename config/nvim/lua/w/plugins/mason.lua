@@ -37,7 +37,8 @@ return {
       },
       auto_update = true,
       run_on_start = true,
-      start_delay = 5000,
+      start_delay = 10000,
+      debounce_hours = 5,
     })
   end,
 }
