@@ -61,10 +61,17 @@ function M.on_attach(client)
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
   end, opts('toggle inlay hints'))
 
-  if client.name == 'rust_analyzer' then
-    vim.keymap.set('n', '<F5>', '<cmd>RustDebuggables<cr>', { desc = 'RUST: debug menu' })
-    vim.keymap.set({ 'n', 'v' }, 'gla', require('rust-tools').code_action_group.code_action_group, opts('code actions'))
-    vim.keymap.set('n', 'K', require('rust-tools').hover_actions.hover_actions, opts('hover'))
+  if client.name == 'rust-analyzer' then
+    vim.print('RUST: using rust_analyzer')
+    vim.keymap.set('n', '<F5>', function()
+      vim.cmd.RustLsp('debug')
+    end, { desc = 'RUST: debug menu' })
+    vim.keymap.set({ 'n', 'v' }, 'gla', function()
+      vim.cmd.RustLsp('codeAction')
+    end, opts('code actions'))
+    vim.keymap.set('n', 'K', function()
+      vim.cmd.RustLsp({ 'hover', 'actions' })
+    end, opts('hover'))
   else
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts('hover'))
     vim.keymap.set({ 'n', 'v' }, 'gla', vim.lsp.buf.code_action, opts('code actions'))
