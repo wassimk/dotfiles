@@ -32,6 +32,7 @@ api.nvim_create_autocmd('FileType', {
     'neotest-output-panel',
     'neotest-summary',
     'qf',
+    'vim', -- for the q: popup
     'query', -- :InspectTree
     'startuptime',
     'dap-float',
