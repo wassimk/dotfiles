@@ -13,6 +13,11 @@ U = require('utils')
 -- Keybindings
 --
 
+hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, 'f4', function()
+  hs.notify.new({ title = 'Screencast', informativeText = 'Resize for recording' }):send()
+  U.resizeForScreencasting({ 'Alacritty', 'Google Chrome', 'Code', 'Slack', 'Asana' })
+end)
+
 hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, 'f5', function()
   hs.notify.new({ title = 'Hammerspoon', informativeText = 'Config reloaded' }):send()
   hs.reload()
@@ -44,17 +49,9 @@ function MOVEABLE_APP(app)
   end
 end
 
-function YABAI_WINDOW_ID(app)
-  local appPid = app:pid()
-  local yabaiWindowIdCommand = 'yabai -m query --windows | jq \'.[] | select(.pid=="' .. appPid .. '") | .id\''
-  local yabaiWindowId, _, _, _ = hs.execute(yabaiWindowIdCommand, true)
-
-  return yabaiWindowId:gsub('[\n\r]', '')
-end
-
 function MOVE_APP(app)
   local spaceId = APP_TO_SPACE[app:name()]
-  local yabaiWindowId = YABAI_WINDOW_ID(app)
+  local yabaiWindowId = U.yabaiWindowIdForApp(app)
 
   local yabaiMoveCommand = 'yabai -m window ' .. yabaiWindowId .. ' --space ' .. spaceId
   hs.execute(yabaiMoveCommand, true)
