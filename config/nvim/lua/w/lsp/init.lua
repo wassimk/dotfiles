@@ -70,26 +70,20 @@ function M.on_attach(client)
     vim.keymap.set({ 'n', 'v' }, 'gla', vim.lsp.buf.code_action, opts('code actions'))
   end
 
-  if client.name == 'tsserver' then
-    client.server_capabilities.document_formatting = false
-    client.server_capabilities.document_range_formatting = false
-  end
-
   if client.server_capabilities.inlayHintProvider then
-    if client.name == 'tsserver' then -- need newer typescript in my projects
-      vim.lsp.inlay_hint.disable()
-    elseif client.name == 'ruby_lsp' then -- crashes often
-      vim.lsp.inlay_hint.disable()
+    if client.name == 'ruby_lsp' then -- crashes often
+      vim.lsp.inlay_hint.enable(false)
     else
       vim.lsp.inlay_hint.enable()
     end
   end
 
   if client.server_capabilities.codeLensProvider then
+    local bufnr = vim.api.nvim_get_current_buf()
     local wamGrp = vim.api.nvim_create_augroup('WamLspAutocmds', {})
     vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
       callback = function()
-        vim.lsp.codelens.refresh({ bufnr = 0 })
+        vim.lsp.codelens.refresh({ bufnr = bufnr })
       end,
       group = wamGrp,
     })
