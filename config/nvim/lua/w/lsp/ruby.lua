@@ -107,6 +107,7 @@ if not utils.installed_via_bundler('solargraph') then
         vim.api.nvim_command('vnew')
         local buf = vim.api.nvim_get_current_buf()
         vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+        vim.api.nvim_buf_set_keymap(buf, 'n', 'q', ':quit<CR>', { noremap = true, silent = true })
       end, bufnr)
     end, {
       nargs = '?',
