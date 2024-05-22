@@ -71,11 +71,7 @@ function M.on_attach(client)
   end
 
   if client.server_capabilities.inlayHintProvider then
-    if client.name == 'ruby_lsp' then -- crashes often
-      vim.lsp.inlay_hint.enable(false)
-    else
-      vim.lsp.inlay_hint.enable()
-    end
+    vim.lsp.inlay_hint.enable()
   end
 
   if client.server_capabilities.codeLensProvider then

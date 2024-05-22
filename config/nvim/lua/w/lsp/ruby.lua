@@ -31,7 +31,7 @@ if utils.installed_via_bundler('solargraph') then
         function()
           vim.lsp.buf_notify(0, '$/solargraph/documentGems', { rebuild = true })
         end,
-        description = 'Build YARD documentation for installed gems',
+        description = 'Rebuild YARD documentation for installed gems',
       },
       SolargraphCheckGemVersion = {
         function()
@@ -123,8 +123,12 @@ if not utils.installed_via_bundler('solargraph') then
     capabilities = capabilities,
     on_attach = function(client, bufnr)
       on_attach(client)
+
       add_ruby_deps_command(client, bufnr)
       add_ruby_syntax_tree_command(client, bufnr)
+
+      -- conflicts with syntax tree inlay hints
+      client.server_capabilities.inlayHintProvider = false
     end,
   })
 end
