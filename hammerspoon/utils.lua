@@ -36,4 +36,52 @@ function M.tbl_keys(t)
   return keys
 end
 
+function M.resizeForScreencasting(appNames)
+  for _, appName in ipairs(appNames) do
+    local app = hs.application.find(appName)
+    if app then
+      local windows = app:allWindows()
+      for _, window in ipairs(windows) do
+        local screen = window:screen()
+        local frame = screen:frame()
+
+        local newWidth = 1920
+        local newHeight = 1080
+
+        -- Calculate the new x and y coordinates to center the window
+        local newX = frame.x + (frame.w - newWidth) / 2
+        local newY = frame.y + (frame.h - newHeight) / 2
+
+        window:setFrame({
+          x = newX,
+          y = newY,
+          w = newWidth,
+          h = newHeight,
+        })
+      end
+    end
+  end
+end
+
+function M.yabaiWindowIdForApp(app)
+  local appPid = app:pid()
+  local yabaiWindowIdCommand = 'yabai -m query --windows | jq \'.[] | select(.pid=="' .. appPid .. '") | .id\''
+  local yabaiWindowId, _, _, _ = hs.execute(yabaiWindowIdCommand, true)
+
+  return yabaiWindowId:gsub('[\n\r]', '')
+end
+
+function M.toggleYabaiWindowFloatByApp(app)
+  local yabaiWindowId = M.yabaiWindowIdForApp(app)
+  local yabaiDetachCommand = 'yabai -m window ' .. yabaiWindowId .. ' --toggle float'
+  hs.execute(yabaiDetachCommand, true)
+end
+
+function M.printRunningApps()
+  local apps = hs.application.runningApplications()
+  for _, app in ipairs(apps) do
+    print(app:name())
+  end
+end
+
 return M
