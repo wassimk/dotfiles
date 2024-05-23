@@ -84,7 +84,7 @@ return {
 
       formatting = {
         format = lspkind.cmp_format({
-          mode = 'symbol',
+          mode = 'symbol_text',
           preset = 'codicons',
           before = function(entry, vim_item)
             vim_item.menu = ({
