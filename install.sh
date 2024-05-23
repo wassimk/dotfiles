@@ -28,9 +28,8 @@ verifyPrivateFileExists() {
 
 verifyGpgKeyExists() {
   KEY_ID="088BB870EB37CD21"
-  if gpg --list-secret-keys "$KEY_ID" > /dev/null 2>&1; then
-    echo "GPG key $KEY_ID exists!"
-  else
+
+  if ! gpg --list-secret-keys "$KEY_ID" > /dev/null 2>&1; then
     echo "ERROR: GPG key $KEY_ID not found."
     echo "Export and import it:"
     echo "gpg --export-secret-keys $KEY_ID > private.key"
