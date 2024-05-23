@@ -18,11 +18,31 @@ function _G.qftf(info)
   local fnameFmt1, fnameFmt2 = '%-' .. limit .. 's', '…%.' .. (limit - 1) .. 's'
   local validFmt = '%s │%5d:%-3d│%s %s'
   local diagnostic_signs = require('w.diagnostic').signs(true)
+  local lspkind_symbols = require('lspkind')
+
+  local function decorate_diagnostic_sign(sign)
+    return diagnostic_signs[sign] or sign
+  end
+
+  local function decorate_symbol(text)
+    local symbol
+    if text:find('^%[.*%]') then
+      local symbol_word = text:match('^%[(.*)%]')
+
+      symbol = lspkind_symbols.symbolic(symbol_word, { mode = 'symbol', preset = 'codicons' })
+      if symbol == '' then
+        symbol = ' '
+      end
+    end
+
+    return symbol .. ' ' .. text
+  end
 
   for i = info.start_idx, info.end_idx do
     local e = items[i]
     local fname = ''
     local str
+
     if e.valid == 1 then
       if e.bufnr > 0 then
         fname = vim.fn.bufname(e.bufnr)
@@ -41,8 +61,15 @@ function _G.qftf(info)
       local lnum = e.lnum > 99999 and -1 or e.lnum
       local col = e.col > 999 and -1 or e.col
 
-      local qtype = e.type == '' and '' or ' ' .. diagnostic_signs[e.type:sub(1, 1):upper()]
-      str = validFmt:format(fname, lnum, col, qtype, e.text)
+      local qtype = e.type
+      local qtext = e.text
+      if qtype ~= '' then
+        qtype = ' ' .. decorate_diagnostic_sign(qtype)
+      else
+        qtext = decorate_symbol(qtext)
+      end
+
+      str = validFmt:format(fname, lnum, col, qtype, qtext)
     else
       str = e.text
     end
