@@ -44,6 +44,11 @@ brew "zoxide"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 
+# server tools
+brew "redis"
+brew "postgresql@14"
+
+# taps
 tap "jesseduffield/lazygit"
 brew "lazygit"
 
