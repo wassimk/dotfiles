@@ -61,7 +61,7 @@ case "$OSTYPE" in
 esac
 
 # always be in tmux, except when vscode
-[[ "$TERM_PROGRAM" != "vscode" ]] && ensure_tmux_is_running
+[[ "$TERM_PROGRAM" != "vscode" && "$TERM_PROGRAM" != "Apple_Terminal" ]] && ensure_tmux_is_running
 
 # 1password cli
 source $HOME/.config/op/plugins.sh
