@@ -8,7 +8,7 @@ return {
   cmd = { 'ChatGPT', 'ChatGPTRun', 'ChatGPTActAs', 'ChatGPTEditWithInstructions' },
   config = function()
     require('chatgpt').setup({
-      api_key_cmd = 'op read op://System/openai_neovim/credential --no-newline',
+      api_key_cmd = 'op read op://System/openai/credential',
     })
   end,
   dependencies = {
