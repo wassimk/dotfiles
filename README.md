@@ -1,10 +1,10 @@
-# dotfiles
+## dotfiles
 
-These are config files to set up a system the way I like it. It includes configuration for vim, tmux, zsh, git, and more.
+These are config files and scripts to set up a system as I like it. They include configuration for `neovim`, `tmux`, `zsh`, `git`, and more.
 
-I am running on macOS for side projects and Ubuntu for work.
+I use macOS for most things, with an occasional stint working out of a cloud-hosted Linux machine.
 
-## Installation
+#### Installation
 
 Clone this repo and `cd` into it.
 
@@ -19,13 +19,13 @@ Install software & dotfiles:
 ./install.sh
 ```
 
-That will install all of the key bits of software I use for development _(some of which these dotfiles rely on)_.
+That will install all of the software I use for development _(many of which these dotfiles rely on)_.
 
-## Maintenance
+#### Maintenance
 
-The `install.sh` script can be ran anytime to also update the same set of tools.
+The [`install.sh`](install.sh) script can be rerun anytime since it updates installed software.
 
-The `dotfiles.sh` script can be ran anytime to reload and add new dotfiles. It gets ran at the end
-of installs. It will prompt you before it does anything destructive.
+The [`dotfiles.sh`](dotfiles.sh) script can be rerun anytime to reload and add new dotfiles. It gets run at the end
+of the install script. Also, it will prompt before it does anything destructive.
 
-**Note:** If you copy this repo please change the `gitconfig` file to use your name and email rather than mine.
+**Note:** If you copy this repository, you must change the gitconfig file to use your name, email, and commit signing key rather than mine.
