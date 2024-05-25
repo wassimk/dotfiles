@@ -52,6 +52,5 @@ yabai -m rule --add app="^Raycast" manage=off
 yabai -m rule --add app="^krisp" manage=off
 yabai -m rule --add app="^RODE" manage=off
 yabai -m rule --add app="^Backblaze" manage=off
-yabai -m rule --add app="^1Password" manage=off
 
 echo "yabai configuration loaded..."
