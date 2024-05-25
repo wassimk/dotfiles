@@ -6,7 +6,7 @@ typora() {
     then
       /usr/bin/open -a typora $1
     else
-      /usr/bin/open -a typora "$HOME"/Dropbox/docs
+      /usr/bin/open -a typora "$HOME"/Documents/docs
     fi
 }
 
