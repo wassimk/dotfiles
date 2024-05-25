@@ -2,8 +2,11 @@
 #
 # If in an SSH session then this will pass back any URL to the open command on
 # the client machine.
-
+#
 # So "local-open http://yahoo.com" will send that URL to my macOS.
+#
+# The client side, macOS will need to run this via their shell script:
+# autossh -M 1998 -f -N -R 1999:localhost:22 ubuntu@remote-host
 
 if [[ -f ~/.localopenrc ]]; then
   . ~/.localopenrc
