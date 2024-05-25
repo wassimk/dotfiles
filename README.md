@@ -28,4 +28,4 @@ The [`install.sh`](install.sh) script can be rerun anytime since it updates inst
 The [`dotfiles.sh`](dotfiles.sh) script can be rerun anytime to reload and add new dotfiles. It gets run at the end
 of the install script. Also, it will prompt before it does anything destructive.
 
-**Note:** If you copy this repository, you must change the gitconfig file to use your name, email, and commit signing key rather than mine.
+**Note:** If you copy this repository, you must change the [gitconfig](gitconfig) file to use your name, email, and commit signing key rather than mine.
