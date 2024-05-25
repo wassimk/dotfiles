@@ -25,17 +25,20 @@ function _G.qftf(info)
   end
 
   local function decorate_symbol(text)
-    local symbol
-    if text:find('^%[.*%]') then
+    local symbol = text:match('^%[(.*)%]') or nil
+
+    if symbol then
       local symbol_word = text:match('^%[(.*)%]')
 
       symbol = lspkind_symbols.symbolic(symbol_word, { mode = 'symbol', preset = 'codicons' })
       if symbol == '' then
         symbol = ' '
       end
-    end
 
-    return symbol .. ' ' .. text
+      return symbol .. ' ' .. text
+    else
+      return text
+    end
   end
 
   for i = info.start_idx, info.end_idx do
