@@ -21,16 +21,6 @@ vim.keymap.set('n', '<leader>l', require('w.utils').toggle_loclist, opts('LOCLIS
 -- substitute current word in file
 vim.keymap.set('n', '<leader>e', require('w.utils').substitute_current_word, opts('', 'Substite current word in file'))
 
--- clear highlights with <CR>
-vim.keymap.set('n', '<CR>', function()
-  if vim.opt.hlsearch:get() then
-    vim.cmd.nohl()
-    return ''
-  else
-    return '<CR>'
-  end
-end, opts('', 'Clear search highlights'))
-
 -- execute current line or file
 vim.keymap.set('n', '<leader>x', '<cmd>.lua<CR>', opts('', 'Execute the current line'))
 vim.keymap.set('n', '<leader><leader>x', '<cmd>source %<CR>', opts('', 'Execute the current file'))
