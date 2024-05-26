@@ -33,4 +33,4 @@ end, opts('', 'Clear search highlights'))
 
 -- execute current line or file
 vim.keymap.set('n', '<leader>x', '<cmd>.lua<CR>', opts('', 'Execute the current line'))
-vim.keymap.set('n', '<leader><leader>xx', '<cmd>sourced %<CR>', opts('', 'Execute the current file'))
+vim.keymap.set('n', '<leader><leader>x', '<cmd>source %<CR>', opts('', 'Execute the current file'))
