@@ -3,7 +3,11 @@
 -- https://github.com/nvim-telescope/telescope.nvim
 --
 
+-- because i keep hitting it on accident
+vim.keymap.set({ 'n', 'c' }, '<C-f>', '', { desc = 'unmap neovim default for telescope' })
+
 return {
+
   'nvim-telescope/telescope.nvim',
   version = '*',
   dependencies = {
