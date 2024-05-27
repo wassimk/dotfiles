@@ -39,6 +39,7 @@
   lg = !git lg1
   sl = shortlog --format=short
   sls = shortlog --numbered --format=short --summary
+  sw = !git_sw
   ca = commit --amend
   car = commit --amend --no-edit
   unstage = reset
