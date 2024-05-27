@@ -11,6 +11,17 @@ typora() {
 }
 
 #
+# git
+#
+# completion for "git_sw" command in "$HOME"/.bin
+function _git_sw() {
+  for branch in $(git branch --format="%(refname:short)"); do
+    compadd "$branch"
+  done
+}
+compdef _git_sw git_sw
+
+#
 # tmux
 #
 
