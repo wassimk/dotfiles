@@ -1,7 +1,9 @@
 #
 # Completion
 #
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+# FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+# FPATH="$(brew --prefix)/share/zsh-completions:$FPATH"
 
 autoload -Uz compinit && compinit
 autoload bashcompinit && bashcompinit
