@@ -81,7 +81,7 @@ installRust() {
   if ! command -v rustup >/dev/null 2>&1; then
     curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y -q --no-modify-path
   else
-    rustup update
+    rustup update >/dev/null 2>&1;
   fi
 }
 
@@ -110,12 +110,12 @@ installTerminal() {
 }
 
 installGhExtensions() {
-  gh extension install dlvhdr/gh-dash
-  gh extension install github/gh-copilot
-  gh extension install mloberg/gh-view
-  gh extension install seachicken/gh-poi
-  gh extension install wassimk/gh-compare
-  gh extension install yusukebe/gh-markdown-preview
+  gh extension install dlvhdr/gh-dash >/dev/null 2>&1;
+  gh extension install github/gh-copilot >/dev/null 2>&1;
+  gh extension install mloberg/gh-view >/dev/null 2>&1;
+  gh extension install seachicken/gh-poi >/dev/null 2>&1;
+  gh extension install wassimk/gh-compare >/dev/null 2>&1;
+  gh extension install yusukebe/gh-markdown-preview >/dev/null 2>&1;
   gh extensions upgrade --all
 }
 
@@ -136,9 +136,7 @@ setupOS() {
 }
 
 acceptXcodeLicense() {
-  if xcodebuild -license check >/dev/null 2>&1; then
-    echo "Xcode license has been accepted."
-  else
+  if ! xcodebuild -license check >/dev/null 2>&1; then
     sudo xcodebuild -license accept
   fi
 }
@@ -148,18 +146,18 @@ miscellaneous() {
   yes | "$(brew --prefix)"/opt/fzf/install >/dev/null 2>&1;
   chmod 700 ~/.gnupg
   chmod 600 ~/.gnupg/*
-  ln -s /opt/homebrew/bin/op /usr/local/bin/op >/dev/null 2>&1;
 
+  ln -s /opt/homebrew/bin/op /usr/local/bin/op >/dev/null 2>&1;
   ln -s ~/.bin/open /usr/local/bin/open >/dev/null 2>&1;
 
   # mason.nvim should be installing this but it doesn't seem to be working
-  yarn global add @commitlint/config-conventional
+  yarn global add @commitlint/config-conventional >/dev/null 2>&1;
   
-  gem update --system
+  gem update --system >/dev/null 2>&1;
 
   yabai --install-service >/dev/null 2>&1;
-  skhd --install-service >/dev/null 2>&1;
   yabai --restart-service
+  skhd --install-service >/dev/null 2>&1;
   skhd --restart-service
 }
 
