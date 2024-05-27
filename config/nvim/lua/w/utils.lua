@@ -116,10 +116,4 @@ function M.toggle_loclist()
   vim.cmd('lopen')
 end
 
-function M.substitute_current_word()
-  local word = vim.fn.expand('<cword>')
-  local pattern = ':%s/\\v(' .. word .. ')'
-  vim.api.nvim_feedkeys(pattern, 'n', true)
-end
-
 return M
