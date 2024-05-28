@@ -9,11 +9,19 @@ prSections:
   filters: is:open assignee:@me
 - title: Mine
   filters: is:open author:@me
+  layout:
+    author:
+      hidden: true
 issuesSections:
+- title: Subscribed
+  filters: is:open -author:@me
 - title: Assigned
-  filters: is:open assignee:@me archived:false
-- title: My Issues
-  filters: is:open author:@me archived:false
+  filters: is:open assignee:@me
+- title: Created
+  filters: is:open author:@me
+  layout:
+    creator:
+      hidden: true
 defaults:
   preview:
     open: true
