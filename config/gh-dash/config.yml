@@ -13,8 +13,8 @@ prSections:
     author:
       hidden: true
 issuesSections:
-- title: Subscribed
-  filters: is:open -author:@me
+- title: Involved
+  filters: is:open -author:@me involves:@me
 - title: Assigned
   filters: is:open assignee:@me
 - title: Created
