@@ -10,9 +10,10 @@ require 'json'
 require 'net/http'
 
 def get_expiration_date
-  expires_at_input = Date.parse(ARGV[0].chomp) rescue nil
-  unless expires_at_input
-    puts "Provide the busy expiration, the day you're back to work, as an argument in the format YYYY-MM-DD. E.g., 2024-06-14"
+  begin
+    expires_at_input = Date.parse(ARGV[0].chomp)
+  rescue ArgumentError
+    puts "Provide your busy status expiration, the day you're back to work, as an argument in the format YYYY-MM-DD."
     exit
   end
 
@@ -27,8 +28,16 @@ def get_expiration_date
   expires_at_input
 end
 
-def set_github_status(expires_at)
+def get_github_access_token
   gh_access_token = `op read "op://Private/GitHub - Profile/credential"`.chomp
+  if gh_access_token.empty?
+    puts "Failed to retrieve GitHub access token."
+    exit
+  end
+  gh_access_token
+end
+
+def set_github_status(expires_at, gh_access_token)
   expires_at = "#{expires_at}T00:00:00Z"
 
   query = {
@@ -61,4 +70,5 @@ def set_github_status(expires_at)
 end
 
 expires_at = get_expiration_date
-set_github_status(expires_at)
+gh_access_token = get_github_access_token
+set_github_status(expires_at, gh_access_token)
