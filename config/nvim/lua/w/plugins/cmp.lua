@@ -112,14 +112,15 @@ return {
       mapping = key_mappings,
 
       sources = {
+        { name = 'lazydev', group_index = 0 },
         { name = 'rails_fixture_types', priority = 10 },
         { name = 'rails_fixture_names', priority = 9 },
         { name = 'feature_flipper', priority = 8 },
+        { name = 'buffer' },
         { name = 'luasnip' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lsp_signature_help' },
         { name = 'treesitter' },
-        { name = 'buffer' },
         { name = 'spell', keyword_length = 4 },
       },
 
