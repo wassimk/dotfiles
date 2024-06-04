@@ -3,9 +3,9 @@
 
 # file / dir listing
 if command -v eza 2>&1 >/dev/null; then
-  alias ll='eza -lhg --group-directories-first --git --color=automatic'  # Pretty up the listing
-  alias la='eza -lahg --group-directories-first --git --color=automatic' # Include dot files / folders
-  alias lh='eza -lahdg --group-directories-first .*'                     # Show only dot files / folders
+  alias ll='eza -lhg --group-directories-first --git --color=automatic --icons'  # Pretty up the listing
+  alias la='eza -lahg --group-directories-first --git --color=automatic --icons' # Include dot files / folders
+  alias lh='eza -lahdg --group-directories-first .* --icons'                     # Show only dot files / folders
 else
   # fallback to normal ls
   alias ll='ls -lF'
