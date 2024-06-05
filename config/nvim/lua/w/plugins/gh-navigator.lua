@@ -5,7 +5,7 @@
 
 return {
   'wassimk/gh-navigator.nvim',
-  cmd = { 'GH', 'GHBlame', 'GHFile', 'GHPR', 'GHRepo' },
+  cmd = { 'GH', 'GHBlame', 'GHBrowse', 'GHFile', 'GHPR', 'GHRepo' },
   config = true,
   dev = true,
 }
