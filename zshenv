@@ -34,6 +34,11 @@ export PATH=$PATH:$HOME/.bin # from dot files
 export PATH=$PATH:"/opt/homebrew/bin" # for Homebrew
 
 #
+# zoxide
+#
+export _ZO_EXCLUDE_DIRS="$HOME:$HOME/.dotfiles:$HOME/Work/*:$HOME/Code/*:$HOME/Personal:$HOME/Business"
+
+#
 # Options
 #
 setopt NO_FLOW_CONTROL         # disable start (C-s) and stop (C-q) characters
