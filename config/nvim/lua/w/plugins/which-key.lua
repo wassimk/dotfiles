@@ -44,6 +44,7 @@ return {
       ['<2-LeftMouse>'] = 'Match double clicked word',
       ['gl'] = 'lsp prefix',
       ['gr'] = 'selection prefix',
+      ['<leader><Space>'] = 'miscellaneous prefix',
       ['<leader>d'] = 'dap/diagnostics prefix',
       ['<leader>h'] = 'gitsigns / harpoon prefix',
       ['<leader>hd'] = 'diff prefix',
