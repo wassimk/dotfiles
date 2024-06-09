@@ -8,5 +8,6 @@ return {
   ft = { 'markdown', 'text' },
   config = {
     create_keymaps = false,
+    notify_on_switch = false,
   },
 }
