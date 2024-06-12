@@ -107,7 +107,6 @@ function M.on_attach(client, bufnr)
   -- end
 
   if client.server_capabilities.codeLensProvider then
-    local bufnr = vim.api.nvim_get_current_buf()
     local wamGrp = vim.api.nvim_create_augroup('WamLspAutocmds', {})
     vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
       callback = function()
