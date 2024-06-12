@@ -151,7 +151,9 @@ miscellaneous() {
   ln -s ~/.bin/open /usr/local/bin/open >/dev/null 2>&1;
 
   # mason.nvim should be installing this but it doesn't seem to be working
-  yarn global add @commitlint/config-conventional >/dev/null 2>&1;
+  npm install -g @commitlint/config-conventional >/dev/null 2>&1;
+
+  npm install -g react-devtools >/dev/null 2>&1; # react-devtools for Safari
   
   gem update --system >/dev/null 2>&1;
 
