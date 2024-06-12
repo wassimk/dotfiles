@@ -77,17 +77,12 @@ function M.on_attach(client, bufnr)
     vim.keymap.set({ 'n', 'v' }, 'gla', vim.lsp.buf.code_action, opts('code actions'))
   end
 
-  if vim.version.gt(vim.version(), { 0, 10, 0 }) then
-    if vim.version.gte(vim.version(), { 0, 11, 0 }) then
-      vim.notify(
-        'nvim version is 0.11.0+, remove completion.enable version check',
-        vim.log.levels.INFO,
-        { title = 'LSP' }
-      )
-    end
-
-    vim.lsp.completion.enable(true, client.id, bufnr)
-  end
+  -- if vim.version.gt(vim.version(), { 0, 10, 0 }) then
+  -- if client.server_capabilities.completionProvider then
+  --   vim.notify('completionProvider', vim.log.levels.INFO, { title = 'LSP' })
+  --   vim.lsp.completion.enable(true, client.id, bufnr)
+  -- end
+  -- end
 
   if client.server_capabilities.inlayHintProvider then
     vim.lsp.inlay_hint.enable()
