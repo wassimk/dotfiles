@@ -32,7 +32,7 @@ function M.setup()
   -- global configuration
   vim.diagnostic.config({
     virtual_text = false,
-    underline = true,
+    underline = false,
     signs = { priority = 10 },
     float = {
       source = 'if_many',
