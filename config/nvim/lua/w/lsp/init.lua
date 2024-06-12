@@ -88,6 +88,24 @@ function M.on_attach(client, bufnr)
     vim.lsp.inlay_hint.enable()
   end
 
+  -- if client.server_capabilities.documentHighlightProvider then
+  --   local wamGrp = vim.api.nvim_create_augroup('WamLspDocumentHighlight', {})
+  --
+  --   vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+  --     callback = function()
+  --       vim.lsp.buf.document_highlight()
+  --     end,
+  --     group = wamGrp,
+  --   })
+  --
+  --   vim.api.nvim_create_autocmd({ 'CursorMoved' }, {
+  --     callback = function()
+  --       vim.lsp.buf.clear_references()
+  --     end,
+  --     group = wamGrp,
+  --   })
+  -- end
+
   if client.server_capabilities.codeLensProvider then
     local bufnr = vim.api.nvim_get_current_buf()
     local wamGrp = vim.api.nvim_create_augroup('WamLspAutocmds', {})
