@@ -34,7 +34,7 @@ function M.capabilities()
   return require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 end
 
-function M.on_attach(client)
+function M.on_attach(client, bufnr)
   local function opts(desc)
     return {
       buffer = 0,
@@ -75,6 +75,18 @@ function M.on_attach(client)
   else
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts('hover'))
     vim.keymap.set({ 'n', 'v' }, 'gla', vim.lsp.buf.code_action, opts('code actions'))
+  end
+
+  if vim.version.gt(vim.version(), { 0, 10, 0 }) then
+    if vim.version.gte(vim.version(), { 0, 11, 0 }) then
+      vim.notify(
+        'nvim version is 0.11.0+, remove completion.enable version check',
+        vim.log.levels.INFO,
+        { title = 'LSP' }
+      )
+    end
+
+    vim.lsp.completion.enable(true, client.id, bufnr)
   end
 
   if client.server_capabilities.inlayHintProvider then
