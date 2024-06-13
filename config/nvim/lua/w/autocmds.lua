@@ -13,12 +13,16 @@ api.nvim_create_autocmd('TextYankPost', {
 
 -- show cursor line only in active window
 api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
-  command = 'set cursorline',
+  callback = function()
+    vim.wo.cursorline = true
+  end,
   group = wamGrp,
 })
 
 api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
-  command = 'set nocursorline',
+  callback = function()
+    vim.wo.cursorline = false
+  end,
   group = wamGrp,
 })
 
