@@ -21,6 +21,7 @@ return {
       dapui_scopes = false,
       dapui_stacks = false,
       dapui_watches = false,
+      qf = false,
     },
   },
 }
