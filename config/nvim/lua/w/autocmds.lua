@@ -11,6 +11,23 @@ api.nvim_create_autocmd('TextYankPost', {
   group = wamGrp,
 })
 
+-- show/hide diagnostics based on active window
+api.nvim_create_autocmd({ 'FocusGained', 'WinEnter' }, {
+  callback = function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    vim.diagnostic.show(nil, bufnr)
+  end,
+  group = wamGrp,
+})
+
+api.nvim_create_autocmd({ 'FocusLost', 'WinLeave' }, {
+  callback = function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    vim.diagnostic.hide(nil, bufnr)
+  end,
+  group = wamGrp,
+})
+
 -- show cursor line only in active window
 api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
   callback = function()
