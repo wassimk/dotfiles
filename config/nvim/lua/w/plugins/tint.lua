@@ -10,5 +10,6 @@ return {
       focus = { 'WinEnter', 'FocusGained' },
       unfocus = { 'WinLeave', 'FocusLost' },
     },
+    highlight_ignore_patterns = { 'EndOfBuffer' },
   },
 }
