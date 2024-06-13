@@ -88,36 +88,35 @@ function M.on_attach(client, bufnr)
     vim.lsp.inlay_hint.enable()
   end
 
+  local wamLspAutocmdsGrp = vim.api.nvim_create_augroup('WamLspAutocmds', {})
+
   if client.server_capabilities.documentHighlightProvider then
-    if client.name ~= 'ruby_lsp' then
-      local wamGrp = vim.api.nvim_create_augroup('WamLspDocumentHighlight', {})
+    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+      callback = function()
+        vim.lsp.buf.document_highlight()
+      end,
+      buffer = bufnr,
+      group = wamLspAutocmdsGrp,
+    })
 
-      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-        callback = function()
-          vim.lsp.buf.document_highlight()
-        end,
-        buffer = bufnr,
-        group = wamGrp,
-      })
-
-      vim.api.nvim_create_autocmd({ 'CursorMoved' }, {
-        callback = function()
-          vim.lsp.buf.clear_references()
-        end,
-        buffer = bufnr,
-        group = wamGrp,
-      })
-    end
+    vim.api.nvim_create_autocmd({ 'CursorMoved' }, {
+      callback = function()
+        vim.lsp.buf.clear_references()
+      end,
+      buffer = bufnr,
+      group = wamLspAutocmdsGrp,
+    })
   end
 
   if client.server_capabilities.codeLensProvider then
-    local wamGrp = vim.api.nvim_create_augroup('WamLspAutocmds', {})
-    vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
-      callback = function()
-        vim.lsp.codelens.refresh({ bufnr = bufnr })
-      end,
-      group = wamGrp,
-    })
+    if client.name ~= 'ruby_lsp' then
+      vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+        callback = function()
+          vim.lsp.codelens.refresh({ bufnr = bufnr })
+        end,
+        group = wamLspAutocmdsGrp,
+      })
+    end
   end
 end
 
