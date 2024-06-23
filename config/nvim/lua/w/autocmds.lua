@@ -14,6 +14,10 @@ api.nvim_create_autocmd('TextYankPost', {
 -- show/hide diagnostics based on active window
 api.nvim_create_autocmd({ 'FocusGained', 'WinEnter' }, {
   callback = function()
+    if vim.bo.filetype == 'lazy' then
+      return
+    end
+
     local bufnr = vim.api.nvim_get_current_buf()
     vim.diagnostic.show(nil, bufnr)
   end,
@@ -22,6 +26,10 @@ api.nvim_create_autocmd({ 'FocusGained', 'WinEnter' }, {
 
 api.nvim_create_autocmd({ 'FocusLost', 'WinLeave' }, {
   callback = function()
+    if vim.bo.filetype == 'lazy' then
+      return
+    end
+
     local bufnr = vim.api.nvim_get_current_buf()
     vim.diagnostic.hide(nil, bufnr)
   end,
