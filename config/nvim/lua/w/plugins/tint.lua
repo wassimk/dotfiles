@@ -5,7 +5,7 @@
 
 return {
   'levouh/tint.nvim',
-  config = {
+  opts = {
     focus_change_events = {
       focus = { 'WinEnter', 'FocusGained' },
       unfocus = { 'WinLeave', 'FocusLost' },

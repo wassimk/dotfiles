@@ -6,7 +6,7 @@
 return {
   'andrewferrier/wrapping.nvim',
   ft = { 'markdown', 'text' },
-  config = {
+  opts = {
     create_keymaps = false,
     notify_on_switch = false,
   },

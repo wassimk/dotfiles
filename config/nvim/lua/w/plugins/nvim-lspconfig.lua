@@ -32,7 +32,7 @@ return {
     -- { 'antosha417/nvim-lsp-file-operations', config = true },
     {
       'j-hui/fidget.nvim',
-      config = {
+      opts = {
         progress = {
           display = {
 
