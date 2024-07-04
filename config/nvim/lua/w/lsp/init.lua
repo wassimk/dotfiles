@@ -78,19 +78,19 @@ function M.on_attach(client, bufnr)
   end
 
   -- if vim.version.gt(vim.version(), { 0, 10, 0 }) then
-  -- if client.server_capabilities.completionProvider then
+  -- if client.supports_method('textDocument/completion') then
   --   vim.notify('completionProvider', vim.log.levels.INFO, { title = 'LSP' })
   --   vim.lsp.completion.enable(true, client.id, bufnr)
   -- end
   -- end
 
-  if client.server_capabilities.inlayHintProvider then
+  if client.supports_method('textDocument/inlayHint') then
     vim.lsp.inlay_hint.enable()
   end
 
   local wamLspAutocmdsGrp = vim.api.nvim_create_augroup('WamLspAutocmds', {})
 
-  if client.server_capabilities.documentHighlightProvider then
+  if client.supports_method('textDocument/documentHighlight') then
     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
       callback = function()
         vim.lsp.buf.document_highlight()
@@ -108,15 +108,13 @@ function M.on_attach(client, bufnr)
     })
   end
 
-  if client.server_capabilities.codeLensProvider then
-    if client.name ~= 'ruby_lsp' then
-      vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
-        callback = function()
-          vim.lsp.codelens.refresh({ bufnr = bufnr })
-        end,
-        group = wamLspAutocmdsGrp,
-      })
-    end
+  if client.supports_method('textDocument/codeLens') then
+    vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+      callback = function()
+        vim.lsp.codelens.refresh({ bufnr = bufnr })
+      end,
+      group = wamLspAutocmdsGrp,
+    })
   end
 end
 
