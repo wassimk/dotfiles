@@ -55,6 +55,7 @@ function M.on_attach(client, bufnr)
   vim.keymap.set('n', 'glS', vim.lsp.buf.signature_help, opts('signature help'))
   vim.keymap.set('n', 'gls', vim.lsp.buf.document_symbol, opts('document symbols'))
   vim.keymap.set('n', 'glw', vim.lsp.buf.workspace_symbol, opts('workspace symbols'))
+  vim.keymap.set('n', 'gll', vim.lsp.codelens.run, opts('codelens run'))
   vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts('rename'))
 
   vim.keymap.set('n', 'glh', function()
