@@ -4,7 +4,6 @@
 --
 
 return {
-
   'nvim-lualine/lualine.nvim',
   config = function()
     local mode_map = {
