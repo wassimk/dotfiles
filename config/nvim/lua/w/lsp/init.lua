@@ -86,7 +86,7 @@ function M.on_attach(client, bufnr)
   -- end
 
   if client.supports_method('textDocument/inlayHint') then
-    vim.lsp.inlay_hint.enable()
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
   end
 
   local wamLspAutocmdsGrp = vim.api.nvim_create_augroup('WamLspAutocmds', {})
