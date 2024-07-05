@@ -8,3 +8,7 @@ vim.api.nvim_create_user_command('Lg', function()
 
   lazygit:toggle()
 end, { desc = 'LAZYGIT: launch with toggleterm' })
+
+vim.api.nvim_create_user_command('LspFormat', function()
+  vim.lsp.buf.format()
+end, { desc = 'LSP: format with language servers' })

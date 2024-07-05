@@ -42,10 +42,6 @@ function M.on_attach(client, bufnr)
     }
   end
 
-  vim.api.nvim_create_user_command('LspFormat', function()
-    vim.lsp.buf.format()
-  end, { desc = 'LSP: format with language servers' })
-
   vim.keymap.set('n', 'gld', vim.lsp.buf.definition, opts('goto definitions'))
   vim.keymap.set('n', 'gly', vim.lsp.buf.type_definition, opts('goto type definitions'))
   vim.keymap.set('n', 'glt', '<cmd>execute "normal! <C-]>"<cr>', opts('tag jump'))
@@ -63,7 +59,6 @@ function M.on_attach(client, bufnr)
   end, opts('toggle inlay hints'))
 
   if client.name == 'rust-analyzer' then
-    vim.print('RUST: using rust_analyzer')
     vim.keymap.set('n', '<F5>', function()
       vim.cmd.RustLsp('debug')
     end, { desc = 'RUST: debug menu' })
