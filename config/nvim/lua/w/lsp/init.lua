@@ -35,6 +35,10 @@ function M.capabilities()
 end
 
 function M.on_attach(client, bufnr)
+  if bufnr == nil then
+    return
+  end
+
   local function opts(desc)
     return {
       buffer = 0,
@@ -84,7 +88,7 @@ function M.on_attach(client, bufnr)
     vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
   end
 
-  local wamLspAutocmdsGrp = vim.api.nvim_create_augroup('WamLspAutocmds', {})
+  local wamLspAutocmdsGrp = vim.api.nvim_create_augroup('WamLspAutocmds' .. bufnr, { clear = true })
 
   if client.supports_method('textDocument/documentHighlight') then
     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
@@ -95,7 +99,7 @@ function M.on_attach(client, bufnr)
       group = wamLspAutocmdsGrp,
     })
 
-    vim.api.nvim_create_autocmd({ 'CursorMoved' }, {
+    vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
       callback = function()
         vim.lsp.buf.clear_references()
       end,
