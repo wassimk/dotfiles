@@ -10,6 +10,9 @@ return {
     vim.o.timeout = true
     vim.o.timeoutlen = 300
   end,
+  dependencies = {
+    'echasnovski/mini.icons',
+  },
   config = function()
     local wk = require('which-key')
 
@@ -22,35 +25,31 @@ return {
       },
     })
 
-    wk.register({
-      ['#'] = 'which_key_ignore',
-      ['g#'] = 'which_key_ignore',
-      ['*'] = 'which_key_ignore',
-      ['g*'] = 'which_key_ignore',
-      ['n'] = 'which_key_ignore',
-      ['N'] = 'which_key_ignore',
-      ['/'] = 'which_key_ignore',
-      ['?'] = 'which_key_ignore',
-      ['<leader>n'] = 'which_key_ignore',
-      ['h'] = 'which_key_ignore',
-      ['j'] = 'which_key_ignore',
-      ['k'] = 'which_key_ignore',
-      ['l'] = 'which_key_ignore',
-      -- ['f'] = 'which_key_ignore',
-      -- ['F'] = 'which_key_ignore',
-      -- ['t'] = 'which_key_ignore',
-      -- ['T'] = 'which_key_ignore',
-      ['Y'] = 'Yank to end of line',
-      ['<2-LeftMouse>'] = 'Match double clicked word',
-      ['gl'] = 'lsp prefix',
-      ['gr'] = 'selection prefix',
-      ['<leader><Space>'] = 'miscellaneous prefix',
-      ['<leader>d'] = 'dap/diagnostics prefix',
-      ['<leader>h'] = 'gitsigns / harpoon prefix',
-      ['<leader>hd'] = 'diff prefix',
-      ['<leader>t'] = 'testing prefix',
-      ['<C-f>'] = 'telescope prefix',
-      ['<M-r>'] = 'harpoon prefix',
+    wk.add({
+      { '#', hidden = true },
+      { '*', hidden = true },
+      { '/', hidden = true },
+      { '<leader>n', hidden = true },
+      { '?', hidden = true },
+      { 'N', hidden = true },
+      { 'g#', hidden = true },
+      { 'g*', hidden = true },
+      { 'h', hidden = true },
+      { 'j', hidden = true },
+      { 'k', hidden = true },
+      { 'l', hidden = true },
+      { 'n', hidden = true },
+      { '<2-LeftMouse>', desc = 'Match double clicked word' },
+      { '<C-f>', desc = 'telescope prefix' },
+      { '<M-r>', desc = 'harpoon prefix' },
+      { '<leader><Space>', desc = 'miscellaneous prefix' },
+      { '<leader>d', desc = 'dap/diagnostics prefix' },
+      { '<leader>h', desc = 'gitsigns / harpoon prefix' },
+      { '<leader>hd', desc = 'diff prefix' },
+      { '<leader>t', desc = 'testing prefix' },
+      { 'Y', desc = 'Yank to end of line' },
+      { 'gl', desc = 'lsp prefix' },
+      { 'gr', desc = 'selection prefix' },
     })
   end,
 }
