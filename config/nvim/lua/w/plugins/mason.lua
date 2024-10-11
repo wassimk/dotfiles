@@ -33,7 +33,7 @@ return {
         'shellcheck', -- used by bash-language-server
         'stylua',
         'tailwindcss-language-server',
-        'tsserver', -- used by typescript-tools.nvim
+        'typescript-language-server', -- used by typescript-tools
       },
       auto_update = true,
       run_on_start = true,
