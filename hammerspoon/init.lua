@@ -57,13 +57,13 @@ function MOVE_APP(app)
   hs.execute(yabaiMoveCommand, true)
 end
 
-WATCHER = hs.application.watcher
-  .new(function(_, event, app)
-    if event == hs.application.watcher.launched and MOVEABLE_APP(app) then
-      MOVE_APP(app)
-    end
-  end)
-  :start()
+-- WATCHER = hs.application.watcher
+--   .new(function(_, event, app)
+--     if event == hs.application.watcher.launched and MOVEABLE_APP(app) then
+--       MOVE_APP(app)
+--     end
+--   end)
+--   :start()
 
 --
 -- Auto-reload config on change.
