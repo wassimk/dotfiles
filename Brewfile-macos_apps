@@ -57,10 +57,6 @@ brew "asimov"
 brew "pinentry-mac"
 brew "ssh-copy-id"
 
-tap "koekeishiya/formulae"
-brew "skhd"
-brew "yabai"
-
 # tap "homebrew/autoupdate"
 
 brew "mas"
