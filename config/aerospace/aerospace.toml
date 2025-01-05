@@ -165,3 +165,23 @@ shift-down = ['volume set 0', 'mode main']
 4 = 'main'
 5 = 'main'
 6 = 'secondary'
+
+[[on-window-detected]]
+if.app-name-regex-substring = '^Hammerspoon'
+check-further-callbacks = true
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = '^Music'
+check-further-callbacks = true
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = '^Deliveries$'
+check-further-callbacks = true
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = '^Snagit'
+check-further-callbacks = true
+run = ['layout floating']
