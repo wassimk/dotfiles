@@ -156,11 +156,6 @@ miscellaneous() {
   npm install -g react-devtools >/dev/null 2>&1; # react-devtools for Safari
   
   gem update --system >/dev/null 2>&1;
-
-  yabai --install-service >/dev/null 2>&1;
-  yabai --restart-service
-  skhd --install-service >/dev/null 2>&1;
-  skhd --restart-service
 }
 
 echo ""
