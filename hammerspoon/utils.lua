@@ -39,7 +39,10 @@ end
 function M.resizeForScreencasting(appNames)
   for _, appName in ipairs(appNames) do
     local app = hs.application.find(appName)
+
     if app then
+      M.floatAllAerospaceCurrentWorkspaceWindows()
+
       local windows = app:allWindows()
       for _, window in ipairs(windows) do
         local screen = window:screen()
@@ -63,18 +66,44 @@ function M.resizeForScreencasting(appNames)
   end
 end
 
-function M.yabaiWindowIdForApp(app)
+function M.aerospaceWindowIdForApp(app)
   local appPid = app:pid()
-  local yabaiWindowIdCommand = 'yabai -m query --windows | jq \'.[] | select(.pid=="' .. appPid .. '") | .id\''
-  local yabaiWindowId, _, _, _ = hs.execute(yabaiWindowIdCommand, true)
+  local aerospaceWindowIdCommand = 'aerospace list-windows --workspace focused --pid ' .. appPid .. ' --json'
+  local aerospaceWindowIdOutput, status, _, _ = hs.execute(aerospaceWindowIdCommand, true)
 
-  return yabaiWindowId:gsub('[\n\r]', '')
+  if aerospaceWindowIdOutput and status then
+    -- Parse the JSON output
+    local windows = hs.json.decode(aerospaceWindowIdOutput)
+    if windows and #windows > 0 then
+      local aerospaceWindowId = windows[1]['window-id']
+      print('Aerospace Window ID: ' .. aerospaceWindowId)
+      return aerospaceWindowId
+    end
+  else
+    return nil
+  end
 end
 
-function M.toggleYabaiWindowFloatByApp(app)
-  local yabaiWindowId = M.yabaiWindowIdForApp(app)
-  local yabaiDetachCommand = 'yabai -m window ' .. yabaiWindowId .. ' --toggle float'
-  hs.execute(yabaiDetachCommand, true)
+function M.toggleAerospaceWindowFloatByApp(app)
+  local aerospaceWindowId = M.aerospaceWindowIdForApp(app)
+  require('logger').i(aerospaceWindowId)
+  local aerospaceDetachCommand = 'aerospace layout floating --window-id ' .. aerospaceWindowId
+  require('logger').i(aerospaceDetachCommand)
+  hs.execute(aerospaceDetachCommand, true)
+end
+
+function M.floatAllAerospaceCurrentWorkspaceWindows()
+  local aerospaceWindowsCommand = 'aerospace list-windows --workspace focused --json'
+  local aerospaceWindowsOutput, status, _, _ = hs.execute(aerospaceWindowsCommand, true)
+
+  if status then
+    local windows = hs.json.decode(aerospaceWindowsOutput)
+    for _, window in ipairs(windows) do
+      local windowId = window['window-id']
+      local floatCommand = 'aerospace layout floating --window-id ' .. windowId
+      hs.execute(floatCommand, true)
+    end
+  end
 end
 
 function M.printRunningApps()
