@@ -41,7 +41,7 @@ function M.resizeForScreencasting(appNames)
     local app = hs.application.find(appName)
 
     if app then
-      M.floatAllAerospaceCurrentWorkspaceWindows()
+      M.toggleFloatOfAerospaceWorkspaceWindows()
 
       local windows = app:allWindows()
       for _, window in ipairs(windows) do
@@ -66,34 +66,9 @@ function M.resizeForScreencasting(appNames)
   end
 end
 
-function M.aerospaceWindowIdForApp(app)
-  local appPid = app:pid()
-  local aerospaceWindowIdCommand = 'aerospace list-windows --workspace focused --pid ' .. appPid .. ' --json'
-  local aerospaceWindowIdOutput, status, _, _ = hs.execute(aerospaceWindowIdCommand, true)
-
-  if aerospaceWindowIdOutput and status then
-    -- Parse the JSON output
-    local windows = hs.json.decode(aerospaceWindowIdOutput)
-    if windows and #windows > 0 then
-      local aerospaceWindowId = windows[1]['window-id']
-      print('Aerospace Window ID: ' .. aerospaceWindowId)
-      return aerospaceWindowId
-    end
-  else
-    return nil
-  end
-end
-
-function M.toggleAerospaceWindowFloatByApp(app)
-  local aerospaceWindowId = M.aerospaceWindowIdForApp(app)
-  require('logger').i(aerospaceWindowId)
-  local aerospaceDetachCommand = 'aerospace layout floating --window-id ' .. aerospaceWindowId
-  require('logger').i(aerospaceDetachCommand)
-  hs.execute(aerospaceDetachCommand, true)
-end
-
-function M.floatAllAerospaceCurrentWorkspaceWindows()
-  local aerospaceWindowsCommand = 'aerospace list-windows --workspace focused --json'
+function M.toggleFloatOfAerospaceWorkspaceWindows(workspaceId)
+  workspaceId = workspaceId or 'focused'
+  local aerospaceWindowsCommand = 'aerospace list-windows --workspace ' .. workspaceId .. ' --json'
   local aerospaceWindowsOutput, status, _, _ = hs.execute(aerospaceWindowsCommand, true)
 
   if status then
