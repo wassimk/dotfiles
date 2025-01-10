@@ -47,6 +47,11 @@ if.app-name-regex-substring = '^Snagit'
 check-further-callbacks = true
 run = ['layout floating']
 
+[[on-window-detected]]
+if.app-name-regex-substring = '^1Password'
+check-further-callbacks = true
+run = ['layout floating']
+
 [workspace-to-monitor-force-assignment]
 1 = 'main'
 2 = 'main'
