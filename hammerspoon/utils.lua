@@ -48,8 +48,8 @@ function M.resizeForScreencasting(appNames)
         local screen = window:screen()
         local frame = screen:frame()
 
-        local newWidth = 1920
-        local newHeight = 1080
+        local newWidth = 1280
+        local newHeight = 720
 
         -- Calculate the new x and y coordinates to center the window
         local newX = frame.x + (frame.w - newWidth) / 2
