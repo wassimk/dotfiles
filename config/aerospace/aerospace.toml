@@ -64,6 +64,9 @@ run = ['layout floating']
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
+shift-alt-0 = 'balance-sizes'
+shift-alt-f = 'fullscreen'
+
 alt-shift-t = 'layout floating tiling'
 
 alt-h = 'focus left'
