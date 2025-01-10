@@ -70,3 +70,5 @@ Brewfile*.lock.json
 tags
 tags.lock
 tags.temp
+
+.devbox
