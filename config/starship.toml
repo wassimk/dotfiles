@@ -35,3 +35,9 @@ disabled = true
 
 [golang]
 disabled = true
+
+[direnv]
+disabled = true
+
+[nix_shell]
+disabled = true
