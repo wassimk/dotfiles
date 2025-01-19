@@ -10,8 +10,5 @@ return {
   opts = { auto_resize_height = true },
   dependencies = {
     'junegunn/fzf',
-    build = function()
-      vim.fn['fzf#install']()
-    end,
   },
 }
