@@ -27,12 +27,7 @@ source $HOME/.zsh/completion
 source $HOME/.zsh/aliases
 source $HOME/.zsh/functions
 source $HOME/.private
-
-# Planning Center
-eval "$($HOME/Code/pco/bin/pco init -)"
-source $HOME/pco-box/env.sh
-source $HOME/pco-box/bin/complete.bash
-
+ 
 # fzf auto-complete searching
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -68,3 +63,25 @@ source $HOME/.config/op/plugins.sh
 
 # gpg signing
 export GPG_TTY=$(tty)
+
+# Planning Center
+eval "$($HOME/Code/pco/bin/pco init -)"
+source $HOME/pco-box/env.sh
+source $HOME/pco-box/bin/complete.bash
+
+if [[ -e "/opt/homebrew/bin/brew" ]]; then
+  export PATH="/opt/homebrew/bin:$PATH"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+if [[ -d $HOME/.rbenv ]]; then
+  eval "$(rbenv init -)"
+fi
+
+if [[ -d "$HOME/.asdf" ]]; then
+  source "$HOME/.asdf/asdf.sh"
+fi
+
+if command -v direnv &> /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
