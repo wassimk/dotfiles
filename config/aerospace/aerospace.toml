@@ -25,7 +25,7 @@ outer.top =        0
 outer.right =      0
 
 [[on-window-detected]]
-if.app-name-regex-substring = '^1Password|^Deliveries|^Hammerspoon|^Music|^Snagit'
+if.app-name-regex-substring = '^1Password|^Deliveries|^Hammerspoon|^Music|^Snagit|^Simulator'
 check-further-callbacks = true
 run = ['layout floating']
 
