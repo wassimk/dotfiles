@@ -3,7 +3,7 @@
 # Attach or create tmux session named the same as current directory.
 
 path_name=$(basename "$PWD" | sed 's/.nvim//g' | tr -d .)
-session_name=$(echo "${1-$path_name}" | tr "[:upper:]" "[:lower:]")
+session_name=$(echo "${1-$path_name}")
 
 not_in_tmux() {
   [ -z "$TMUX" ]
