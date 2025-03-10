@@ -35,6 +35,7 @@ return {
           layout = 'horizontal',
         },
         model = 'claude-3.7-sonnet',
+        context = 'buffers',
         contexts = {
           file = {
             input = function(callback)
