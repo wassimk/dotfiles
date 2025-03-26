@@ -15,7 +15,7 @@ U = require('utils')
 
 hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, 'f4', function()
   hs.notify.new({ title = 'Screencast', informativeText = 'Resize for recording' }):send()
-  U.resizeForScreencasting({ 'Alacritty', 'Google Chrome', 'Code', 'Slack', 'Asana' })
+  U.resizeForScreencasting({ 'Alacritty', 'Asana', 'Code', 'Google Chrome', 'Notion', 'Safari', 'Slack' })
 end)
 
 hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, 'f5', function()
