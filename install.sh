@@ -88,7 +88,7 @@ installRust() {
 installNeovim() {
   case $os in
     $macOS*)
-      bin/install-neovim.sh nightly
+      bin/install-neovim.sh stable
       ;;
     $ubuntu*)
       if ! command -v nvim >/dev/null 2>&1; then
