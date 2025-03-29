@@ -19,7 +19,7 @@ function M.setup()
   require('w.lsp.tailwind')
   require('w.lsp.yaml')
 
-  vim.lsp.enable({ 'lua_ls', 'vim' })
+  vim.lsp.enable({ 'lua_ls', 'vimls' })
 end
 
 function M.capabilities()
