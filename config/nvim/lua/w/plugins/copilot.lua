@@ -8,6 +8,7 @@ return {
   cmd = 'Copilot',
   event = 'InsertEnter',
   opts = {
+    copilot_node_command = vim.fn.system('asdf where nodejs 20.19.0'):gsub('%s+$', '') .. '/bin/node',
     suggestion = {
       auto_trigger = true,
       keymap = {
