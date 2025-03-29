@@ -6,20 +6,12 @@ local M = {}
 
 function M.setup()
   -- configure servers
-  require('w.lsp.bash')
-  require('w.lsp.css')
-  require('w.lsp.emmet')
   require('w.lsp.go')
-  require('w.lsp.html')
   require('w.lsp.javascript')
-  require('w.lsp.json')
-  require('w.lsp.remark')
   require('w.lsp.ruby')
   require('w.lsp.rust')
-  require('w.lsp.tailwind')
-  require('w.lsp.yaml')
 
-  vim.lsp.enable({ 'lua_ls', 'vimls' })
+  vim.lsp.enable({ 'bash', 'css', 'emmet', 'html', 'json', 'lua', 'remark', 'tailwind', 'vim', 'yaml' })
 end
 
 function M.capabilities()
