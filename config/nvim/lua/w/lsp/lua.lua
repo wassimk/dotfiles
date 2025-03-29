@@ -3,6 +3,7 @@
 --
 
 require('lspconfig').lua_ls.setup({
+
   settings = {
     Lua = {
       -- https://github.com/LuaLS/lua-language-server/wiki/Settings
