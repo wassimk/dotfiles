@@ -56,9 +56,9 @@ installHomebrewPackages() {
 
 installAsdf() {
   if command -v asdf >/dev/null 2>&1; then
-    asdf update
     asdf plugin update nodejs
     asdf plugin update alias
+    asdf install
     # Update the nodejs version in .tool-versions
     if grep -q "^nodejs " "$HOME"/.tool-versions; then
       sed -i.bak "s/^nodejs .*$/nodejs $NODE_VERSION/" "$HOME"/.tool-versions && rm -f "$HOME"/.tool-versions.bak
