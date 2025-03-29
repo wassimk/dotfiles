@@ -13,13 +13,14 @@ function M.setup()
   require('w.lsp.html')
   require('w.lsp.javascript')
   require('w.lsp.json')
-  require('w.lsp.lua')
   require('w.lsp.remark')
   require('w.lsp.ruby')
   require('w.lsp.rust')
   require('w.lsp.tailwind')
   require('w.lsp.vim')
   require('w.lsp.yaml')
+
+  vim.lsp.enable({ 'lua_ls' })
 end
 
 function M.capabilities()

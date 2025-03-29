@@ -2,8 +2,10 @@
 -- lua language server
 --
 
-require('lspconfig').lua_ls.setup({
-
+return {
+  cmd = { 'lua-language-server' },
+  filetypes = { 'lua' },
+  root_markers = { '.luarc.json', '.luarc.jsonc' },
   settings = {
     Lua = {
       -- https://github.com/LuaLS/lua-language-server/wiki/Settings
@@ -17,4 +19,4 @@ require('lspconfig').lua_ls.setup({
   },
   capabilities = require('w.lsp').capabilities(),
   on_attach = require('w.lsp').on_attach,
-})
+}
