@@ -13,6 +13,7 @@ function M.setup()
     'bash',
     'css',
     'emmet',
+    'eslint',
     'go',
     'html',
     'json',
