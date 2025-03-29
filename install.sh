@@ -1,7 +1,7 @@
 #!/bin/bash
 
 RUBY_VERSION=3.4.1
-NODE_VERSION=18.16.0
+NODE_VERSION=20.19.0
 
 macOS="macOS"
 ubuntu="ubuntu"
@@ -59,7 +59,13 @@ installAsdf() {
     asdf update
     asdf plugin update nodejs
     asdf plugin update alias
-    echo "nodejs $NODE_VERSION" >> "$HOME"/.tool-versions
+    # Update the nodejs version in .tool-versions
+    if grep -q "^nodejs " "$HOME"/.tool-versions; then
+      sed -i.bak "s/^nodejs .*$/nodejs $NODE_VERSION/" "$HOME"/.tool-versions && rm -f "$HOME"/.tool-versions.bak
+    else
+      echo "nodejs $NODE_VERSION" >> "$HOME"/.tool-versions
+    fi
+
   else
     git clone https://github.com/asdf-vm/asdf.git "$HOME"/.asdf --branch v0.11.1
     asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
