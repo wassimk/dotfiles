@@ -19,6 +19,7 @@ vim.opt.termguicolors = true -- use guifg/guibg instead of ctermfg/ctermbg in te
 vim.opt.undofile = true -- allow undo even after closing a file
 vim.opt.winwidth = 100 -- set minimum width of current window
 vim.opt.spelloptions:append('camel') -- spell check camelCase words
+vim.opt.winborder = 'rounded' -- set window borders to rounded
 vim.g.qf_disable_statusline = true -- we'll set a custom statusline for quickfix
 
 -- preferred default tabs/spaces
