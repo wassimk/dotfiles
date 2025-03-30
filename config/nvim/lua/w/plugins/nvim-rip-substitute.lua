@@ -6,6 +6,14 @@
 return {
   'chrisgrieser/nvim-rip-substitute',
   cmd = 'RipSubstitute',
+  opts = {
+    popupWin = {
+      hideKeymapHints = true,
+    },
+    keymaps = {
+      abort = '<Esc>',
+    },
+  },
   keys = {
     {
       '<leader>e',
