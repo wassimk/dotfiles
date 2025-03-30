@@ -38,7 +38,7 @@ function M.setup()
 
   -- global configuration
   vim.diagnostic.config({
-    virtual_lines = {
+    virtual_text = {
       current_line = true,
     },
     underline = false,
