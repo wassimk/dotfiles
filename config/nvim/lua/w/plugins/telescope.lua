@@ -113,6 +113,7 @@ return {
 
     telescope.setup({
       defaults = {
+        border = false,
         mappings = {
           i = {
             ['<C-y>'] = actions.select_default,
