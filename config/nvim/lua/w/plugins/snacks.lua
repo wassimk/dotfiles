@@ -8,6 +8,8 @@ return {
   opts = {
     lazygit = {},
     dashboard = {
+      width = 70,
+      row = 8,
       sections = {
         { section = 'header' },
         { icon = ' ', title = 'Keymaps', section = 'keys', indent = 2, padding = 1 },
