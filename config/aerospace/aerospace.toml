@@ -25,7 +25,7 @@ outer.top =        0
 outer.right =      0
 
 [[on-window-detected]]
-if.app-name-regex-substring = '^1Password|^Deliveries|^Hammerspoon|^Music|^Snagit|^Simulator'
+if.app-name-regex-substring = '^1Password|^Deliveries|^Hammerspoon|^Music|^Snagit|^Simulator|^zoom'
 check-further-callbacks = true
 run = ['layout floating']
 
@@ -35,7 +35,7 @@ check-further-callbacks = true
 run = ['move-node-to-workspace 1']
 
 [[on-window-detected]]
-if.app-name-regex-substring = '^Asana|^zoom\.us'
+if.app-name-regex-substring = '^Asana'
 check-further-callbacks = true
 run = ['move-node-to-workspace 3']
 
