@@ -160,6 +160,8 @@ miscellaneous() {
   npm install -g @commitlint/config-conventional >/dev/null 2>&1;
 
   npm install -g react-devtools >/dev/null 2>&1; # react-devtools for Safari
+
+  npm install -g @anthropic-ai/claude-code
   
   gem update --system >/dev/null 2>&1;
 }
