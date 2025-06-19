@@ -25,10 +25,6 @@ if command -v bat 2>&1 >/dev/null; then
   alias cat='bat'
 fi
 
-if command -v bat 2>&1 >/dev/null; then
-  alias claude='pco aws-login > /dev/null && claude'
-fi
-
 # Logs
 if command -v grc 2>&1 >/dev/null; then
   alias super_tail="grc tail -f ~/Code/*/log/development.log"
