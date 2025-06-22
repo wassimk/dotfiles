@@ -1,7 +1,6 @@
 #!/bin/bash
 
 RUBY_VERSION=3.4.1
-NODE_VERSION=20.19.0
 
 macOS="macOS"
 ubuntu="ubuntu"
@@ -52,26 +51,6 @@ installHomebrew() {
 
 installHomebrewPackages() {
   brew bundle
-}
-
-installAsdf() {
-  if command -v asdf >/dev/null 2>&1; then
-    asdf plugin update nodejs
-    asdf plugin update alias
-    asdf install
-    # Update the nodejs version in .tool-versions
-    if grep -q "^nodejs " "$HOME"/.tool-versions; then
-      sed -i.bak "s/^nodejs .*$/nodejs $NODE_VERSION/" "$HOME"/.tool-versions && rm -f "$HOME"/.tool-versions.bak
-    else
-      echo "nodejs $NODE_VERSION" >> "$HOME"/.tool-versions
-    fi
-
-  else
-    git clone https://github.com/asdf-vm/asdf.git "$HOME"/.asdf --branch v0.11.1
-    asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-    asdf plugin add alias https://github.com/andrewthauer/asdf-alias.git
-    asdf install nodejs $NODE_VERSION
-  fi
 }
 
 setupDotFiles() {
@@ -156,14 +135,19 @@ miscellaneous() {
   ln -s /opt/homebrew/bin/op /usr/local/bin/op >/dev/null 2>&1;
   ln -s ~/.bin/open /usr/local/bin/open >/dev/null 2>&1;
 
+  gem update --system >/dev/null 2>&1;
+}
+
+setupNPM() {
+  mkdir -p "$HOME/.npm-global"
+  npm config set prefix "$HOME/.npm-global"
+
   # mason.nvim should be installing this but it doesn't seem to be working
   npm install -g @commitlint/config-conventional >/dev/null 2>&1;
 
   npm install -g react-devtools >/dev/null 2>&1; # react-devtools for Safari
 
   npm install -g @anthropic-ai/claude-code 
-  
-  gem update --system >/dev/null 2>&1;
 }
 
 echo ""
@@ -174,7 +158,6 @@ verifyPrivateFileExists
 verifyGpgKeyExists
 installHomebrew
 installHomebrewPackages
-installAsdf
 setupDotFiles
 setupRuby
 installRust
@@ -182,6 +165,7 @@ installNeovim
 installTerminal
 installGhExtensions
 setupOS
+setupNPM
 miscellaneous
 
 echo ""
