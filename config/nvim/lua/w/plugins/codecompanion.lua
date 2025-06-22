@@ -56,9 +56,9 @@ return {
     },
   },
   keys = {
-    { '<leader>a', '', desc = '+ai', mode = { 'n', 'v' } },
+    { '<leader>ac', '', desc = '+Code Companion', mode = { 'n', 'v' } },
     {
-      '<leader>aa',
+      '<leader>aca',
       function()
         require('codecompanion').toggle()
       end,
@@ -66,7 +66,7 @@ return {
       mode = { 'n', 'v' },
     },
     {
-      '<leader>ax',
+      '<leader>acx',
       function()
         require('codecompanion').refresh_cache()
       end,
@@ -74,7 +74,7 @@ return {
       mode = { 'n', 'v' },
     },
     {
-      '<leader>aq',
+      '<leader>acq',
       function()
         local input = vim.fn.input('Quick Chat: ')
         if input ~= '' then
@@ -85,7 +85,7 @@ return {
       mode = { 'n', 'v' },
     },
     {
-      '<leader>ap',
+      '<leader>acp',
       '<cmd>CodeCompanionActions<cr>',
       desc = 'AI: actions',
       mode = { 'n', 'v' },
