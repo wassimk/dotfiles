@@ -19,9 +19,6 @@ bindkey '^x^x' edit-command-line
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
-# asdf
-source $HOME/.asdf/asdf.sh
-
 # Personal Aliases, Functions and Secrets
 source $HOME/.zsh/completion
 source $HOME/.zsh/aliases
@@ -65,9 +62,13 @@ source $HOME/.config/op/plugins.sh
 export GPG_TTY=$(tty)
 
 # Planning Center
-eval "$($HOME/Code/pco/bin/pco init -)"
 source $HOME/pco-box/env.sh
 source $HOME/pco-box/bin/complete.bash
+eval "$($HOME/Code/pco/bin/pco init -)"
+
+if [[ -e /usr/local/bin/devbox ]]; then
+  eval "$(devbox global shellenv)"
+fi
 
 if [[ -e "/opt/homebrew/bin/brew" ]]; then
   export PATH="/opt/homebrew/bin:$PATH"
@@ -76,10 +77,6 @@ fi
 
 if [[ -d $HOME/.rbenv ]]; then
   eval "$(rbenv init -)"
-fi
-
-if [[ -d "$HOME/.asdf" ]]; then
-  source "$HOME/.asdf/asdf.sh"
 fi
 
 if command -v direnv &> /dev/null; then
