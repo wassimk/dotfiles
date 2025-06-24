@@ -17,6 +17,7 @@ return {
     local wk = require('which-key')
 
     wk.setup({
+      preset = 'helix',
       show_help = false,
       plugins = {
         spelling = {
@@ -40,16 +41,16 @@ return {
       { 'l', hidden = true },
       { 'n', hidden = true },
       { '<2-LeftMouse>', desc = 'Match double clicked word' },
-      { '<C-f>', desc = 'telescope prefix' },
-      { '<M-r>', desc = 'harpoon prefix' },
-      { '<leader><Space>', desc = 'miscellaneous prefix' },
-      { '<leader>d', desc = 'dap/diagnostics prefix' },
-      { '<leader>h', desc = 'gitsigns / harpoon prefix' },
-      { '<leader>hd', desc = 'diff prefix' },
-      { '<leader>t', desc = 'testing prefix' },
+      { '<C-f>', desc = 'telescope' },
+      { '<M-r>', desc = 'harpoon' },
+      { '<leader><Space>', desc = 'miscellaneous' },
+      { '<leader>d', desc = 'dap/diagnostics' },
+      { '<leader>h', desc = 'gitsigns / harpoon' },
+      { '<leader>hd', desc = 'diff' },
+      { '<leader>t', desc = 'testing' },
       { 'Y', desc = 'Yank to end of line' },
-      { 'gl', desc = 'lsp prefix' },
-      { 'gr', desc = 'selection prefix' },
+      { 'gl', desc = 'lsp' },
+      { 'gr', desc = 'selection' },
     })
   end,
 }
