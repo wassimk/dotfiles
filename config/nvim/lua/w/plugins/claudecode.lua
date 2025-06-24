@@ -7,6 +7,11 @@ return {
   'coder/claudecode.nvim',
   dependencies = { 'folke/snacks.nvim' },
   config = true,
+  cmd = {
+    'ClaudeCode',
+    'ClaudeCodeAdd',
+    'ClaudeCodeSend',
+  },
   keys = {
     { '<leader>a', nil, desc = '+AI' },
     { '<leader>aa', '<cmd>ClaudeCode<cr>', desc = 'Toggle Claude' },
