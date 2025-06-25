@@ -72,3 +72,4 @@ tags.lock
 tags.temp
 
 .devbox
+.claude/*.local.json
