@@ -7,6 +7,9 @@ window-padding-x = 1
 window-padding-y = 1
 link-url
 
+# Make cursor a block outside of tmux
+shell-integration-features = no-cursor
+
 # Font
 font-family = MonoLisa Nerd Font
 font-size = 12
