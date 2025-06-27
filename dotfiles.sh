@@ -6,7 +6,7 @@ echo ""
 echo "Installing dot files..."
 echo ""
 
-rcup -v -x "./*.sh" -x "*.md" -x "*.log" -x "iterm/com*" -x "config/karabiner" -x "config/lazygit*" -x "Library/Keybindings" -x "Brewfile*"
+rcup -v -x "./*.sh" -x "*.md" -x "*.log" -x "iterm/com*" -x "config/karabiner" -x "config/lazygit*" -x "Library/Keybindings" -x "Library/LaunchAgents" -x "Brewfile*"
 
 # vcs-jump installed by lazy plugin manager in vim
 vcs_jump_link="$HOME"/.bin/vcs-jump
@@ -20,7 +20,21 @@ fi
 # must symlink the directory for these apps
 ln -sf "$HOME"/.dotfiles/config/karabiner "$HOME"/.config
 ln -sf "$HOME"/.dotfiles/iterm "$HOME"/.config
-ln -sf "$HOME"/.dotfiles/Library/Keybindings "$HOME"/Library
+
+# copy Library files to ~/Library
+echo "Copying Library files..."
+find "$HOME/.dotfiles/Library" -type f | while read -r file; do
+  relative_path="${file#"$HOME"/.dotfiles/Library/}"
+  target_dir="$HOME/Library/$(dirname "$relative_path")"
+  target_file="$HOME/Library/$relative_path"
+
+  # create target directory if it doesn't exist
+  mkdir -p "$target_dir"
+
+  # copy file, replacing if it exists
+  cp "$file" "$target_file" >/dev/null 2>&1
+  echo "Copied: $relative_path"
+done
 
 # lazygit config wants to live somewhere odd, let's symlink it
 real_lazygit_config_dir="$HOME/Library/Application Support/lazygit"
