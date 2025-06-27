@@ -75,10 +75,6 @@ if [[ -e "/opt/homebrew/bin/brew" ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-if [[ -d $HOME/.rbenv ]]; then
-  eval "$(rbenv init -)"
-fi
-
 if command -v direnv &> /dev/null; then
   eval "$(direnv hook zsh)"
 fi
