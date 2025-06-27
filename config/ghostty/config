@@ -3,13 +3,14 @@
 # Window
 window-decoration = auto
 macos-titlebar-style = hidden
-font-thicken = true
 window-padding-x = 1
 window-padding-y = 1
+link-url
 
 # Font
 font-family = MonoLisa Nerd Font
 font-size = 12
+font-thicken
 
 # Scrollback
 scrollback-limit = 20000
