@@ -1,12 +1,10 @@
 # Ghostty configuration converted from alacritty
 
-# Terminal
-term = xterm-256color
-
 # Window
 window-decoration = auto
 macos-titlebar-style = hidden
-window-padding-x = 3
+font-thicken = true
+window-padding-x = 1
 window-padding-y = 1
 
 # Font
@@ -40,11 +38,11 @@ palette = 13=#c678dd
 palette = 14=#56b6c2
 palette = 15=#e6efff
 
-# Keybindings
-
 # Quit instance without confirmation
 quit-after-last-window-closed = true
 confirm-close-surface = false
+
+# Keybindings
 
 # tmux launch command mode
 # keybind = super+bracketleft=text:\x13[
