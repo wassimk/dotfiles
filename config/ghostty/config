@@ -20,6 +20,8 @@ confirm-close-surface = false
 # Font
 font-family = MonoLisa Variable
 font-family = Symbols Nerd Font
+# https://www.monolisa.dev/playground
+font-feature = +ss07, +ss08, +ss11, +ss12, +ss13, +ss13, +ss14, +ss17, +zero
 font-size = 12
 font-thicken
 
