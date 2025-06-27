@@ -11,9 +11,9 @@ return {
     event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
       { 'onsails/lspkind.nvim' }, -- uses Blink highlights for LSP document symbols in qf
-      { 'kristijanhusak/vim-dadbod-completion' },
-      { 'Kaiser-Yang/blink-cmp-git' },
-      { 'Dynge/gitmoji.nvim' },
+      { 'kristijanhusak/vim-dadbod-completion', ft = 'mysql' },
+      { 'Kaiser-Yang/blink-cmp-git', ft = 'gitcommit' },
+      { 'Dynge/gitmoji.nvim', ft = 'gitcommit' },
       { 'wassimk/cmp-rails-fixture-types', ft = 'ruby', dev = true },
       { 'wassimk/cmp-rails-fixture-names', ft = 'ruby', dev = true },
       { 'wassimk/cmp-feature-flipper', dev = true },
