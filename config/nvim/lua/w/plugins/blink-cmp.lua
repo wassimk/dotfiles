@@ -16,6 +16,7 @@ return {
     event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
       { 'onsails/lspkind.nvim' }, -- uses Blink highlights for LSP document symbols in qf
+      { 'rcarriga/cmp-dap' },
       { 'kristijanhusak/vim-dadbod-completion', ft = 'mysql' },
       { 'Kaiser-Yang/blink-cmp-git', ft = 'gitcommit' },
       { 'Dynge/gitmoji.nvim', ft = 'gitcommit' },
@@ -91,6 +92,9 @@ return {
           ruby = { inherit_defaults = true, 'rails_fixture_types', 'rails_fixture_names', 'feature_flipper' },
           gitcommit = { 'buffer', 'snippets', 'gitmoji', 'git', 'git_handles' },
           mysql = { 'snippets', 'dadbod', 'buffer' },
+          ['dap-repl'] = { 'dap' },
+          ['dapui_watches'] = { 'dap' },
+          ['dapui_hover'] = { 'dap' },
         },
 
         providers = {
@@ -108,6 +112,10 @@ return {
           },
           git_handles = {
             name = 'git_handles',
+            module = 'blink.compat.source',
+          },
+          dap = {
+            name = 'dap',
             module = 'blink.compat.source',
           },
           git = {
