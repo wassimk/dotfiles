@@ -86,13 +86,6 @@ installNeovim() {
   esac
 }
 
-installTerminal() {
-  case $os in
-    $macOS*)
-      bin/install-alacritty.sh latest
-      ;;
-  esac
-}
 
 installGhExtensions() {
   gh extension install dlvhdr/gh-dash >/dev/null 2>&1;
@@ -164,7 +157,6 @@ setupDotFiles
 setupRuby
 installRust
 installNeovim
-installTerminal
 installGhExtensions
 setupOS
 setupNPM
