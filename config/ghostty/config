@@ -22,9 +22,6 @@ font-family = MonoLisa Nerd Font
 font-size = 12
 font-thicken
 
-# Scrollback
-scrollback-limit = 20000
-
 # Colors - One Dark theme
 background = 1e2127
 foreground = abb2bf
@@ -49,14 +46,13 @@ palette = 13=#c678dd
 palette = 14=#56b6c2
 palette = 15=#e6efff
 
-# Quit instance without confirmation
-quit-after-last-window-closed = true
-confirm-close-surface = false
-
 # Keybindings
 
-# tmux launch command mode
-# keybind = super+bracketleft=text:\x13[
+# shell type lf<enter> to launch file finder
+keybind = super+f=text:lf\r
+
+# tmux launch copy mode
+keybind = super+left_bracket=text:\x13[
 
 # tmux launch the session switcher
 keybind = super+k=text:\x13w
@@ -101,23 +97,3 @@ keybind = super+shift+t=text:\x13!
 
 # tmux toggle the zoom state of the current pane
 keybind = super+z=text:\x13z
-
-# shell type lf<enter> to launch file finder
-keybind = super+f=text:lf\r
-
-# shell control sequences
-keybind = delete=text:\x04
-keybind = alt+b=text:\x1bb
-keybind = alt+c=text:\x1bc
-keybind = alt+f=text:\x1bf
-keybind = alt+q=text:\x1bq
-keybind = alt+r=text:\x1br
-keybind = alt+y=text:\x1by
-keybind = alt+u=text:\x1bu
-keybind = alt+i=text:\x1bi
-keybind = alt+o=text:\x1bo
-keybind = alt+left=text:\x1bb
-keybind = alt+right=text:\x1bf
-keybind = ctrl+q=text:\x11
-keybind = ctrl+b=text:\x02
-keybind = ctrl+slash=text:\x1f
