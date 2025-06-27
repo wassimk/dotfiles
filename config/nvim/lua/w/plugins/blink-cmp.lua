@@ -10,6 +10,7 @@ return {
     'saghen/blink.cmp',
     event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
+      { 'onsails/lspkind.nvim' }, -- uses Blink highlights for LSP document symbols in qf
       { 'kristijanhusak/vim-dadbod-completion' },
       { 'Kaiser-Yang/blink-cmp-git' },
       { 'Dynge/gitmoji.nvim' },
