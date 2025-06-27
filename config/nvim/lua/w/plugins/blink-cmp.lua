@@ -1,3 +1,8 @@
+--
+-- blink.cmp
+-- https://github.com/Saghen/blink.cmp
+--
+
 return {
   {
     'saghen/blink.compat',
@@ -84,7 +89,7 @@ return {
 
         per_filetype = {
           ruby = { inherit_defaults = true, 'rails_fixture_types', 'rails_fixture_names', 'feature_flipper' },
-          gitcommit = { 'buffer', 'snippets', 'gitmoji', 'git' },
+          gitcommit = { 'buffer', 'snippets', 'gitmoji', 'git', 'git_handles' },
           mysql = { 'snippets', 'dadbod', 'buffer' },
         },
 
@@ -99,6 +104,10 @@ return {
           },
           feature_flipper = {
             name = 'feature_flipper',
+            module = 'blink.compat.source',
+          },
+          git_handles = {
+            name = 'git_handles',
             module = 'blink.compat.source',
           },
           git = {
