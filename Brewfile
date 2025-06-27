@@ -46,6 +46,8 @@ brew "zsh-syntax-highlighting"
 
 cask "ghostty"
 
+cask "font-symbols-only-nerd-font"
+
 # server tools
 brew "redis"
 brew "postgresql@14"
