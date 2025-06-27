@@ -18,7 +18,8 @@ quit-after-last-window-closed = true
 confirm-close-surface = false
 
 # Font
-font-family = MonoLisa Nerd Font
+font-family = MonoLisa Variable
+font-family = Symbols Nerd Font
 font-size = 12
 font-thicken
 

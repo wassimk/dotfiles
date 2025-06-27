@@ -38,10 +38,8 @@ function M.setup()
 
   -- global configuration
   vim.diagnostic.config({
-    virtual_text = {
-      current_line = true,
-    },
-    underline = false,
+    virtual_text = false,
+    underline = true,
     signs = {
       priority = 10,
       text = signs,
