@@ -9,8 +9,8 @@ return {
     require('illuminate').configure({
       providers = {
         'lsp',
-        -- 'treesitter',
-        -- 'regex',
+        'treesitter',
+        'regex',
       },
     })
   end,
