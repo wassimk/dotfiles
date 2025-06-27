@@ -45,6 +45,8 @@ brew "zoxide"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 
+cask "ghostty"
+
 # server tools
 brew "redis"
 brew "postgresql@14"
