@@ -38,7 +38,7 @@ return {
           name = 'copilot',
           model = 'claude-3.7-sonnet',
         },
-        completion_provider = 'cmp',
+        completion_provider = 'blink',
         roles = {
           llm = function(adapter)
             if adapter.name == 'copilot' then
