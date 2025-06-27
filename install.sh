@@ -1,7 +1,5 @@
 #!/bin/bash
 
-RUBY_VERSION=3.4.1
-
 macOS="macOS"
 ubuntu="ubuntu"
 uname=$(uname -v)
@@ -57,9 +55,9 @@ setupDotFiles() {
   (cd "$HOME"/.dotfiles || exit; bash dotfiles.sh)
 }
 
-setupRuby() {
-  rbenv install $RUBY_VERSION --skip-existing
-  rbenv global $RUBY_VERSION
+installDevboxPackages() {
+  devbox global add nodejs@latest
+  devbox global add ruby@latest
 }
 
 installRust() {
@@ -153,8 +151,8 @@ verifyPrivateFileExists
 verifyGpgKeyExists
 installHomebrew
 installHomebrewPackages
+installDevboxPackages
 setupDotFiles
-setupRuby
 installRust
 installNeovim
 installGhExtensions
