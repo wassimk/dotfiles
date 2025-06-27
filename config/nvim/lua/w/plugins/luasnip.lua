@@ -7,7 +7,6 @@ return {
   'L3MON4D3/LuaSnip',
   event = 'InsertEnter',
   version = '*',
-  dependencies = 'saadparwaiz1/cmp_luasnip',
   config = function()
     local luasnip = require('luasnip')
 
