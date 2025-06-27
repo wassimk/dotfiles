@@ -99,6 +99,7 @@ setupOS() {
   case $os in
     $macOS*)
       brew bundle --file="$HOME"/.dotfiles/Brewfile-macos_apps
+      launchctl bootstrap gui/"$(id -u)" "$HOME"/Library/LaunchAgents/com.user.autolights.plist --help >/dev/null 2>&1
       ;;
     $ubuntu*)
       sudo timedatectl set-timezone America/Chicago
