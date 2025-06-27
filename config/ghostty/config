@@ -1,0 +1,113 @@
+# Ghostty configuration converted from alacritty
+
+# Terminal
+term = xterm-256color
+
+# Window
+window-decoration = false
+window-padding-x = 3
+window-padding-y = 0
+
+# Font
+font-family = MonoLisa Nerd Font
+font-size = 12
+
+# Scrollback
+scrollback-limit = 20000
+
+# Colors - One Dark theme
+background = 1e2127
+foreground = abb2bf
+
+# Normal colors
+palette = 0=#1e2127
+palette = 1=#e06c75
+palette = 2=#98c379
+palette = 3=#d19a66
+palette = 4=#61afef
+palette = 5=#c678dd
+palette = 6=#56b6c2
+palette = 7=#828791
+
+# Bright colors
+palette = 8=#5c6370
+palette = 9=#e06c75
+palette = 10=#98c379
+palette = 11=#d19a66
+palette = 12=#61afef
+palette = 13=#c678dd
+palette = 14=#56b6c2
+palette = 15=#e6efff
+
+# Keybindings
+
+# Quit instance without confirmation
+quit-after-last-window-closed = true
+confirm-close-surface = false
+
+# tmux launch command mode
+# keybind = super+bracketleft=text:\x13[
+
+# tmux launch the session switcher
+keybind = super+k=text:\x13w
+
+# tmux switch to last session
+keybind = super+l=text:\x13L
+
+# tmux detach the current client
+keybind = super+alt+q=text:\x13d
+
+# tmux create a new window
+keybind = super+t=text:\x13c
+
+# tmux split the current pane, horizontal
+keybind = super+n=text:\x13"
+
+# tmux split the current pane, vertical
+keybind = super+shift+n=text:\x13%
+
+# tmux kill the current pane (and window if last pane)
+keybind = super+w=text:\x13x
+
+# tmux rename the current window
+keybind = super+comma=text:\x13,
+
+# tmux rename the current session
+keybind = super+period=text:\x13$
+
+# tmux select windows 1-9
+keybind = super+one=text:\x131
+keybind = super+two=text:\x132
+keybind = super+three=text:\x133
+keybind = super+four=text:\x134
+keybind = super+five=text:\x135
+keybind = super+six=text:\x136
+keybind = super+seven=text:\x137
+keybind = super+eight=text:\x138
+keybind = super+nine=text:\x139
+
+# tmux break the current pane out into its own window
+keybind = super+shift+t=text:\x13!
+
+# tmux toggle the zoom state of the current pane
+keybind = super+z=text:\x13z
+
+# shell type lf<enter> to launch file finder
+keybind = super+f=text:lf\r
+
+# shell control sequences
+keybind = delete=text:\x04
+keybind = alt+b=text:\x1bb
+keybind = alt+c=text:\x1bc
+keybind = alt+f=text:\x1bf
+keybind = alt+q=text:\x1bq
+keybind = alt+r=text:\x1br
+keybind = alt+y=text:\x1by
+keybind = alt+u=text:\x1bu
+keybind = alt+i=text:\x1bi
+keybind = alt+o=text:\x1bo
+keybind = alt+left=text:\x1bb
+keybind = alt+right=text:\x1bf
+keybind = ctrl+q=text:\x11
+keybind = ctrl+b=text:\x02
+keybind = ctrl+slash=text:\x1f
