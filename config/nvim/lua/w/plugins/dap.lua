@@ -6,10 +6,10 @@
 --
 
 -- icons in gutter
-vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DapUIWatchesError' })
-vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'DapUIWatchesError' })
-vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'DapUIWatchesError' })
-vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = 'DapUIWatchesError' })
+vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DapUIBreakpointsPath' })
+vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'DapUIBreakpointsPath' })
+vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'DapUIBreakpointsPath' })
+vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = 'DapUIBreakpointsPath' })
 vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapUIPlayPause' })
 
 return {
