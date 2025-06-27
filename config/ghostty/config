@@ -4,9 +4,10 @@
 term = xterm-256color
 
 # Window
-window-decoration = false
+window-decoration = auto
+macos-titlebar-style = hidden
 window-padding-x = 3
-window-padding-y = 0
+window-padding-y = 1
 
 # Font
 font-family = MonoLisa Nerd Font
