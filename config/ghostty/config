@@ -6,9 +6,16 @@ macos-titlebar-style = hidden
 window-padding-x = 1
 window-padding-y = 1
 link-url
+mouse-hide-while-typing
+macos-auto-secure-input
+macos-secure-input-indication
 
 # Make cursor a block outside of tmux
 shell-integration-features = no-cursor
+
+# Quit instance without confirmation
+quit-after-last-window-closed = true
+confirm-close-surface = false
 
 # Font
 font-family = MonoLisa Nerd Font
