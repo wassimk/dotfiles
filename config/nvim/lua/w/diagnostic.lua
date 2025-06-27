@@ -41,7 +41,7 @@ function M.setup()
     virtual_text = {
       current_line = true,
     },
-    underline = false,
+    underline = true,
     signs = {
       priority = 10,
       text = signs,
