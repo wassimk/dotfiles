@@ -67,7 +67,7 @@ preset = 'qwerty'
 
 [mode.main.binding]
 alt-slash = 'layout tiles horizontal vertical'
-alt-comma = 'layout accordion horizontal vertical'
+alt-period = 'layout accordion horizontal vertical'
 
 shift-alt-0 = 'balance-sizes'
 shift-alt-f = 'fullscreen'
