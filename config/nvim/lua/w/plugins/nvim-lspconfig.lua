@@ -24,7 +24,11 @@ return {
     {
       'folke/lazydev.nvim',
       ft = 'lua',
-      config = true,
+      opts = {
+        library = {
+          { path = 'snacks.nvim', words = { 'Snacks' } },
+        },
+      },
     },
     'pmizio/typescript-tools.nvim',
     'simrat39/rust-tools.nvim',

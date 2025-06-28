@@ -84,6 +84,7 @@ return {
 
       sources = {
         default = {
+          'lazydev',
           'lsp',
           'snippets',
           'buffer',
@@ -132,6 +133,11 @@ return {
           gitmoji = {
             name = 'gitmoji',
             module = 'gitmoji.blink',
+          },
+          lazydev = {
+            name = 'LazyDev',
+            module = 'lazydev.integrations.blink',
+            score_offset = 100,
           },
         },
       },
