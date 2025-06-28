@@ -17,7 +17,7 @@ function M.setup()
     'go',
     'html',
     'json',
-    'lua',
+    'lua_ls',
     'remark',
     'rust',
     'tailwind',
