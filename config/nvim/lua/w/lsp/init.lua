@@ -19,7 +19,7 @@ function M.setup()
     'json',
     'lua_ls',
     'remark',
-    'rust',
+    -- 'rust', -- configured by by mrcjkb/rustaceanvim
     'tailwind',
     'vim',
     'yaml',
