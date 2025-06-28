@@ -6,7 +6,6 @@ local M = {}
 
 function M.setup()
   -- configure servers
-  require('w.lsp.javascript')
   require('w.lsp.ruby')
 
   vim.lsp.enable({
@@ -16,6 +15,7 @@ function M.setup()
     'eslint',
     -- 'go', -- configured by ray-x/go.nvim
     'html',
+    -- 'javascript', -- configured by pmizio/typescript-tools.nvim
     'json',
     'lua_ls', -- supported by floke/lazydev.nvim
     'remark',
