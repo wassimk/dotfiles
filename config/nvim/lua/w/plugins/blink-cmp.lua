@@ -1,6 +1,7 @@
 --
--- blink.cmp
+-- blink.cmp, blink.compat
 -- https://github.com/Saghen/blink.cmp
+-- https://github.com/Saghen/blink.compat
 --
 
 return {
@@ -9,20 +10,21 @@ return {
     version = '2.*',
     lazy = true,
     opts = {},
+    dependencies = {
+      { 'wassimk/cmp-rails-fixture-types' },
+      { 'wassimk/cmp-rails-fixture-names' },
+      { 'wassimk/cmp-feature-flipper' },
+      { 'rcarriga/cmp-dap' },
+    },
   },
-
   {
     'saghen/blink.cmp',
     event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
       { 'onsails/lspkind.nvim' }, -- uses Blink highlights for LSP document symbols in qf
-      { 'rcarriga/cmp-dap' },
       { 'kristijanhusak/vim-dadbod-completion', ft = 'mysql' },
       { 'Kaiser-Yang/blink-cmp-git', ft = 'gitcommit' },
       { 'Dynge/gitmoji.nvim', ft = 'gitcommit' },
-      { 'wassimk/cmp-rails-fixture-types', ft = 'ruby', dev = true },
-      { 'wassimk/cmp-rails-fixture-names', ft = 'ruby', dev = true },
-      { 'wassimk/cmp-feature-flipper', dev = true },
     },
 
     version = '1.*',
@@ -32,8 +34,8 @@ return {
         ['<C-u>'] = {
           'scroll_documentation_up',
           function(cmp)
-            local has_luasnip, luasnip = pcall(require, 'luasnip')
             if cmp.snippet_active() then
+              local has_luasnip, luasnip = pcall(require, 'luasnip')
               if has_luasnip and luasnip.choice_active() then
                 vim.schedule(function() -- address a bug
                   require('luasnip.extras.select_choice')()
