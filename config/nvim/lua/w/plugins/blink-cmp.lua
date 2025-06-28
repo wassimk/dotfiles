@@ -35,7 +35,9 @@ return {
             local has_luasnip, luasnip = pcall(require, 'luasnip')
             if cmp.snippet_active() then
               if has_luasnip and luasnip.choice_active() then
-                require('luasnip.extras.select_choice')()
+                vim.schedule(function() -- address a bug
+                  require('luasnip.extras.select_choice')()
+                end)
               end
             end
           end,
