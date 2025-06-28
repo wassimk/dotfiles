@@ -109,15 +109,15 @@ return {
       function()
         Snacks.explorer(explorer_opts)
       end,
-      desc = 'FILES: toggle file tree',
+      desc = 'FILES: toggle explorer',
     },
     {
       '<leader>f',
       function()
-        Snacks.picker.files(picker_opts)
+        Snacks.picker.smart(picker_opts)
       end,
       mode = { 'n', 'x' },
-      desc = 'SNACKS: find files',
+      desc = 'SNACKS: smart',
     },
     {
       '<leader>b',
@@ -125,15 +125,7 @@ return {
         Snacks.picker.buffers(picker_opts)
       end,
       mode = { 'n', 'x' },
-      desc = 'SNACKS: find buffers',
-    },
-    {
-      '<leader>g',
-      function()
-        Snacks.picker.git_status(picker_opts)
-      end,
-      mode = { 'n', 'x' },
-      desc = 'SNACKS: find git status files',
+      desc = 'SNACKS: buffers',
     },
     {
       '<leader>s',
@@ -141,7 +133,7 @@ return {
         Snacks.picker.grep(picker_opts)
       end,
       mode = { 'n', 'x' },
-      desc = 'SNACKS: live grep',
+      desc = 'SNACKS: grep',
     },
     {
       '<leader>w',
@@ -152,12 +144,52 @@ return {
       desc = 'SNACKS: grep word',
     },
     {
+      '<leader>g',
+      function()
+        Snacks.picker.git_status()
+      end,
+      mode = { 'n', 'x' },
+      desc = 'SNACKS: git status',
+    },
+    {
+      '<C-f>a',
+      function()
+        Snacks.picker.pickers()
+      end,
+      mode = { 'n', 'x' },
+      desc = 'SNACKS: all pickers',
+    },
+    {
+      '<C-f>i',
+      function()
+        Snacks.picker.icons()
+      end,
+      mode = { 'n', 'x' },
+      desc = 'SNACKS: icons',
+    },
+    {
+      '<C-f>l',
+      function()
+        Snacks.picker.highlights()
+      end,
+      mode = { 'n', 'x' },
+      desc = 'SNACKS: highlights',
+    },
+    {
+      '<C-f>f',
+      function()
+        Snacks.picker.files(picker_opts)
+      end,
+      mode = { 'n', 'x' },
+      desc = 'SNACKS: files',
+    },
+    {
       '<C-f>s',
       function()
-        Snacks.picker.search_history(picker_opts)
+        Snacks.picker.search_history()
       end,
       mode = 'n',
-      desc = 'SNACKS: grep history',
+      desc = 'SNACKS: search history',
     },
     {
       '<C-f>c',
