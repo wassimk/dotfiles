@@ -14,10 +14,10 @@ function M.setup()
     'css',
     'emmet',
     'eslint',
-    'go',
+    -- 'go', -- configured by ray-x/go.nvim
     'html',
     'json',
-    'lua_ls',
+    'lua_ls', -- supported by floke/lazydev.nvim
     'remark',
     -- 'rust', -- configured by by mrcjkb/rustaceanvim
     'tailwind',
