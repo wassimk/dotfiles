@@ -1,100 +1,121 @@
 --
--- codecompanion.nvim
+-- codecompanion.nvim, mcphub.nvim
 -- https://github.com/olimorris/codecompanion.nvim
+-- https://github.com/ravitemer/mcphub.nvim
+-- https://github.com/echasnovski/mini.diff
+-- https://github.com/MeanderingProgrammer/render-markdown.nvim
 --
 
 return {
-  'olimorris/codecompanion.nvim',
-  cmd = {
-    'CodeCompanion',
-    'CodeCompanionActions',
-    'CodeCompanionChat',
-    'CodeCompanionCmd',
+  {
+    'ravitemer/mcphub.nvim',
+    cmd = { 'MCPHub' },
+    build = 'npm install -g mcp-hub@latest', -- can't be a dependency for build to work
+    opts = {},
   },
-  opts = {
-    extensions = {
-      mcphub = {
-        callback = 'mcphub.extensions.codecompanion',
-        opts = {
-          make_vars = true,
-          make_slash_commands = true,
-          show_result_in_chat = true,
+  {
+    'olimorris/codecompanion.nvim',
+    cmd = {
+      'CodeCompanion',
+      'CodeCompanionActions',
+      'CodeCompanionChat',
+      'CodeCompanionCmd',
+    },
+    opts = {
+      extensions = {
+        mcphub = {
+          callback = 'mcphub.extensions.codecompanion',
+          opts = {
+            make_vars = true,
+            make_slash_commands = true,
+            show_result_in_chat = true,
+          },
+        },
+      },
+      display = {
+        chat = {
+          intro_message = nil,
+          start_in_insert_mode = true,
+        },
+        diff = {
+          enabled = true,
+          provider = 'mini_diff',
+        },
+      },
+      strategies = {
+        chat = {
+          adapter = {
+            name = 'copilot',
+            model = 'claude-3.7-sonnet',
+          },
+          completion_provider = 'blink',
+          roles = {
+            llm = function(adapter)
+              if adapter.name == 'copilot' then
+                return '  Copilot'
+              else
+                return 'icon  ' .. adapter.formatted_name
+              end
+            end,
+            user = function()
+              local username = vim.env.USER or 'User'
+              return username:sub(1, 1):upper() .. username:sub(2)
+            end,
+          },
         },
       },
     },
-    display = {
-      chat = {
-        intro_message = nil,
-        start_in_insert_mode = true,
+    keys = {
+      { '<leader>ac', '', desc = '+Code Companion', mode = { 'n', 'v' } },
+      {
+        '<leader>aca',
+        function()
+          require('codecompanion').toggle()
+        end,
+        desc = 'AI: toggle',
+        mode = { 'n', 'v' },
       },
-      diff = {
-        enabled = true,
-        provider = 'mini_diff',
+      {
+        '<leader>acx',
+        function()
+          require('codecompanion').refresh_cache()
+        end,
+        desc = 'AI: refresh cache',
+        mode = { 'n', 'v' },
+      },
+      {
+        '<leader>acq',
+        function()
+          local input = vim.fn.input('Quick Chat: ')
+          if input ~= '' then
+            vim.cmd('CodeCompanion ' .. input)
+          end
+        end,
+        desc = 'AI: quick chat',
+        mode = { 'n', 'v' },
+      },
+      {
+        '<leader>acp',
+        '<cmd>CodeCompanionActions<cr>',
+        desc = 'AI: actions',
+        mode = { 'n', 'v' },
       },
     },
-    strategies = {
-      chat = {
-        adapter = {
-          name = 'copilot',
-          model = 'claude-3.7-sonnet',
-        },
-        completion_provider = 'blink',
-        roles = {
-          llm = function(adapter)
-            if adapter.name == 'copilot' then
-              return '  Copilot'
-            else
-              return 'icon  ' .. adapter.formatted_name
-            end
-          end,
-          user = function()
-            local username = vim.env.USER or 'User'
-            return username:sub(1, 1):upper() .. username:sub(2)
-          end,
-        },
+    dependencies = {
+      {
+        'MeanderingProgrammer/render-markdown.nvim',
+        ft = { 'codecompanion' },
       },
-    },
-  },
-  keys = {
-    { '<leader>ac', '', desc = '+Code Companion', mode = { 'n', 'v' } },
-    {
-      '<leader>aca',
-      function()
-        require('codecompanion').toggle()
-      end,
-      desc = 'AI: toggle',
-      mode = { 'n', 'v' },
-    },
-    {
-      '<leader>acx',
-      function()
-        require('codecompanion').refresh_cache()
-      end,
-      desc = 'AI: refresh cache',
-      mode = { 'n', 'v' },
-    },
-    {
-      '<leader>acq',
-      function()
-        local input = vim.fn.input('Quick Chat: ')
-        if input ~= '' then
-          vim.cmd('CodeCompanion ' .. input)
-        end
-      end,
-      desc = 'AI: quick chat',
-      mode = { 'n', 'v' },
-    },
-    {
-      '<leader>acp',
-      '<cmd>CodeCompanionActions<cr>',
-      desc = 'AI: actions',
-      mode = { 'n', 'v' },
-    },
-  },
-  dependencies = {
-    {
-      'MeanderingProgrammer/render-markdown.nvim',
-      ft = { 'codecompanion' },
+      {
+        'echasnovski/mini.diff',
+        config = function()
+          local diff = require('mini.diff')
+          diff.setup({
+            -- Disabled by default, codecompanion.nvim will call it
+            source = diff.gen_source.none(),
+          })
+        end,
+      },
     },
   },
 }
