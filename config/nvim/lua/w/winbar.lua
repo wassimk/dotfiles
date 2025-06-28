@@ -5,7 +5,6 @@
 local M = {}
 
 local winbar_filetype_exclude = {
-  'NvimTree',
   'fugitive',
   'help',
   'packer',
@@ -26,6 +25,11 @@ end
 
 function M.statusline(root_path)
   if vim.tbl_contains(winbar_filetype_exclude, vim.bo.filetype) then
+    return ''
+  end
+
+  -- Hide winbar for scratch buffers
+  if vim.bo.buftype == 'nofile' or vim.api.nvim_buf_get_name(0) == '' then
     return ''
   end
 

@@ -5,6 +5,32 @@
 
 return {
   'folke/snacks.nvim',
+  lazy = false,
+  keys = {
+    {
+      '<C-n>',
+      function()
+        Snacks.picker.explorer({
+
+          follow_file = true,
+          focus = 'list',
+          auto_close = false,
+          jump = { close = false },
+          win = {
+            list = {
+              keys = {
+                ['o'] = 'confirm', -- open
+                ['O'] = 'explorer_open', -- open with system application
+                ['<C-n>'] = 'close',
+              },
+            },
+          },
+        })
+      end,
+      mode = 'n',
+      desc = 'FILES: toggle file tree',
+    },
+  },
   opts = {
     lazygit = {},
     dashboard = {
