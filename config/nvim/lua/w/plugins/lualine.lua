@@ -58,10 +58,6 @@ return {
       return 'T' .. vim.b.toggle_number
     end
 
-    local function nvimtree_statusline()
-      return 'NVIMTREE'
-    end
-
     local function is_loclist()
       return vim.fn.getloclist(0, { filewinid = 1 }).filewinid ~= 0
     end
@@ -95,8 +91,6 @@ return {
 
     local my_toggleterm_extension =
       { sections = { lualine_a = { toggleterm_statusline } }, filetypes = { 'toggleterm' } }
-
-    local my_nvimtree_extension = { sections = { lualine_a = { nvimtree_statusline } }, filetypes = { 'NvimTree' } }
 
     local my_telescope_extension = {
       sections = { lualine_a = { mode }, lualine_b = { 'branch', 'diff' }, lualine_x = { 'filetype' } },
@@ -151,7 +145,6 @@ return {
       },
       extensions = {
         'symbols-outline',
-        my_nvimtree_extension,
         my_quickfix_extension,
         my_toggleterm_extension,
         my_telescope_extension,
