@@ -15,7 +15,7 @@ local custom_config = {
         version = 'LuaJIT',
       },
       completion = { enable = true, showWord = 'Disable' },
-      diagnostics = { globals = { 'vim', 'hs' } },
+      diagnostics = { globals = { 'vim', 'hs', 'Snacks' } },
       hint = { enable = true, arrayIndex = 'Disable' },
       format = { enable = false },
       telemetry = { enable = false },
