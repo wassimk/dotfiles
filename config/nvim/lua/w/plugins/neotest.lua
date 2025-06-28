@@ -1,10 +1,12 @@
 --
--- neotest, neotest-rspec
+-- neotest
+--
+-- https://github.com/marilari88/neotest-vitest
 -- https://github.com/nvim-neotest/neotest
--- https://github.com/olimorris/neotest-rspec
--- https://github.com/zidhuss/neotest-minitest
 -- https://github.com/nvim-neotest/neotest-jest
 -- https://github.com/nvim-neotest/neotest-plenary
+-- https://github.com/olimorris/neotest-rspec
+-- https://github.com/zidhuss/neotest-minitest
 --
 
 return {
@@ -94,10 +96,11 @@ return {
     },
   },
   dependencies = {
+    'marilari88/neotest-vitest',
+    'nvim-neotest/neotest-plenary',
     'olimorris/neotest-rspec',
     'zidhuss/neotest-minitest',
     { 'nvim-neotest/neotest-jest', dev = true },
-    'nvim-neotest/neotest-plenary',
   },
   config = function()
     require('neotest').setup({
@@ -135,6 +138,14 @@ return {
         require('neotest-rspec'),
         require('neotest-minitest'),
         require('neotest-jest'),
+        require('neotest-vitest')({
+          is_test_file = function(file_path)
+            if string.match(file_path, '/test/javascript/') then
+              return true
+            end
+            return false
+          end,
+        }),
         require('neotest-plenary'),
       },
     })
