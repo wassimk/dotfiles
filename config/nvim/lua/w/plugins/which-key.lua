@@ -41,7 +41,7 @@ return {
       { 'l', hidden = true },
       { 'n', hidden = true },
       { '<2-LeftMouse>', desc = 'Match double clicked word' },
-      { '<C-f>', desc = 'telescope' },
+      { '<C-f>', desc = 'snacks' },
       { '<M-r>', desc = 'harpoon' },
       { '<leader><Space>', desc = 'miscellaneous' },
       { '<leader>d', desc = 'dap/diagnostics' },

@@ -6,7 +6,7 @@
 return {
   'folke/todo-comments.nvim',
   event = 'BufRead',
-  cmd = { 'TodoLocList', 'TodoQuickFix', 'TodoTelescope' },
+  cmd = { 'TodoLocList', 'TodoQuickFix' },
   opts = {
     signs = false,
     sign_priority = 5, -- lower than gitsigns
