@@ -17,6 +17,29 @@ local explorer_opts = {
         ['o'] = 'confirm', -- open
         ['O'] = 'explorer_open', -- open with system application
         ['<C-n>'] = 'close',
+        ['<c-v>'] = 'edit_vsplit',
+        ['<c-x>'] = 'edit_split',
+        ['<c-t>'] = 'tab',
+      },
+    },
+  },
+}
+
+local picker_opts = {
+  win = {
+    input = {
+      keys = {
+        ['<Esc>'] = { 'close', mode = { 'n', 'i' } },
+        ['<c-u>'] = { 'preview_scroll_up', mode = { 'i', 'n' } },
+        ['<c-d>'] = { 'preview_scroll_down', mode = { 'i', 'n' } },
+        ['<c-x>'] = { 'edit_split', mode = { 'i', 'n' } },
+      },
+    },
+    list = {
+      keys = {
+        ['<c-u>'] = 'preview_scroll_up',
+        ['<c-d>'] = 'preview_scroll_down',
+        ['<c-x>'] = 'edit_split',
       },
     },
   },
@@ -35,10 +58,31 @@ local dashboard_opts = {
   preset = {
     keys = {
       { icon = '', key = 'n', desc = 'New File', action = ':ene | startinsert' },
-      { icon = '󰥩', key = '<leader>f', desc = 'Find File', action = ":lua Snacks.dashboard.pick('files')" },
-      { icon = '󰩊', key = '<leader>s', desc = 'Find Text', action = ":lua Snacks.dashboard.pick('live_grep')" },
+      {
+        icon = '󰥩',
+        key = '<leader>f',
+        desc = 'Find File',
+        action = function()
+          Snacks.picker.files(picker_opts)
+        end,
+      },
+      {
+        icon = '󰩊',
+        key = '<leader>s',
+        desc = 'Find Text',
+        action = function()
+          Snacks.picker.grep(picker_opts)
+        end,
+      },
       { icon = '󰪸 ', key = '<C-f> h', desc = 'Search help' },
-      { icon = '󰩊', key = 'r', desc = 'Recent Files', action = ":lua Snacks.dashboard.pick('oldfiles')" },
+      {
+        icon = '󰩊',
+        key = 'r',
+        desc = 'Recent Files',
+        action = function()
+          Snacks.picker.recent(picker_opts)
+        end,
+      },
       { icon = '󰪸', key = 's', desc = 'Restore Session', section = 'session' },
       { icon = '󰄧', key = 'p', desc = 'Profile', action = '<cmd>Lazy profile<cr>' },
       { icon = '', key = 'u', desc = 'Update plugins', action = '<cmd>Lazy sync<cr>' },
@@ -52,8 +96,7 @@ return {
   lazy = false,
   opts = {
     lazygit = {},
-    picker = {},
-    explorer = explorer_opts,
+    explorer = {},
     dashboard = dashboard_opts,
   },
   keys = {
@@ -67,7 +110,7 @@ return {
     {
       '<leader>f',
       function()
-        Snacks.picker.files()
+        Snacks.picker.files(picker_opts)
       end,
       mode = { 'n', 'x' },
       desc = 'SNACKS: find files',
@@ -75,7 +118,7 @@ return {
     {
       '<leader>b',
       function()
-        Snacks.picker.buffers()
+        Snacks.picker.buffers(picker_opts)
       end,
       mode = { 'n', 'x' },
       desc = 'SNACKS: find buffers',
@@ -83,7 +126,7 @@ return {
     {
       '<leader>g',
       function()
-        Snacks.picker.git_status()
+        Snacks.picker.git_status(picker_opts)
       end,
       mode = { 'n', 'x' },
       desc = 'SNACKS: find git status files',
@@ -91,7 +134,7 @@ return {
     {
       '<leader>s',
       function()
-        Snacks.picker.grep()
+        Snacks.picker.grep(picker_opts)
       end,
       mode = { 'n', 'x' },
       desc = 'SNACKS: live grep',
@@ -99,7 +142,7 @@ return {
     {
       '<leader>w',
       function()
-        Snacks.picker.grep_word()
+        Snacks.picker.grep_word(picker_opts)
       end,
       mode = { 'n', 'x' },
       desc = 'SNACKS: grep word',
@@ -107,7 +150,7 @@ return {
     {
       '<C-f>s',
       function()
-        Snacks.picker.search_history()
+        Snacks.picker.search_history(picker_opts)
       end,
       mode = 'n',
       desc = 'SNACKS: grep history',

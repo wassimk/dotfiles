@@ -10,6 +10,7 @@ local winbar_filetype_exclude = {
   'packer',
   'qf',
   'startuptime',
+  'snacks_dashboard',
 }
 
 local root_path = function()
@@ -29,7 +30,7 @@ function M.statusline(root_path)
   end
 
   -- Hide winbar for scratch buffers
-  if vim.bo.buftype == 'nofile' or vim.api.nvim_buf_get_name(0) == '' then
+  if vim.api.nvim_buf_get_name(0) == '' then
     return ''
   end
 
