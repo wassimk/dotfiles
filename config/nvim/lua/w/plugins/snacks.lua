@@ -94,6 +94,7 @@ local dashboard_opts = {
 return {
   'folke/snacks.nvim',
   lazy = false,
+  priority = 1000,
   opts = {
     lazygit = {},
     explorer = {},
