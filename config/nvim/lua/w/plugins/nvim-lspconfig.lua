@@ -32,7 +32,7 @@ return {
     },
     'pmizio/typescript-tools.nvim',
     'simrat39/rust-tools.nvim',
-    'williamboman/mason-lspconfig.nvim',
+    -- 'williamboman/mason-lspconfig.nvim',
     -- { 'antosha417/nvim-lsp-file-operations', config = true },
     {
       'j-hui/fidget.nvim',
