@@ -97,7 +97,10 @@ return {
   priority = 1000,
   opts = {
     lazygit = {},
+    image = {},
+    input = {},
     explorer = {},
+    picker = {},
     dashboard = dashboard_opts,
   },
   keys = {
