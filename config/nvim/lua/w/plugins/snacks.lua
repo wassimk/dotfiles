@@ -59,9 +59,72 @@ local file_picker_keymaps = vim.tbl_extend('force', common_picker_keymaps, {
   },
 })
 
-local search_picker_keymaps = vim.tbl_extend('force', common_picker_keymaps, {})
+local search_picker_keymaps = vim.tbl_extend('force', common_picker_keymaps, {
+  input = {
+    keys = {
+      ['<C-l>'] = { 'choose_directory', mode = { 'i', 'n' } },
+    },
+  },
+  list = {
+    keys = {
+      ['<C-l>'] = 'choose_directory',
+    },
+  },
+})
 
-local search_picker_actions = {}
+local search_picker_actions = {
+  choose_directory = {
+    action = function(picker)
+      local query = picker.input:get() or ''
+      if query == '' then
+        Snacks.notify.warn('Enter a search term first')
+        return
+      end
+
+      picker:close()
+
+      Snacks.picker.files({
+        prompt = 'Directory to search > ',
+        cmd = 'fd',
+        args = { '--type', 'd' },
+        transform = function(item)
+          return vim.fn.isdirectory(item.file) == 1
+        end,
+        win = vim.tbl_extend('force', common_picker_keymaps, {
+          input = {
+            keys = {
+              ['<CR>'] = { 'select_directory_for_search', mode = { 'i', 'n' } },
+            },
+          },
+          list = {
+            keys = {
+              ['<CR>'] = 'select_directory_for_search',
+            },
+          },
+        }),
+        actions = {
+          select_directory_for_search = {
+            action = function(_, item)
+              if not item then
+                return
+              end
+
+              Snacks.picker.grep({
+                search = query,
+                cwd = Snacks.picker.util.dir(item),
+                show_empty = true,
+                hidden = true,
+                ignored = true,
+                follow = false,
+                supports_live = true,
+              })
+            end,
+          },
+        },
+      })
+    end,
+  },
+}
 
 local file_picker_actions = {
   copy_file_path = {
