@@ -49,7 +49,7 @@ local file_picker_keymaps = vim.tbl_extend('force', common_picker_keymaps, {
   input = {
     keys = {
       ['<C-l>'] = { 'search_in_directory', mode = { 'i', 'n' } },
-      ['<C-k>'] = { 'filter_by_extension', mode = { 'i', 'n' } },
+      ['<C-f>'] = { 'filter_by_extension', mode = { 'i', 'n' } },
       ['C'] = { 'copy_file_path', mode = { 'i', 'n' } },
       ['D'] = { 'diff', mode = { 'i', 'n' } },
     },
@@ -57,7 +57,7 @@ local file_picker_keymaps = vim.tbl_extend('force', common_picker_keymaps, {
   list = {
     keys = {
       ['<C-l>'] = 'search_in_directory',
-      ['<C-k>'] = 'filter_by_extension',
+      ['<C-f>'] = 'filter_by_extension',
       ['C'] = 'copy_file_path',
       ['D'] = 'diff',
     },
@@ -139,7 +139,7 @@ local search_picker_actions = {
 local file_picker_actions = {
   filter_by_extension = {
     action = function(picker)
-      local items = picker.finder.items or {}
+      local items = picker:items()
       local extensions = {}
       local ext_counts = {}
 
@@ -181,6 +181,9 @@ local file_picker_actions = {
           end
 
           picker.input:set(new_filter)
+          vim.schedule(function()
+            vim.api.nvim_feedkeys('A', 'n', false)
+          end)
         end
       end)
     end,
