@@ -100,6 +100,71 @@ local function add_ruby_discover_tests_command(client, bufnr)
   })
 end
 
+local function add_ruby_resolve_test_commands_command(client, bufnr)
+  vim.api.nvim_buf_create_user_command(bufnr, 'RubyLSPResolveTestCommands', function()
+    local params = { textDocument = vim.lsp.util.make_text_document_params() }
+
+    -- First discover tests to get TestItems
+    client.request('rubyLsp/discoverTests', params, function(error, tests)
+      if error then
+        print('Error discovering tests:')
+        print(vim.inspect(error))
+        return
+      end
+
+      local discovered_tests = { params = tests }
+      vim.print('Discovered tests:')
+      vim.print(vim.inspect(discovered_tests))
+
+      -- Then resolve test commands using the discovered TestItems
+      client.request('rubyLsp/resolveTestCommands', discovered_tests, function(resolve_error, resolve_result)
+        if resolve_error then
+          vim.notify('Error resolving test commands', vim.log.levels.ERROR)
+          print('Error resolving test commands:')
+          print(vim.inspect(resolve_error))
+          return
+        end
+
+        vim.print(vim.inspect(resolve_result))
+
+        local qf_list = {}
+        if resolve_result.commands then
+          for i, command in ipairs(resolve_result.commands) do
+            table.insert(qf_list, {
+              text = string.format('[%d] %s', i, command),
+              filename = vim.api.nvim_buf_get_name(bufnr),
+              lnum = 1,
+            })
+          end
+        end
+
+        if resolve_result.reporterPaths then
+          for i, path in ipairs(resolve_result.reporterPaths) do
+            table.insert(qf_list, {
+              text = string.format('[Reporter %d] %s', i, path),
+              filename = path,
+              lnum = 1,
+            })
+          end
+        end
+
+        vim.fn.setqflist(qf_list)
+        vim.cmd('copen')
+
+        -- Also print commands to console for easy copying
+        if resolve_result.commands then
+          print('Test commands:')
+          for i, command in ipairs(resolve_result.commands) do
+            print(string.format('%d: %s', i, command))
+          end
+        end
+      end, bufnr)
+    end, bufnr)
+  end, {
+    desc = 'Resolve Ruby test commands for current file',
+  })
+end
+
 local default_config = require('lspconfig.configs.ruby_lsp').default_config
 default_config.root_dir = nil
 
@@ -115,6 +180,7 @@ local custom_config = {
     add_ruby_deps_command(client, bufnr)
     add_ruby_syntax_tree_command(client, bufnr)
     add_ruby_discover_tests_command(client, bufnr)
+    add_ruby_resolve_test_commands_command(client, bufnr)
 
     -- conflicts with syntax tree inlay hints
     client.server_capabilities.inlayHintProvider = false
