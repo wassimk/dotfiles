@@ -32,9 +32,6 @@ local common_picker_keymaps = {
       ['<c-u>'] = { 'preview_scroll_up', mode = { 'i', 'n' } },
       ['<c-d>'] = { 'preview_scroll_down', mode = { 'i', 'n' } },
       ['<c-x>'] = { 'edit_split', mode = { 'i', 'n' } },
-      ['<c-l>'] = { 'search_in_directory', mode = { 'i', 'n' } },
-      ['C'] = { 'copy_file_path', mode = { 'i', 'n' } },
-      ['D'] = { 'diff', mode = { 'i', 'n' } },
     },
   },
   list = {
@@ -42,14 +39,31 @@ local common_picker_keymaps = {
       ['<c-u>'] = 'preview_scroll_up',
       ['<c-d>'] = 'preview_scroll_down',
       ['<c-x>'] = 'edit_split',
+    },
+  },
+}
+local file_picker_keymaps = vim.tbl_extend('force', common_picker_keymaps, {
+  input = {
+    keys = {
+      ['<c-l>'] = { 'search_in_directory', mode = { 'i', 'n' } },
+      ['C'] = { 'copy_file_path', mode = { 'i', 'n' } },
+      ['D'] = { 'diff', mode = { 'i', 'n' } },
+    },
+  },
+  list = {
+    keys = {
       ['<c-l>'] = 'search_in_directory',
       ['C'] = 'copy_file_path',
       ['D'] = 'diff',
     },
   },
-}
+})
 
-local common_picker_actions = {
+local search_picker_keymaps = vim.tbl_extend('force', common_picker_keymaps, {})
+
+local search_picker_actions = {}
+
+local file_picker_actions = {
   copy_file_path = {
     action = function(_, item)
       if not item then
@@ -121,9 +135,14 @@ local common_picker_actions = {
   },
 }
 
-local common_picker_opts = {
-  win = common_picker_keymaps,
-  actions = common_picker_actions,
+local file_picker_opts = {
+  win = file_picker_keymaps,
+  actions = file_picker_actions,
+}
+
+local search_picker_opts = {
+  win = search_picker_keymaps,
+  actions = search_picker_actions,
 }
 
 local picker_opts = {
@@ -131,11 +150,11 @@ local picker_opts = {
   ui_select = true,
   sources = {
     explorer = explorer_opts,
-    files = common_picker_opts,
-    buffers = common_picker_opts,
-    smart = common_picker_opts,
-    grep = common_picker_opts,
-    grep_word = common_picker_opts,
+    smart = file_picker_opts,
+    files = file_picker_opts,
+    buffers = file_picker_opts,
+    grep = search_picker_opts,
+    grep_word = search_picker_opts,
   },
 }
 
