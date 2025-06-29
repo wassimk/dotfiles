@@ -64,6 +64,42 @@ local function add_ruby_syntax_tree_command(client, bufnr)
   })
 end
 
+local function add_ruby_discover_tests_command(client, bufnr)
+  vim.api.nvim_buf_create_user_command(bufnr, 'RubyLSPDiscoverTests', function()
+    local params = { textDocument = vim.lsp.util.make_text_document_params() }
+
+    client.request('rubyLsp/discoverTests', params, function(error, result)
+      if error then
+        print('Error discovering tests:')
+        print(vim.inspect(error))
+        return
+      end
+
+      local function extract_tests(tests, qf_list)
+        for _, test in ipairs(tests) do
+          table.insert(qf_list, {
+            text = test.label,
+            filename = vim.uri_to_fname(test.uri),
+            lnum = test.range.start.line + 1,
+            col = test.range.start.character + 1,
+          })
+          if test.children then
+            extract_tests(test.children, qf_list)
+          end
+        end
+      end
+
+      local qf_list = {}
+      extract_tests(result, qf_list)
+
+      vim.fn.setqflist(qf_list)
+      vim.cmd('copen')
+    end, bufnr)
+  end, {
+    desc = 'Discover Ruby tests in current file',
+  })
+end
+
 local default_config = require('lspconfig.configs.ruby_lsp').default_config
 default_config.root_dir = nil
 
@@ -78,6 +114,7 @@ local custom_config = {
 
     add_ruby_deps_command(client, bufnr)
     add_ruby_syntax_tree_command(client, bufnr)
+    add_ruby_discover_tests_command(client, bufnr)
 
     -- conflicts with syntax tree inlay hints
     client.server_capabilities.inlayHintProvider = false
