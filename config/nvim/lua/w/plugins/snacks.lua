@@ -17,9 +17,10 @@ local explorer_opts = {
         ['o'] = 'confirm', -- open
         ['O'] = 'explorer_open', -- open with system application
         ['<C-n>'] = 'close',
-        ['<c-v>'] = 'edit_vsplit',
-        ['<c-x>'] = 'edit_split',
-        ['<c-t>'] = 'tab',
+        ['<C-v>'] = 'edit_vsplit',
+        ['<C-x>'] = 'edit_split',
+        ['<C-t>'] = 'tab',
+        ['<C-y>'] = 'confirm',
       },
     },
   },
@@ -29,30 +30,32 @@ local common_picker_keymaps = {
   input = {
     keys = {
       ['<Esc>'] = { 'close', mode = { 'n', 'i' } },
-      ['<c-u>'] = { 'preview_scroll_up', mode = { 'i', 'n' } },
-      ['<c-d>'] = { 'preview_scroll_down', mode = { 'i', 'n' } },
-      ['<c-x>'] = { 'edit_split', mode = { 'i', 'n' } },
+      ['<C-u>'] = { 'preview_scroll_up', mode = { 'i', 'n' } },
+      ['<C-d>'] = { 'preview_scroll_down', mode = { 'i', 'n' } },
+      ['<C-x>'] = { 'edit_split', mode = { 'i', 'n' } },
+      ['<C-y>'] = { 'confirm', mode = { 'n', 'i' } },
     },
   },
   list = {
     keys = {
-      ['<c-u>'] = 'preview_scroll_up',
-      ['<c-d>'] = 'preview_scroll_down',
-      ['<c-x>'] = 'edit_split',
+      ['<C-u>'] = 'preview_scroll_up',
+      ['<C-d>'] = 'preview_scroll_down',
+      ['<C-x>'] = 'edit_split',
+      ['<C-y>'] = 'confirm',
     },
   },
 }
 local file_picker_keymaps = vim.tbl_extend('force', common_picker_keymaps, {
   input = {
     keys = {
-      ['<c-l>'] = { 'search_in_directory', mode = { 'i', 'n' } },
+      ['<C-l>'] = { 'search_in_directory', mode = { 'i', 'n' } },
       ['C'] = { 'copy_file_path', mode = { 'i', 'n' } },
       ['D'] = { 'diff', mode = { 'i', 'n' } },
     },
   },
   list = {
     keys = {
-      ['<c-l>'] = 'search_in_directory',
+      ['<C-l>'] = 'search_in_directory',
       ['C'] = 'copy_file_path',
       ['D'] = 'diff',
     },
@@ -94,11 +97,13 @@ local search_picker_actions = {
           input = {
             keys = {
               ['<CR>'] = { 'select_directory_for_search', mode = { 'i', 'n' } },
+              ['<C-y>'] = { 'select_directory_for_search', mode = { 'i', 'n' } },
             },
           },
           list = {
             keys = {
               ['<CR>'] = 'select_directory_for_search',
+              ['<C-y>'] = 'select_directory_for_search',
             },
           },
         }),
