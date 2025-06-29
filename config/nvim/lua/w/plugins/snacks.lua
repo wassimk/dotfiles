@@ -78,7 +78,10 @@ local search_picker_keymaps = vim.tbl_extend('force', common_picker_keymaps, {
 local search_picker_actions = {
   choose_directory = {
     action = function(picker)
-      local query = picker.input:get() or ''
+      local input = picker.input:get() or ''
+      local search_term = picker.finder.filter.search or ''
+
+      local query = (input ~= '' and input) or search_term
       if query == '' then
         Snacks.notify.warn('Enter a search term first')
         return
