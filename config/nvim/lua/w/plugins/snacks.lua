@@ -68,16 +68,71 @@ local search_picker_keymaps = vim.tbl_extend('force', common_picker_keymaps, {
   input = {
     keys = {
       ['<C-l>'] = { 'choose_directory', mode = { 'i', 'n' } },
+      ['<C-f>'] = { 'filter_by_extension', mode = { 'i', 'n' } },
     },
   },
   list = {
     keys = {
       ['<C-l>'] = 'choose_directory',
+      ['<C-f>'] = 'filter_by_extension',
     },
   },
 })
 
+local filter_by_extension_action = {
+  action = function(picker)
+    local items = picker:items()
+    local extensions = {}
+    local ext_counts = {}
+
+    for _, item in ipairs(items) do
+      local ext = vim.fn.fnamemodify(item.file, ':e')
+      if ext ~= '' then
+        ext = '.' .. ext
+        if not extensions[ext] then
+          extensions[ext] = true
+          ext_counts[ext] = 1
+        else
+          ext_counts[ext] = ext_counts[ext] + 1
+        end
+      end
+    end
+
+    local ext_list = vim.tbl_keys(extensions)
+    if vim.tbl_isempty(ext_list) then
+      Snacks.notify.warn('No file extensions found')
+      return
+    end
+
+    table.sort(ext_list)
+
+    vim.ui.select(ext_list, {
+      prompt = 'Filter by extension:',
+      format_item = function(ext)
+        return string.format('%s (%d files)', ext, ext_counts[ext])
+      end,
+    }, function(choice)
+      if choice then
+        local current_input = picker.input:get() or ''
+        local search_term = current_input:match('^(.-)%s*file:') or current_input
+        search_term = search_term:gsub('%s+$', '') -- trim trailing spaces
+
+        local new_filter = 'file:' .. choice .. '$ '
+        if search_term ~= '' then
+          new_filter = new_filter .. search_term
+        end
+
+        picker.input:set(new_filter)
+        vim.schedule(function()
+          vim.api.nvim_feedkeys('A', 'n', false)
+        end)
+      end
+    end)
+  end,
+}
+
 local search_picker_actions = {
+  filter_by_extension = filter_by_extension_action,
   choose_directory = {
     action = function(picker)
       local input = picker.input:get() or ''
@@ -137,57 +192,7 @@ local search_picker_actions = {
 }
 
 local file_picker_actions = {
-  filter_by_extension = {
-    action = function(picker)
-      local items = picker:items()
-      local extensions = {}
-      local ext_counts = {}
-
-      for _, item in ipairs(items) do
-        local ext = vim.fn.fnamemodify(item.file, ':e')
-        if ext ~= '' then
-          ext = '.' .. ext
-          if not extensions[ext] then
-            extensions[ext] = true
-            ext_counts[ext] = 1
-          else
-            ext_counts[ext] = ext_counts[ext] + 1
-          end
-        end
-      end
-
-      local ext_list = vim.tbl_keys(extensions)
-      if vim.tbl_isempty(ext_list) then
-        Snacks.notify.warn('No file extensions found')
-        return
-      end
-
-      table.sort(ext_list)
-
-      vim.ui.select(ext_list, {
-        prompt = 'Filter by extension:',
-        format_item = function(ext)
-          return string.format('%s (%d files)', ext, ext_counts[ext])
-        end,
-      }, function(choice)
-        if choice then
-          local current_input = picker.input:get() or ''
-          local search_term = current_input:match('^(.-)%s*file:') or current_input
-          search_term = search_term:gsub('%s+$', '') -- trim trailing spaces
-
-          local new_filter = 'file:' .. choice .. '$ '
-          if search_term ~= '' then
-            new_filter = new_filter .. search_term
-          end
-
-          picker.input:set(new_filter)
-          vim.schedule(function()
-            vim.api.nvim_feedkeys('A', 'n', false)
-          end)
-        end
-      end)
-    end,
-  },
+  filter_by_extension = filter_by_extension_action,
   copy_file_path = {
     action = function(_, item)
       if not item then
