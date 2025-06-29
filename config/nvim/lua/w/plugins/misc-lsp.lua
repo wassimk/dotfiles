@@ -43,7 +43,7 @@ return {
   {
     'pmizio/typescript-tools.nvim',
     ft = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
-    config = {
+    opts = {
       debug = false,
       capabilities = require('w.lsp').capabilities(),
       on_attach = require('w.lsp').on_attach,
