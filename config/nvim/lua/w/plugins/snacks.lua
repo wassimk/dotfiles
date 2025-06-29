@@ -175,9 +175,9 @@ local file_picker_actions = {
           local search_term = current_input:match('^(.-)%s*file:') or current_input
           search_term = search_term:gsub('%s+$', '') -- trim trailing spaces
 
-          local new_filter = 'file:' .. choice .. '$'
+          local new_filter = 'file:' .. choice .. '$ '
           if search_term ~= '' then
-            new_filter = new_filter .. ' ' .. search_term
+            new_filter = new_filter .. search_term
           end
 
           picker.input:set(new_filter)
