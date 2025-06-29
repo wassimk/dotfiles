@@ -341,6 +341,11 @@ return {
     lazygit = {},
     image = {},
     input = {},
+    bigfile = {},
+    quickfile = {},
+    scroll = {},
+    words = {},
+    explorer = {}, -- configured in picker_opts
     picker = picker_opts,
     dashboard = dashboard_opts,
   },
