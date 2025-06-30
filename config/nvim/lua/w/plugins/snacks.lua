@@ -6,6 +6,52 @@
 -- because i keep hitting it on accident
 vim.keymap.set({ 'n', 'c' }, '<C-f>', '', { desc = 'unmap neovim default for Snacks' })
 
+local dashboard_opts = {
+  width = 70,
+  row = 8,
+  sections = {
+    { section = 'header' },
+    { icon = ' ', title = 'Keymaps', section = 'keys', indent = 2, padding = 1 },
+    { icon = ' ', title = 'Recent Files', section = 'recent_files', limit = 8, indent = 2, padding = 1 },
+    { icon = ' ', title = 'Projects', section = 'projects', indent = 2, padding = 1 },
+    { section = 'startup' },
+  },
+  preset = {
+    keys = {
+      { icon = '', key = 'n', desc = 'New File', action = ':ene | startinsert' },
+      {
+        icon = '󰥩',
+        key = '<leader>f',
+        desc = 'Find File',
+        action = function()
+          Snacks.picker.files()
+        end,
+      },
+      {
+        icon = '󰩊',
+        key = '<leader>s',
+        desc = 'Find Text',
+        action = function()
+          Snacks.picker.grep()
+        end,
+      },
+      { icon = '󰪸 ', key = '<C-f> h', desc = 'Search help' },
+      {
+        icon = '󰩊',
+        key = 'r',
+        desc = 'Recent Files',
+        action = function()
+          Snacks.picker.recent()
+        end,
+      },
+      { icon = '󰪸', key = 's', desc = 'Restore Session', section = 'session' },
+      { icon = '󰄧', key = 'p', desc = 'Profile', action = '<cmd>Lazy profile<cr>' },
+      { icon = '', key = 'u', desc = 'Update plugins', action = '<cmd>Lazy sync<cr>' },
+      { icon = '󱎘', key = 'q', desc = 'Quit', action = ':qa' },
+    },
+  },
+}
+
 local explorer_opts = {
   follow_file = true,
   focus = 'list',
@@ -284,52 +330,6 @@ local picker_opts = {
     buffers = file_picker_opts,
     grep = search_picker_opts,
     grep_word = search_picker_opts,
-  },
-}
-
-local dashboard_opts = {
-  width = 70,
-  row = 8,
-  sections = {
-    { section = 'header' },
-    { icon = ' ', title = 'Keymaps', section = 'keys', indent = 2, padding = 1 },
-    { icon = ' ', title = 'Recent Files', section = 'recent_files', limit = 8, indent = 2, padding = 1 },
-    { icon = ' ', title = 'Projects', section = 'projects', indent = 2, padding = 1 },
-    { section = 'startup' },
-  },
-  preset = {
-    keys = {
-      { icon = '', key = 'n', desc = 'New File', action = ':ene | startinsert' },
-      {
-        icon = '󰥩',
-        key = '<leader>f',
-        desc = 'Find File',
-        action = function()
-          Snacks.picker.files()
-        end,
-      },
-      {
-        icon = '󰩊',
-        key = '<leader>s',
-        desc = 'Find Text',
-        action = function()
-          Snacks.picker.grep()
-        end,
-      },
-      { icon = '󰪸 ', key = '<C-f> h', desc = 'Search help' },
-      {
-        icon = '󰩊',
-        key = 'r',
-        desc = 'Recent Files',
-        action = function()
-          Snacks.picker.recent()
-        end,
-      },
-      { icon = '󰪸', key = 's', desc = 'Restore Session', section = 'session' },
-      { icon = '󰄧', key = 'p', desc = 'Profile', action = '<cmd>Lazy profile<cr>' },
-      { icon = '', key = 'u', desc = 'Update plugins', action = '<cmd>Lazy sync<cr>' },
-      { icon = '󱎘', key = 'q', desc = 'Quit', action = ':qa' },
-    },
   },
 }
 
