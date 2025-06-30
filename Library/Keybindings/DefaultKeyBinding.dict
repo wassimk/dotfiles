@@ -1,6 +1,13 @@
 {
-  "~d" = "deleteWordForward:";
-  "^w" = "deleteWordBackward:";
-  "~f" = "moveWordForward:";
-  "~b" = "moveWordBackward:";
+    /* Emacs-style word navigation */
+    "~f" = "moveWordForward:";              /* Option+F - forward word */
+    "~b" = "moveWordBackward:";             /* Option+B - backward word */
+
+    /* Word deletion */
+    "^w" = "deleteWordBackward:";           /* Ctrl+W - delete previous word */
+    "~d" = "deleteWordForward:";            /* Option+D - delete next word */
+
+    /* Additional useful bindings */
+    "^k" = "deleteToEndOfLine:";            /* Ctrl+K - delete to end of line */
+    "^u" = "deleteToBeginningOfLine:";      /* Ctrl+U - delete to beginning */
 }
