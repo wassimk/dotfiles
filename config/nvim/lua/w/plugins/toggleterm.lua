@@ -15,7 +15,7 @@ return {
   },
   config = function()
     require('toggleterm').setup({
-      open_mapping = '<c-\\>',
+      open_mapping = '<C-Bslash>',
     })
 
     vim.api.nvim_create_autocmd('TermOpen', {
