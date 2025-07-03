@@ -15,6 +15,8 @@ U = require('utils')
 
 hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, 'f4', function()
   hs.notify.new({ title = 'Screencast', informativeText = 'Resize for recording' }):send()
+  hs.execute('aerospace enable off')
+
   U.resizeForScreencasting({ 'Ghostty', 'Asana', 'Code', 'Google Chrome', 'Notion', 'Safari', 'Slack' })
 end)
 

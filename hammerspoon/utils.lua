@@ -51,9 +51,9 @@ function M.resizeForScreencasting(appNames)
         local newWidth = 1280
         local newHeight = 720
 
-        -- Calculate the new x and y coordinates to center the window
+        -- Calculate the new x and y coordinates to center horizontally and position at top
         local newX = frame.x + (frame.w - newWidth) / 2
-        local newY = frame.y + (frame.h - newHeight) / 2
+        local newY = frame.y + 25 -- Position at top with small margin
 
         window:setFrame({
           x = newX,
