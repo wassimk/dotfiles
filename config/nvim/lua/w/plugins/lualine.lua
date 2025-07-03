@@ -53,8 +53,12 @@ return {
       return rhs
     end
 
+    local my_snacks_pickers_extension = {
+      sections = {},
+      filetypes = { 'snacks_dashboard', 'snacks_picker_input', 'snacks_picker_list', 'snacks_picker_preview' },
+    }
+
     local function toggleterm_statusline()
-      ---@diagnostic disable-next-line: undefined-field
       return 'T' .. vim.b.toggle_number
     end
 
@@ -141,6 +145,7 @@ return {
       extensions = {
         'symbols-outline',
         my_quickfix_extension,
+        my_snacks_pickers_extension,
         my_toggleterm_extension,
       },
     })
