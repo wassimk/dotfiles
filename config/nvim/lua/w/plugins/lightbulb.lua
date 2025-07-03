@@ -5,6 +5,7 @@
 
 return {
   'kosayoda/nvim-lightbulb',
+  event = 'CursorHold',
   opts = {
     sign = {
       enabled = false,
