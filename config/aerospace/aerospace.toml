@@ -47,12 +47,12 @@ run = ['move-node-to-workspace 3']
 [[on-window-detected]]
 if.app-name-regex-substring = '^Mimestream|^Mail|^Calendar'
 check-further-callbacks = true
-run = ['move-node-to-workspace 4']
+run = ['move-node-to-workspace 6']
 
 [[on-window-detected]]
 if.app-name-regex-substring = '^Things|^Messages|^Reminders'
 check-further-callbacks = true
-run = ['move-node-to-workspace 5']
+run = ['move-node-to-workspace 7']
 
 [[on-window-detected]]
 if.app-name-regex-substring = '^zoom|Granola'
