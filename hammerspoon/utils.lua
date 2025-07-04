@@ -162,27 +162,6 @@ function M.toggleFloatOfAerospaceWorkspaceWindows(workspaceId)
   end
 end
 
-function M.promptScreencastAction(appNames)
-  local chooser = hs.chooser.new(function(choice)
-    if choice then
-      if choice.action == 'on' then
-        hs.notify.new({ title = 'Screencast', informativeText = 'Starting screencast mode' }):send()
-        M.resizeForScreencasting(appNames)
-      elseif choice.action == 'off' then
-        hs.notify.new({ title = 'Screencast', informativeText = 'Stopping screencast mode' }):send()
-        M.stopScreencasting()
-      end
-    end
-  end)
-
-  chooser:choices({
-    { text = 'Start Screencasting', action = 'on' },
-    { text = 'Stop Screencasting', action = 'off' },
-  })
-
-  chooser:show()
-end
-
 function M.stopScreencasting()
   local aerospaceWorkspaceId = 1
   hs.execute('aerospace summon-workspace ' .. aerospaceWorkspaceId, true)

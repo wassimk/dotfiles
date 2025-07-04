@@ -18,8 +18,29 @@ hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, 'f3', function()
   U.resizeForMeeting()
 end)
 
+-- Double F4 detection for screencast toggle
+local f4Timer = nil
+local f4PressCount = 0
+
 hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, 'f4', function()
-  U.promptScreencastAction({ 'Ghostty', 'Asana', 'Code', 'Google Chrome', 'Safari' })
+  f4PressCount = f4PressCount + 1
+
+  if f4Timer then
+    f4Timer:stop()
+  end
+
+  f4Timer = hs.timer.doAfter(0.3, function()
+    if f4PressCount == 1 then
+      -- Single press - start screencast
+      hs.notify.new({ title = 'Screencast', informativeText = 'Starting screencast mode' }):send()
+      U.resizeForScreencasting({ 'Ghostty', 'Asana', 'Code', 'Google Chrome', 'Safari' })
+    elseif f4PressCount >= 2 then
+      -- Double press - stop screencast
+      hs.notify.new({ title = 'Screencast', informativeText = 'Stopping screencast mode' }):send()
+      U.stopScreencasting()
+    end
+    f4PressCount = 0
+  end)
 end)
 
 hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, 'f5', function()
