@@ -4,6 +4,20 @@
 -- https://github.com/Saghen/blink.compat
 --
 
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'BlinkCmpMenuOpen',
+  callback = function()
+    vim.g.snacks_animate = false
+  end,
+})
+
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'BlinkCmpMenuClose',
+  callback = function()
+    vim.g.snacks_animate = true
+  end,
+})
+
 return {
   {
     'saghen/blink.compat',

@@ -337,6 +337,7 @@ return {
   lazy = false,
   priority = 1000,
   opts = {
+    animate = {},
     lazygit = {},
     image = {},
     input = {},
