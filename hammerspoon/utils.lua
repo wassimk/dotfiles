@@ -162,6 +162,50 @@ function M.toggleFloatOfAerospaceWorkspaceWindows(workspaceId)
   end
 end
 
+function M.promptScreencastAction(appNames)
+  local chooser = hs.chooser.new(function(choice)
+    if choice then
+      if choice.action == 'on' then
+        hs.notify.new({ title = 'Screencast', informativeText = 'Starting screencast mode' }):send()
+        M.resizeForScreencasting(appNames)
+      elseif choice.action == 'off' then
+        hs.notify.new({ title = 'Screencast', informativeText = 'Stopping screencast mode' }):send()
+        M.stopScreencasting()
+      end
+    end
+  end)
+
+  chooser:choices({
+    { text = 'Start Screencasting', action = 'on' },
+    { text = 'Stop Screencasting', action = 'off' },
+  })
+
+  chooser:show()
+end
+
+function M.stopScreencasting()
+  local aerospaceWorkspaceId = 1
+  hs.execute('aerospace summon-workspace ' .. aerospaceWorkspaceId, true)
+
+  -- Set all windows back to accordion layout
+  M.setAccordionLayoutForWorkspace(aerospaceWorkspaceId)
+end
+
+function M.setAccordionLayoutForWorkspace(workspaceId)
+  workspaceId = workspaceId or 'focused'
+  local aerospaceWindowsCommand = 'aerospace list-windows --workspace ' .. workspaceId .. ' --json'
+  local aerospaceWindowsOutput, status, _, _ = hs.execute(aerospaceWindowsCommand, true)
+
+  if status then
+    local windows = hs.json.decode(aerospaceWindowsOutput)
+    for _, window in ipairs(windows) do
+      local windowId = window['window-id']
+      local accordionCommand = 'aerospace layout tiling --window-id ' .. windowId
+      hs.execute(accordionCommand, true)
+    end
+  end
+end
+
 function M.printRunningApps()
   local apps = hs.application.runningApplications()
   for _, app in ipairs(apps) do
