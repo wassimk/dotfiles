@@ -36,6 +36,55 @@ function M.tbl_keys(t)
   return keys
 end
 
+function M.resizeForMeeting()
+  local zoom = hs.application.find('zoom.us')
+  local granola = hs.application.find('granola')
+
+  M.toggleFloatOfAerospaceWorkspaceWindows(8)
+
+  -- Resize Zoom windows
+  local zoomWindows = zoom:allWindows()
+  for _, window in ipairs(zoomWindows) do
+    local screen = window:screen()
+    local frame = screen:frame()
+
+    local newWidth = 1280
+    local newHeight = 720
+
+    -- Position zoom window at the top center of the screen
+    local newX = frame.x + (frame.w - newWidth) / 2
+    local newY = frame.y + 15 -- Position at top with small margin
+
+    window:setFrame({
+      x = newX,
+      y = newY,
+      w = newWidth,
+      h = newHeight,
+    })
+  end
+
+  -- Resize Granola windows
+  local granolaWindows = granola:allWindows()
+  for _, window in ipairs(granolaWindows) do
+    local screen = window:screen()
+    local frame = screen:frame()
+
+    local newWidth = 800
+    local newHeight = 1200
+
+    -- Position on top of and to the right of zoom window for notes
+    local newX = frame.x + frame.w - newWidth - 225
+    local newY = frame.y + 15 -- Position at top with small margin
+
+    window:setFrame({
+      x = newX,
+      y = newY,
+      w = newWidth,
+      h = newHeight,
+    })
+  end
+end
+
 function M.resizeForScreencasting(appNames)
   for _, appName in ipairs(appNames) do
     local app = hs.application.find(appName)

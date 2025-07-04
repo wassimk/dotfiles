@@ -13,6 +13,11 @@ U = require('utils')
 -- Keybindings
 --
 
+hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, 'f3', function()
+  hs.notify.new({ title = 'Meeting', informativeText = 'Resize for meeting' }):send()
+  U.resizeForMeeting()
+end)
+
 hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, 'f4', function()
   hs.notify.new({ title = 'Screencast', informativeText = 'Resize for recording' }):send()
   hs.execute('aerospace enable off')
