@@ -19,9 +19,7 @@ hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, 'f3', function()
 end)
 
 hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, 'f4', function()
-  hs.notify.new({ title = 'Screencast', informativeText = 'Resize for recording' }):send()
-  hs.execute('aerospace enable off')
-
+  hs.notify.new({ title = 'Screencast', informativeText = 'Resize for screencasting' }):send()
   U.resizeForScreencasting({ 'Ghostty', 'Asana', 'Code', 'Google Chrome', 'Notion', 'Safari', 'Slack' })
 end)
 

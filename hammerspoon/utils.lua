@@ -37,10 +37,12 @@ function M.tbl_keys(t)
 end
 
 function M.resizeForMeeting()
-  local zoom = hs.application.find('zoom.us')
-  local granola = hs.application.find('granola')
+  local aerospaceWorkspaceId = 8
+  hs.execute('aerospace summon-workspace ' .. aerospaceWorkspaceId, true)
+  local zoom = hs.application.launchOrFocus('zoom.us')
+  local granola = hs.application.launchOrFocus('granola')
 
-  M.toggleFloatOfAerospaceWorkspaceWindows(8)
+  -- M.toggleFloatOfAerospaceWorkspaceWindows(aerospaceWorkspaceId)
 
   -- Resize Zoom windows
   local zoomWindows = zoom:allWindows()
@@ -86,12 +88,29 @@ function M.resizeForMeeting()
 end
 
 function M.resizeForScreencasting(appNames)
+  local aerospaceWorkspaceId = 1
+  hs.execute('aerospace summon-workspace ' .. aerospaceWorkspaceId, true)
+
+  -- Move all specified apps to workspace 1
   for _, appName in ipairs(appNames) do
     local app = hs.application.find(appName)
-
     if app then
-      M.toggleFloatOfAerospaceWorkspaceWindows()
+      local windows = app:allWindows()
+      for _, window in ipairs(windows) do
+        -- Move window to workspace 1
+        local windowId = window:id()
+        hs.execute('aerospace move-node-to-workspace ' .. aerospaceWorkspaceId .. ' --window-id ' .. windowId, true)
+      end
+    end
+  end
 
+  -- Float all windows in workspace 1
+  M.toggleFloatOfAerospaceWorkspaceWindows(aerospaceWorkspaceId)
+
+  -- Resize all specified apps
+  for _, appName in ipairs(appNames) do
+    local app = hs.application.find(appName)
+    if app then
       local windows = app:allWindows()
       for _, window in ipairs(windows) do
         local screen = window:screen()
