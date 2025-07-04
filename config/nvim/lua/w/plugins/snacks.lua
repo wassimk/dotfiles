@@ -134,7 +134,6 @@ local filter_by_extension_action = {
     for _, item in ipairs(items) do
       local ext = vim.fn.fnamemodify(item.file, ':e')
       if ext ~= '' then
-        ext = '.' .. ext
         if not extensions[ext] then
           extensions[ext] = true
           ext_counts[ext] = 1
