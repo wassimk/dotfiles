@@ -8,13 +8,13 @@ return {
   cmd = 'Copilot',
   event = 'InsertEnter',
   opts = {
-    suggestion = {
-      auto_trigger = true,
-      keymap = {
-        accept = '<Tab>',
-      },
-    },
+    copilot_node_command = vim.fn.system('devbox global path'):gsub('%s+$', '')
+      .. '/.devbox/nix/profile/default/bin/node',
+    panel = { enabled = false },
+    suggestion = { enabled = false },
     filetypes = {
+      help = true,
+      markdown = true,
       ['dap-repl'] = false,
       dapui_breakpoints = false,
       dapui_console = false,
