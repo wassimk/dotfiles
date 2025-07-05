@@ -39,7 +39,6 @@ return {
       { 'kristijanhusak/vim-dadbod-completion', ft = 'mysql' },
       { 'Kaiser-Yang/blink-cmp-git', ft = 'gitcommit' },
       { 'Dynge/gitmoji.nvim', ft = 'gitcommit' },
-      { 'fang2hou/blink-copilot' },
     },
 
     version = '1.*',
@@ -102,7 +101,6 @@ return {
       sources = {
         default = {
           'lazydev',
-          'copilot',
           'lsp',
           'snippets',
           'buffer',
@@ -156,12 +154,6 @@ return {
             name = 'LazyDev',
             module = 'lazydev.integrations.blink',
             score_offset = 100,
-          },
-          copilot = {
-            name = 'copilot',
-            module = 'blink-copilot',
-            score_offset = 100,
-            async = true,
           },
         },
       },
