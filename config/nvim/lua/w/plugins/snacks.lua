@@ -91,7 +91,7 @@ local common_picker_keymaps = {
     },
   },
 }
-local file_picker_keymaps = vim.tbl_extend('force', common_picker_keymaps, {
+local file_picker_keymaps = vim.tbl_deep_extend('force', common_picker_keymaps, {
   input = {
     keys = {
       ['<C-l>'] = { 'search_in_directory', mode = { 'i', 'n' } },
@@ -110,7 +110,7 @@ local file_picker_keymaps = vim.tbl_extend('force', common_picker_keymaps, {
   },
 })
 
-local search_picker_keymaps = vim.tbl_extend('force', common_picker_keymaps, {
+local search_picker_keymaps = vim.tbl_deep_extend('force', common_picker_keymaps, {
   input = {
     keys = {
       ['<C-l>'] = { 'choose_directory', mode = { 'i', 'n' } },
@@ -198,7 +198,7 @@ local search_picker_actions = {
         transform = function(item)
           return vim.fn.isdirectory(item.file) == 1
         end,
-        win = vim.tbl_extend('force', common_picker_keymaps, {
+        win = vim.tbl_deep_extend('force', common_picker_keymaps, {
           input = {
             keys = {
               ['<CR>'] = { 'select_directory_for_search', mode = { 'i', 'n' } },
