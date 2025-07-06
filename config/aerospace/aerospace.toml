@@ -50,7 +50,7 @@ check-further-callbacks = true
 run = ['move-node-to-workspace 6']
 
 [[on-window-detected]]
-if.app-name-regex-substring = '^Things|^Messages|^Reminders'
+if.app-name-regex-substring = '^Things|^Messages|^Reminders|^Notes'
 check-further-callbacks = true
 run = ['move-node-to-workspace 7']
 
