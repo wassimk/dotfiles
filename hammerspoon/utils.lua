@@ -64,7 +64,7 @@ function M.resizeForMeeting()
     local frame = screen:frame()
 
     local newWidth = 1280
-    local newHeight = 720
+    local newHeight = 1000
 
     -- Position zoom window at the top center of the screen
     local newX = frame.x + (frame.w - newWidth) / 2
@@ -88,7 +88,7 @@ function M.resizeForMeeting()
     local newHeight = 1200
 
     -- Position on top of and to the right of zoom window for notes
-    local newX = frame.x + frame.w - newWidth - 225
+    local newX = frame.x + frame.w - newWidth - 15
     local newY = frame.y + 15 -- Position at top with small margin
 
     window:setFrame({
