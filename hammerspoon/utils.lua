@@ -18,6 +18,18 @@ function M.tbl_contains(t, value)
   return false
 end
 
+local function showDesktopIcons()
+  hs.execute('defaults write com.apple.finder CreateDesktop true; killall Finder', true)
+end
+
+local function hideDesktopIcons(delayInSeconds)
+  hs.execute('defaults write com.apple.finder CreateDesktop false; killall Finder', true)
+
+  if delayInSeconds then
+    hs.timer.doAfter(delayInSeconds, showDesktopIcons)
+  end
+end
+
 --- Return a list of all keys used in a table.
 --- However, the order of the return table of keys is not guaranteed.
 ---
@@ -145,6 +157,8 @@ function M.resizeForScreencasting(appNames)
       end
     end
   end
+
+  hideDesktopIcons(30)
 end
 
 function M.toggleFloatOfAerospaceWorkspaceWindows(workspaceId)
