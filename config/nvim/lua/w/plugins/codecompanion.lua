@@ -44,25 +44,34 @@ return {
       },
       strategies = {
         chat = {
-          adapter = {
-            name = 'copilot',
-            model = 'claude-3.7-sonnet',
-          },
+          adapter = { name = 'copilot' },
+          inline = { name = 'copilot' },
+          cmd = { name = 'copilot' },
           completion_provider = 'blink',
           roles = {
             llm = function(adapter)
+              local adapter_and_model = adapter.formatted_name .. ' (' .. adapter.model.name .. ')'
+
               if adapter.name == 'copilot' then
-                return '  Copilot'
+                return ' ' .. adapter_and_model
               else
-                return 'icon  ' .. adapter.formatted_name
+                return ' ' .. adapter_and_model
               end
             end,
-            user = function()
-              local username = vim.env.USER or 'User'
-              return username:sub(1, 1):upper() .. username:sub(2)
-            end,
+            user = ' Me',
           },
         },
+      },
+      adapters = {
+        copilot = function()
+          return require('codecompanion.adapters').extend('copilot', {
+            schema = {
+              model = {
+                default = 'claude-sonnet-4',
+              },
+            },
+          })
+        end,
       },
     },
     keys = {
@@ -105,6 +114,9 @@ return {
       {
         'MeanderingProgrammer/render-markdown.nvim',
         ft = { 'codecompanion' },
+      },
+      {
+        'zbirenbaum/copilot.lua',
       },
       {
         'echasnovski/mini.diff',
