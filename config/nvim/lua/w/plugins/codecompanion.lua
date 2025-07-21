@@ -8,10 +8,18 @@
 
 return {
   {
+    'Joakker/lua-json5',
+    build = './install.sh',
+  },
+  {
     'ravitemer/mcphub.nvim',
     cmd = { 'MCPHub' },
-    build = 'npm install -g mcp-hub@latest', -- can't be a dependency for build to work
-    opts = {},
+    build = 'npm install -g mcp-hub@latest',
+    config = function()
+      require('mcphub').setup({ -- must run setup for json_decode to work
+        json_decode = require('json5').parse,
+      })
+    end,
   },
   {
     'olimorris/codecompanion.nvim',
