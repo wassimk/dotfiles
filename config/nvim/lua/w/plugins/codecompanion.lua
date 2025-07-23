@@ -52,9 +52,6 @@ return {
       },
       strategies = {
         chat = {
-          adapter = { name = 'copilot' },
-          inline = { name = 'copilot' },
-          cmd = { name = 'copilot' },
           completion_provider = 'blink',
           roles = {
             llm = function(adapter)
