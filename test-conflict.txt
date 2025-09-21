@@ -1,0 +1,9 @@
+This is a test file for merge conflict troubleshooting.
+
+Section A:
+MAIN BRANCH CHANGES - Updated content
+This line was modified on main branch
+
+Section B:
+Some other content
+Main branch modification here
