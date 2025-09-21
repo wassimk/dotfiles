@@ -138,14 +138,25 @@ return {
         require('neotest-rspec'),
         require('neotest-minitest'),
         require('neotest-jest'),
-        require('neotest-vitest')({
-          is_test_file = function(file_path)
-            if string.match(file_path, '/test/javascript/') then
-              return true
-            end
-            return false
-          end,
-        }),
+        (function()
+          local vitest_adapter = require('neotest-vitest')
+          local original_is_test_file = vitest_adapter.is_test_file
+
+          return vitest_adapter({
+            is_test_file = function(file_path)
+              -- First try the built-in check
+              if original_is_test_file(file_path) then
+                return true
+              end
+
+              -- If that fails, do custom check
+              if string.match(file_path, '/test/javascript/') or string.match(file_path, '/spec/javascripts/') then
+                return true
+              end
+              return false
+            end,
+          })
+        end)(),
         require('neotest-plenary'),
       },
     })
