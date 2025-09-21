@@ -9,6 +9,8 @@ return {
   event = 'BufRead',
   opts = {
     default_mappings = true,
-    disable_diagnostics = true,
+    -- can't enable in neovim nightly
+    -- https://github.com/akinsho/git-conflict.nvim/issues/119
+    disable_diagnostics = false,
   },
 }
