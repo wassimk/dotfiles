@@ -84,7 +84,18 @@ keybind = super+comma=text:\x13,
 # tmux rename the current session
 keybind = super+period=text:\x13$
 
-# tmux select windows 1-9
+# Disable Ghostty's default tab switching to allow tmux window switching
+keybind = super+digit_1=unbind
+keybind = super+digit_2=unbind
+keybind = super+digit_3=unbind
+keybind = super+digit_4=unbind
+keybind = super+digit_5=unbind
+keybind = super+digit_6=unbind
+keybind = super+digit_7=unbind
+keybind = super+digit_8=unbind
+keybind = super+digit_9=unbind
+
+# Enable tmux window switching
 keybind = super+one=text:\x131
 keybind = super+two=text:\x132
 keybind = super+three=text:\x133
