@@ -33,7 +33,7 @@ hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, 'f4', function()
     if f4PressCount == 1 then
       -- Single press - start screencast
       hs.notify.new({ title = 'Screencast', informativeText = 'Starting screencast mode' }):send()
-      U.resizeForScreencasting({ 'Ghostty', 'Asana', 'Code', 'Google Chrome', 'Safari', 'Notion' })
+      U.resizeForScreencasting({ 'Asana', 'Code', 'Ghostty', 'Google Chrome', 'Granola', 'Notion', 'Safari' })
     elseif f4PressCount >= 2 then
       -- Double press - stop screencast
       hs.notify.new({ title = 'Screencast', informativeText = 'Stopping screencast mode' }):send()
