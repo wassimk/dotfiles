@@ -1,6 +1,6 @@
 prSections:
 - title: Needs Review
-  filters: repo:planningcenter/giving repo:planningcenter/plaid-ruby is:open archived:false draft:false sort:created-asc -label:+2 -label:"not ready" -author:wassimk
+  filters: repo:planningcenter/church-center repo:planningcenter/accounts repo:planningcenter/giving repo:planningcenter/registrations repo:planningcenter/plaid-ruby repo:planningcenter/pco-payments is:open archived:false draft:false sort:created-asc -label:+2 -label:"not ready" -author:wassimk
 - title: Review Requested
   filters: is:open user-review-requested:@me
 - title: Involved
