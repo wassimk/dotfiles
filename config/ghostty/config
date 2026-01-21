@@ -111,3 +111,4 @@ keybind = super+shift+t=text:\x13!
 
 # tmux toggle the zoom state of the current pane
 keybind = super+z=text:\x13z
+keybind = shift+enter=text:\x1b\r
