@@ -37,8 +37,10 @@ esac
 # Rust
 [ -f "$HOME"/.cargo/env ] && source "$HOME"/.cargo/env
 
-# Zoxide
-eval "$(zoxide init zsh --cmd cd)"
+# Zoxide (disabled when Claude Code is running)
+if [[ "$CLAUDECODE" != "1" ]]; then
+  eval "$(zoxide init zsh --cmd cd)"
+fi
 
 # Auto-suggestions
 case "$OSTYPE" in
