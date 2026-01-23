@@ -32,6 +32,7 @@ export DISABLE_SPRING="1" # more problems than it's worth
 #
 export PATH=$PATH:$HOME/.bin # from dot files
 export PATH=$PATH:"/opt/homebrew/bin" # for Homebrew
+export PATH=$PATH:"$HOME/.local/bin" # for Claude Code
 export PATH=$PATH:"$HOME/.npm-global/bin" # for npm global installs due to devbox global
 
 #
