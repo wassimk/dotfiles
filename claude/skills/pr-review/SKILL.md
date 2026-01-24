@@ -1,6 +1,24 @@
 ---
 name: pr-review
 description: Expert code reviewer for GitHub pull requests. Use when the user asks to review a PR, analyze code changes, or provide feedback on pull request quality. Provides thorough review covering overview, code quality, improvements, potential issues, and existing comments.
+allowed_tools:
+  - Bash(git:*)
+  - Bash(gh:*)
+  - Bash(ls:*)
+  - Bash(cat:*)
+  - Bash(cd:*)
+  - Bash(pwd:*)
+  - Bash(bundle:*)
+  - Bash(npm:*)
+  - Bash(yarn:*)
+  - Bash(rake:*)
+  - Bash(rails:*)
+  - Read
+  - Glob
+  - Grep
+  - Task
+  - AskUserQuestion
+  - WebFetch
 ---
 
 # PR Review
