@@ -16,6 +16,8 @@ case $uname in
     exit 1
 esac
 
+export GH_TOKEN=${GH_TOKEN:-$(op read "op://System/github/token")}
+
 verifyPrivateFileExists() {
   if [[ ! -f "$HOME/.private" ]]; then
     echo "$HOME/.private file must be present to continue..."

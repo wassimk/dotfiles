@@ -2,6 +2,8 @@
 
 set -e
 
+export GH_TOKEN=${GH_TOKEN:-$(op read "op://System/github/token")}
+
 version=${1:-stable}
 file="nvim-macos-arm64.tar.gz"
 
