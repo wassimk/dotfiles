@@ -37,7 +37,7 @@ function M.tbl_keys(t)
 end
 
 function M.resizeForMeeting()
-  local aerospaceWorkspaceId = 8
+  local aerospaceWorkspaceId = 6
   hs.execute('aerospace summon-workspace ' .. aerospaceWorkspaceId, true)
   local zoom = hs.application.open('zoom.us')
   local granola = hs.application.open('granola')
