@@ -68,7 +68,7 @@ source $HOME/pco-box/env.sh
 source $HOME/pco-box/bin/complete.bash
 eval "$($HOME/Code/pco/bin/pco init -)"
 
-if [[ -e /usr/local/bin/devbox ]]; then
+if command -v devbox &> /dev/null; then
   eval "$(devbox global shellenv)"
 fi
 
