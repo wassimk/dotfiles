@@ -38,6 +38,7 @@ brew "tmux"
 brew "trash"
 brew "tree"
 brew "universal-ctags"
+brew "worktrunk"
 brew "yq"
 brew "zoxide"
 brew "zsh-autosuggestions"
@@ -48,17 +49,20 @@ cask "ghostty"
 cask "font-symbols-only-nerd-font"
 
 # taps
-tap "jesseduffield/lazygit"
-brew "lazygit"
-
 tap "heroku/brew"
 brew "heroku"
-
-tap "stripe/stripe-cli"
-brew "stripe"
 
 tap "jacobwgillespie/tap"
 brew "git-sync"
 
+tap "jesseduffield/lazygit"
+brew "lazygit"
+
+tap "stripe/stripe-cli"
+brew "stripe"
+
 tap "qmk/qmk"
 brew "qmk"
+
+tap "zhubert/tap"
+brew "plural"
