@@ -112,7 +112,6 @@ setupOS() {
       ;;
   esac
 
-  brew cleanup
 }
 
 acceptXcodeLicense() {
