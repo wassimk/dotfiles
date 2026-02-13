@@ -44,7 +44,6 @@ export _ZO_EXCLUDE_DIRS="$HOME:$HOME/.dotfiles:$HOME/Work/*:$HOME/Code/*:$HOME/P
 # Options
 #
 setopt NO_FLOW_CONTROL         # disable start (C-s) and stop (C-q) characters
-setopt NO_HIST_IGNORE_ALL_DUPS # don't filter non-contiguous duplicates from history
 setopt HIST_IGNORE_ALL_DUPS    # filter non-contiguous duplicates from history
 setopt HIST_FIND_NO_DUPS       # don't show dupes when searching
 setopt HIST_IGNORE_DUPS        # do filter contiguous duplicates from history
