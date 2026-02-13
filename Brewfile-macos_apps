@@ -1,6 +1,5 @@
 cask "1password"
 cask "1password-cli"
-cask "nikitabobko/tap/aerospace"
 cask "anylist"
 cask "arduino-ide"
 cask "asana"
