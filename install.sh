@@ -33,6 +33,7 @@ verifyGpgKeyExists() {
     echo "Export and import it:"
     echo "gpg --export-secret-keys $KEY_ID > private.key"
     echo "gpg --import private.key"
+    exit 1
   fi
 }
 
