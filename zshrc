@@ -58,7 +58,7 @@ esac
 [[ "$TERM_PROGRAM" != "vscode" && "$TERM_PROGRAM" != "Apple_Terminal" ]] && ensure_tmux_is_running
 
 # 1password cli
-source $HOME/.config/op/plugins.sh
+[ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
 
 # gpg signing
 export GPG_TTY=$(tty)
