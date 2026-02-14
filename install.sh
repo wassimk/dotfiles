@@ -71,6 +71,11 @@ installRust() {
   fi
 }
 
+installCargoPackages() {
+  source "$HOME"/.cargo/env
+  cargo install --locked agg
+}
+
 installNeovim() {
   case $os in
     $macOS*)
@@ -157,6 +162,7 @@ installHomebrewPackages
 installDevboxPackages
 setupDotFiles
 installRust
+installCargoPackages
 installNeovim
 installGhExtensions
 setupOS
