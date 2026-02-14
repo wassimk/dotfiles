@@ -16,6 +16,15 @@ case $uname in
     exit 1
 esac
 
+# ------------------------------------------------------------------------------
+# Pinned versions for devbox global packages.
+# Update these when new versions are available:
+#   devbox search ruby
+#   devbox search nodejs
+# ------------------------------------------------------------------------------
+RUBY_VERSION="4.0.1"
+NODEJS_VERSION="25.6.0"
+
 export GH_TOKEN=${GH_TOKEN:-$(op read "op://System/github/token")}
 
 verifyPrivateFileExists() {
@@ -59,8 +68,16 @@ setupDotFiles() {
 }
 
 installDevboxPackages() {
-  devbox global add nodejs@latest
-  devbox global add ruby@latest
+  echo "Installing devbox global packages..."
+  echo "  Ruby:   $RUBY_VERSION"
+  echo "  NodeJS: $NODEJS_VERSION"
+  echo ""
+  echo "To update, change RUBY_VERSION and NODEJS_VERSION at the top of this script."
+  echo "Run 'devbox search ruby' or 'devbox search nodejs' to find available versions."
+  echo ""
+
+  devbox global add "ruby@$RUBY_VERSION"
+  devbox global add "nodejs@$NODEJS_VERSION"
 }
 
 installRust() {
