@@ -6,6 +6,7 @@ brew "zsh"
 
 # everything else
 brew "ack"
+brew "agg"
 brew "asciinema"
 brew "awscli"
 brew "bandwhich"
