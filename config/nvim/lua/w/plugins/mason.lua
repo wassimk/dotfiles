@@ -12,13 +12,6 @@ return {
   config = function()
     require('mason').setup()
 
-    -- automatic lsp server installs
-    -- require('mason-lspconfig').setup({
-    --   automatic_installation = {
-    --     exclude = { 'rubocop', 'ruby_lsp', 'solargraph', 'syntax_tree' },
-    --   },
-    -- })
-
     -- mason auto-update
     require('mason-tool-installer').setup({
       ensure_installed = {
