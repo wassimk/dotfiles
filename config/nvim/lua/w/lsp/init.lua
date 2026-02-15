@@ -10,6 +10,7 @@ function M.setup()
 
   vim.lsp.enable({
     'bash',
+    'copilot',
     'css',
     'emmet',
     'eslint',
@@ -23,6 +24,20 @@ function M.setup()
     'tailwind',
     'vim',
     'yaml',
+  })
+
+  -- copilot inline completion
+  vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('WamCopilotInlineCompletion', {}),
+    callback = function(args)
+      local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+      if client.name ~= 'copilot' then
+        return
+      end
+
+      -- Tab accept is handled by blink.cmp keymap chain (sidekick NES → inline completion → fallback)
+      vim.lsp.inline_completion.enable(true, { bufnr = args.buf })
+    end,
   })
 end
 
