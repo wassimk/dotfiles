@@ -7,7 +7,6 @@ local M = {}
 local winbar_filetype_exclude = {
   'fugitive',
   'help',
-  'packer',
   'qf',
   'startuptime',
   'snacks_dashboard',

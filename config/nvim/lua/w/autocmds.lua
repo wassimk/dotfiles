@@ -7,7 +7,9 @@ local wamGrp = api.nvim_create_augroup('WamAutocmds', {})
 
 -- highlight on yank
 api.nvim_create_autocmd('TextYankPost', {
-  command = 'silent! lua vim.highlight.on_yank { timeout = 500 }',
+  callback = function()
+    vim.highlight.on_yank({ timeout = 500 })
+  end,
   group = wamGrp,
 })
 
@@ -53,7 +55,9 @@ api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
 
 api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = 'Brewfile*',
-  command = 'setlocal filetype=conf',
+  callback = function()
+    vim.bo.filetype = 'conf'
+  end,
   group = wamGrp,
 })
 
@@ -72,19 +76,25 @@ api.nvim_create_autocmd('FileType', {
     'startuptime',
     'dap-float',
   },
-  command = 'nnoremap <buffer><silent> q :close<cr>',
+  callback = function()
+    vim.keymap.set('n', 'q', ':close<cr>', { buffer = true, silent = true })
+  end,
   group = wamGrp,
 })
 
 api.nvim_create_autocmd('FileType', {
   pattern = 'man',
-  command = 'nnoremap <buffer><silent> q :quit<cr>',
+  callback = function()
+    vim.keymap.set('n', 'q', ':quit<cr>', { buffer = true, silent = true })
+  end,
   group = wamGrp,
 })
 
 -- new lines with 'o' or 'O' from commented lines don't continue commenting
 api.nvim_create_autocmd('FileType', {
-  command = 'setlocal formatoptions-=o',
+  callback = function()
+    vim.opt_local.formatoptions:remove('o')
+  end,
   group = wamGrp,
 })
 
@@ -93,4 +103,5 @@ api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave', 'TextChanged' }, {
   callback = function()
     require('lint').try_lint()
   end,
+  group = wamGrp,
 })

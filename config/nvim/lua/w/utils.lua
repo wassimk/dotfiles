@@ -90,7 +90,7 @@ function M.toggle_qf()
       qf_exists = true
     end
   end
-  if qf_exists == true then
+  if qf_exists then
     vim.cmd('cclose')
     return
   end
