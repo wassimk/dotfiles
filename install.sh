@@ -107,6 +107,7 @@ installNeovim() {
 
 installGhExtensions() {
   gh extension install dlvhdr/gh-dash >/dev/null 2>&1;
+  gh extension install dlvhdr/gh-enhance >/dev/null 2>&1;
   gh extension install github/gh-copilot >/dev/null 2>&1;
   gh extension install mloberg/gh-view >/dev/null 2>&1;
   gh extension install seachicken/gh-poi >/dev/null 2>&1;
