@@ -55,6 +55,10 @@ return {
           end,
           'fallback',
         },
+        ['<S-Tab>'] = {
+          'snippet_backward',
+          'fallback',
+        },
         ['<C-u>'] = {
           'scroll_documentation_up',
           function(cmp)
