@@ -1,7 +1,6 @@
 --
--- mason.nvim, mason-lspconfig.nvim, mason-tool-installer.nvim
+-- mason.nvim, mason-tool-installer.nvim
 -- https://github.com/williamboman/mason.nvim
--- https://github.com/williamboman/mason-lspconfig.nvim
 -- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
 
 return {
