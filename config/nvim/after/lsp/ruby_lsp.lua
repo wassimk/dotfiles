@@ -3,7 +3,7 @@ local function add_ruby_deps_command(client, bufnr)
     local params = vim.lsp.util.make_text_document_params()
     local showAll = opts.args == 'all'
 
-    client.request('rubyLsp/workspace/dependencies', params, function(error, result)
+    client:request('rubyLsp/workspace/dependencies', params, function(error, result)
       if error then
         print('Error showing Ruby dependencies:')
         print(vim.inspect(error))
@@ -34,9 +34,9 @@ end
 
 local function add_ruby_syntax_tree_command(client, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'RubyLSPShowSyntaxTree', function()
-    local params = vim.lsp.util.make_position_params()
+    local params = vim.lsp.util.make_position_params(vim.fn.bufwinid(bufnr), client.offset_encoding)
 
-    client.request('rubyLsp/textDocument/showSyntaxTree', params, function(error, result)
+    client:request('rubyLsp/textDocument/showSyntaxTree', params, function(error, result)
       if error then
         print('Error showing Syntax Tree for buffer: ')
         print(vim.inspect(error))
@@ -64,7 +64,7 @@ local function add_ruby_discover_tests_command(client, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'RubyLSPDiscoverTests', function()
     local params = { textDocument = vim.lsp.util.make_text_document_params() }
 
-    client.request('rubyLsp/discoverTests', params, function(error, result)
+    client:request('rubyLsp/discoverTests', params, function(error, result)
       if error then
         print('Error discovering tests:')
         print(vim.inspect(error))
