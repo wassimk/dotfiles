@@ -331,6 +331,7 @@ local picker_opts = {
   ui_select = true,
   sources = {
     explorer = explorer_opts,
+    select = { win = common_picker_keymaps },
     smart = file_picker_opts,
     files = file_picker_opts,
     buffers = file_picker_opts,
