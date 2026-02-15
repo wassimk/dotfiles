@@ -119,10 +119,6 @@ function M.on_attach(client, bufnr)
   --   })
   -- end
 
-  if client:supports_method('textDocument/documentColor') then
-    vim.lsp.document_color.enable(true, bufnr)
-  end
-
   if client:supports_method('textDocument/codeLens') then
     vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
       callback = function()
