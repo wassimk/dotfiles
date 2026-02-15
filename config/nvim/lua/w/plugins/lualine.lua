@@ -83,8 +83,9 @@ return {
 
       if is_loclist() then
         size = vim.fn.getloclist(0, { title = 0, size = true }).size
+      else
+        size = vim.fn.getqflist({ title = 0, size = true }).size
       end
-      size = vim.fn.getqflist({ title = 0, size = true }).size
 
       return line .. '/' .. size
     end
