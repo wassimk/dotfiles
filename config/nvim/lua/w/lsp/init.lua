@@ -66,15 +66,8 @@ function M.setup()
         vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
       end
 
-      local wamLspAutocmdsGrp = vim.api.nvim_create_augroup('WamLspAutocmds' .. bufnr, { clear = true })
-
       if client:supports_method('textDocument/codeLens') then
-        vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
-          callback = function()
-            vim.lsp.codelens.enable(true, { bufnr = bufnr })
-          end,
-          group = wamLspAutocmdsGrp,
-        })
+        vim.lsp.codelens.enable(true, { bufnr = bufnr })
       end
     end,
   })
