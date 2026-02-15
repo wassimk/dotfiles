@@ -25,6 +25,7 @@ return {
         'codelldb',
         'codespell',
         'commitlint',
+        'copilot-language-server',
         'glow',
         'luacheck',
         'prettierd',
