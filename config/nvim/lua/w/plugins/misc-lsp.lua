@@ -14,7 +14,7 @@ local function fidget_format_message(msg)
     message = msg.done and 'Completed' or 'In progress...'
   end
 
-  if msg.percentage ~= nil and not lsp_name == 'ruby_lsp' then
+  if msg.percentage ~= nil and lsp_name ~= 'ruby_lsp' then
     message = string.format('%s (%.0f%%)', message, msg.percentage)
   end
   return message
