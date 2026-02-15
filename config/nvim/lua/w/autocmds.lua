@@ -91,6 +91,7 @@ api.nvim_create_autocmd('FileType', {
 })
 
 -- new lines with 'o' or 'O' from commented lines don't continue commenting
+-- applies to ALL filetypes intentionally (no pattern specified)
 api.nvim_create_autocmd('FileType', {
   callback = function()
     vim.opt_local.formatoptions:remove('o')
