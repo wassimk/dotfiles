@@ -6,7 +6,6 @@
 vim.g.rustaceanvim = {
   server = {
     capabilities = require('w.lsp').capabilities(),
-    on_attach = require('w.lsp').on_attach,
   },
 }
 
