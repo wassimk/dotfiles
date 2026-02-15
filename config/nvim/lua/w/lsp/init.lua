@@ -93,7 +93,6 @@ function M.setup()
     -- 'ts_ls', -- configured by pmizio/typescript-tools.nvim
     'jsonls',
     'lua_ls', -- supported by folke/lazydev.nvim
-    'remark_ls',
     -- 'rust_analyzer', -- configured by mrcjkb/rustaceanvim
     'tailwindcss',
     'vimls',
