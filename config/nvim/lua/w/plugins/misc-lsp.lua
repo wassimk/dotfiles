@@ -60,10 +60,6 @@ return {
     },
   },
   {
-    'neovim/nvim-lspconfig', -- most lsp use the base configuration
-    module = 'lspconfig',
-    -- dependencies = {
-    -- 'williamboman/mason-lspconfig.nvim',
-    -- },
+    'neovim/nvim-lspconfig', -- provides base cmd/filetypes/root_markers for all servers
   },
 }

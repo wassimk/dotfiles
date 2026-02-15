@@ -89,9 +89,7 @@ function M.setup()
     'yamlls',
   })
 
-  -- copilot inline completion
-  -- copilot's config is provided by lspconfig via the new lsp/ runtime format (no lspconfig.configs module),
-  -- so we hook inline completion here rather than through our shared LspAttach
+  -- copilot inline completion (separate from shared LspAttach since it only applies to copilot)
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('WamCopilotInlineCompletion', {}),
     callback = function(args)
