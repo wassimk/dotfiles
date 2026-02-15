@@ -69,13 +69,16 @@
   defaultBranch = main
 
 [merge]
-  tool = vimdiff
+  tool = codediff
   conflictstyle = diff3
   guitool = kaleidoscope
 
 [mergetool]
   prompt = false
   keepBackup = false
+
+[mergetool "codediff"]
+  cmd = nvim "$MERGED" -c "CodeDiff merge $MERGED"
 
 [mergetool "kaleidoscope"]
   cmd = ksdiff --merge --output "$MERGED" --base "$BASE" -- "$LOCAL" --snapshot "$REMOTE" --snapshot
