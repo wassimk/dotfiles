@@ -41,10 +41,6 @@ function M.setup()
       vim.keymap.set('n', 'gll', vim.lsp.codelens.run, opts('codelens run'))
       vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts('rename'))
 
-      vim.keymap.set('n', 'glh', function()
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
-      end, opts('toggle inlay hints'))
-
       -- Rust Language Server
       if client.name == 'rust-analyzer' then
         vim.keymap.set('n', '<F5>', function()
@@ -62,10 +58,16 @@ function M.setup()
         vim.keymap.set({ 'n', 'v' }, 'gla', vim.lsp.buf.code_action, opts('code actions'))
       end
 
+      -- inlay hints
+      vim.keymap.set('n', 'glh', function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
+      end, opts('toggle inlay hints'))
+
       if client:supports_method('textDocument/inlayHint') then
         vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
       end
 
+      -- codelens
       if client:supports_method('textDocument/codeLens') then
         vim.lsp.codelens.enable(true, { bufnr = bufnr })
       end
