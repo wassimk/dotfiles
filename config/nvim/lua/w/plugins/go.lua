@@ -11,7 +11,6 @@ return {
     require('go').setup({
       lsp_cfg = {
         capabilities = require('w.lsp').capabilities(),
-        on_attach = require('w.lsp').on_attach,
       },
     })
   end,

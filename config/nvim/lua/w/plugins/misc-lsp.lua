@@ -46,7 +46,6 @@ return {
     opts = {
       debug = false,
       capabilities = require('w.lsp').capabilities(),
-      on_attach = require('w.lsp').on_attach,
       settings = {
         expose_as_code_action = {
           -- 'add_missing_imports',

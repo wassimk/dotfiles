@@ -1,7 +1,3 @@
---
--- Ruby LSP Language Server
---
-
 local function add_ruby_deps_command(client, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'RubyLSPShowDependencies', function(opts)
     local params = vim.lsp.util.make_text_document_params()
@@ -100,18 +96,13 @@ local function add_ruby_discover_tests_command(client, bufnr)
   })
 end
 
-local default_config = require('lspconfig.configs.ruby_lsp').default_config
-default_config.root_dir = nil
-
-local custom_config = {
+---@type vim.lsp.Config
+return {
   init_options = {
     formatter = 'rubocop',
     linters = { 'rubocop' },
   },
-  capabilities = require('w.lsp').capabilities(),
   on_attach = function(client, bufnr)
-    require('w.lsp').on_attach(client)
-
     add_ruby_deps_command(client, bufnr)
     add_ruby_syntax_tree_command(client, bufnr)
     add_ruby_discover_tests_command(client, bufnr)
@@ -120,5 +111,3 @@ local custom_config = {
     client.server_capabilities.inlayHintProvider = false
   end,
 }
-
-return vim.tbl_deep_extend('force', default_config, custom_config)
