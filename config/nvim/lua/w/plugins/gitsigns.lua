@@ -21,15 +21,15 @@ return {
       -- Navigation
       map('n', '<leader>hn', function()
         if vim.wo.diff then
-          vim.cmd.normal({ '<leader>hn', bang = true })
+          vim.cmd.normal({ ']c', bang = true })
         else
           gitsigns.nav_hunk('next')
         end
       end, { desc = 'jump to next hunk' })
 
-      map('n', '<leader>hp', function()
+      map('n', '<leader>hN', function()
         if vim.wo.diff then
-          vim.cmd.normal({ '<leader>hp', bang = true })
+          vim.cmd.normal({ '[c', bang = true })
         else
           gitsigns.nav_hunk('prev')
         end

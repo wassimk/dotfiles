@@ -51,7 +51,7 @@ return {
     end
 
     -- reload snippets helper keymap
-    vim.keymap.set('n', '<leader><leader>s', load_snippets, { desc = 'LUASNIP: reload keymaps' })
+    vim.keymap.set('n', '<leader><leader>s', load_snippets, { desc = 'LUASNIP: reload snippets' })
 
     -- initial snippet load
     load_snippets()
