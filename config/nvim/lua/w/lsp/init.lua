@@ -5,11 +5,6 @@
 local M = {}
 
 function M.setup()
-  -- global defaults for all LSP servers
-  vim.lsp.config('*', {
-    capabilities = M.capabilities(),
-  })
-
   -- global LspAttach: keymaps, inlay hints, codelens for all servers
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('WamLspAttach', {}),
@@ -109,10 +104,6 @@ function M.setup()
       vim.lsp.inline_completion.enable(true, { bufnr = args.buf })
     end,
   })
-end
-
-function M.capabilities()
-  return vim.lsp.protocol.make_client_capabilities()
 end
 
 return M

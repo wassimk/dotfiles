@@ -9,9 +9,7 @@ return {
   build = ':lua require("go.install").update_all_sync()',
   config = function()
     require('go').setup({
-      lsp_cfg = {
-        capabilities = require('w.lsp').capabilities(),
-      },
+      lsp_cfg = true,
     })
   end,
 }
