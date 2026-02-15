@@ -51,7 +51,8 @@ return {
             if cmp.snippet_active() then
               local has_luasnip, luasnip = pcall(require, 'luasnip')
               if has_luasnip and luasnip.choice_active() then
-                vim.schedule(function() -- address a bug
+                vim.schedule(function()
+                  -- schedule to avoid conflict with blink.cmp menu rendering
                   require('luasnip.extras.select_choice')()
                 end)
               end
