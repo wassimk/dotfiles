@@ -26,7 +26,7 @@ return {
         require('dap').continue()
       end,
       mode = 'n',
-      desc = 'DAP: start / continue menu',
+      desc = 'debug: start / continue menu',
     },
     {
       '<F9>',
@@ -34,7 +34,7 @@ return {
         require('dap').toggle_breakpoint()
       end,
       mode = 'n',
-      desc = 'DAP: toggle breakpoint',
+      desc = 'debug: toggle breakpoint',
     },
     {
       '<F21>',
@@ -42,7 +42,7 @@ return {
         require('dap').toggle_breakpoint(vim.fn.input('Breakpoint condition: '))
       end,
       mode = 'n',
-      desc = 'DAP: conditional breakpoint, Shift-F9',
+      desc = 'debug: conditional breakpoint, Shift-F9',
     },
     {
       '<Leader>do',
@@ -50,7 +50,7 @@ return {
         require('dap').toggle_breakpoint(nil, nil, vim.fn.input('Log breakpoint message: '))
       end,
       mode = 'n',
-      desc = 'DAP: log breakpoint',
+      desc = 'debug: log breakpoint',
     },
     {
       '<Leader>de',
@@ -58,7 +58,7 @@ return {
         require('dap').set_exception_breakpoints()
       end,
       mode = 'n',
-      desc = 'DAP: exception breakpoint',
+      desc = 'debug: exception breakpoint',
     },
     {
       '<Leader>du',
@@ -66,13 +66,13 @@ return {
         require('dapui').toggle()
       end,
       mode = 'n',
-      desc = 'DAP: UI toggle',
+      desc = 'debug: UI toggle',
     },
   },
   config = function()
     local function opts(desc)
       return {
-        desc = 'DAP: ' .. desc,
+        desc = 'debug: ' .. desc,
       }
     end
 

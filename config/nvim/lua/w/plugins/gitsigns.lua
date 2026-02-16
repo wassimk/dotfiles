@@ -14,7 +14,7 @@ return {
 
       local function map(mode, l, r, opts)
         opts.buffer = bufnr
-        opts.desc = 'GIT: ' .. opts.desc
+        opts.desc = 'git: ' .. opts.desc
         vim.keymap.set(mode, l, r, opts)
       end
 

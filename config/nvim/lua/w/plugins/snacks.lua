@@ -363,7 +363,7 @@ return {
       function()
         Snacks.explorer()
       end,
-      desc = 'FILES: toggle explorer',
+      desc = 'files: toggle explorer',
     },
     {
       '<leader>f',
@@ -371,7 +371,7 @@ return {
         Snacks.picker.smart()
       end,
       mode = { 'n', 'x' },
-      desc = 'SNACKS: smart',
+      desc = 'find files',
     },
     {
       '<leader>b',
@@ -379,7 +379,7 @@ return {
         Snacks.picker.buffers()
       end,
       mode = { 'n', 'x' },
-      desc = 'SNACKS: buffers',
+      desc = 'find buffers',
     },
     {
       '<leader>s',
@@ -387,7 +387,7 @@ return {
         Snacks.picker.grep()
       end,
       mode = { 'n', 'x' },
-      desc = 'SNACKS: grep',
+      desc = 'grep',
     },
     {
       '<leader>w',
@@ -395,15 +395,15 @@ return {
         Snacks.picker.grep_word()
       end,
       mode = { 'n', 'x' },
-      desc = 'SNACKS: grep word',
+      desc = 'grep word',
     },
     {
       '<leader>g',
       function()
-        Snacks.picker.git_status()
+        Snacks.lazygit()
       end,
       mode = { 'n', 'x' },
-      desc = 'SNACKS: git status',
+      desc = 'lazygit',
     },
     {
       '<C-f>a',
@@ -411,7 +411,7 @@ return {
         Snacks.picker.pickers()
       end,
       mode = { 'n', 'x' },
-      desc = 'SNACKS: all pickers',
+      desc = 'all pickers',
     },
     {
       '<C-f>i',
@@ -419,7 +419,7 @@ return {
         Snacks.picker.icons()
       end,
       mode = { 'n', 'x' },
-      desc = 'SNACKS: icons',
+      desc = 'icons',
     },
     {
       '<C-f>l',
@@ -427,7 +427,7 @@ return {
         Snacks.picker.highlights()
       end,
       mode = { 'n', 'x' },
-      desc = 'SNACKS: highlights',
+      desc = 'highlights',
     },
     {
       '<C-f>f',
@@ -435,7 +435,7 @@ return {
         Snacks.picker.files()
       end,
       mode = { 'n', 'x' },
-      desc = 'SNACKS: files',
+      desc = 'files',
     },
     {
       '<C-f>s',
@@ -443,7 +443,7 @@ return {
         Snacks.picker.search_history()
       end,
       mode = 'n',
-      desc = 'SNACKS: search history',
+      desc = 'search history',
     },
     {
       '<C-f>c',
@@ -451,7 +451,7 @@ return {
         Snacks.picker.commands()
       end,
       mode = 'n',
-      desc = 'SNACKS: commands',
+      desc = 'commands',
     },
     {
       '<C-r>',
@@ -459,7 +459,7 @@ return {
         Snacks.picker.command_history()
       end,
       mode = 'c',
-      desc = 'SNACKS: command history',
+      desc = 'snacks: command history',
     },
     {
       '<C-f>k',
@@ -467,7 +467,7 @@ return {
         Snacks.picker.keymaps()
       end,
       mode = 'n',
-      desc = 'SNACKS: keymaps',
+      desc = 'keymaps',
     },
     {
       '<C-f>h',
@@ -475,7 +475,7 @@ return {
         Snacks.picker.help()
       end,
       mode = 'n',
-      desc = 'SNACKS: help tags',
+      desc = 'help tags',
     },
     {
       'z=',
@@ -483,7 +483,7 @@ return {
         Snacks.picker.spelling()
       end,
       mode = 'n',
-      desc = 'SNACKS: spell suggest',
+      desc = 'spell suggest',
     },
   },
 }

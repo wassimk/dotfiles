@@ -20,7 +20,7 @@ return {
         require('neotest').run.run()
       end,
       mode = 'n',
-      desc = 'NEOTEST: nearest',
+      desc = 'nearest',
     },
     {
       '<leader>tf',
@@ -28,7 +28,7 @@ return {
         require('neotest').run.run(vim.fn.expand('%'))
       end,
       mode = 'n',
-      desc = 'NEOTEST: file',
+      desc = 'file',
     },
     {
       '<leader>tw',
@@ -36,7 +36,7 @@ return {
         require('neotest').watch.watch()
       end,
       mode = 'n',
-      desc = 'NEOTEST: watch nearest',
+      desc = 'watch nearest',
     },
     {
       '<leader>ta',
@@ -44,7 +44,7 @@ return {
         require('neotest').run.attach()
       end,
       mode = 'n',
-      desc = 'NEOTEST: attach',
+      desc = 'attach',
     },
     {
       '<leader>tl',
@@ -52,7 +52,7 @@ return {
         require('neotest').run.run_last()
       end,
       mode = 'n',
-      desc = 'NEOTEST: last',
+      desc = 'last',
     },
     {
       '<leader>th',
@@ -60,7 +60,7 @@ return {
         require('neotest').output.open({ short = true })
       end,
       mode = 'n',
-      desc = 'NEOTEST: output float',
+      desc = 'output float',
     },
     {
       '<leader>tJ',
@@ -68,7 +68,7 @@ return {
         require('neotest').jump.next({ status = 'failed' })
       end,
       mode = 'n',
-      desc = 'NEOTEST: jump next failed',
+      desc = 'jump next failed',
     },
     {
       '<leader>tK',
@@ -76,7 +76,7 @@ return {
         require('neotest').jump.prev({ status = 'failed' })
       end,
       mode = 'n',
-      desc = 'NEOTEST: jump previous failed',
+      desc = 'jump previous failed',
     },
     {
       '<leader>to',
@@ -84,7 +84,7 @@ return {
         require('neotest').output_panel.toggle()
       end,
       mode = 'n',
-      desc = 'NEOTEST: output panel',
+      desc = 'output panel',
     },
     {
       '<leader>ts',
@@ -92,7 +92,7 @@ return {
         require('neotest').summary.toggle()
       end,
       mode = 'n',
-      desc = 'NEOTEST: summary sidebar',
+      desc = 'summary sidebar',
     },
   },
   dependencies = {

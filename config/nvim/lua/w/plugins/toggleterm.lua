@@ -10,7 +10,7 @@ return {
   keys = {
     {
       '<C-Bslash>',
-      desc = 'TOGGLETERM: toggle terminal',
+      desc = 'toggleterm: toggle terminal',
     },
   },
   config = function()

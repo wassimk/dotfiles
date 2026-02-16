@@ -13,7 +13,7 @@ return {
       function()
         require('harpoon'):list():add()
       end,
-      desc = 'HARPOON: mark',
+      desc = 'harpoon: mark',
     },
     {
       '<c-e>',
@@ -22,35 +22,35 @@ return {
 
         harpoon.ui:toggle_quick_menu(harpoon:list())
       end,
-      desc = 'HARPOON: toggle UI',
+      desc = 'harpoon: toggle UI',
     },
     {
       '<M-r>1',
       function()
         require('harpoon'):list():select(1)
       end,
-      desc = 'HARPOON: go to file 1',
+      desc = 'harpoon: go to file 1',
     },
     {
       '<M-r>2',
       function()
         require('harpoon'):list():select(2)
       end,
-      desc = 'HARPOON: go to file 2',
+      desc = 'harpoon: go to file 2',
     },
     {
       '<M-r>3',
       function()
         require('harpoon'):list():select(3)
       end,
-      desc = 'HARPOON: go to file 3',
+      desc = 'harpoon: go to file 3',
     },
     {
       '<M-r>4',
       function()
         require('harpoon'):list():select(4)
       end,
-      desc = 'HARPOON: go to file 4',
+      desc = 'harpoon: go to file 4',
     },
   },
 }

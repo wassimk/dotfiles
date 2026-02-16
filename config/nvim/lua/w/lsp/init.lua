@@ -20,7 +20,7 @@ function M.setup()
       local function opts(desc)
         return {
           buffer = bufnr,
-          desc = 'LSP: ' .. desc,
+          desc = 'lsp: ' .. desc,
         }
       end
 
@@ -40,7 +40,7 @@ function M.setup()
       if client.name == 'rust-analyzer' then
         vim.keymap.set('n', '<F5>', function()
           vim.cmd.RustLsp('debug')
-        end, { desc = 'RUST: debug menu' })
+        end, { desc = 'rust: debug menu' })
         vim.keymap.set({ 'n', 'v' }, 'gla', function()
           vim.cmd.RustLsp('codeAction')
         end, opts('code actions'))

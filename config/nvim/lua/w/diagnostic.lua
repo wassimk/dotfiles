@@ -52,7 +52,7 @@ function M.setup()
   -- keymaps
   local function opts(desc)
     return {
-      desc = 'DIAGNOSTIC: ' .. desc,
+      desc = 'diagnostics: ' .. desc,
     }
   end
   vim.keymap.set('n', '<leader>dn', function()
