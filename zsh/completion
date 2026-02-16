@@ -31,6 +31,7 @@ zmodload zsh/complist
 zstyle ':completion:*' menu select
 bindkey -M menuselect '^[[Z' reverse-menu-complete # shift-tab
 bindkey -M menuselect '^M' .accept-line # execute completion on accept
+bindkey -M menuselect '^[' send-break # ESC to exit completion menu
 
 # enable menu-style completion for cdr
 zstyle ':completion:*:*:cdr:*:*' menu selection
