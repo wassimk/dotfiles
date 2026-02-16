@@ -104,6 +104,12 @@ installNeovim() {
   esac
 }
 
+installClaudeCode() {
+  if ! command -v claude >/dev/null 2>&1; then
+    curl -fsSL https://claude.ai/install.sh | bash
+  fi
+}
+
 
 installGhExtensions() {
   gh extension install dlvhdr/gh-dash >/dev/null 2>&1;
@@ -174,6 +180,7 @@ installDevboxPackages
 setupDotFiles
 installRust
 installNeovim
+installClaudeCode
 installGhExtensions
 setupOS
 setupNPM
