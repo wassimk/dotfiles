@@ -159,8 +159,6 @@ setupNPM() {
 
   npm install -g react-devtools >/dev/null 2>&1; # react-devtools for Safari
 
-  npm install -g @anthropic-ai/claude-code 
-
   npm install -g bugsnag-mcp-server
 }
 
