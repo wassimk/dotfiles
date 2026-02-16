@@ -27,51 +27,51 @@ compdef _git_sw git_sw
 
 # completion for "ta" command in "$HOME"/.bin
 function _ta() {
-  for session in $(tmux list-sessions -F "#S"); do
-    compadd "$session"
-  done
+  local -a sessions
+  sessions=("${(@f)$(tmux list-sessions -F "#S" 2>/dev/null)}")
+  _describe 'tmux sessions' sessions
 }
 compdef _ta ta
 
 # completion for "tw" alias (ta work)
 WORK_DIR="$HOME"/Code
-tw() { 
-  if ! $(tmux list-sessions | sed -E 's/:.*$//' | grep -q "^$1$"); then
-    (TMUX='' tmux new-session -Ad -s "$1" -c $WORK_DIR/"$1")
+tw() {
+  local session_name="$*"
+  if ! $(tmux list-sessions | sed -E 's/:.*$//' | grep -q "^$session_name$"); then
+    (TMUX='' tmux new-session -Ad -s "$session_name" -c "$WORK_DIR/$session_name")
   fi
 
-  ta "$1"
+  ta "$session_name"
 }
 
 function _tw() {
-  for session in $(tmux list-sessions -F "#S"); do
-    compadd -J "active" "$session"
-  done
+  local -a sessions
+  sessions=("${(@f)$(tmux list-sessions -F "#S" 2>/dev/null)}")
 
-  for dir in $(ls -D -1 $WORK_DIR); do
-    compadd -J "inactive" "$dir"
-  done
+  compadd -J "active" -a sessions
+
+  _files -J "inactive" -W "$WORK_DIR" -/
 }
 compdef _tw tw
 
 # completion for "tp" alias (ta cool-project)
 PERSONAL_DIR="$HOME"/Personal
 tp() {
-  if ! $(tmux list-sessions | sed -E 's/:.*$//' | grep -q "^$1$"); then
-    (TMUX='' tmux new-session -Ad -s "$1" -c $PERSONAL_DIR/"$1")
+  local session_name="$*"
+  if ! $(tmux list-sessions | sed -E 's/:.*$//' | grep -q "^$session_name$"); then
+    (TMUX='' tmux new-session -Ad -s "$session_name" -c "$PERSONAL_DIR/$session_name")
   fi
 
-  ta "$1"
+  ta "$session_name"
 }
 
 function _tp() {
-  for session in $(tmux list-sessions -F "#S"); do
-    compadd -J "active" "$session"
-  done
+  local -a sessions
+  sessions=("${(@f)$(tmux list-sessions -F "#S" 2>/dev/null)}")
 
-  for dir in $(ls -D -1 $PERSONAL_DIR); do
-    compadd -J "inactive" "$dir"
-  done
+  compadd -J "active" -a sessions
+
+  _files -J "inactive" -W "$PERSONAL_DIR" -/
 }
 compdef _tp tp
 # kill session
