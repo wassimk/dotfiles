@@ -28,7 +28,7 @@ compdef _git_sw git_sw
 # completion for "ta" command in "$HOME"/.bin
 function _ta() {
   local -a sessions
-  sessions=("${(@f)$(tmux list-sessions -F "#S" 2>/dev/null)}")
+  sessions=("${(@f)$(tmux list-sessions -F "#S" 2>/dev/null | grep -Ev '^(claude|copilot)')}")
   _describe 'tmux sessions' sessions
 }
 compdef _ta ta
@@ -46,7 +46,7 @@ tw() {
 
 function _tw() {
   local -a sessions
-  sessions=("${(@f)$(tmux list-sessions -F "#S" 2>/dev/null)}")
+  sessions=("${(@f)$(tmux list-sessions -F "#S" 2>/dev/null | grep -Ev '^(claude|copilot)')}")
 
   compadd -J "active" -a sessions
 
@@ -67,7 +67,7 @@ tp() {
 
 function _tp() {
   local -a sessions
-  sessions=("${(@f)$(tmux list-sessions -F "#S" 2>/dev/null)}")
+  sessions=("${(@f)$(tmux list-sessions -F "#S" 2>/dev/null | grep -Ev '^(claude|copilot)')}")
 
   compadd -J "active" -a sessions
 
