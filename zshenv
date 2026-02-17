@@ -30,7 +30,8 @@ export DISABLE_SPRING="1" # more problems than it's worth
 #
 # Path
 #
-export PATH=$PATH:$HOME/.bin # from dot files
+export PATH=$PATH:"$HOME/.bin" # from dot files
+export PATH=$PATH:"$HOME/.local/share/nvim/mason/bin" # useful binaries from mason (nvim package manager)
 export PATH="/opt/homebrew/bin:$PATH" # for Homebrew (must be in zshenv, before zshrc)
 export PATH="$HOME/.local/bin:$PATH" # for Claude Code
 export PATH=$PATH:"$HOME/.npm-global/bin" # for npm global installs due to devbox global
