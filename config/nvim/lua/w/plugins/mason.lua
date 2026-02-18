@@ -18,7 +18,6 @@ return {
         'codespell',
         'commitlint',
         'copilot-language-server',
-        'glow',
         'luacheck',
         'prettierd',
         'selene',
