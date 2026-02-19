@@ -122,11 +122,20 @@ installGhExtensions() {
   gh extensions upgrade --all
 }
 
+setupMacOSDefaults() {
+  echo "Setting macOS defaults..."
+
+  # Ghostty: disable split navigation menu shortcuts that conflict with tmux
+  defaults write com.mitchellh.ghostty NSUserKeyEquivalents -dict-add "Select Previous Split" '\0'
+  defaults write com.mitchellh.ghostty NSUserKeyEquivalents -dict-add "Select Next Split" '\0'
+}
+
 setupOS() {
   case $os in
     $macOS*)
       brew bundle --file="$HOME"/.dotfiles/Brewfile-macos_apps
       launchctl bootstrap gui/"$(id -u)" "$HOME"/Library/LaunchAgents/com.user.autolights.plist --help >/dev/null 2>&1
+      setupMacOSDefaults
       ;;
     $ubuntu*)
       sudo timedatectl set-timezone America/Chicago
