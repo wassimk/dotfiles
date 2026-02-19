@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+
+APPLE_ID=$(op read "op://System/apple/apple_id")
+APPLE_ID_APP_SPECIFIC_PASSWORD=$(op read "op://System/apple/app_specific_password")
+APPLE_TEAM_ID=$(op read "op://System/apple/team_id")
+
+xcrun notarytool history \
+  --apple-id "$APPLE_ID" \
+  --password "$APPLE_ID_APP_SPECIFIC_PASSWORD" \
+  --team-id "$APPLE_TEAM_ID"
