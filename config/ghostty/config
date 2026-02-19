@@ -1,5 +1,8 @@
 # Ghostty configuration
 
+# https://ghostty.org/docs/install/pre#macos
+auto-update-channel = tip
+
 # Window
 window-decoration = auto
 macos-titlebar-style = hidden
