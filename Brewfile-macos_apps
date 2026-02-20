@@ -51,7 +51,7 @@ cask "zoom"
 
 brew "elgato-autolight"
 
-brew "asimov"
+brew "tmignore"
 brew "pinentry-mac"
 brew "ssh-copy-id"
 
