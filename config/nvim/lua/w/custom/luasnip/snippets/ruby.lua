@@ -113,8 +113,31 @@ local cassette_paths = function(cassette_name)
   return paths
 end
 
+local bootleg_cassettes = function()
+  local bootlegs = {}
+  local bootlegs_dir = cassettes_dir() .. '/bootlegs'
+
+  vim.fs.find(function(name, _)
+    local cassette = name:match('^stripe%-(.+)%.yml$')
+
+    if cassette ~= nil then
+      table.insert(bootlegs, cassette)
+    end
+
+    return false
+  end, { upward = false, path = bootlegs_dir, limit = math.huge, type = 'file' })
+
+  table.sort(bootlegs)
+
+  return bootlegs
+end
+
 local cassette_choices = function()
   return table_to_choices(cassettes())
+end
+
+local bootleg_cassette_choices = function()
+  return table_to_choices(bootleg_cassettes())
 end
 
 local cassette_path_choices = function(cassette_name)
@@ -176,6 +199,22 @@ return {
         end
       ]],
       { c(1, cassette_choices()), i(0) }
+    )
+  ),
+  s(
+    {
+      trig = 'uscb',
+      name = 'use_stripe_bootleg',
+      dscr = 'Stripe VCR bootleg cassette',
+      hidden = false,
+    },
+    fmt(
+      [[
+        use_stripe_bootleg("{}") do
+          {}
+        end
+      ]],
+      { c(1, bootleg_cassette_choices()), i(0) }
     )
   ),
 }
