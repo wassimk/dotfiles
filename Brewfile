@@ -68,5 +68,8 @@ brew "stripe"
 tap "qmk/qmk"
 brew "qmk"
 
+tap "wassimk/tap"
+brew "elgato-light"
+
 tap "zhubert/tap"
 brew "plural"

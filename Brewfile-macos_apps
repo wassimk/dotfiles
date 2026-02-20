@@ -49,6 +49,8 @@ cask "visual-studio-code"
 cask "yubico-yubikey-manager"
 cask "zoom"
 
+brew "elgato-autolight"
+
 brew "asimov"
 brew "pinentry-mac"
 brew "ssh-copy-id"
