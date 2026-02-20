@@ -1,0 +1,41 @@
+# Directories to scan for dependency patterns (default: home dir)
+scan_roots = ["~"]
+
+# tmignore excludes these paths from backups by default:
+# version managers (~/.rbenv, ~/.pyenv, ~/.nvm, ~/.asdf, ~/.local/share/mise),
+# language toolchain caches (~/.cargo, ~/.rustup, ~/.gradle, ~/.m2, ~/.npm, etc.),
+# Homebrew (/opt/homebrew), Nix/Devbox (/nix), Docker, and
+# Xcode (DerivedData, DeviceSupport, CoreSimulator).
+#
+# Run `tmignore run --verbose` to see the full list.
+
+# Add extra paths to exclude from backups (on top of built-ins).
+# Supports ~ expansion.
+extra_exclude_paths = [
+    # Virtual machines
+    # "~/Parallels",
+    # "~/Virtual Machines.localized",
+    # "~/.vagrant.d/boxes",
+
+    # Android
+    # "~/Library/Android/sdk",
+    # "~/.android/avd",
+
+    # Large media (user preference)
+    # "~/Movies",
+    # "~/Downloads",
+]
+
+# Stop excluding a built-in path (it will be backed up normally).
+# disable_exclude_paths = ["~/.cargo"]
+
+# tmignore scans for dependency directories (node_modules, target, vendor, etc.)
+# by matching a directory name + a sentinel file in its parent (e.g. package.json).
+# 40 patterns are built-in. You can disable any by name or add your own.
+#
+# disable_patterns = ["bundler"]
+#
+# [[custom_patterns]]
+# name = "my-build"
+# directory = "dist"
+# sentinel = "turbo.json"
