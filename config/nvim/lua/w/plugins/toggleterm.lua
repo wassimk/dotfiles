@@ -22,8 +22,13 @@ return {
       pattern = 'term://*',
       callback = function()
         local opts = { buffer = 0 }
+        vim.keymap.set('t', '<C-Bslash>', '<cmd>ToggleTerm<cr>', opts)
 
-        vim.keymap.set('t', '<esc>', '<C-\\><C-n>', opts)
+        -- Sidekick manages its own terminal keymaps. Skip window navigation
+        -- bindings so they don't interfere with the AI CLI.
+        if vim.bo.filetype == 'sidekick_terminal' then
+          return
+        end
         vim.keymap.set('t', '<C-h>', '<cmd>wincmd h<cr>', opts)
         vim.keymap.set('t', '<C-j>', '<cmd>wincmd j<cr>', opts)
         vim.keymap.set('t', '<C-k>', '<cmd>wincmd k<cr>', opts)

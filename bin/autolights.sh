@@ -11,7 +11,7 @@ log stream --predicate 'subsystem == "com.apple.UVCExtension" and composedMessag
 
 	echo "Camera has been activated, turn on the light."
 
-  "$HOME"/Library/Application\ Support/com.raycast.macos/extensions/elgato-light-controller/cli/elgato-light on
+  "$HOME"/Library/Application\ Support/com.raycast.macos/extensions/elgato-light-controller/cli/elgato-light on --brightness 10 --temperature 5000
 
   fi
 

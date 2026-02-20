@@ -22,6 +22,16 @@ return {
       desc = 'Toggle AI',
       mode = { 'n', 'v' },
     },
+    -- Ctrl+/ works from any mode including terminal, so you can toggle
+    -- sidekick without leaving the terminal buffer first.
+    {
+      '<C-_>',
+      function()
+        require('sidekick.cli').toggle()
+      end,
+      desc = 'Toggle AI',
+      mode = { 'n', 'v', 't' },
+    },
     {
       '<leader>ab',
       function()

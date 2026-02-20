@@ -11,9 +11,6 @@ end
 -- clipboard
 vim.keymap.set({ 'n', 'v' }, '<Leader>y', '"+y', opts('clipboard', 'copy to system'))
 
--- terminal
-vim.keymap.set('t', '<Esc>', '<Esc><C-\\><C-n><C-w>q', { desc = 'Quit and close terminal' })
-
 -- quickfix
 vim.keymap.set('n', '<leader>q', require('w.utils').toggle_qf, opts('quickfix', 'toggle'))
 vim.keymap.set('n', '<leader>l', require('w.utils').toggle_loclist, opts('loclist', 'toggle'))
