@@ -23,6 +23,9 @@ return {
       callback = function()
         local opts = { buffer = 0 }
         vim.keymap.set('t', '<C-Bslash>', '<cmd>ToggleTerm<cr>', opts)
+        -- Ctrl+] exits terminal mode so you can visually select and copy
+        -- buffer results. Single Esc is left alone for the AI CLI.
+        vim.keymap.set('t', '<C-]>', '<C-\\><C-n>', opts)
 
         -- Sidekick manages its own terminal keymaps. Skip window navigation
         -- bindings so they don't interfere with the AI CLI.
