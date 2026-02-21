@@ -27,7 +27,7 @@ return {
     dependencies = {
       { 'wassimk/cmp-rails-fixture-types' },
       { 'wassimk/cmp-rails-fixture-names' },
-      { 'wassimk/cmp-feature-flipper' },
+      { 'wassimk/flipper-complete.nvim', dev = true },
       { 'rcarriga/cmp-dap' },
     },
   },
@@ -39,6 +39,7 @@ return {
       { 'kristijanhusak/vim-dadbod-completion', ft = 'mysql' },
       { 'Kaiser-Yang/blink-cmp-git', ft = 'gitcommit' },
       { 'Dynge/gitmoji.nvim', ft = 'gitcommit' },
+      { 'wassimk/git-coauthors.nvim', dev = true },
     },
 
     version = '1.*',
@@ -124,7 +125,7 @@ return {
 
         per_filetype = {
           ruby = { inherit_defaults = true, 'rails_fixture_types', 'rails_fixture_names', 'feature_flipper' },
-          gitcommit = { 'buffer', 'snippets', 'gitmoji', 'git', 'git_handles' },
+          gitcommit = { 'buffer', 'snippets', 'gitmoji', 'git', 'git_coauthors' },
           mysql = { 'snippets', 'dadbod', 'buffer' },
           ['dap-repl'] = { 'dap' },
           ['dapui_watches'] = { 'dap' },
@@ -141,12 +142,13 @@ return {
             module = 'blink.compat.source',
           },
           feature_flipper = {
-            name = 'feature_flipper',
-            module = 'blink.compat.source',
+            name = 'flipper_complete',
+            module = 'flipper-complete.blink',
           },
-          git_handles = {
-            name = 'git_handles',
-            module = 'blink.compat.source',
+          git_coauthors = {
+            name = 'git_coauthors',
+            module = 'git-coauthors.blink',
+            score_offset = 100,
           },
           dap = {
             name = 'dap',
