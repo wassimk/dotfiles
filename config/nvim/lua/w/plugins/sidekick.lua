@@ -5,6 +5,21 @@
 
 return {
   'folke/sidekick.nvim',
+  init = function()
+    vim.api.nvim_create_autocmd('WinEnter', {
+      group = vim.api.nvim_create_augroup('sidekick_insert_on_click', { clear = true }),
+      callback = function()
+        local buf = vim.api.nvim_get_current_buf()
+        if vim.bo[buf].filetype == 'sidekick_terminal' then
+          vim.schedule(function()
+            if vim.api.nvim_get_mode().mode ~= 't' then
+              vim.cmd.startinsert()
+            end
+          end)
+        end
+      end,
+    })
+  end,
   opts = {
     cli = {
       mux = {
