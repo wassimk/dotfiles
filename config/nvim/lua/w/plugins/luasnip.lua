@@ -45,5 +45,8 @@ return {
 
     -- initial snippet load
     load_snippets()
+
+    -- load VSCode-format snippets from runtimepath plugins
+    require('luasnip.loaders.from_vscode').lazy_load()
   end,
 }
