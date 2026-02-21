@@ -25,9 +25,6 @@ return {
     lazy = true,
     opts = {},
     dependencies = {
-      { 'wassimk/cmp-rails-fixture-types' },
-      { 'wassimk/cmp-rails-fixture-names' },
-      { 'wassimk/flipper-complete.nvim', dev = true },
       { 'rcarriga/cmp-dap' },
     },
   },
@@ -40,6 +37,8 @@ return {
       { 'Kaiser-Yang/blink-cmp-git', ft = 'gitcommit' },
       { 'Dynge/gitmoji.nvim', ft = 'gitcommit' },
       { 'wassimk/git-coauthors.nvim', dev = true },
+      { 'wassimk/flipper-complete.nvim', dev = true },
+      { 'wassimk/rails-fixture-complete.nvim', dev = true },
     },
 
     version = '1.*',
@@ -124,7 +123,7 @@ return {
         },
 
         per_filetype = {
-          ruby = { inherit_defaults = true, 'rails_fixture_types', 'rails_fixture_names', 'feature_flipper' },
+          ruby = { inherit_defaults = true, 'rails_fixtures', 'flipper_complete' },
           gitcommit = { 'buffer', 'snippets', 'gitmoji', 'git', 'git_coauthors' },
           mysql = { 'snippets', 'dadbod', 'buffer' },
           ['dap-repl'] = { 'dap' },
@@ -133,15 +132,11 @@ return {
         },
 
         providers = {
-          rails_fixture_types = {
-            name = 'rails_fixture_types',
-            module = 'blink.compat.source',
+          rails_fixtures = {
+            name = 'rails_fixtures',
+            module = 'rails-fixture-complete.blink',
           },
-          rails_fixture_names = {
-            name = 'rails_fixture_names',
-            module = 'blink.compat.source',
-          },
-          feature_flipper = {
+          flipper_complete = {
             name = 'flipper_complete',
             module = 'flipper-complete.blink',
           },
