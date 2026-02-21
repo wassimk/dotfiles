@@ -152,7 +152,10 @@ return {
           git = {
             name = 'Git',
             module = 'blink-cmp-git',
-            opts = { commit = { triggers = { ';' } } },
+            opts = {
+              commit = { triggers = { ';' } },
+              git_centers = { github = { mention = { enable = false } } },
+            },
           },
           dadbod = {
             name = 'Dadbod',
