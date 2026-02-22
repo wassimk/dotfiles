@@ -120,6 +120,7 @@ installGhExtensions() {
   gh extension install mloberg/gh-view >/dev/null 2>&1;
   gh extension install seachicken/gh-poi >/dev/null 2>&1;
   gh extension install wassimk/gh-compare >/dev/null 2>&1;
+  gh extension install wassimk/gh-sync >/dev/null 2>&1;
   gh extension install yusukebe/gh-markdown-preview >/dev/null 2>&1;
   gh extensions upgrade --all
 }

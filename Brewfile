@@ -56,9 +56,6 @@ cask "font-symbols-only-nerd-font"
 tap "heroku/brew"
 brew "heroku"
 
-tap "jacobwgillespie/tap"
-brew "git-sync"
-
 tap "jesseduffield/lazygit"
 brew "lazygit"
 
