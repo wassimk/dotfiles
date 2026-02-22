@@ -8,19 +8,18 @@ function M.setup_formatting()
   local auGroup = vim.api.nvim_create_augroup('WamAutocmdsJavaScriptFormatting', {})
 
   vim.api.nvim_create_autocmd('BufWritePre', {
-    callback = function()
-      vim.lsp.buf.format()
-      require('conform').format()
-
-      -- https://github.com/pmizio/typescript-tools.nvim/blob/master/lua/typescript-tools/user_commands.lua
-      -- require('typescript-tools.api').sort_imports(true)
-      -- require('typescript-tools.api').organize_imports(true)
-      -- require('typescript-tools.api').remove_unused(true)
-      -- require('typescript-tools.api').remove_unused_imports(true)
-      -- require('typescript-tools.api').add_missing_imports(true)
+    callback = function(event)
       require('typescript-tools.api').fix_all(true)
 
-      vim.cmd('silent! EslintFixAll')
+      local has_eslint = #vim.lsp.get_clients({ name = 'eslint', bufnr = event.buf }) > 0
+
+      if has_eslint then
+        vim.cmd('silent! EslintFixAll')
+        vim.lsp.buf.format({ name = 'eslint' })
+      else
+        require('conform').format()
+        vim.lsp.buf.format()
+      end
     end,
     group = auGroup,
   })
