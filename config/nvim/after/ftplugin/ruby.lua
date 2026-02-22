@@ -14,41 +14,8 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   group = vim.api.nvim_create_augroup('WamAutocmdsRubyFormatting', {}),
 })
 
--- debugging
+-- debugging (adapter registered by ruby-lsp.nvim)
 local dap = require('dap')
-
-dap.adapters.ruby = function(callback, config)
-  local args = {
-    'exec',
-    'rdbg',
-    '--open',
-    -- '--nonstop',
-    '--stop-at-load',
-    '--port',
-    '${port}',
-    '--command',
-    '--',
-    'bundle',
-    'exec',
-  }
-
-  vim.list_extend(args, config.command)
-  vim.list_extend(args, config.script)
-
-  if config.script_args then
-    vim.list_extend(args, config.script_args)
-  end
-
-  callback({
-    type = 'server',
-    host = '127.0.0.1',
-    port = '${port}',
-    executable = {
-      command = 'bundle',
-      args = args,
-    },
-  })
-end
 
 dap.configurations.ruby = {
   {
