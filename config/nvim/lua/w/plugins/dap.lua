@@ -21,12 +21,12 @@ return {
   },
   keys = {
     {
-      '<Leader>ds',
+      '<Leader>dd',
       function()
         require('dap').continue()
       end,
       mode = 'n',
-      desc = 'start / continue',
+      desc = 'debug / continue',
     },
     {
       '<Leader>db',
@@ -80,9 +80,9 @@ return {
     local dap = require('dap')
     local widgets = require('dap.ui.widgets')
 
-    vim.keymap.set('n', '<Leader>dr', dap.repl.open, opts('REPL open'))
+    vim.keymap.set('n', '<Leader>dR', dap.repl.open, opts('REPL open'))
     vim.keymap.set('n', '<Leader>dl', dap.run_last, opts('run last'))
-    vim.keymap.set('n', '<Leader>dS', dap.run_to_cursor, opts('run to cursor'))
+    vim.keymap.set('n', '<Leader>dr', dap.run_to_cursor, opts('debug at cursor'))
     vim.keymap.set('n', '<Leader>dh', function()
       widgets.hover()
     end, opts('hover popup'))
