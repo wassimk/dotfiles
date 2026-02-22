@@ -51,9 +51,13 @@ function M.setup()
         vim.keymap.set('n', 'K', function()
           vim.cmd.RustLsp({ 'hover', 'actions' })
         end, opts('hover'))
+        vim.keymap.set('n', 'glK', function()
+          vim.cmd.RustLsp({ 'hover', 'actions' })
+        end, opts('hover'))
       else
         -- default keymaps for other servers
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts('hover'))
+        vim.keymap.set('n', 'glK', vim.lsp.buf.hover, opts('hover'))
         vim.keymap.set({ 'n', 'v' }, 'gla', vim.lsp.buf.code_action, opts('code actions'))
       end
 
