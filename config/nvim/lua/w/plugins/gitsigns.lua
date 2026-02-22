@@ -48,7 +48,7 @@ return {
       map('n', '<leader>hb', gitsigns.stage_buffer, { desc = 'stage buffer' })
       map('n', '<leader>hB', gitsigns.reset_buffer_index, { desc = 'undo stage buffer' })
       map('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'reset buffer' })
-      map('n', '<leader>hf', function()
+      map('n', '<leader>hh', function()
         gitsigns.blame_line({ full = true })
       end, { desc = 'blame line float' })
       map('n', '<leader>hF', gitsigns.toggle_current_line_blame, { desc = 'toggle current line blame' })

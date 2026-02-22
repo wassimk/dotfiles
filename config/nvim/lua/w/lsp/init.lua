@@ -34,7 +34,11 @@ function M.setup()
       vim.keymap.set('n', 'gls', vim.lsp.buf.document_symbol, opts('document symbols'))
       vim.keymap.set('n', 'glw', vim.lsp.buf.workspace_symbol, opts('workspace symbols'))
       vim.keymap.set('n', 'gll', vim.lsp.codelens.run, opts('codelens run'))
-      vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts('rename'))
+      vim.keymap.set('n', 'glR', vim.lsp.buf.rename, opts('rename'))
+      vim.keymap.set('n', 'glf', vim.lsp.buf.format, opts('format'))
+      vim.keymap.set('n', 'glc', vim.lsp.buf.incoming_calls, opts('incoming calls'))
+      vim.keymap.set('n', 'glC', vim.lsp.buf.outgoing_calls, opts('outgoing calls'))
+      vim.keymap.set('n', 'glh', vim.lsp.buf.typehierarchy, opts('type hierarchy'))
 
       -- Rust Language Server
       if client.name == 'rust-analyzer' then
@@ -54,7 +58,7 @@ function M.setup()
       end
 
       -- inlay hints
-      vim.keymap.set('n', 'glh', function()
+      vim.keymap.set('n', 'glH', function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
       end, opts('toggle inlay hints'))
 

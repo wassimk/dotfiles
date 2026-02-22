@@ -59,7 +59,7 @@ function M.setup()
   vim.keymap.set('n', 'gdp', function()
     vim.diagnostic.jump({ count = -1, float = true })
   end, opts('jump previous'))
-  vim.keymap.set('n', 'gdf', vim.diagnostic.open_float, opts('open float'))
+  vim.keymap.set('n', 'gdh', vim.diagnostic.open_float, opts('open float'))
   vim.keymap.set('n', 'gdd', vim.diagnostic.setloclist, opts('current document'))
   vim.keymap.set('n', 'gdw', vim.diagnostic.setqflist, opts('current workspace'))
 end
