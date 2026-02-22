@@ -21,28 +21,28 @@ return {
   },
   keys = {
     {
-      '<F5>',
+      '<Leader>ds',
       function()
         require('dap').continue()
       end,
       mode = 'n',
-      desc = 'debug: start / continue menu',
+      desc = 'start / continue',
     },
     {
-      '<F9>',
+      '<Leader>db',
       function()
         require('dap').toggle_breakpoint()
       end,
       mode = 'n',
-      desc = 'debug: toggle breakpoint',
+      desc = 'toggle breakpoint',
     },
     {
-      '<F21>',
+      '<Leader>dB',
       function()
         require('dap').toggle_breakpoint(vim.fn.input('Breakpoint condition: '))
       end,
       mode = 'n',
-      desc = 'debug: conditional breakpoint, Shift-F9',
+      desc = 'conditional breakpoint',
     },
     {
       '<Leader>do',
@@ -50,7 +50,7 @@ return {
         require('dap').toggle_breakpoint(nil, nil, vim.fn.input('Log breakpoint message: '))
       end,
       mode = 'n',
-      desc = 'debug: log breakpoint',
+      desc = 'log breakpoint',
     },
     {
       '<Leader>de',
@@ -58,7 +58,7 @@ return {
         require('dap').set_exception_breakpoints()
       end,
       mode = 'n',
-      desc = 'debug: exception breakpoint',
+      desc = 'exception breakpoint',
     },
     {
       '<Leader>du',
@@ -66,13 +66,13 @@ return {
         require('dapui').toggle()
       end,
       mode = 'n',
-      desc = 'debug: UI toggle',
+      desc = 'UI toggle',
     },
   },
   config = function()
     local function opts(desc)
       return {
-        desc = 'debug: ' .. desc,
+        desc = desc,
       }
     end
 
@@ -80,16 +80,13 @@ return {
     local dap = require('dap')
     local widgets = require('dap.ui.widgets')
 
-    vim.keymap.set('n', '<F17>', dap.terminate, opts('terminate, Shift-F5'))
-    vim.keymap.set('n', '<F10>', dap.step_over, opts('step over'))
-    vim.keymap.set('n', '<F11>', dap.step_into, opts('step into'))
-    vim.keymap.set('n', '<F22>', dap.step_out, opts('step out, Shift-F11'))
     vim.keymap.set('n', '<Leader>dr', dap.repl.open, opts('REPL open'))
     vim.keymap.set('n', '<Leader>dl', dap.run_last, opts('run last'))
+    vim.keymap.set('n', '<Leader>dS', dap.run_to_cursor, opts('run to cursor'))
     vim.keymap.set('n', '<Leader>dh', function()
       widgets.hover()
     end, opts('hover popup'))
-    vim.keymap.set('n', '<Leader>ds', function()
+    vim.keymap.set('n', '<Leader>dv', function()
       widgets.centered_float(widgets.scopes)
     end, opts('float scopes'))
     vim.keymap.set('n', '<Leader>dt', function()

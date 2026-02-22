@@ -387,7 +387,7 @@ return {
         Snacks.picker.grep()
       end,
       mode = { 'n', 'x' },
-      desc = 'grep',
+      desc = 'live grep',
     },
     {
       '<leader>w',

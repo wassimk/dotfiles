@@ -15,7 +15,7 @@ return {
   cmd = { 'Neotest' },
   keys = {
     {
-      '<leader>tn',
+      '<leader>tt',
       function()
         require('neotest').run.run()
       end,
@@ -63,7 +63,7 @@ return {
       desc = 'output float',
     },
     {
-      '<leader>tJ',
+      '<leader>tn',
       function()
         require('neotest').jump.next({ status = 'failed' })
       end,
@@ -71,7 +71,7 @@ return {
       desc = 'jump next failed',
     },
     {
-      '<leader>tK',
+      '<leader>tp',
       function()
         require('neotest').jump.prev({ status = 'failed' })
       end,

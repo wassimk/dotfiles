@@ -51,19 +51,17 @@ function M.setup()
 
   -- keymaps
   local function opts(desc)
-    return {
-      desc = 'diagnostics: ' .. desc,
-    }
+    return { desc = desc }
   end
-  vim.keymap.set('n', '<leader>dn', function()
+  vim.keymap.set('n', 'gdn', function()
     vim.diagnostic.jump({ count = 1, float = true })
   end, opts('jump next'))
-  vim.keymap.set('n', '<leader>dp', function()
+  vim.keymap.set('n', 'gdp', function()
     vim.diagnostic.jump({ count = -1, float = true })
   end, opts('jump previous'))
-  vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, opts('open float'))
-  vim.keymap.set('n', '<leader>dd', vim.diagnostic.setloclist, opts('current document'))
-  vim.keymap.set('n', '<leader>dw', vim.diagnostic.setqflist, opts('current workspace'))
+  vim.keymap.set('n', 'gdf', vim.diagnostic.open_float, opts('open float'))
+  vim.keymap.set('n', 'gdd', vim.diagnostic.setloclist, opts('current document'))
+  vim.keymap.set('n', 'gdw', vim.diagnostic.setqflist, opts('current workspace'))
 end
 
 return M

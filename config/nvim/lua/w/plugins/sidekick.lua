@@ -34,7 +34,7 @@ return {
       function()
         require('sidekick.cli').toggle()
       end,
-      desc = 'Toggle AI',
+      desc = 'toggle AI',
       mode = { 'n', 'v' },
     },
     -- Ctrl+/ works from any mode including terminal, so you can toggle
@@ -44,7 +44,7 @@ return {
       function()
         require('sidekick.cli').toggle()
       end,
-      desc = 'Toggle AI',
+      desc = 'toggle AI',
       mode = { 'n', 'v', 't' },
     },
     {
@@ -52,14 +52,14 @@ return {
       function()
         require('sidekick.cli').send({ msg = '{file}' })
       end,
-      desc = 'Send buffer',
+      desc = 'send buffer',
     },
     {
       '<leader>as',
       function()
         require('sidekick.cli').send({ msg = '{selection}' })
       end,
-      desc = 'Send selection',
+      desc = 'send selection',
       mode = 'v',
     },
     {
@@ -67,35 +67,35 @@ return {
       function()
         require('sidekick.cli').send({ msg = '{this}' })
       end,
-      desc = 'Send this',
+      desc = 'send this',
     },
     {
       '<leader>af',
       function()
         require('sidekick.cli').toggle({ focus = true })
       end,
-      desc = 'Focus terminal',
+      desc = 'focus terminal',
     },
     {
       '<leader>ad',
       function()
         require('sidekick.cli').close()
       end,
-      desc = 'Detach',
+      desc = 'detach',
     },
     {
       '<leader>ap',
       function()
         require('sidekick.cli').prompt()
       end,
-      desc = 'Select prompt',
+      desc = 'select prompt',
     },
     {
       '<leader>al',
       function()
         require('sidekick.cli').select()
       end,
-      desc = 'Select tool',
+      desc = 'select ai tool',
     },
     -- Tab accept is handled by blink.cmp keymap chain (sidekick NES → inline completion → fallback)
   },
