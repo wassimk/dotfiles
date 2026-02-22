@@ -10,7 +10,7 @@ if utils.installed_via_bundler('solargraph') then
 end
 
 -- ruby-lsp
-if not utils.installed_via_bundler('solargraph') then
+if utils.gemfile() and not utils.installed_via_bundler('solargraph') then
   vim.lsp.enable({ 'ruby_lsp' })
 end
 
