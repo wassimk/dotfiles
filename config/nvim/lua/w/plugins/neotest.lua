@@ -5,8 +5,6 @@
 -- https://github.com/nvim-neotest/neotest
 -- https://github.com/nvim-neotest/neotest-jest
 -- https://github.com/nvim-neotest/neotest-plenary
--- https://github.com/olimorris/neotest-rspec
--- https://github.com/zidhuss/neotest-minitest
 --
 
 return {
@@ -98,8 +96,6 @@ return {
   dependencies = {
     'marilari88/neotest-vitest',
     'nvim-neotest/neotest-plenary',
-    'olimorris/neotest-rspec',
-    'zidhuss/neotest-minitest',
     { 'nvim-neotest/neotest-jest', dev = true },
   },
   config = function()
@@ -107,6 +103,11 @@ return {
       summary = {
         open = 'botright vsplit | vertical resize 70',
       },
+      -- TODO: the rspec queries here are already built into neotest. Test if
+      -- watch works without this override (just using neotest's defaults).
+      -- The minitest class pattern is NOT built in and is needed for work
+      -- (minitest projects). Consider moving the minitest query into the
+      -- ruby-lsp.neotest adapter if the rspec defaults prove sufficient.
       watch = {
         enabled = true,
         symbol_queries = {
@@ -135,8 +136,7 @@ return {
         },
       },
       adapters = {
-        require('neotest-rspec'),
-        require('neotest-minitest'),
+        require('ruby-lsp.neotest'),
         require('neotest-jest'),
         (function()
           local vitest_adapter = require('neotest-vitest')
