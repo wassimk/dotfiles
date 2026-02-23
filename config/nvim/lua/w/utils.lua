@@ -64,6 +64,10 @@ function M.ruby_lsp_setup()
   return M.is_dir(directory)
 end
 
+function M.ruby_project()
+  return M.gemfile() or M.config_exists('.ruby-version')
+end
+
 function M.config_exists(filename)
   local file = vim.fn.getcwd() .. '/' .. filename
 
