@@ -31,7 +31,7 @@ return {
     {
       '<leader>tw',
       function()
-        require('neotest').watch.watch()
+        require('neotest').watch.toggle()
       end,
       mode = 'n',
       desc = 'watch nearest',
