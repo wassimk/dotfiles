@@ -101,6 +101,7 @@ return {
   init_options = {
     formatter = 'rubocop',
     linters = { 'rubocop' },
+    enabledFeatureFlags = { fullTestDiscovery = true },
   },
   on_attach = function(client, bufnr)
     add_ruby_deps_command(client, bufnr)
