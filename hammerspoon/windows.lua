@@ -259,6 +259,119 @@ function M.swapDown()
 end
 
 --
+-- Auto-placement: position app windows when they appear
+--
+
+local function findScreenByName(pattern)
+  for _, screen in ipairs(hs.screen.allScreens()) do
+    if (screen:name() or ''):find(pattern, 1, true) then
+      return screen
+    end
+  end
+  return nil
+end
+
+-- App rules keyed by bundle ID.
+-- { screen = name pattern, position = frame function }
+-- { desktop = N, position = frame function }
+local AUTO_PLACE = {
+  ['com.apple.reminders']        = { screen = 'Built-in', position = leftHalfFrame },
+  ['com.culturedcode.ThingsMac'] = { screen = 'Built-in', position = rightHalfFrame },
+  ['com.tinyspeck.slackmacgap']  = { screen = 'LG UltraFine', position = fullscreenOnlyFrame },
+  -- TODO: troubleshoot desktop move for Granola
+  -- ['com.granola.app']            = { desktop = 6, position = function(s)
+  --   local w = 800
+  --   return { x = s.x + s.w - w, y = s.y, w = w, h = s.h }
+  -- end },
+  ['us.zoom.xos']                = { desktop = 6, position = function(s)
+    local w, h = 1200, 1000
+    return { x = s.x + (s.w - w) / 2, y = s.y, w = w, h = h }
+  end },
+}
+
+-- Queue for serializing desktop moves (spaces.lua's isMoving guard
+-- prevents concurrent moves).
+local desktopMoveQueue = {}
+local isProcessingQueue = false
+
+local function processDesktopQueue()
+  if #desktopMoveQueue == 0 then
+    isProcessingQueue = false
+    return
+  end
+  isProcessingQueue = true
+  local item = table.remove(desktopMoveQueue, 1)
+  item.win:focus()
+  hs.timer.doAfter(0.1, function()
+    SPACES.moveWindowToSpace(item.desktop)
+    if item.position then
+      hs.timer.doAfter(0.5, function()
+        item.win:setFrame(item.position(item.win:screen():frame()))
+      end)
+    end
+    -- Wait for isMoving to clear before processing the next move
+    hs.timer.doAfter(3, processDesktopQueue)
+  end)
+end
+
+local function queueDesktopMove(win, rule)
+  table.insert(desktopMoveQueue, {
+    win = win,
+    desktop = rule.desktop,
+    position = rule.position,
+  })
+  if not isProcessingQueue then
+    processDesktopQueue()
+  end
+end
+
+local function applyPlacement(win, rule)
+  if rule.screen then
+    local target = findScreenByName(rule.screen)
+    if not target then return end
+    if rule.position then
+      win:setFrame(rule.position(target:frame()))
+    end
+  elseif rule.desktop and SPACES then
+    queueDesktopMove(win, rule)
+  end
+end
+
+-- Retry until the app has a visible window, then apply placement.
+local function waitForWindowAndPlace(app, rule, attempts)
+  attempts = attempts or 0
+  if attempts > 10 then return end
+  if not app or not app:isRunning() then return end
+
+  local wins = app:allWindows()
+  local placed = false
+  for _, win in ipairs(wins) do
+    if win:isVisible() then
+      applyPlacement(win, rule)
+      placed = true
+    end
+  end
+
+  if not placed then
+    hs.timer.doAfter(1, function()
+      waitForWindowAndPlace(app, rule, attempts + 1)
+    end)
+  end
+end
+
+local placementWatcher = hs.application.watcher.new(function(_, event, app)
+  if event ~= hs.application.watcher.launched then return end
+  if not app then return end
+
+  local bundleID = app:bundleID()
+  local rule = bundleID and AUTO_PLACE[bundleID]
+  if not rule then return end
+
+  waitForWindowAndPlace(app, rule, 0)
+end)
+placementWatcher:start()
+
+--
 -- Keybindings
 --
 
@@ -277,5 +390,23 @@ hs.hotkey.bind(shiftAlt, 'h', M.swapLeft)
 hs.hotkey.bind(shiftAlt, 'l', M.swapRight)
 hs.hotkey.bind(shiftAlt, 'k', M.swapUp)
 hs.hotkey.bind(shiftAlt, 'j', M.swapDown)
+-- Focus: alt
+local alt = { 'alt' }
+hs.hotkey.bind(alt, 'h', function()
+  local win = hs.window.focusedWindow()
+  if win then win:focusWindowWest(nil, false, false) end
+end)
+hs.hotkey.bind(alt, 'l', function()
+  local win = hs.window.focusedWindow()
+  if win then win:focusWindowEast(nil, false, false) end
+end)
+hs.hotkey.bind(alt, 'k', function()
+  local win = hs.window.focusedWindow()
+  if win then win:focusWindowNorth(nil, false, false) end
+end)
+hs.hotkey.bind(alt, 'j', function()
+  local win = hs.window.focusedWindow()
+  if win then win:focusWindowSouth(nil, false, false) end
+end)
 
 return M
