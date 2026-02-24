@@ -9,6 +9,7 @@ RELOADER = require('reloader')
 LOG = require('logger')
 U = require('utils')
 SPACES = require('spaces')
+WINDOWS = require('windows')
 
 --
 -- Keybindings
@@ -49,9 +50,9 @@ hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, 'f5', function()
   hs.reload()
 end)
 
--- Move focused window to desktop N (ctrl+shift+alt + number)
+-- Move focused window to desktop N (shift+alt + number)
 for i = 1, 9 do
-  hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, tostring(i), function()
+  hs.hotkey.bind({ 'shift', 'alt' }, tostring(i), function()
     SPACES.moveWindowToSpace(i)
   end)
 end
