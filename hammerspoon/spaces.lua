@@ -11,14 +11,12 @@
 
 local M = {}
 
--- Apps with hidden/no title bar need clicks at the very top edge of the
--- window to hit the invisible macOS drag zone (~1-2px from top).
-local HIDDEN_TITLEBAR_APPS = {
-  ["com.mitchellh.ghostty"] = true,
-}
-local MOUSE_OFFSET_Y_STANDARD = 10     -- middle of a standard title bar
-local MOUSE_OFFSET_Y_HIDDEN = 1        -- invisible drag zone at very top
-local RELEASE_DELAY = 0.6
+-- Click at the very top edge of the window to hit the macOS window frame
+-- drag zone (the resize/double-arrow zone). This works universally for all
+-- apps, including those with hidden title bars or tabs in the title bar.
+local MOUSE_OFFSET_Y = 1
+local DRAG_DISTANCE = 10
+local RELEASE_DELAY = 0.3
 local SAFETY_TIMEOUT = 2.0
 
 local isMoving = false
@@ -56,31 +54,27 @@ local function isFinderDesktop(win)
   return winFrame.w > screenFrame.w and winFrame.h > screenFrame.h
 end
 
--- Core move sequence: grab title bar, drag 1px, press keyboard shortcut, release
+-- Core move sequence: grab window frame edge, drag to establish grab, switch desktop, release
 local function performMove(win, keyModifiers, keyName, callback)
   local frame = win:frame()
   local originalFrame = { x = frame.x, y = frame.y, w = frame.w, h = frame.h }
 
-  local app = win:application()
-  local bundleID = app and app:bundleID() or ""
-  local yOffset = HIDDEN_TITLEBAR_APPS[bundleID] and MOUSE_OFFSET_Y_HIDDEN or MOUSE_OFFSET_Y_STANDARD
-  local clickPos = hs.geometry.point(frame.x + frame.w / 2, frame.y + yOffset)
+  local clickPos = hs.geometry.point(frame.x + frame.w / 2, frame.y + MOUSE_OFFSET_Y)
   local originalMouse = hs.mouse.absolutePosition()
 
   -- Step 1: Move mouse to title bar
   hs.mouse.absolutePosition(clickPos)
 
   hs.timer.doAfter(0.05, function()
-    -- Step 2: Mouse down on title bar
+    -- Step 2: Mouse down at top edge of window
     hs.eventtap.event.newMouseEvent(
       hs.eventtap.event.types.leftMouseDown, clickPos
     ):post()
 
     hs.timer.doAfter(0.15, function()
       -- Step 3: Drag to establish drag state. Multiple small drag events
-      -- simulate a real drag gesture to cross macOS's drag threshold.
-      local dragDistance = 10
-      for i = 1, dragDistance do
+      -- cross macOS's drag threshold from the window frame zone.
+      for i = 1, DRAG_DISTANCE do
         local dragPos = hs.geometry.point(clickPos.x + i, clickPos.y)
         hs.eventtap.event.newMouseEvent(
           hs.eventtap.event.types.leftMouseDragged, dragPos
