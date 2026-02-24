@@ -1,3 +1,4 @@
+# casks
 cask "1password"
 cask "1password-cli"
 cask "anylist"
@@ -16,6 +17,7 @@ cask "elgato-control-center"
 cask "firefox"
 cask "garmin-express"
 cask "gemini"
+cask "granola"
 cask "grammarly"
 cask "hammerspoon"
 cask "ia-presenter"
@@ -37,7 +39,6 @@ cask "raycast"
 cask "screen-studio"
 # cask "shapr3d"
 cask "slack"
-cask "granola"
 cask "snagit"
 cask "tableplus"
 cask "trailer"
@@ -49,25 +50,23 @@ cask "visual-studio-code"
 cask "yubico-yubikey-manager"
 cask "zoom"
 
+# formulae
 brew "elgato-autolight"
-
-brew "wassimk/tap/st"
-brew "tmignore"
+brew "mas"
 brew "pinentry-mac"
 brew "ssh-copy-id"
+brew "tmignore"
+brew "wassimk/tap/st"
 
-# tap "homebrew/autoupdate"
-
-brew "mas"
-
+# mac app store
 mas "1Password for Safari", id: 1569813296
 mas "Breaktime", id: 427475982
 mas "Color Picker", id: 1545870783
 mas "Deliveries", id: 290986013
 mas "Dynamic Wallpaper", id: 1453504509
-mas "NordLayer", id: 1488888843
 mas "In Your Face", id: 1476964367
 mas "Keynote", id: 409183694
+mas "NordLayer", id: 1488888843
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Pastebot", id: 1179623856

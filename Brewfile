@@ -1,10 +1,4 @@
-# setup shell and core tools first
-brew "git"
-brew "git-lfs"
-brew "wget"
-brew "zsh"
-
-# everything else
+# formulae
 brew "ack"
 brew "agg"
 brew "asciinema"
@@ -21,7 +15,9 @@ brew "fd"
 brew "fzf"
 brew "gh"
 brew "gifsicle"
+brew "git"
 brew "git-delta"
+brew "git-lfs"
 brew "glow"
 brew "gnupg"
 brew "go"
@@ -30,6 +26,7 @@ brew "grex"
 brew "hyperfine"
 brew "jq"
 brew "lf"
+brew "mdserve"
 brew "pandoc"
 brew "procs"
 brew "python"
@@ -42,15 +39,17 @@ brew "tmux"
 brew "trash"
 brew "tree"
 brew "universal-ctags"
+brew "wget"
 brew "worktrunk"
 brew "yq"
 brew "zoxide"
+brew "zsh"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 
-cask "ghostty"
-
+# casks
 cask "font-symbols-only-nerd-font"
+cask "ghostty"
 
 # taps
 tap "heroku/brew"
@@ -59,11 +58,11 @@ brew "heroku"
 tap "jesseduffield/lazygit"
 brew "lazygit"
 
-tap "stripe/stripe-cli"
-brew "stripe"
-
 tap "qmk/qmk"
 brew "qmk"
+
+tap "stripe/stripe-cli"
+brew "stripe"
 
 tap "wassimk/tap"
 brew "elgato-light"
