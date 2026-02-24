@@ -8,6 +8,7 @@ hs.window.animationDuration = 0 -- disable animations
 RELOADER = require('reloader')
 LOG = require('logger')
 U = require('utils')
+SPACES = require('spaces')
 
 --
 -- Keybindings
@@ -47,6 +48,13 @@ hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, 'f5', function()
   hs.notify.new({ title = 'Hammerspoon', informativeText = 'Config reloaded' }):send()
   hs.reload()
 end)
+
+-- Move focused window to desktop N (ctrl+shift+alt + number)
+for i = 1, 9 do
+  hs.hotkey.bind({ 'ctrl', 'shift', 'alt' }, tostring(i), function()
+    SPACES.moveWindowToSpace(i)
+  end)
+end
 
 --
 -- Auto-reload config on change.
