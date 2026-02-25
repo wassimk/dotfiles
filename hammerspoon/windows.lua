@@ -30,8 +30,9 @@ end
 -- Gap in pixels between adjacent tiled windows
 local GAP = 4
 
--- Saved frames for maximize toggle (keyed by window ID)
+-- Saved frames for toggle restore (keyed by window ID)
 local preMaximizeFrames = {}
+local preCenterFrames = {}
 
 -- Tolerance in pixels for "already in this position" checks
 local TOLERANCE = 20
@@ -150,14 +151,27 @@ end
 function M.center()
   local win = hs.window.focusedWindow()
   if not win then return end
-  local screen = win:screen():frame()
-  local f = win:frame()
-  win:setFrame({
-    x = screen.x + (screen.w - f.w) / 2,
-    y = screen.y + (screen.h - f.h) / 2,
-    w = f.w,
-    h = f.h,
-  })
+  local s = win:screen():frame()
+  local w = s.w * 0.70
+  local centerFrame = {
+    x = s.x + (s.w - w) / 2,
+    y = s.y,
+    w = w,
+    h = s.h,
+  }
+
+  if framesMatch(win:frame(), centerFrame) then
+    local saved = preCenterFrames[win:id()]
+    if saved then
+      win:setFrame(saved)
+      preCenterFrames[win:id()] = nil
+    else
+      win:setFrame(leftHalfFrame(s))
+    end
+  else
+    preCenterFrames[win:id()] = win:frame()
+    win:setFrame(centerFrame)
+  end
 end
 
 function M.leftThird()
@@ -443,9 +457,9 @@ hs.hotkey.bind(ctrlShiftAlt, 'h', M.leftHalf)
 hs.hotkey.bind(ctrlShiftAlt, 'l', M.rightHalf)
 hs.hotkey.bind(ctrlShiftAlt, 'k', M.topHalf)
 hs.hotkey.bind(ctrlShiftAlt, 'j', M.bottomHalf)
-hs.hotkey.bind(ctrlShiftAlt, 'c', M.center)
--- Toggle maximize: shift+alt
+-- Toggle maximize / center: shift+alt
 hs.hotkey.bind(shiftAlt, 'f', M.maximize)
+hs.hotkey.bind(shiftAlt, 'c', M.center)
 -- Swapping: shift+alt
 hs.hotkey.bind(shiftAlt, 'h', M.swapLeft)
 hs.hotkey.bind(shiftAlt, 'l', M.swapRight)
