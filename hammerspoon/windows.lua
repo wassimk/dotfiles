@@ -30,6 +30,9 @@ end
 -- Gap in pixels between adjacent tiled windows
 local GAP = 4
 
+-- Saved frames for maximize toggle (keyed by window ID)
+local preMaximizeFrames = {}
+
 -- Tolerance in pixels for "already in this position" checks
 local TOLERANCE = 20
 
@@ -118,9 +121,30 @@ function M.bottomHalf()
 end
 
 function M.maximize()
-  setPosition(function(s)
-    return { x = s.x, y = s.y, w = s.w, h = s.h }
-  end)
+  local win = hs.window.focusedWindow()
+  if not win then return end
+
+  local screen = win:screen()
+  if isFullscreenOnly(screen) then
+    win:setFrame(fullscreenOnlyFrame(screen:frame()))
+    return
+  end
+
+  local s = screen:frame()
+  local maxFrame = { x = s.x, y = s.y, w = s.w, h = s.h }
+
+  if framesMatch(win:frame(), maxFrame) then
+    local saved = preMaximizeFrames[win:id()]
+    if saved then
+      win:setFrame(saved)
+      preMaximizeFrames[win:id()] = nil
+    else
+      win:setFrame(leftHalfFrame(s))
+    end
+  else
+    preMaximizeFrames[win:id()] = win:frame()
+    win:setFrame(maxFrame)
+  end
 end
 
 function M.center()
@@ -419,8 +443,9 @@ hs.hotkey.bind(ctrlShiftAlt, 'h', M.leftHalf)
 hs.hotkey.bind(ctrlShiftAlt, 'l', M.rightHalf)
 hs.hotkey.bind(ctrlShiftAlt, 'k', M.topHalf)
 hs.hotkey.bind(ctrlShiftAlt, 'j', M.bottomHalf)
-hs.hotkey.bind(ctrlShiftAlt, 'f', M.maximize)
 hs.hotkey.bind(ctrlShiftAlt, 'c', M.center)
+-- Toggle maximize: shift+alt
+hs.hotkey.bind(shiftAlt, 'f', M.maximize)
 -- Swapping: shift+alt
 hs.hotkey.bind(shiftAlt, 'h', M.swapLeft)
 hs.hotkey.bind(shiftAlt, 'l', M.swapRight)
