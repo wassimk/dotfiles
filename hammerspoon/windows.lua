@@ -151,7 +151,14 @@ end
 function M.center()
   local win = hs.window.focusedWindow()
   if not win then return end
-  local s = win:screen():frame()
+
+  local screen = win:screen()
+  if isFullscreenOnly(screen) then
+    win:setFrame(fullscreenOnlyFrame(screen:frame()))
+    return
+  end
+
+  local s = screen:frame()
   local w = s.w * 0.70
   local centerFrame = {
     x = s.x + (s.w - w) / 2,
@@ -458,7 +465,7 @@ hs.hotkey.bind(ctrlShiftAlt, 'l', M.rightHalf)
 hs.hotkey.bind(ctrlShiftAlt, 'k', M.topHalf)
 hs.hotkey.bind(ctrlShiftAlt, 'j', M.bottomHalf)
 -- Toggle maximize / center: shift+alt
-hs.hotkey.bind(shiftAlt, 'f', M.maximize)
+hs.hotkey.bind(shiftAlt, 't', M.maximize)
 hs.hotkey.bind(shiftAlt, 'c', M.center)
 -- Swapping: shift+alt
 hs.hotkey.bind(shiftAlt, 'h', M.swapLeft)
