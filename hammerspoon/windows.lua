@@ -27,6 +27,9 @@ local function fullscreenOnlyFrame(s)
   return { x = s.x, y = s.y + margin, w = s.w, h = s.h - 2 * margin }
 end
 
+-- Gap in pixels between adjacent tiled windows
+local GAP = 4
+
 -- Tolerance in pixels for "already in this position" checks
 local TOLERANCE = 20
 
@@ -79,19 +82,23 @@ local function setPosition(fn, nextScreenFn, crossFn)
 end
 
 local function leftHalfFrame(s)
-  return { x = s.x, y = s.y, w = s.w / 2, h = s.h }
+  local w = (s.w - GAP) / 2
+  return { x = s.x, y = s.y, w = w, h = s.h }
 end
 
 local function rightHalfFrame(s)
-  return { x = s.x + s.w / 2, y = s.y, w = s.w / 2, h = s.h }
+  local w = (s.w - GAP) / 2
+  return { x = s.x + w + GAP, y = s.y, w = w, h = s.h }
 end
 
 local function topHalfFrame(s)
-  return { x = s.x, y = s.y, w = s.w, h = s.h / 2 }
+  local h = (s.h - GAP) / 2
+  return { x = s.x, y = s.y, w = s.w, h = h }
 end
 
 local function bottomHalfFrame(s)
-  return { x = s.x, y = s.y + s.h / 2, w = s.w, h = s.h / 2 }
+  local h = (s.h - GAP) / 2
+  return { x = s.x, y = s.y + h + GAP, w = s.w, h = h }
 end
 
 function M.leftHalf()
@@ -131,31 +138,36 @@ end
 
 function M.leftThird()
   setPosition(function(s)
-    return { x = s.x, y = s.y, w = s.w / 3, h = s.h }
+    local w = (s.w - 2 * GAP) / 3
+    return { x = s.x, y = s.y, w = w, h = s.h }
   end)
 end
 
 function M.centerThird()
   setPosition(function(s)
-    return { x = s.x + s.w / 3, y = s.y, w = s.w / 3, h = s.h }
+    local w = (s.w - 2 * GAP) / 3
+    return { x = s.x + w + GAP, y = s.y, w = w, h = s.h }
   end)
 end
 
 function M.rightThird()
   setPosition(function(s)
-    return { x = s.x + 2 * s.w / 3, y = s.y, w = s.w / 3, h = s.h }
+    local w = (s.w - 2 * GAP) / 3
+    return { x = s.x + 2 * (w + GAP), y = s.y, w = w, h = s.h }
   end)
 end
 
 function M.leftTwoThirds()
   setPosition(function(s)
-    return { x = s.x, y = s.y, w = 2 * s.w / 3, h = s.h }
+    local w = (s.w - 2 * GAP) / 3
+    return { x = s.x, y = s.y, w = 2 * w + GAP, h = s.h }
   end)
 end
 
 function M.rightTwoThirds()
   setPosition(function(s)
-    return { x = s.x + s.w / 3, y = s.y, w = 2 * s.w / 3, h = s.h }
+    local w = (s.w - 2 * GAP) / 3
+    return { x = s.x + w + GAP, y = s.y, w = 2 * w + GAP, h = s.h }
   end)
 end
 
@@ -169,7 +181,7 @@ local MIN_SWAP_SIZE = 200
 -- Swap with a neighbor window. If no neighbor exists on the current screen,
 -- move into the empty space on that side. Only cross to the next monitor
 -- if already at the edge of the screen in that direction.
-local function swapOrMove(directionFn, atEdgeFn, emptyFn, nextScreenFn, crossFn)
+local function swapOrMove(directionFn, atEdgeFn, emptyFn, nextScreenFn, crossFn, axis)
   local win = hs.window.focusedWindow()
   if not win then return end
 
@@ -192,10 +204,30 @@ local function swapOrMove(directionFn, atEdgeFn, emptyFn, nextScreenFn, crossFn)
   if #sameScreen > 0 then
     -- Swap with the nearest window on this screen
     local other = sameScreen[1]
-    local winFrame = win:frame()
-    local otherFrame = other:frame()
-    win:setFrame(otherFrame)
-    other:setFrame(winFrame)
+    local wf = win:frame()
+    local of = other:frame()
+    local f1 = { x = wf.x, y = wf.y, w = wf.w, h = wf.h }
+    local f2 = { x = of.x, y = of.y, w = of.w, h = of.h }
+
+    -- Enforce gap between the two swapped positions
+    if axis == 'h' then
+      local left, right = f1, f2
+      if f2.x < f1.x then left, right = f2, f1 end
+      local adjust = (GAP - (right.x - (left.x + left.w))) / 2
+      left.w = left.w - adjust
+      right.x = right.x + adjust
+      right.w = right.w - adjust
+    elseif axis == 'v' then
+      local top, bottom = f1, f2
+      if f2.y < f1.y then top, bottom = f2, f1 end
+      local adjust = (GAP - (bottom.y - (top.y + top.h))) / 2
+      top.h = top.h - adjust
+      bottom.y = bottom.y + adjust
+      bottom.h = bottom.h - adjust
+    end
+
+    win:setFrame(f2)
+    other:setFrame(f1)
   elseif atEdgeFn(win) then
     -- At the edge of the screen, cross to the next monitor
     local next = nextScreenFn(win:screen())
@@ -218,7 +250,8 @@ function M.swapLeft()
     function(w) return math.abs(w:frame().x - w:screen():frame().x) < TOLERANCE end,
     leftHalfFrame,
     function(scr) return scr:toWest() end,
-    rightHalfFrame
+    rightHalfFrame,
+    'h'
   )
 end
 
@@ -231,7 +264,8 @@ function M.swapRight()
     end,
     rightHalfFrame,
     function(scr) return scr:toEast() end,
-    leftHalfFrame
+    leftHalfFrame,
+    'h'
   )
 end
 
@@ -241,7 +275,8 @@ function M.swapUp()
     function(w) return math.abs(w:frame().y - w:screen():frame().y) < TOLERANCE end,
     topHalfFrame,
     function(scr) return scr:toNorth() end,
-    bottomHalfFrame
+    bottomHalfFrame,
+    'v'
   )
 end
 
@@ -254,7 +289,8 @@ function M.swapDown()
     end,
     bottomHalfFrame,
     function(scr) return scr:toSouth() end,
-    topHalfFrame
+    topHalfFrame,
+    'v'
   )
 end
 
