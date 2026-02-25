@@ -133,7 +133,7 @@ function M.moveWindowToSpace(spaceNumber)
   startMovingState()
   win:raise()
 
-  performMove(win, {"ctrl"}, tostring(spaceNumber))
+  performMove(win, {"alt"}, tostring(spaceNumber))
 end
 
 --- Move the focused window one desktop to the right.
