@@ -55,6 +55,9 @@ alias bt='bin/rails test'
 # because of ghostty terminfo not being on remote hosts
 alias ssh="TERM=xterm-256color ssh"
 
+# clear
+alias cls='clear'
+
 # copy/paste
 case "$OSTYPE" in
   darwin*) alias clip="nc localhost 8377" ;;
