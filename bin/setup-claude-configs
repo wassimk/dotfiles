@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+#
+# setup-claude-configs
+#
+# Creates ~/.claude_configs/{work,personal}/ directories and symlinks shared
+# resources from ~/.claude/ into each. Safe to re-run (idempotent).
+#
+# Usage: setup-claude-configs
+
+set -euo pipefail
+
+SOURCE_DIR="$HOME/.claude"
+CONFIG_BASE="$HOME/.claude_configs"
+PROFILES=(work personal)
+
+# Shared resources to symlink from ~/.claude/ into each profile
+SHARED_RESOURCES=(
+  settings.json
+  settings.local.json
+  CLAUDE.md
+  skills
+  commands
+  agents
+  plugins
+  statusline-command.sh
+)
+
+for profile in "${PROFILES[@]}"; do
+  target_dir="$CONFIG_BASE/$profile"
+
+  if [[ ! -d "$target_dir" ]]; then
+    echo "Creating $target_dir/"
+    mkdir -p "$target_dir"
+  else
+    echo "Exists: $target_dir/"
+  fi
+
+  for resource in "${SHARED_RESOURCES[@]}"; do
+    source_path="$SOURCE_DIR/$resource"
+    link_path="$target_dir/$resource"
+
+    # Skip if the source doesn't exist
+    if [[ ! -e "$source_path" ]]; then
+      echo "  Skip (source missing): $resource"
+      continue
+    fi
+
+    # Skip if symlink already points to the right place
+    if [[ -L "$link_path" && "$(readlink "$link_path")" == "$source_path" ]]; then
+      echo "  Skip (already linked): $resource"
+      continue
+    fi
+
+    # Remove stale symlink or file before creating
+    if [[ -e "$link_path" || -L "$link_path" ]]; then
+      echo "  Replacing: $resource"
+      rm -rf "$link_path"
+    else
+      echo "  Linking: $resource"
+    fi
+
+    ln -s "$source_path" "$link_path"
+  done
+
+  echo ""
+done
+
+echo "Done. Login to each profile:"
+echo "  clw /login   (work account)"
+echo "  clp /login   (personal account)"

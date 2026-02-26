@@ -175,6 +175,27 @@ cheat() {
 }
 
 #
+# Claude
+#
+#
+# Claude Code multi-account switching via CLAUDE_CONFIG_DIR
+# Requires: run `setup-claude-configs` first to create dirs and symlinks
+# Work: ~/.claude_configs/work/  |  Personal: ~/.claude_configs/personal/
+#
+
+claude() {
+  clw "$@"
+}
+
+clw() {
+  CLAUDE_CONFIG_DIR="$HOME/.claude_configs/work" command claude "$@"
+}
+
+clp() {
+  CLAUDE_CONFIG_DIR="$HOME/.claude_configs/personal" command claude "$@"
+}
+
+#
 # Hooks
 #
 autoload -U add-zsh-hook
