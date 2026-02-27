@@ -101,6 +101,15 @@ ensure_tmux_is_running() {
   fi
 }
 
+# Reattach to tmux when outside of it (mirrors Cmd+K and Cmd+Shift+K)
+function _tmux_reattach() {
+  BUFFER='ta'
+  zle accept-line
+}
+zle -N _tmux_reattach
+bindkey '\x13w' _tmux_reattach
+bindkey '\x13K' _tmux_reattach
+
 # Make CTRL-Z background and unbackground
 function fg-bg() {
   if [[ $#BUFFER -eq 0 ]]; then
