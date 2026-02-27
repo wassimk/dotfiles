@@ -6,6 +6,9 @@ vim.opt.complete = vim.opt.complete + 'kspell'
 vim.opt.confirm = true -- prompt for some commands like save
 vim.opt.cursorline = true -- highlight current line
 vim.opt.hidden = true -- don't hide unmodified buffers
+vim.opt.hlsearch = true -- highlight search results
+vim.opt.ignorecase = true -- case-insensitive search
+vim.opt.smartcase = true -- case-sensitive when uppercase is used
 vim.opt.inccommand = 'nosplit' -- live highlight of substitutions
 vim.opt.number = true -- display line numbers beside buffer
 vim.opt.relativenumber = true -- show line numbers relative to cursor position
@@ -39,6 +42,29 @@ end
 
 -- make netrw use the system's default file/url browser
 vim.g.netrw_browsex_viewer = 'open'
+
+-- typo corrections
+vim.cmd.iabbrev('precense presence')
+vim.cmd.iabbrev('desparate desperate')
+vim.cmd.iabbrev('desparates desperates')
+vim.cmd.iabbrev('desparated desperated')
+vim.cmd.iabbrev('desparating desperating')
+vim.cmd.iabbrev('desparately desperately')
+vim.cmd.iabbrev('desparation desperation')
+vim.cmd.iabbrev('desparations desperations')
+vim.cmd.iabbrev('desparator desperator')
+vim.cmd.iabbrev('seperate separate')
+vim.cmd.iabbrev('seperates separates')
+vim.cmd.iabbrev('seperated separated')
+vim.cmd.iabbrev('seperating separating')
+vim.cmd.iabbrev('seperately separately')
+vim.cmd.iabbrev('seperation separation')
+vim.cmd.iabbrev('seperations separations')
+vim.cmd.iabbrev('seperator separator')
+vim.cmd.iabbrev('nofity notify')
+vim.cmd.iabbrev('beacuse because')
+vim.cmd.iabbrev('teste test')
+vim.cmd.iabbrev('acknowledgement acknowledgment')
 
 -- disable providers i don't use
 vim.g.loaded_ruby_provider = 0

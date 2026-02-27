@@ -25,14 +25,8 @@ return {
     })
 
     wk.add({
-      { '#', hidden = true },
-      { '*', hidden = true },
       { '/', hidden = true },
-      { '<leader>n', hidden = true },
       { '?', hidden = true },
-      { 'N', hidden = true },
-      { 'g#', hidden = true },
-      { 'g*', hidden = true },
       { 'h', hidden = true },
       { 'j', hidden = true },
       { 'k', hidden = true },
