@@ -530,9 +530,13 @@ placementWatcher:start()
 
 local RESIZE_STEP = 0.05 -- 5% of screen size per keypress
 
--- Determine which edge to resize from based on window position.
-local function isRightAligned(f, s)
-  return (f.x + f.w / 2) > (s.x + s.w / 2)
+-- Determine which edges are snapped to the screen boundary.
+local function isSnappedLeft(f, s)
+  return math.abs(f.x - s.x) < TOLERANCE
+end
+
+local function isSnappedRight(f, s)
+  return math.abs((f.x + f.w) - (s.x + s.w)) < TOLERANCE
 end
 
 -- After resizing, adjust the neighbor window to follow the shared edge.
@@ -555,9 +559,31 @@ local function adjustNeighbor(win, side)
   end
 end
 
+-- Resize a floating window evenly from both sides, clamped to screen edges.
+-- Floating windows don't push neighbors — they sit on top.
+local function resizeFloatGrow(win, step)
+  local s = win:screen():frame()
+  local f = win:frame()
+  local half = step / 2
+  local newX = math.max(f.x - half, s.x)
+  local newW = math.min(f.w + (f.x - newX) + half, s.x + s.w - newX)
+  win:setFrame({ x = newX, y = f.y, w = newW, h = f.h })
+end
+
+local function resizeFloatShrink(win, step)
+  local s = win:screen():frame()
+  local f = win:frame()
+  local half = step / 2
+  local newW = math.max(f.w - step, s.w * 0.1)
+  local shrunk = f.w - newW
+  local newX = f.x + shrunk / 2
+  win:setFrame({ x = newX, y = f.y, w = newW, h = f.h })
+end
+
 -- Arrow direction = direction the active edge moves.
--- Left-aligned: right edge is active. Right-aligned: left edge is active.
--- Adjacent windows on the resized side follow the edge.
+-- Snapped to left edge: right edge is active. Snapped to right: left edge is active.
+-- Floating (neither snapped): right grows evenly, left shrinks evenly. No neighbor pushing.
+-- Adjacent windows on the resized side follow the edge (snapped only).
 function M.resizeLeft()
   local win = hs.window.focusedWindow()
   if not win then return end
@@ -565,16 +591,18 @@ function M.resizeLeft()
   local f = win:frame()
   local step = s.w * RESIZE_STEP
 
-  if isRightAligned(f, s) then
-    -- expand: left edge moves left
-    local newX = math.max(f.x - step, s.x)
-    win:setFrame({ x = newX, y = f.y, w = f.w + (f.x - newX), h = f.h })
-    adjustNeighbor(win, 'left')
-  else
+  if not isSnappedLeft(f, s) and not isSnappedRight(f, s) then
+    resizeFloatShrink(win, step)
+  elseif isSnappedLeft(f, s) then
     -- shrink: right edge moves left
     local newW = math.max(f.w - step, s.w * 0.1)
     win:setFrame({ x = f.x, y = f.y, w = newW, h = f.h })
     adjustNeighbor(win, 'right')
+  else
+    -- expand: left edge moves left
+    local newX = math.max(f.x - step, s.x)
+    win:setFrame({ x = newX, y = f.y, w = f.w + (f.x - newX), h = f.h })
+    adjustNeighbor(win, 'left')
   end
 end
 
@@ -585,7 +613,9 @@ function M.resizeRight()
   local f = win:frame()
   local step = s.w * RESIZE_STEP
 
-  if isRightAligned(f, s) then
+  if not isSnappedLeft(f, s) and not isSnappedRight(f, s) then
+    resizeFloatGrow(win, step)
+  elseif isSnappedRight(f, s) then
     -- shrink: left edge moves right
     local newW = math.max(f.w - step, s.w * 0.1)
     local newX = f.x + (f.w - newW)
