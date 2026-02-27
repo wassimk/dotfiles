@@ -14,17 +14,27 @@ return {
     -- mason auto-update
     require('mason-tool-installer').setup({
       ensure_installed = {
-        'codelldb',
-        'codespell',
-        'commitlint',
+        'bash-language-server', -- lsp
+        'codelldb', -- used by nvim-dap
+        'codespell', -- used by nvim-lint
+        'commitlint', -- used by nvim-lint
         'copilot-language-server',
-        'luacheck',
-        'prettierd',
-        'selene',
+        'css-lsp',
+        'emmet-language-server',
+        'eslint-lsp',
+        'gopls', -- used by ray-x/go.nvim
+        'html-lsp',
+        'json-lsp',
+        'lua-language-server',
+        'luacheck', -- used by nvim-lint
+        'prettierd', -- used by conform.nvim
+        'selene', -- used by nvim-lint
         'shellcheck', -- used by bash-language-server
-        'stylua',
+        'stylua', -- used by conform.nvim
         'tailwindcss-language-server',
-        'typescript-language-server', -- used by typescript-tools
+        'typescript-language-server', -- used by typescript-tools.nvim
+        'vim-language-server',
+        'yaml-language-server',
       },
       auto_update = true,
       run_on_start = true,
