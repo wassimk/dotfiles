@@ -128,7 +128,8 @@ installGhExtensions() {
 setupMacOSDefaults() {
   echo "Setting macOS defaults..."
 
-  # Ghostty: disable split navigation menu shortcuts that conflict with tmux
+  # Ghostty: disable macOS menu shortcuts that conflict with tmux keybindings
+  defaults write com.mitchellh.ghostty NSUserKeyEquivalents -dict-add "Settings…" '\0'
   defaults write com.mitchellh.ghostty NSUserKeyEquivalents -dict-add "Select Previous Split" '\0'
   defaults write com.mitchellh.ghostty NSUserKeyEquivalents -dict-add "Select Next Split" '\0'
 }
