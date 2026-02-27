@@ -659,6 +659,36 @@ function M.resizeShorter()
   win:setFrame({ x = f.x, y = newY, w = f.w, h = newH })
 end
 
+-- Normalize all visible windows on the current screen to equal widths.
+function M.normalize()
+  local win = hs.window.focusedWindow()
+  if not win then return end
+  local screen = win:screen()
+  local screenId = screen:id()
+  local s = screen:frame()
+
+  local wins = {}
+  for _, w in ipairs(hs.window.visibleWindows()) do
+    if w:screen():id() == screenId
+      and w:isStandard()
+      and w:frame().w >= MIN_SWAP_SIZE
+      and w:frame().h >= MIN_SWAP_SIZE then
+      table.insert(wins, w)
+    end
+  end
+
+  if #wins < 2 then return end
+
+  table.sort(wins, function(a, b) return a:frame().x < b:frame().x end)
+
+  local totalGap = GAP * (#wins - 1)
+  local sliceW = (s.w - totalGap) / #wins
+  for i, w in ipairs(wins) do
+    local x = s.x + (i - 1) * (sliceW + GAP)
+    w:setFrame({ x = x, y = s.y, w = sliceW, h = s.h })
+  end
+end
+
 --
 -- Keybindings
 --
@@ -680,6 +710,7 @@ hs.hotkey.bind(shiftAlt, 'left', M.resizeLeft)
 hs.hotkey.bind(shiftAlt, 'right', M.resizeRight)
 hs.hotkey.bind(shiftAlt, 'up', M.resizeTaller)
 hs.hotkey.bind(shiftAlt, 'down', M.resizeShorter)
+hs.hotkey.bind(shiftAlt, '0', M.normalize)
 -- Focus: alt
 local alt = { 'alt' }
 hs.hotkey.bind(alt, 'h', function()
