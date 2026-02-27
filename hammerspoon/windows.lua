@@ -85,6 +85,26 @@ local function setPosition(fn, nextScreenFn, crossFn)
   win:setFrame(target)
 end
 
+-- Minimum size for a window to be considered a real neighbor
+local MIN_SWAP_SIZE = 200
+
+-- Find the nearest real window on the same screen in a given direction.
+local function findNeighbor(win, directionFn)
+  local neighbors = directionFn(win)
+  if not neighbors then return nil end
+  local winScreen = win:screen():id()
+  for _, n in ipairs(neighbors) do
+    local nf = n:frame()
+    if n:screen():id() == winScreen
+      and n:isStandard()
+      and nf.w >= MIN_SWAP_SIZE
+      and nf.h >= MIN_SWAP_SIZE then
+      return n
+    end
+  end
+  return nil
+end
+
 local function leftHalfFrame(s)
   local w = (s.w - GAP) / 2
   return { x = s.x, y = s.y, w = w, h = s.h }
@@ -95,31 +115,8 @@ local function rightHalfFrame(s)
   return { x = s.x + w + GAP, y = s.y, w = w, h = s.h }
 end
 
-local function topHalfFrame(s)
-  local h = (s.h - GAP) / 2
-  return { x = s.x, y = s.y, w = s.w, h = h }
-end
 
-local function bottomHalfFrame(s)
-  local h = (s.h - GAP) / 2
-  return { x = s.x, y = s.y + h + GAP, w = s.w, h = h }
-end
 
-function M.leftHalf()
-  setPosition(leftHalfFrame, function(scr) return scr:toWest() end, rightHalfFrame)
-end
-
-function M.rightHalf()
-  setPosition(rightHalfFrame, function(scr) return scr:toEast() end, leftHalfFrame)
-end
-
-function M.topHalf()
-  setPosition(topHalfFrame, function(scr) return scr:toNorth() end, bottomHalfFrame)
-end
-
-function M.bottomHalf()
-  setPosition(bottomHalfFrame, function(scr) return scr:toSouth() end, topHalfFrame)
-end
 
 function M.maximize()
   local win = hs.window.focusedWindow()
@@ -217,127 +214,202 @@ function M.rightTwoThirds()
 end
 
 --
--- Swapping
+-- Moving and Swapping
 --
 
--- Minimum size for a window to be considered a real swap candidate
-local MIN_SWAP_SIZE = 200
+-- Find the nearest real window on a specific screen.
+local function findWindowOnScreen(excludeWin, targetScreen)
+  local targetId = targetScreen:id()
+  local excludeId = excludeWin:id()
+  for _, w in ipairs(hs.window.visibleWindows()) do
+    if w:id() ~= excludeId
+      and w:screen():id() == targetId
+      and w:isStandard()
+      and w:frame().w >= MIN_SWAP_SIZE
+      and w:frame().h >= MIN_SWAP_SIZE then
+      return w
+    end
+  end
+  return nil
+end
 
--- Swap with a neighbor window. If no neighbor exists on the current screen,
--- move into the empty space on that side. Only cross to the next monitor
--- if already at the edge of the screen in that direction.
-local function swapOrMove(directionFn, atEdgeFn, emptyFn, nextScreenFn, crossFn, axis)
+-- Check if a target frame is occupied by another window on the same screen.
+local function findWindowAtFrame(excludeWin, screen, targetFrame)
+  local screenId = screen:id()
+  local excludeId = excludeWin:id()
+  for _, w in ipairs(hs.window.visibleWindows()) do
+    if w:id() ~= excludeId
+      and w:screen():id() == screenId
+      and w:isStandard()
+      and w:frame().w >= MIN_SWAP_SIZE
+      and w:frame().h >= MIN_SWAP_SIZE
+      and framesMatch(w:frame(), targetFrame) then
+      return w
+    end
+  end
+  return nil
+end
+
+-- Swap: prefer moving into empty space, only swap if the target is occupied.
+-- At screen edge, cross to next monitor with the same logic.
+function M.swapLeft()
   local win = hs.window.focusedWindow()
   if not win then return end
+  local screen = win:screen()
+  local s = screen:frame()
+  local atEdge = math.abs(win:frame().x - s.x) < TOLERANCE
 
-  -- Only consider real windows on the same screen (ignore tiny popups/panels)
-  local neighbors = directionFn(win)
-  local sameScreen = {}
-  if neighbors then
-    local winScreen = win:screen():id()
-    for _, n in ipairs(neighbors) do
-      local nf = n:frame()
-      if n:screen():id() == winScreen
-        and n:isStandard()
-        and nf.w >= MIN_SWAP_SIZE
-        and nf.h >= MIN_SWAP_SIZE then
-        table.insert(sameScreen, n)
+  if not atEdge then
+    -- Target is left half of current screen
+    local target = leftHalfFrame(s)
+    local occupant = findWindowAtFrame(win, screen, target)
+    if occupant then
+      local wf = { x = win:frame().x, y = win:frame().y, w = win:frame().w, h = win:frame().h }
+      win:setFrame(target)
+      occupant:setFrame(wf)
+    else
+      win:setFrame(target)
+    end
+  else
+    -- At left edge, cross to next monitor
+    local next = screen:toWest()
+    if not next then return end
+    if isFullscreenOnly(next) then
+      local target = fullscreenOnlyFrame(next:frame())
+      local occupant = findWindowOnScreen(win, next)
+      if occupant then
+        local wf = { x = win:frame().x, y = win:frame().y, w = win:frame().w, h = win:frame().h }
+        win:setFrame(target)
+        occupant:setFrame(wf)
+      else
+        win:setFrame(target)
+      end
+    else
+      local target = rightHalfFrame(next:frame())
+      local occupant = findWindowAtFrame(win, next, target)
+      if occupant then
+        local wf = { x = win:frame().x, y = win:frame().y, w = win:frame().w, h = win:frame().h }
+        win:setFrame(target)
+        occupant:setFrame(wf)
+      else
+        win:setFrame(target)
       end
     end
   end
+end
 
-  if #sameScreen > 0 then
-    -- Swap with the nearest window on this screen
-    local other = sameScreen[1]
-    local wf = win:frame()
-    local of = other:frame()
-    local f1 = { x = wf.x, y = wf.y, w = wf.w, h = wf.h }
-    local f2 = { x = of.x, y = of.y, w = of.w, h = of.h }
+function M.swapRight()
+  local win = hs.window.focusedWindow()
+  if not win then return end
+  local screen = win:screen()
+  local s = screen:frame()
+  local f = win:frame()
+  local atEdge = math.abs((f.x + f.w) - (s.x + s.w)) < TOLERANCE
 
-    -- Enforce gap between the two swapped positions
-    if axis == 'h' then
-      local left, right = f1, f2
-      if f2.x < f1.x then left, right = f2, f1 end
-      local adjust = (GAP - (right.x - (left.x + left.w))) / 2
-      left.w = left.w - adjust
-      right.x = right.x + adjust
-      right.w = right.w - adjust
-    elseif axis == 'v' then
-      local top, bottom = f1, f2
-      if f2.y < f1.y then top, bottom = f2, f1 end
-      local adjust = (GAP - (bottom.y - (top.y + top.h))) / 2
-      top.h = top.h - adjust
-      bottom.y = bottom.y + adjust
-      bottom.h = bottom.h - adjust
+  if not atEdge then
+    -- Target is right half of current screen
+    local target = rightHalfFrame(s)
+    local occupant = findWindowAtFrame(win, screen, target)
+    if occupant then
+      local wf = { x = f.x, y = f.y, w = f.w, h = f.h }
+      win:setFrame(target)
+      occupant:setFrame(wf)
+    else
+      win:setFrame(target)
     end
+  else
+    -- At right edge, cross to next monitor
+    local next = screen:toEast()
+    if not next then return end
+    if isFullscreenOnly(next) then
+      local target = fullscreenOnlyFrame(next:frame())
+      local occupant = findWindowOnScreen(win, next)
+      if occupant then
+        local wf = { x = f.x, y = f.y, w = f.w, h = f.h }
+        win:setFrame(target)
+        occupant:setFrame(wf)
+      else
+        win:setFrame(target)
+      end
+    else
+      local target = leftHalfFrame(next:frame())
+      local occupant = findWindowAtFrame(win, next, target)
+      if occupant then
+        local wf = { x = f.x, y = f.y, w = f.w, h = f.h }
+        win:setFrame(target)
+        occupant:setFrame(wf)
+      else
+        win:setFrame(target)
+      end
+    end
+  end
+end
 
-    win:setFrame(f2)
-    other:setFrame(f1)
-  elseif atEdgeFn(win) then
-    -- At the edge of the screen, cross to the next monitor
-    local next = nextScreenFn(win:screen())
+-- Move window to a half. Crosses to the next monitor if already at the edge.
+function M.moveLeft()
+  local win = hs.window.focusedWindow()
+  if not win then return end
+  local screen = win:screen()
+
+  if isFullscreenOnly(screen) then
+    local next = screen:toWest()
+    if next then
+      local apply = isFullscreenOnly(next) and fullscreenOnlyFrame or rightHalfFrame
+      win:setFrame(apply(next:frame()))
+    end
+    return
+  end
+
+  local s = screen:frame()
+  local target = leftHalfFrame(s)
+
+  if framesMatch(win:frame(), target) then
+    -- Already at left half, cross to next monitor
+    local next = screen:toWest()
     if next then
       if isFullscreenOnly(next) then
         win:setFrame(fullscreenOnlyFrame(next:frame()))
       else
-        win:setFrame(crossFn(next:frame()))
+        win:setFrame(rightHalfFrame(next:frame()))
       end
     end
   else
-    -- Empty space on this screen, move into it
-    win:setFrame(emptyFn(win:screen():frame()))
+    win:setFrame(target)
   end
 end
 
-function M.swapLeft()
-  swapOrMove(
-    function(w) return w:windowsToWest(nil, false, false) end,
-    function(w) return math.abs(w:frame().x - w:screen():frame().x) < TOLERANCE end,
-    leftHalfFrame,
-    function(scr) return scr:toWest() end,
-    rightHalfFrame,
-    'h'
-  )
+function M.moveRight()
+  local win = hs.window.focusedWindow()
+  if not win then return end
+  local screen = win:screen()
+
+  if isFullscreenOnly(screen) then
+    local next = screen:toEast()
+    if next then
+      local apply = isFullscreenOnly(next) and fullscreenOnlyFrame or leftHalfFrame
+      win:setFrame(apply(next:frame()))
+    end
+    return
+  end
+
+  local s = screen:frame()
+  local target = rightHalfFrame(s)
+
+  if framesMatch(win:frame(), target) then
+    -- Already at right half, cross to next monitor
+    local next = screen:toEast()
+    if next then
+      if isFullscreenOnly(next) then
+        win:setFrame(fullscreenOnlyFrame(next:frame()))
+      else
+        win:setFrame(leftHalfFrame(next:frame()))
+      end
+    end
+  else
+    win:setFrame(target)
+  end
 end
 
-function M.swapRight()
-  swapOrMove(
-    function(w) return w:windowsToEast(nil, false, false) end,
-    function(w)
-      local f, s = w:frame(), w:screen():frame()
-      return math.abs((f.x + f.w) - (s.x + s.w)) < TOLERANCE
-    end,
-    rightHalfFrame,
-    function(scr) return scr:toEast() end,
-    leftHalfFrame,
-    'h'
-  )
-end
-
-function M.swapUp()
-  swapOrMove(
-    function(w) return w:windowsToNorth(nil, false, false) end,
-    function(w) return math.abs(w:frame().y - w:screen():frame().y) < TOLERANCE end,
-    topHalfFrame,
-    function(scr) return scr:toNorth() end,
-    bottomHalfFrame,
-    'v'
-  )
-end
-
-function M.swapDown()
-  swapOrMove(
-    function(w) return w:windowsToSouth(nil, false, false) end,
-    function(w)
-      local f, s = w:frame(), w:screen():frame()
-      return math.abs((f.y + f.h) - (s.y + s.h)) < TOLERANCE
-    end,
-    bottomHalfFrame,
-    function(scr) return scr:toSouth() end,
-    topHalfFrame,
-    'v'
-  )
-end
 
 --
 -- Auto-placement: position app windows when they appear
@@ -453,25 +525,131 @@ end)
 placementWatcher:start()
 
 --
+-- Resizing
+--
+
+local RESIZE_STEP = 0.05 -- 5% of screen size per keypress
+
+-- Determine which edge to resize from based on window position.
+local function isRightAligned(f, s)
+  return (f.x + f.w / 2) > (s.x + s.w / 2)
+end
+
+-- After resizing, adjust the neighbor window to follow the shared edge.
+local function adjustNeighbor(win, side)
+  local neighbor
+  local wf = win:frame()
+
+  if side == 'right' then
+    neighbor = findNeighbor(win, function(w) return w:windowsToEast(nil, false, false) end)
+    if not neighbor then return end
+    local nf = neighbor:frame()
+    local newX = wf.x + wf.w + GAP
+    neighbor:setFrame({ x = newX, y = nf.y, w = nf.w + (nf.x - newX), h = nf.h })
+  elseif side == 'left' then
+    neighbor = findNeighbor(win, function(w) return w:windowsToWest(nil, false, false) end)
+    if not neighbor then return end
+    local nf = neighbor:frame()
+    local newW = (wf.x - GAP) - nf.x
+    neighbor:setFrame({ x = nf.x, y = nf.y, w = newW, h = nf.h })
+  end
+end
+
+-- Arrow direction = direction the active edge moves.
+-- Left-aligned: right edge is active. Right-aligned: left edge is active.
+-- Adjacent windows on the resized side follow the edge.
+function M.resizeLeft()
+  local win = hs.window.focusedWindow()
+  if not win then return end
+  local s = win:screen():frame()
+  local f = win:frame()
+  local step = s.w * RESIZE_STEP
+
+  if isRightAligned(f, s) then
+    -- expand: left edge moves left
+    local newX = math.max(f.x - step, s.x)
+    win:setFrame({ x = newX, y = f.y, w = f.w + (f.x - newX), h = f.h })
+    adjustNeighbor(win, 'left')
+  else
+    -- shrink: right edge moves left
+    local newW = math.max(f.w - step, s.w * 0.1)
+    win:setFrame({ x = f.x, y = f.y, w = newW, h = f.h })
+    adjustNeighbor(win, 'right')
+  end
+end
+
+function M.resizeRight()
+  local win = hs.window.focusedWindow()
+  if not win then return end
+  local s = win:screen():frame()
+  local f = win:frame()
+  local step = s.w * RESIZE_STEP
+
+  if isRightAligned(f, s) then
+    -- shrink: left edge moves right
+    local newW = math.max(f.w - step, s.w * 0.1)
+    local newX = f.x + (f.w - newW)
+    win:setFrame({ x = newX, y = f.y, w = newW, h = f.h })
+    adjustNeighbor(win, 'left')
+  else
+    -- expand: right edge moves right
+    local newW = math.min(f.w + step, s.x + s.w - f.x)
+    win:setFrame({ x = f.x, y = f.y, w = newW, h = f.h })
+    adjustNeighbor(win, 'right')
+  end
+end
+
+function M.resizeTaller()
+  local win = hs.window.focusedWindow()
+  if not win then return end
+  local s = win:screen():frame()
+  local f = win:frame()
+  local step = s.h * RESIZE_STEP
+  local halfStep = step / 2
+  local newY = math.max(f.y - halfStep, s.y)
+  local newH = math.min(f.h + step, s.h)
+  -- clamp bottom edge to screen
+  if newY + newH > s.y + s.h then newH = s.y + s.h - newY end
+  win:setFrame({ x = f.x, y = newY, w = f.w, h = newH })
+end
+
+function M.resizeShorter()
+  local win = hs.window.focusedWindow()
+  if not win then return end
+  local s = win:screen():frame()
+  local f = win:frame()
+  local step = s.h * RESIZE_STEP
+  local minH = s.h * 0.1
+  local halfStep = step / 2
+  local newH = math.max(f.h - step, minH)
+  local newY = f.y + halfStep
+  -- clamp top edge to screen
+  if newY < s.y then newY = s.y end
+  if newY + newH > s.y + s.h then newH = s.y + s.h - newY end
+  win:setFrame({ x = f.x, y = newY, w = f.w, h = newH })
+end
+
+--
 -- Keybindings
 --
 
 local shiftAlt = { 'shift', 'alt' }
 local ctrlShiftAlt = { 'ctrl', 'shift', 'alt' }
 
--- Positioning: ctrl+shift+alt
-hs.hotkey.bind(ctrlShiftAlt, 'h', M.leftHalf)
-hs.hotkey.bind(ctrlShiftAlt, 'l', M.rightHalf)
-hs.hotkey.bind(ctrlShiftAlt, 'k', M.topHalf)
-hs.hotkey.bind(ctrlShiftAlt, 'j', M.bottomHalf)
--- Toggle maximize / center: shift+alt
-hs.hotkey.bind(shiftAlt, 't', M.maximize)
-hs.hotkey.bind(shiftAlt, 'c', M.center)
+-- Moving: ctrl+shift+alt
+hs.hotkey.bind(ctrlShiftAlt, 'h', M.moveLeft)
+hs.hotkey.bind(ctrlShiftAlt, 'l', M.moveRight)
 -- Swapping: shift+alt
 hs.hotkey.bind(shiftAlt, 'h', M.swapLeft)
 hs.hotkey.bind(shiftAlt, 'l', M.swapRight)
-hs.hotkey.bind(shiftAlt, 'k', M.swapUp)
-hs.hotkey.bind(shiftAlt, 'j', M.swapDown)
+-- Toggle maximize / center: shift+alt
+hs.hotkey.bind(shiftAlt, 't', M.maximize)
+hs.hotkey.bind(shiftAlt, 'c', M.center)
+-- Resizing: shift+alt
+hs.hotkey.bind(shiftAlt, 'left', M.resizeLeft)
+hs.hotkey.bind(shiftAlt, 'right', M.resizeRight)
+hs.hotkey.bind(shiftAlt, 'up', M.resizeTaller)
+hs.hotkey.bind(shiftAlt, 'down', M.resizeShorter)
 -- Focus: alt
 local alt = { 'alt' }
 hs.hotkey.bind(alt, 'h', function()
