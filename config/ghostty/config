@@ -63,11 +63,12 @@ keybind = super+left_bracket=text:\x13[
 # tmux launch the session switcher
 keybind = super+k=text:\x13w
 
+# tmux new session picker (fzf: pick folder or type name)
+keybind = super+shift+k=text:\x13K
+
 # tmux switch to last session
 keybind = super+l=text:\x13L
 
-# tmux detach the current client
-keybind = super+alt+q=text:\x13d
 
 # tmux create a new window
 keybind = super+t=text:\x13c

@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+#
+# Interactive session creator: pick a folder from ~/Personal or ~/Code,
+# or type a custom session name.
+
+selected=$({ find ~/Personal -mindepth 1 -maxdepth 2 -not -name '.*' -type d; find ~/Code -mindepth 1 -maxdepth 1 -not -name '.*' -type d; } 2>/dev/null \
+  | sed "s|^$HOME|~|" | sort | fzf \
+  --prompt="new session> " \
+  --print-query \
+  --header="pick a folder or type a name")
+
+query=$(echo "$selected" | sed -n '1p')
+match=$(echo "$selected" | sed -n '2p' | sed "s|^~|$HOME|")
+
+[ -z "$query" ] && [ -z "$match" ] && exit 0
+
+if [ -n "$match" ] && [ -d "$match" ]; then
+  name=$(basename "$match")
+  dir="$match"
+else
+  name="$query"
+  dir=""
+fi
+
+# Sanitize for tmux (no dots, colons, or periods)
+name=$(echo "$name" | tr './:' '---')
+
+if tmux has-session -t="$name" 2>/dev/null; then
+  tmux switch-client -t "$name"
+elif [ -n "$dir" ]; then
+  tmux new-session -d -s "$name" -c "$dir" && tmux switch-client -t "$name"
+else
+  tmux new-session -d -s "$name" && tmux switch-client -t "$name"
+fi
