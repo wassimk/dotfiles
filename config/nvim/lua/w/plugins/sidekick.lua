@@ -97,6 +97,15 @@ return {
       end,
       desc = 'select ai tool',
     },
-    -- Tab accept is handled by blink.cmp keymap chain (sidekick NES → inline completion → fallback)
+    {
+      '<Tab>',
+      function()
+        if not require('sidekick').nes_jump_or_apply() then
+          return '<Tab>'
+        end
+      end,
+      expr = true,
+      desc = 'accept NES',
+    },
   },
 }
