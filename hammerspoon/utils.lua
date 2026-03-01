@@ -298,12 +298,12 @@ function M.startMeeting()
 end
 
 local SCREENCAST_DESKTOP = 5
-local screencastState = {}
 local isScreencasting = false
 
 function M.toggleScreencasting(appNames)
   if isScreencasting then
-    M.stopScreencasting()
+    isScreencasting = false
+    hs.notify.new({ title = 'Screencast', informativeText = 'Screencast mode stopped' }):send()
   else
     M.resizeForScreencasting(appNames)
   end
@@ -312,9 +312,7 @@ end
 function M.resizeForScreencasting(appNames)
   if isScreencasting then return end
   isScreencasting = true
-  screencastState = {}
 
-  -- Collect main window per app (for moving) and all windows (for resizing)
   local mainScreen = hs.screen.mainScreen()
   local allWindows = {}
   local moveQueue = {}
@@ -324,119 +322,70 @@ function M.resizeForScreencasting(appNames)
       local mainWin = app:mainWindow()
       for _, win in ipairs(app:allWindows()) do
         if win:isStandard() and win:isVisible() then
-          local frame = win:frame()
-          local desktop = getWindowDesktopNumber(win)
-          local screenId = win:screen() and win:screen():id()
           table.insert(allWindows, win)
-          screencastState[win:id()] = {
-            frame = { x = frame.x, y = frame.y, w = frame.w, h = frame.h },
-            desktop = desktop,
-            screenId = screenId,
-          }
         end
       end
-      -- Only move the main window per app to the screencast desktop
       if mainWin and mainWin:isStandard() and mainWin:isVisible() then
         table.insert(moveQueue, mainWin)
       end
     end
   end
 
-  -- Resize all collected windows to 1280x720 centered
-  local function resizeAll()
+  -- Phase 1: Pull all windows from external monitors to main screen
+  for _, win in ipairs(allWindows) do
+    if win:screen():id() ~= mainScreen:id() then
+      win:moveToScreen(mainScreen)
+    end
+  end
+
+  -- Phase 2: Move main windows to screencast desktop sequentially
+  local function processQueue(index)
+    if index > #moveQueue then
+      -- Phase 3: Resize all windows on the screencast desktop
+      hs.timer.doAfter(0.5, function()
+        for _, win in ipairs(allWindows) do
+          if win:isVisible() then
+            local screen = win:screen()
+            local sf = screen:frame()
+            win:setFrame({
+              x = sf.x + (sf.w - 1280) / 2,
+              y = sf.y + 25,
+              w = 1280,
+              h = 720,
+            })
+          end
+        end
+        hs.notify.new({ title = 'Screencast', informativeText = 'Screencast mode active' }):send()
+      end)
+      return
+    end
+    local win = moveQueue[index]
+    SPACES.moveWindowToSpace(SCREENCAST_DESKTOP, win, function()
+      hs.timer.doAfter(1.5, function()
+        processQueue(index + 1)
+      end)
+    end)
+  end
+
+  -- Give windows 1s to settle on main screen before starting desktop moves
+  if #moveQueue == 0 then
     for _, win in ipairs(allWindows) do
       if win:isVisible() then
         local screen = win:screen()
         local sf = screen:frame()
-        local newWidth = 1280
-        local newHeight = 720
-        local newX = sf.x + (sf.w - newWidth) / 2
-        local newY = sf.y + 25
-        win:setFrame({ x = newX, y = newY, w = newWidth, h = newHeight })
+        win:setFrame({
+          x = sf.x + (sf.w - 1280) / 2,
+          y = sf.y + 25,
+          w = 1280,
+          h = 720,
+        })
       end
     end
     hs.notify.new({ title = 'Screencast', informativeText = 'Screencast mode active' }):send()
-  end
-
-  -- Process moves sequentially: pull to main screen, settle, then switch desktop
-  local function processQueue(index)
-    if index > #moveQueue then
-      hs.timer.doAfter(0.5, resizeAll)
-      return
-    end
-    local win = moveQueue[index]
-
-    -- Pull to main screen if on an external monitor
-    if win:screen():id() ~= mainScreen:id() then
-      win:moveToScreen(mainScreen)
-    end
-
-    -- Let the window settle on the main screen before the desktop move
-    hs.timer.doAfter(0.5, function()
-      SPACES.moveWindowToSpace(SCREENCAST_DESKTOP, win, function()
-        hs.timer.doAfter(1.5, function()
-          processQueue(index + 1)
-        end)
-      end)
-    end)
-  end
-
-  if #moveQueue == 0 then
-    resizeAll()
   else
-    processQueue(1)
-  end
-end
-
-function M.stopScreencasting()
-  if not isScreencasting then return end
-  isScreencasting = false
-
-  -- Restore windows to original screens and build move queue
-  local restoreQueue = {}
-  for winId, state in pairs(screencastState) do
-    local win = hs.window.get(winId)
-    if not win then goto continue end
-
-    -- Restore to original screen if it was on a different monitor
-    if state.screenId then
-      local originalScreen = hs.screen.find(state.screenId)
-      if originalScreen and win:screen():id() ~= state.screenId then
-        win:moveToScreen(originalScreen)
-      end
-    end
-
-    if state.desktop and state.desktop ~= SCREENCAST_DESKTOP then
-      table.insert(restoreQueue, { win = win, state = state })
-    elseif state.frame then
-      win:setFrame(state.frame)
-    end
-
-    ::continue::
-  end
-
-  local function processRestore(index)
-    if index > #restoreQueue then
-      screencastState = {}
-      hs.notify.new({ title = 'Screencast', informativeText = 'Screencast mode stopped' }):send()
-      return
-    end
-    local entry = restoreQueue[index]
-    SPACES.moveWindowToSpace(entry.state.desktop, entry.win, function()
-      hs.timer.doAfter(0.5, function()
-        entry.win:setFrame(entry.state.frame)
-        hs.timer.doAfter(1.0, function()
-          processRestore(index + 1)
-        end)
-      end)
+    hs.timer.doAfter(1.0, function()
+      processQueue(1)
     end)
-  end
-
-  if #restoreQueue == 0 then
-    screencastState = {}
-    hs.notify.new({ title = 'Screencast', informativeText = 'Screencast mode stopped' }):send()
-  else
-    processRestore(1)
   end
 end
 
