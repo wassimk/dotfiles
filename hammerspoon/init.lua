@@ -36,7 +36,10 @@ end)
 -- Move focused window to desktop N (shift+alt + number)
 for i = 1, 9 do
   hs.hotkey.bind({ 'shift', 'alt' }, tostring(i), function()
-    SPACES.moveWindowToSpace(i)
+    local win = hs.window.focusedWindow()
+    SPACES.moveWindowToSpace(i, nil, function()
+      WINDOWS.snapToScreen(win)
+    end)
   end)
 end
 

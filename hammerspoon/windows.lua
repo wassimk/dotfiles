@@ -27,6 +27,30 @@ local function fullscreenOnlyFrame(s)
   return { x = s.x, y = s.y + margin, w = s.w, h = s.h - 2 * margin }
 end
 
+-- Apply a frame to a window on a fullscreen-only monitor.
+-- macOS Sequoia's tiling can override setFrame, so re-apply after a delay.
+-- The pending timer is cancelled on any subsequent move to prevent interference.
+local fullscreenOnlyTimer = nil
+
+local function cancelFullscreenOnlyTimer()
+  if fullscreenOnlyTimer then
+    fullscreenOnlyTimer:stop()
+    fullscreenOnlyTimer = nil
+  end
+end
+
+local function applyFullscreenOnly(win, screen)
+  cancelFullscreenOnlyTimer()
+  local target = fullscreenOnlyFrame(screen:frame())
+  win:setFrame(target)
+  fullscreenOnlyTimer = hs.timer.doAfter(0.1, function()
+    fullscreenOnlyTimer = nil
+    if win:isVisible() then
+      win:setFrame(target)
+    end
+  end)
+end
+
 -- Gap in pixels between adjacent tiled windows
 local GAP = 4
 M.GAP = GAP
@@ -349,6 +373,7 @@ end
 
 -- Move window to a half. Crosses to the next monitor if already at the edge.
 function M.moveLeft()
+  cancelFullscreenOnlyTimer()
   local win = hs.window.focusedWindow()
   if not win then return end
   local screen = win:screen()
@@ -356,8 +381,13 @@ function M.moveLeft()
   if isFullscreenOnly(screen) then
     local next = screen:toWest()
     if next then
-      local apply = isFullscreenOnly(next) and fullscreenOnlyFrame or rightHalfFrame
-      win:setFrame(apply(next:frame()))
+      if isFullscreenOnly(next) then
+        applyFullscreenOnly(win, next)
+      else
+        win:setFrame(rightHalfFrame(next:frame()))
+      end
+    else
+      applyFullscreenOnly(win, screen)
     end
     return
   end
@@ -366,14 +396,15 @@ function M.moveLeft()
   local target = leftHalfFrame(s)
 
   if framesMatch(win:frame(), target) then
-    -- Already at left half, cross to next monitor
     local next = screen:toWest()
     if next then
       if isFullscreenOnly(next) then
-        win:setFrame(fullscreenOnlyFrame(next:frame()))
+        applyFullscreenOnly(win, next)
       else
         win:setFrame(rightHalfFrame(next:frame()))
       end
+    else
+      win:setFrame(target)
     end
   else
     win:setFrame(target)
@@ -381,6 +412,7 @@ function M.moveLeft()
 end
 
 function M.moveRight()
+  cancelFullscreenOnlyTimer()
   local win = hs.window.focusedWindow()
   if not win then return end
   local screen = win:screen()
@@ -388,8 +420,13 @@ function M.moveRight()
   if isFullscreenOnly(screen) then
     local next = screen:toEast()
     if next then
-      local apply = isFullscreenOnly(next) and fullscreenOnlyFrame or leftHalfFrame
-      win:setFrame(apply(next:frame()))
+      if isFullscreenOnly(next) then
+        applyFullscreenOnly(win, next)
+      else
+        win:setFrame(leftHalfFrame(next:frame()))
+      end
+    else
+      applyFullscreenOnly(win, screen)
     end
     return
   end
@@ -398,20 +435,32 @@ function M.moveRight()
   local target = rightHalfFrame(s)
 
   if framesMatch(win:frame(), target) then
-    -- Already at right half, cross to next monitor
     local next = screen:toEast()
     if next then
       if isFullscreenOnly(next) then
-        win:setFrame(fullscreenOnlyFrame(next:frame()))
+        applyFullscreenOnly(win, next)
       else
         win:setFrame(leftHalfFrame(next:frame()))
       end
+    else
+      win:setFrame(target)
     end
   else
     win:setFrame(target)
   end
 end
 
+
+-- Snap a window to the correct frame for its current screen.
+-- Fullscreen-only monitors get the fullscreen-only frame; regular monitors
+-- are left alone (the caller is expected to position them).
+function M.snapToScreen(win)
+  if not win then return end
+  local screen = win:screen()
+  if isFullscreenOnly(screen) then
+    applyFullscreenOnly(win, screen)
+  end
+end
 
 --
 -- Auto-placement: position app windows when they appear
