@@ -10,6 +10,7 @@ LOG = require('logger')
 U = require('utils')
 SPACES = require('spaces')
 WINDOWS = require('windows')
+CHEATSHEET = require('cheatsheet')
 
 --
 -- Keybindings
@@ -32,6 +33,56 @@ end)
 hs.hotkey.bind(hyper, '6', function()
   U.startMeeting()
 end)
+
+--
+-- Cheatsheet (hold hyper for 1 second)
+--
+
+CHEATSHEET.register('hyper', {
+  modifiers = { 'cmd', 'ctrl', 'alt', 'shift' },
+  holdTime = 0.5,
+  title = 'Hyper Key',
+  sections = {
+    {
+      title = 'Modes',
+      items = {
+        { key = '0', label = 'Working' },
+        { key = '1', label = 'Coding' },
+        { key = '5', label = 'Screencast' },
+        { key = '6', label = 'Meeting' },
+      },
+    },
+    {
+      title = 'Quick Entry',
+      items = {
+        { key = 'H', label = 'Things' },
+        { key = 'K', label = 'Raycast AI' },
+        { key = 'N', label = 'Notion' },
+        { key = 'P', label = 'Trailer' },
+        { key = 'R', label = 'Quick add reminder' },
+        { separator = 'Clipboard' },
+        { key = 'C', label = 'Pastebot' },
+      },
+    },
+    {
+      title = 'Quick Launch',
+      items = {
+        { key = 'A', label = 'Asana' },
+        { key = 'B', label = 'Chrome' },
+        { key = 'E', label = 'Messages' },
+        { key = 'G', label = 'Granola' },
+        { key = 'I', label = 'Mimestream' },
+        { key = 'L', label = 'Calendar' },
+        { key = 'M', label = 'Mail' },
+        { key = 'O', label = 'Notes' },
+        { key = 'S', label = 'Snagit' },
+        { key = 'T', label = 'Ghostty' },
+        { key = 'Z', label = 'Zoom' },
+      },
+    },
+  },
+})
+CHEATSHEET.start()
 
 -- Move focused window to desktop N (shift+alt + number)
 for i = 1, 9 do
