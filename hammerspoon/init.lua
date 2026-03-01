@@ -34,13 +34,7 @@ hs.hotkey.bind(hyper, '6', function()
   U.startMeeting()
 end)
 
--- Quick Entry
-hs.hotkey.bind(hyper, 'C', function() hs.application.launchOrFocus('Pastebot') end)
-hs.hotkey.bind(hyper, 'H', function() hs.urlevent.openURL('things:///add') end)
-hs.hotkey.bind(hyper, 'K', function() hs.urlevent.openURL('raycast://extensions/raycast/raycast-ai/ai-chat') end)
-hs.hotkey.bind(hyper, 'N', function() hs.application.launchOrFocus('Notion') end)
-hs.hotkey.bind(hyper, 'P', function() hs.application.launchOrFocus('Trailer') end)
-hs.hotkey.bind(hyper, 'R', function() hs.urlevent.openURL('raycast://extensions/raycast/apple-reminders/create-reminder') end)
+-- Quick Entry (bindings handled by each app: Pastebot, Things, Raycast, Notion, Trailer)
 
 -- Quick Launch
 hs.hotkey.bind(hyper, 'A', function() hs.application.launchOrFocus('Asana') end)
