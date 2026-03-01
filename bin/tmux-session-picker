@@ -3,7 +3,7 @@
 # Interactive session creator: pick a folder from ~/Personal or ~/Code,
 # or type a custom session name.
 
-selected=$({ find ~/Personal -mindepth 1 -maxdepth 2 -not -name '.*' -type d; find ~/Code -mindepth 1 -maxdepth 1 -not -name '.*' -type d; } 2>/dev/null \
+selected=$({ echo ~/Personal; echo ~/Code; find ~/Personal -mindepth 1 -maxdepth 2 -not -name '.*' -type d; find ~/Code -mindepth 1 -maxdepth 1 -not -name '.*' -type d; } 2>/dev/null \
   | sed "s|^$HOME|~|" | sort | fzf \
   --prompt="new session> " \
   --print-query \
