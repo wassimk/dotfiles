@@ -349,6 +349,7 @@ return {
     lazygit = {},
     image = {},
     input = {},
+    notifier = {},
     bigfile = {},
     quickfile = {},
     scroll = {},
