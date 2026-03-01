@@ -96,7 +96,6 @@ local function add_ruby_discover_tests_command(client, bufnr)
   })
 end
 
----@type vim.lsp.Config
 return {
   init_options = {
     formatter = 'rubocop',

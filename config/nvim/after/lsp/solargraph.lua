@@ -1,6 +1,5 @@
 local utils = require('w.utils')
 
----@type vim.lsp.Config
 return {
   cmd = { 'bundle', 'exec', 'solargraph', 'stdio' },
   init_options = {
