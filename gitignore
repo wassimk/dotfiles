@@ -73,5 +73,6 @@ tags.temp
 
 .devbox
 .claude/*.local.json
+.claude/worktrees/
 CLAUDE.local.md
 .playwright-mcp/
