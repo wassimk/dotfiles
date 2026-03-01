@@ -148,6 +148,31 @@ function M.startWorking()
   end)
 end
 
+local function getWindowDesktopNumber(win)
+  local ok, spaces = pcall(hs.spaces.windowSpaces, win:id())
+  if not ok or not spaces or #spaces == 0 then return nil end
+
+  local spaceId = spaces[1]
+  local screen = win:screen()
+  if not screen then return nil end
+
+  local allSpaces = hs.spaces.spacesForScreen(screen:id())
+  if not allSpaces then return nil end
+
+  local desktopNum = 0
+  for _, sid in ipairs(allSpaces) do
+    local spaceType = hs.spaces.spaceType(sid)
+    if spaceType == "user" then
+      desktopNum = desktopNum + 1
+      if sid == spaceId then
+        return desktopNum
+      end
+    end
+  end
+
+  return nil
+end
+
 function M.startCoding()
   local ghostty = hs.application.find('ghostty')
   if not hs.application.find('Google Chrome') then
@@ -177,36 +202,46 @@ function M.startCoding()
     end
   end
 
-  if hs.application.find('Google Chrome') then
-    positionWindows()
-  else
-    hs.timer.doAfter(1.0, positionWindows)
-  end
-end
-
-local function getWindowDesktopNumber(win)
-  local ok, spaces = pcall(hs.spaces.windowSpaces, win:id())
-  if not ok or not spaces or #spaces == 0 then return nil end
-
-  local spaceId = spaces[1]
-  local screen = win:screen()
-  if not screen then return nil end
-
-  local allSpaces = hs.spaces.spacesForScreen(screen:id())
-  if not allSpaces then return nil end
-
-  local desktopNum = 0
-  for _, sid in ipairs(allSpaces) do
-    local spaceType = hs.spaces.spaceType(sid)
-    if spaceType == "user" then
-      desktopNum = desktopNum + 1
-      if sid == spaceId then
-        return desktopNum
+  local function moveAndPosition()
+    local moveQueue = {}
+    if ghostty then
+      local win = ghostty:mainWindow()
+      if win and getWindowDesktopNumber(win) ~= 1 then
+        table.insert(moveQueue, win)
       end
+    end
+    local chrome = hs.application.find('Google Chrome')
+    if chrome then
+      local win = chrome:mainWindow()
+      if win and getWindowDesktopNumber(win) ~= 1 then
+        table.insert(moveQueue, win)
+      end
+    end
+
+    local function processQueue(index)
+      if index > #moveQueue then
+        hs.timer.doAfter(0.5, positionWindows)
+        return
+      end
+      SPACES.moveWindowToSpace(1, moveQueue[index], function()
+        hs.timer.doAfter(1.0, function()
+          processQueue(index + 1)
+        end)
+      end)
+    end
+
+    if #moveQueue == 0 then
+      positionWindows()
+    else
+      processQueue(1)
     end
   end
 
-  return nil
+  if hs.application.find('Google Chrome') then
+    moveAndPosition()
+  else
+    hs.timer.doAfter(1.0, moveAndPosition)
+  end
 end
 
 local MEETING_DESKTOP = 6
