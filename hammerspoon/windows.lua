@@ -258,14 +258,15 @@ function M.swapLeft()
   if not win then return end
   local screen = win:screen()
   local s = screen:frame()
-  local atEdge = math.abs(win:frame().x - s.x) < TOLERANCE
+  local f = win:frame()
+  local atEdge = math.abs(f.x - s.x) < TOLERANCE
 
   if not atEdge then
     -- Target is left half of current screen
     local target = leftHalfFrame(s)
     local occupant = findWindowAtFrame(win, screen, target)
     if occupant then
-      local wf = { x = win:frame().x, y = win:frame().y, w = win:frame().w, h = win:frame().h }
+      local wf = { x = f.x, y = f.y, w = f.w, h = f.h }
       win:setFrame(target)
       occupant:setFrame(wf)
     else
@@ -279,7 +280,7 @@ function M.swapLeft()
       local target = fullscreenOnlyFrame(next:frame())
       local occupant = findWindowOnScreen(win, next)
       if occupant then
-        local wf = { x = win:frame().x, y = win:frame().y, w = win:frame().w, h = win:frame().h }
+        local wf = { x = f.x, y = f.y, w = f.w, h = f.h }
         win:setFrame(target)
         occupant:setFrame(wf)
       else
@@ -289,7 +290,7 @@ function M.swapLeft()
       local target = rightHalfFrame(next:frame())
       local occupant = findWindowAtFrame(win, next, target)
       if occupant then
-        local wf = { x = win:frame().x, y = win:frame().y, w = win:frame().w, h = win:frame().h }
+        local wf = { x = f.x, y = f.y, w = f.w, h = f.h }
         win:setFrame(target)
         occupant:setFrame(wf)
       else
@@ -437,7 +438,7 @@ local AUTO_PLACE = {
   --   local w = 800
   --   return { x = s.x + s.w - w, y = s.y, w = w, h = s.h }
   -- end },
-  ['us.zoom.xos']                = { desktop = 6, position = function(s)
+  ['us.zoom.xos']                = { desktop = U.MEETING_DESKTOP, position = function(s)
     local w, h = 1200, 1000
     return { x = s.x + (s.w - w) / 2, y = s.y, w = w, h = h }
   end },

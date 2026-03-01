@@ -36,6 +36,36 @@ function M.tbl_keys(t)
   return keys
 end
 
+local function standardVisibleWindows(app)
+  local result = {}
+  for _, win in ipairs(app:allWindows()) do
+    if win:isStandard() and win:isVisible() then
+      table.insert(result, win)
+    end
+  end
+  return result
+end
+
+local function processWindowQueue(queue, desktop, delay, onDone)
+  local function step(index)
+    if index > #queue then
+      hs.timer.doAfter(0.5, onDone)
+      return
+    end
+    SPACES.moveWindowToSpace(desktop, queue[index], function()
+      hs.timer.doAfter(delay, function()
+        step(index + 1)
+      end)
+    end)
+  end
+
+  if #queue == 0 then
+    onDone()
+  else
+    step(1)
+  end
+end
+
 function M.startWorking()
   -- Launch all apps
   hs.application.open('Slack')
@@ -127,24 +157,7 @@ function M.startWorking()
       end
     end
 
-    local function processQueue(index)
-      if index > #moveQueue then
-        hs.timer.doAfter(0.5, resizeDesktop7)
-        return
-      end
-      local win = moveQueue[index]
-      SPACES.moveWindowToSpace(7, win, function()
-        hs.timer.doAfter(1.0, function()
-          processQueue(index + 1)
-        end)
-      end)
-    end
-
-    if #moveQueue == 0 then
-      resizeDesktop7()
-    else
-      processQueue(1)
-    end
+    processWindowQueue(moveQueue, 7, 1.0, resizeDesktop7)
   end)
 end
 
@@ -175,7 +188,8 @@ end
 
 function M.startCoding()
   local ghostty = hs.application.find('ghostty')
-  if not hs.application.find('Google Chrome') then
+  local chromeRunning = hs.application.find('Google Chrome') ~= nil
+  if not chromeRunning then
     hs.application.open('Google Chrome')
   end
 
@@ -218,33 +232,18 @@ function M.startCoding()
       end
     end
 
-    local function processQueue(index)
-      if index > #moveQueue then
-        hs.timer.doAfter(0.5, positionWindows)
-        return
-      end
-      SPACES.moveWindowToSpace(1, moveQueue[index], function()
-        hs.timer.doAfter(1.0, function()
-          processQueue(index + 1)
-        end)
-      end)
-    end
-
-    if #moveQueue == 0 then
-      positionWindows()
-    else
-      processQueue(1)
-    end
+    processWindowQueue(moveQueue, 1, 1.0, positionWindows)
   end
 
-  if hs.application.find('Google Chrome') then
+  if chromeRunning then
     moveAndPosition()
   else
     hs.timer.doAfter(1.0, moveAndPosition)
   end
 end
 
-local MEETING_DESKTOP = 6
+M.MEETING_DESKTOP = 6
+local MEETING_DESKTOP = M.MEETING_DESKTOP
 
 function M.startMeeting()
   hs.application.open('zoom.us')
@@ -258,26 +257,21 @@ function M.startMeeting()
     local allWindows = {}
 
     if zoom then
-      for _, win in ipairs(zoom:allWindows()) do
-        if win:isStandard() and win:isVisible() then
-          table.insert(allWindows, { win = win, app = 'zoom' })
-        end
+      for _, win in ipairs(standardVisibleWindows(zoom)) do
+        table.insert(allWindows, { win = win, app = 'zoom' })
       end
     end
 
     if granola then
-      for _, win in ipairs(granola:allWindows()) do
-        if win:isStandard() and win:isVisible() then
-          table.insert(allWindows, { win = win, app = 'granola' })
-        end
+      for _, win in ipairs(standardVisibleWindows(granola)) do
+        table.insert(allWindows, { win = win, app = 'granola' })
       end
     end
 
     -- Build move queue for windows not already on the meeting desktop
     local moveQueue = {}
     for _, entry in ipairs(allWindows) do
-      local desktop = getWindowDesktopNumber(entry.win)
-      if desktop ~= MEETING_DESKTOP then
+      if getWindowDesktopNumber(entry.win) ~= MEETING_DESKTOP then
         table.insert(moveQueue, entry.win)
       end
     end
@@ -311,24 +305,7 @@ function M.startMeeting()
       end
     end
 
-    local function processQueue(index)
-      if index > #moveQueue then
-        hs.timer.doAfter(0.5, resizeAll)
-        return
-      end
-      local win = moveQueue[index]
-      SPACES.moveWindowToSpace(MEETING_DESKTOP, win, function()
-        hs.timer.doAfter(1.0, function()
-          processQueue(index + 1)
-        end)
-      end)
-    end
-
-    if #moveQueue == 0 then
-      resizeAll()
-    else
-      processQueue(1)
-    end
+    processWindowQueue(moveQueue, MEETING_DESKTOP, 1.0, resizeAll)
   end)
 end
 
@@ -355,10 +332,8 @@ function M.resizeForScreencasting(appNames)
     local app = hs.application.find(appName)
     if app and app.allWindows then
       local mainWin = app:mainWindow()
-      for _, win in ipairs(app:allWindows()) do
-        if win:isStandard() and win:isVisible() then
-          table.insert(allWindows, win)
-        end
+      for _, win in ipairs(standardVisibleWindows(app)) do
+        table.insert(allWindows, win)
       end
       if mainWin and mainWin:isStandard() and mainWin:isVisible() then
         table.insert(moveQueue, mainWin)
@@ -366,44 +341,14 @@ function M.resizeForScreencasting(appNames)
     end
   end
 
-  -- Phase 1: Pull all windows from external monitors to main screen
+  -- Pull all windows from external monitors to main screen
   for _, win in ipairs(allWindows) do
     if win:screen():id() ~= mainScreen:id() then
       win:moveToScreen(mainScreen)
     end
   end
 
-  -- Phase 2: Move main windows to screencast desktop sequentially
-  local function processQueue(index)
-    if index > #moveQueue then
-      -- Phase 3: Resize all windows on the screencast desktop
-      hs.timer.doAfter(0.5, function()
-        for _, win in ipairs(allWindows) do
-          if win:isVisible() then
-            local screen = win:screen()
-            local sf = screen:frame()
-            win:setFrame({
-              x = sf.x + (sf.w - 1280) / 2,
-              y = sf.y + 25,
-              w = 1280,
-              h = 720,
-            })
-          end
-        end
-        hs.notify.new({ title = 'Screencast', informativeText = 'Screencast mode active' }):send()
-      end)
-      return
-    end
-    local win = moveQueue[index]
-    SPACES.moveWindowToSpace(SCREENCAST_DESKTOP, win, function()
-      hs.timer.doAfter(1.5, function()
-        processQueue(index + 1)
-      end)
-    end)
-  end
-
-  -- Give windows 1s to settle on main screen before starting desktop moves
-  if #moveQueue == 0 then
+  local function resizeAll()
     for _, win in ipairs(allWindows) do
       if win:isVisible() then
         local screen = win:screen()
@@ -417,9 +362,14 @@ function M.resizeForScreencasting(appNames)
       end
     end
     hs.notify.new({ title = 'Screencast', informativeText = 'Screencast mode active' }):send()
+  end
+
+  -- Move main windows to screencast desktop, then resize
+  if #moveQueue == 0 then
+    resizeAll()
   else
     hs.timer.doAfter(1.0, function()
-      processQueue(1)
+      processWindowQueue(moveQueue, SCREENCAST_DESKTOP, 1.5, resizeAll)
     end)
   end
 end

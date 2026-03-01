@@ -1,8 +1,10 @@
--- Forward function declarations.
-local reload = nil
-local reloadFiles = nil
+local reloadTimer = nil
 
-reloadFiles = function(files)
+local function reload()
+  hs.reload()
+end
+
+local function reloadFiles(files)
   local shouldReload = false
   for _, file in pairs(files) do
     if file:sub(-4) == '.lua' then
@@ -10,12 +12,9 @@ reloadFiles = function(files)
     end
   end
   if shouldReload then
-    reload()
+    if reloadTimer then reloadTimer:stop() end
+    reloadTimer = hs.timer.doAfter(0.5, reload)
   end
-end
-
-reload = function()
-  hs.reload()
 end
 
 local watcher = nil
