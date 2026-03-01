@@ -36,6 +36,118 @@ function M.tbl_keys(t)
   return keys
 end
 
+function M.startWorking()
+  -- Launch all apps
+  hs.application.open('Slack')
+  hs.application.open('Figma')
+  hs.application.open('Tuple')
+  hs.application.open('Things3')
+  hs.application.open('Reminders')
+  hs.application.open('Mimestream')
+  hs.application.open('Calendar')
+  local quickrefUrl = 'https://wassimk.github.io/quickref'
+  local _, alreadyOpen = hs.osascript.applescript(string.format([[
+    tell application "Safari"
+      repeat with w in windows
+        repeat with t in tabs of w
+          if URL of t contains "%s" then return true
+        end repeat
+      end repeat
+    end tell
+    return false
+  ]], quickrefUrl))
+  if not alreadyOpen then
+    hs.urlevent.openURLWithBundle(quickrefUrl, 'com.apple.Safari')
+  end
+
+  hs.timer.doAfter(2.0, function()
+    local screens = hs.screen.allScreens()
+    table.sort(screens, function(a, b)
+      return a:frame().x < b:frame().x
+    end)
+    local leftScreen = screens[1]
+    local rightScreen = screens[#screens]
+    local gap = WINDOWS.GAP
+
+    -- Left monitor: Reminders (left half), Things (right half)
+    local lf = leftScreen:frame()
+    local halfWidth = math.floor((lf.w - gap) / 2)
+
+    local reminders = hs.application.find('Reminders')
+    if reminders then
+      local win = reminders:mainWindow()
+      if win then
+        win:moveToScreen(leftScreen)
+        win:setFrame({ x = lf.x, y = lf.y, w = halfWidth, h = lf.h })
+      end
+    end
+
+    local things = hs.application.find('Things3')
+    if things then
+      local win = things:mainWindow()
+      if win then
+        win:moveToScreen(leftScreen)
+        win:setFrame({ x = lf.x + halfWidth + gap, y = lf.y, w = halfWidth, h = lf.h })
+      end
+    end
+
+    -- Right monitor: Slack, Figma, Safari
+    for _, appName in ipairs({ 'Slack', 'Figma', 'Safari' }) do
+      local app = hs.application.find(appName)
+      if app then
+        local win = app:mainWindow()
+        if win then
+          win:moveToScreen(rightScreen)
+        end
+      end
+    end
+
+    -- Desktop 7: Calendar (left), Mimestream (right)
+    local calendar = hs.application.find('Calendar')
+    local mimestream = hs.application.find('Mimestream')
+    local calWin = calendar and calendar:mainWindow()
+    local mimeWin = mimestream and mimestream:mainWindow()
+
+    local moveQueue = {}
+    if calWin then table.insert(moveQueue, calWin) end
+    if mimeWin then table.insert(moveQueue, mimeWin) end
+
+    local function resizeDesktop7()
+      if calWin and calWin:isVisible() then
+        local screen = calWin:screen()
+        local sf = screen:frame()
+        local hw = math.floor((sf.w - gap) / 2)
+        calWin:setFrame({ x = sf.x, y = sf.y, w = hw, h = sf.h })
+      end
+      if mimeWin and mimeWin:isVisible() then
+        local screen = mimeWin:screen()
+        local sf = screen:frame()
+        local hw = math.floor((sf.w - gap) / 2)
+        mimeWin:setFrame({ x = sf.x + hw + gap, y = sf.y, w = hw, h = sf.h })
+      end
+    end
+
+    local function processQueue(index)
+      if index > #moveQueue then
+        hs.timer.doAfter(0.5, resizeDesktop7)
+        return
+      end
+      local win = moveQueue[index]
+      SPACES.moveWindowToSpace(7, win, function()
+        hs.timer.doAfter(1.0, function()
+          processQueue(index + 1)
+        end)
+      end)
+    end
+
+    if #moveQueue == 0 then
+      resizeDesktop7()
+    else
+      processQueue(1)
+    end
+  end)
+end
+
 function M.startCoding()
   local ghostty = hs.application.find('ghostty')
   local chrome = hs.application.find('Google Chrome')

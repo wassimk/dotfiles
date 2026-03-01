@@ -17,6 +17,10 @@ WINDOWS = require('windows')
 
 local hyper = { 'cmd', 'ctrl', 'alt', 'shift' }
 
+hs.hotkey.bind(hyper, '0', function()
+  U.startWorking()
+end)
+
 hs.hotkey.bind(hyper, '1', function()
   U.startCoding()
 end)
