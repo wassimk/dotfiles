@@ -150,26 +150,37 @@ end
 
 function M.startCoding()
   local ghostty = hs.application.find('ghostty')
-  local chrome = hs.application.find('Google Chrome')
+  if not hs.application.find('Google Chrome') then
+    hs.application.open('Google Chrome')
+  end
 
-  local screen = hs.screen.mainScreen()
-  local sf = screen:frame()
-  local gap = WINDOWS.GAP
-  local leftWidth = math.floor((sf.w - gap) * 3 / 5)
-  local rightWidth = sf.w - leftWidth - gap
+  local function positionWindows()
+    local chrome = hs.application.find('Google Chrome')
+    local screen = hs.screen.mainScreen()
+    local sf = screen:frame()
+    local gap = WINDOWS.GAP
+    local leftWidth = math.floor((sf.w - gap) * 3 / 5)
+    local rightWidth = sf.w - leftWidth - gap
 
-  if ghostty then
-    local win = ghostty:mainWindow()
-    if win then
-      win:setFrame({ x = sf.x, y = sf.y, w = leftWidth, h = sf.h })
+    if ghostty then
+      local win = ghostty:mainWindow()
+      if win then
+        win:setFrame({ x = sf.x, y = sf.y, w = leftWidth, h = sf.h })
+      end
+    end
+
+    if chrome then
+      local win = chrome:mainWindow()
+      if win then
+        win:setFrame({ x = sf.x + leftWidth + gap, y = sf.y, w = rightWidth, h = sf.h })
+      end
     end
   end
 
-  if chrome then
-    local win = chrome:mainWindow()
-    if win then
-      win:setFrame({ x = sf.x + leftWidth + gap, y = sf.y, w = rightWidth, h = sf.h })
-    end
+  if hs.application.find('Google Chrome') then
+    positionWindows()
+  else
+    hs.timer.doAfter(1.0, positionWindows)
   end
 end
 
