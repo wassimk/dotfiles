@@ -138,6 +138,7 @@ setupOS() {
   case $os in
     $macOS*)
       brew bundle --file="$HOME"/.dotfiles/Brewfile-macos_apps
+      brew upgrade --cask
       elgato-autolight install 2>/dev/null || true
       tmignore install 2>/dev/null || true
       setupMacOSDefaults
