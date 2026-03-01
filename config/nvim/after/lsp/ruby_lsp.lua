@@ -49,10 +49,10 @@ local function add_ruby_syntax_tree_command(client, bufnr)
         table.insert(lines, line)
       end
 
-      vim.api.nvim_command('vnew')
+      vim.cmd.vnew()
       local buf = vim.api.nvim_get_current_buf()
       vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-      vim.api.nvim_buf_set_keymap(buf, 'n', 'q', ':quit<CR>', { noremap = true, silent = true })
+      vim.keymap.set('n', 'q', '<cmd>quit<CR>', { buffer = buf, silent = true })
     end, bufnr)
   end, {
     nargs = '?',
@@ -104,6 +104,8 @@ return {
     enabledFeatureFlags = { fullTestDiscovery = true },
   },
   on_attach = function(client, bufnr)
+    vim.lsp.log.set_level('trace')
+
     add_ruby_deps_command(client, bufnr)
     add_ruby_syntax_tree_command(client, bufnr)
     add_ruby_discover_tests_command(client, bufnr)
