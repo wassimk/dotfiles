@@ -116,24 +116,39 @@ local function performMove(win, keyModifiers, keyName, callback)
   end)
 end
 
---- Move the focused window to a specific desktop number.
+--- Move a window to a specific desktop number.
 --- Requires "Switch to Desktop N" shortcuts (ctrl+N) enabled in System Settings.
 ---@param spaceNumber number Desktop number (1-9)
-function M.moveWindowToSpace(spaceNumber)
-  if isMoving then return end
-
-  local win = hs.window.focusedWindow()
-  if not win then
-    hs.alert.show("No focused window")
+---@param win hs.window? Window to move (defaults to focused window)
+---@param callback function? Called after move completes
+function M.moveWindowToSpace(spaceNumber, win, callback)
+  if isMoving then
+    if callback then callback() end
     return
   end
 
-  if isFinderDesktop(win) then return end
+  local explicit = win ~= nil
+  if not win then
+    win = hs.window.focusedWindow()
+    if not win then
+      hs.alert.show("No focused window")
+      return
+    end
+    if isFinderDesktop(win) then return end
+  end
 
   startMovingState()
-  win:raise()
 
-  performMove(win, {"alt"}, tostring(spaceNumber))
+  if explicit then
+    win:focus()
+    hs.timer.doAfter(0.1, function()
+      win:raise()
+      performMove(win, {"alt"}, tostring(spaceNumber), callback)
+    end)
+  else
+    win:raise()
+    performMove(win, {"alt"}, tostring(spaceNumber), callback)
+  end
 end
 
 --- Move the focused window one desktop to the right.

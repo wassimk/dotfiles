@@ -29,6 +29,7 @@ end
 
 -- Gap in pixels between adjacent tiled windows
 local GAP = 4
+M.GAP = GAP
 
 -- Saved frames for toggle restore (keyed by window ID)
 local preMaximizeFrames = {}
