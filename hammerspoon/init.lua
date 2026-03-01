@@ -42,11 +42,13 @@ hs.hotkey.bind(hyper, 'B', function() hs.application.launchOrFocus('Google Chrom
 hs.hotkey.bind(hyper, 'E', function() hs.application.launchOrFocus('Messages') end)
 hs.hotkey.bind(hyper, 'G', function() hs.application.launchOrFocus('Granola') end)
 hs.hotkey.bind(hyper, 'I', function() hs.application.launchOrFocus('Mimestream') end)
+hs.hotkey.bind(hyper, 'J', function() hs.urlevent.openURL('https://app.grammarly.com/ddocs/new') end)
 hs.hotkey.bind(hyper, 'L', function() hs.application.launchOrFocus('Calendar') end)
 hs.hotkey.bind(hyper, 'M', function() hs.application.launchOrFocus('Mail') end)
 hs.hotkey.bind(hyper, 'O', function() hs.application.launchOrFocus('Notes') end)
 hs.hotkey.bind(hyper, 'S', function() hs.application.launchOrFocus('Snagit') end)
 hs.hotkey.bind(hyper, 'T', function() hs.application.launchOrFocus('Ghostty') end)
+hs.hotkey.bind(hyper, 'W', function() hs.application.launchOrFocus('1Password') end)
 hs.hotkey.bind(hyper, 'Z', function() hs.application.launchOrFocus('zoom.us') end)
 
 --
@@ -87,11 +89,13 @@ CHEATSHEET.register('hyper', {
         { key = 'E', label = 'Messages' },
         { key = 'G', label = 'Granola' },
         { key = 'I', label = 'Mimestream' },
+        { key = 'J', label = 'Grammarly' },
         { key = 'L', label = 'Calendar' },
         { key = 'M', label = 'Mail' },
         { key = 'O', label = 'Notes' },
         { key = 'S', label = 'Snagit' },
         { key = 'T', label = 'Ghostty' },
+        { key = 'W', label = '1Password' },
         { key = 'Z', label = 'Zoom' },
       },
     },
