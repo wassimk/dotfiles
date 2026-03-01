@@ -36,83 +36,264 @@ function M.tbl_keys(t)
   return keys
 end
 
-function M.resizeForMeeting()
-  local zoom = hs.application.open('zoom.us')
-  local granola = hs.application.open('granola')
+function M.startCoding()
+  local ghostty = hs.application.find('ghostty')
+  local chrome = hs.application.find('Google Chrome')
 
-  -- Resize Zoom windows
-  if zoom then
-    local zoomWindows = zoom:allWindows()
-    for _, window in ipairs(zoomWindows) do
-      local screen = window:screen()
-      local frame = screen:frame()
+  local screen = hs.screen.mainScreen()
+  local sf = screen:frame()
+  local gap = WINDOWS.GAP
+  local leftWidth = math.floor((sf.w - gap) * 3 / 5)
+  local rightWidth = sf.w - leftWidth - gap
 
-      local newWidth = 1280
-      local newHeight = 1000
-
-      local newX = frame.x + (frame.w - newWidth) / 2
-      local newY = frame.y + 15
-
-      window:setFrame({
-        x = newX,
-        y = newY,
-        w = newWidth,
-        h = newHeight,
-      })
+  if ghostty then
+    local win = ghostty:mainWindow()
+    if win then
+      win:setFrame({ x = sf.x, y = sf.y, w = leftWidth, h = sf.h })
     end
   end
 
-  -- Resize Granola windows
-  if granola then
-    local granolaWindows = granola:allWindows()
-    for _, window in ipairs(granolaWindows) do
-      local screen = window:screen()
-      local frame = screen:frame()
-
-      local newWidth = 800
-      local newHeight = 1200
-
-      local newX = frame.x + frame.w - newWidth - 15
-      local newY = frame.y + 15
-
-      window:setFrame({
-        x = newX,
-        y = newY,
-        w = newWidth,
-        h = newHeight,
-      })
+  if chrome then
+    local win = chrome:mainWindow()
+    if win then
+      win:setFrame({ x = sf.x + leftWidth + gap, y = sf.y, w = rightWidth, h = sf.h })
     end
+  end
+end
+
+local function getWindowDesktopNumber(win)
+  local ok, spaces = pcall(hs.spaces.windowSpaces, win:id())
+  if not ok or not spaces or #spaces == 0 then return nil end
+
+  local spaceId = spaces[1]
+  local screen = win:screen()
+  if not screen then return nil end
+
+  local allSpaces = hs.spaces.spacesForScreen(screen:id())
+  if not allSpaces then return nil end
+
+  local desktopNum = 0
+  for _, sid in ipairs(allSpaces) do
+    local spaceType = hs.spaces.spaceType(sid)
+    if spaceType == "user" then
+      desktopNum = desktopNum + 1
+      if sid == spaceId then
+        return desktopNum
+      end
+    end
+  end
+
+  return nil
+end
+
+local MEETING_DESKTOP = 6
+
+function M.startMeeting()
+  hs.application.open('zoom.us')
+  hs.application.open('granola')
+
+  -- Wait for apps to launch before collecting windows
+  hs.timer.doAfter(1.0, function()
+    local zoom = hs.application.find('zoom.us')
+    local granola = hs.application.find('granola')
+
+    local allWindows = {}
+
+    if zoom then
+      for _, win in ipairs(zoom:allWindows()) do
+        if win:isStandard() and win:isVisible() then
+          table.insert(allWindows, { win = win, app = 'zoom' })
+        end
+      end
+    end
+
+    if granola then
+      for _, win in ipairs(granola:allWindows()) do
+        if win:isStandard() and win:isVisible() then
+          table.insert(allWindows, { win = win, app = 'granola' })
+        end
+      end
+    end
+
+    -- Build move queue for windows not already on the meeting desktop
+    local moveQueue = {}
+    for _, entry in ipairs(allWindows) do
+      local desktop = getWindowDesktopNumber(entry.win)
+      if desktop ~= MEETING_DESKTOP then
+        table.insert(moveQueue, entry.win)
+      end
+    end
+
+    local function resizeAll()
+      for _, entry in ipairs(allWindows) do
+        local win = entry.win
+        if win:isVisible() then
+          local screen = win:screen()
+          local sf = screen:frame()
+          if entry.app == 'zoom' then
+            local newWidth = 1280
+            local newHeight = 1000
+            win:setFrame({
+              x = sf.x + (sf.w - newWidth) / 2,
+              y = sf.y + 15,
+              w = newWidth,
+              h = newHeight,
+            })
+          elseif entry.app == 'granola' then
+            local newWidth = 800
+            local newHeight = 1200
+            win:setFrame({
+              x = sf.x + sf.w - newWidth - 15,
+              y = sf.y + 15,
+              w = newWidth,
+              h = newHeight,
+            })
+          end
+        end
+      end
+    end
+
+    local function processQueue(index)
+      if index > #moveQueue then
+        hs.timer.doAfter(0.5, resizeAll)
+        return
+      end
+      local win = moveQueue[index]
+      SPACES.moveWindowToSpace(MEETING_DESKTOP, win, function()
+        hs.timer.doAfter(1.0, function()
+          processQueue(index + 1)
+        end)
+      end)
+    end
+
+    if #moveQueue == 0 then
+      resizeAll()
+    else
+      processQueue(1)
+    end
+  end)
+end
+
+local SCREENCAST_DESKTOP = 5
+local screencastState = {}
+local isScreencasting = false
+
+function M.toggleScreencasting(appNames)
+  if isScreencasting then
+    M.stopScreencasting()
+  else
+    M.resizeForScreencasting(appNames)
   end
 end
 
 function M.resizeForScreencasting(appNames)
+  if isScreencasting then return end
+  isScreencasting = true
+  screencastState = {}
+
+  -- Collect all visible standard windows
+  local allWindows = {}
   for _, appName in ipairs(appNames) do
     local app = hs.application.find(appName)
-    if app then
-      local windows = app:allWindows()
-      for _, window in ipairs(windows) do
-        local screen = window:screen()
-        local frame = screen:frame()
-
-        local newWidth = 1280
-        local newHeight = 720
-
-        local newX = frame.x + (frame.w - newWidth) / 2
-        local newY = frame.y + 25
-
-        window:setFrame({
-          x = newX,
-          y = newY,
-          w = newWidth,
-          h = newHeight,
-        })
+    if app and app.allWindows then
+      for _, win in ipairs(app:allWindows()) do
+        if win:isStandard() and win:isVisible() then
+          table.insert(allWindows, win)
+        end
       end
     end
+  end
+
+  -- Save state and build move queue
+  local moveQueue = {}
+  for _, win in ipairs(allWindows) do
+    local frame = win:frame()
+    local desktop = getWindowDesktopNumber(win)
+    screencastState[win:id()] = {
+      frame = { x = frame.x, y = frame.y, w = frame.w, h = frame.h },
+      desktop = desktop,
+    }
+    if desktop ~= SCREENCAST_DESKTOP then
+      table.insert(moveQueue, win)
+    end
+  end
+
+  -- Resize all collected windows to 1280x720 centered
+  local function resizeAll()
+    for _, win in ipairs(allWindows) do
+      if win:isVisible() then
+        local screen = win:screen()
+        local sf = screen:frame()
+        local newWidth = 1280
+        local newHeight = 720
+        local newX = sf.x + (sf.w - newWidth) / 2
+        local newY = sf.y + 25
+        win:setFrame({ x = newX, y = newY, w = newWidth, h = newHeight })
+      end
+    end
+    hs.notify.new({ title = 'Screencast', informativeText = 'Screencast mode active' }):send()
+  end
+
+  -- Process moves sequentially, then resize
+  local function processQueue(index)
+    if index > #moveQueue then
+      hs.timer.doAfter(0.5, resizeAll)
+      return
+    end
+    local win = moveQueue[index]
+    SPACES.moveWindowToSpace(SCREENCAST_DESKTOP, win, function()
+      hs.timer.doAfter(1.0, function()
+        processQueue(index + 1)
+      end)
+    end)
+  end
+
+  if #moveQueue == 0 then
+    resizeAll()
+  else
+    processQueue(1)
   end
 end
 
 function M.stopScreencasting()
-  -- No-op: AeroSpace layout restore removed. Manually reposition windows as needed.
+  if not isScreencasting then return end
+  isScreencasting = false
+
+  -- Build restore queue from saved state
+  local restoreQueue = {}
+  for winId, state in pairs(screencastState) do
+    local win = hs.window.get(winId)
+    if win and state.desktop and state.desktop ~= SCREENCAST_DESKTOP then
+      table.insert(restoreQueue, { win = win, state = state })
+    elseif win and state.frame then
+      -- Window was already on desktop 5, just restore frame
+      win:setFrame(state.frame)
+    end
+  end
+
+  local function processRestore(index)
+    if index > #restoreQueue then
+      screencastState = {}
+      hs.notify.new({ title = 'Screencast', informativeText = 'Screencast mode stopped' }):send()
+      return
+    end
+    local entry = restoreQueue[index]
+    SPACES.moveWindowToSpace(entry.state.desktop, entry.win, function()
+      hs.timer.doAfter(0.5, function()
+        entry.win:setFrame(entry.state.frame)
+        hs.timer.doAfter(1.0, function()
+          processRestore(index + 1)
+        end)
+      end)
+    end)
+  end
+
+  if #restoreQueue == 0 then
+    screencastState = {}
+    hs.notify.new({ title = 'Screencast', informativeText = 'Screencast mode stopped' }):send()
+  else
+    processRestore(1)
+  end
 end
 
 function M.printRunningApps()
