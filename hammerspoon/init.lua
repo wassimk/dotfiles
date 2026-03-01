@@ -97,6 +97,34 @@ CHEATSHEET.register('hyper', {
     },
   },
 })
+-- Meta bindings are handled by Raycast (Quicklinks + commands)
+CHEATSHEET.register('meta', {
+  modifiers = { 'ctrl', 'alt', 'shift' },
+  holdTime = 0.5,
+  title = 'Meta Key',
+  sections = {
+    {
+      title = 'Raycast',
+      items = {
+        { key = 'E', label = 'Emoji & Symbols' },
+      },
+    },
+    {
+      title = 'Docs',
+      items = {
+        { key = 'A', label = 'Rails' },
+        { key = 'G', label = 'Go' },
+        { key = 'D', label = 'HTTP Status Codes' },
+        { key = 'I', label = 'Minitest' },
+        { key = 'R', label = 'Ruby' },
+        { key = 'S', label = 'JavaScript' },
+        { key = 'T', label = 'Rust' },
+        { key = 'U', label = 'Lua' },
+        { key = 'Y', label = 'TypeScript' },
+      },
+    },
+  },
+})
 CHEATSHEET.start()
 
 -- Move focused window to desktop N (shift+alt + number)

@@ -36,12 +36,7 @@ if vim.fn.executable('rg') == 1 then
   vim.opt.grepprg = 'rg -H --no-heading --vimgrep'
   vim.opt.grepformat = '%f:%l:%c:%m,%f'
 
-  -- use rg for ack
-  vim.g.ackprg = 'rg --vimgrep'
 end
-
--- make netrw use the system's default file/url browser
-vim.g.netrw_browsex_viewer = 'open'
 
 -- typo corrections
 vim.cmd.iabbrev('precense presence')
