@@ -187,13 +187,17 @@ local function getWindowDesktopNumber(win)
 end
 
 function M.startCoding()
-  local ghostty = hs.application.find('ghostty')
+  local ghosttyRunning = hs.application.find('ghostty') ~= nil
   local chromeRunning = hs.application.find('Google Chrome') ~= nil
+  if not ghosttyRunning then
+    hs.application.open('Ghostty')
+  end
   if not chromeRunning then
     hs.application.open('Google Chrome')
   end
 
   local function positionWindows()
+    local ghostty = hs.application.find('ghostty')
     local chrome = hs.application.find('Google Chrome')
     local screen = hs.screen.mainScreen()
     local sf = screen:frame()
@@ -217,6 +221,7 @@ function M.startCoding()
   end
 
   local function moveAndPosition()
+    local ghostty = hs.application.find('ghostty')
     local moveQueue = {}
     if ghostty then
       local win = ghostty:mainWindow()
@@ -235,7 +240,7 @@ function M.startCoding()
     processWindowQueue(moveQueue, 1, 1.0, positionWindows)
   end
 
-  if chromeRunning then
+  if ghosttyRunning and chromeRunning then
     moveAndPosition()
   else
     hs.timer.doAfter(1.0, moveAndPosition)
