@@ -34,6 +34,27 @@ hs.hotkey.bind(hyper, '6', function()
   U.startMeeting()
 end)
 
+-- Quick Entry
+hs.hotkey.bind(hyper, 'C', function() hs.application.launchOrFocus('Pastebot') end)
+hs.hotkey.bind(hyper, 'H', function() hs.urlevent.openURL('things:///add') end)
+hs.hotkey.bind(hyper, 'K', function() hs.urlevent.openURL('raycast://extensions/raycast/raycast-ai/ai-chat') end)
+hs.hotkey.bind(hyper, 'N', function() hs.application.launchOrFocus('Notion') end)
+hs.hotkey.bind(hyper, 'P', function() hs.application.launchOrFocus('Trailer') end)
+hs.hotkey.bind(hyper, 'R', function() hs.urlevent.openURL('raycast://extensions/raycast/apple-reminders/create-reminder') end)
+
+-- Quick Launch
+hs.hotkey.bind(hyper, 'A', function() hs.application.launchOrFocus('Asana') end)
+hs.hotkey.bind(hyper, 'B', function() hs.application.launchOrFocus('Google Chrome') end)
+hs.hotkey.bind(hyper, 'E', function() hs.application.launchOrFocus('Messages') end)
+hs.hotkey.bind(hyper, 'G', function() hs.application.launchOrFocus('Granola') end)
+hs.hotkey.bind(hyper, 'I', function() hs.application.launchOrFocus('Mimestream') end)
+hs.hotkey.bind(hyper, 'L', function() hs.application.launchOrFocus('Calendar') end)
+hs.hotkey.bind(hyper, 'M', function() hs.application.launchOrFocus('Mail') end)
+hs.hotkey.bind(hyper, 'O', function() hs.application.launchOrFocus('Notes') end)
+hs.hotkey.bind(hyper, 'S', function() hs.application.launchOrFocus('Snagit') end)
+hs.hotkey.bind(hyper, 'T', function() hs.application.launchOrFocus('Ghostty') end)
+hs.hotkey.bind(hyper, 'Z', function() hs.application.launchOrFocus('zoom.us') end)
+
 --
 -- Cheatsheet (hold hyper for 1 second)
 --

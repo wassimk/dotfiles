@@ -150,7 +150,7 @@ local function buildCanvas(reg)
           type = 'text',
           frame = { x = badgeX, y = badgeY, w = BADGE_W, h = BADGE_H },
           text = hs.styledtext.new(item.key:upper(), {
-            font = { name = 'MonoLisa', size = BADGE_SIZE },
+            font = { name = 'MonoLisa Variable', size = BADGE_SIZE },
             color = BADGE_TEXT,
             paragraphStyle = { alignment = 'center' },
           }),
