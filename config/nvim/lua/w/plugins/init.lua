@@ -2,7 +2,7 @@ return {
   -- many plugins use these, so not listed as dependencies on them
   { 'nvim-lua/plenary.nvim', lazy = true },
 
-  { 'kyazdani42/nvim-web-devicons', lazy = true, opts = { default = true } },
+  { 'nvim-tree/nvim-web-devicons', lazy = true, opts = { default = true } },
 
   -- text objects / motions / vim
   { 'kana/vim-textobj-entire', dependencies = 'kana/vim-textobj-user' },
