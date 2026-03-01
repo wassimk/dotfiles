@@ -32,7 +32,6 @@ return {
     'saghen/blink.cmp',
     event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
-      { 'kristijanhusak/vim-dadbod-completion', ft = 'mysql' },
       { 'Kaiser-Yang/blink-cmp-git', ft = 'gitcommit' },
       { 'Dynge/gitmoji.nvim', ft = 'gitcommit' },
       { 'wassimk/git-coauthors.nvim', dev = true },
@@ -124,7 +123,6 @@ return {
         per_filetype = {
           ruby = { inherit_defaults = true, 'rails_fixtures', 'flipper_complete' },
           gitcommit = { 'buffer', 'snippets', 'gitmoji', 'git', 'git_coauthors' },
-          mysql = { 'snippets', 'dadbod', 'buffer' },
           ['dap-repl'] = { 'dap' },
           ['dapui_watches'] = { 'dap' },
           ['dapui_hover'] = { 'dap' },
@@ -155,10 +153,6 @@ return {
               commit = { triggers = { ';' } },
               git_centers = { github = { mention = { enable = false } } },
             },
-          },
-          dadbod = {
-            name = 'Dadbod',
-            module = 'vim_dadbod_completion.blink',
           },
           gitmoji = {
             name = 'gitmoji',
