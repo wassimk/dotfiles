@@ -48,6 +48,7 @@ hs.hotkey.bind(hyper, 'M', function() hs.application.launchOrFocus('Mail') end)
 hs.hotkey.bind(hyper, 'O', function() hs.application.launchOrFocus('Notes') end)
 hs.hotkey.bind(hyper, 'S', function() hs.application.launchOrFocus('Snagit') end)
 hs.hotkey.bind(hyper, 'T', function() hs.application.launchOrFocus('Ghostty') end)
+hs.hotkey.bind(hyper, 'U', function() hs.application.launchOrFocus('Music') end)
 hs.hotkey.bind(hyper, 'W', function() hs.application.launchOrFocus('1Password') end)
 hs.hotkey.bind(hyper, 'Z', function() hs.application.launchOrFocus('zoom.us') end)
 
@@ -95,6 +96,7 @@ CHEATSHEET.register('hyper', {
         { key = 'O', label = 'Notes' },
         { key = 'S', label = 'Snagit' },
         { key = 'T', label = 'Ghostty' },
+        { key = 'U', label = 'Music' },
         { key = 'W', label = '1Password' },
         { key = 'Z', label = 'Zoom' },
       },
