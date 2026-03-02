@@ -110,7 +110,7 @@ CHEATSHEET.register('hyper', {
 -- Meta bindings are handled by Raycast (Quicklinks + commands)
 CHEATSHEET.register('meta', {
   modifiers = { 'ctrl', 'alt', 'shift' },
-  holdTime = 0.5,
+  holdTime = 1.0,
   title = 'Meta Key',
   sections = {
     {
