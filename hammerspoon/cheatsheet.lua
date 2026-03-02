@@ -187,7 +187,7 @@ function M.register(name, opts)
 end
 
 function M.start()
-  local flagsTap = hs.eventtap.new({ hs.eventtap.event.types.flagsChanged }, function(e)
+  M._flagsTap = hs.eventtap.new({ hs.eventtap.event.types.flagsChanged }, function(e)
     local flags = e:getFlags()
     for _, reg in pairs(registrations) do
       if flagsMatchTarget(flags, reg.modifiers) then
@@ -240,7 +240,7 @@ function M.start()
     end
     return false
   end)
-  flagsTap:start()
+  M._flagsTap:start()
 end
 
 return M
