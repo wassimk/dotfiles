@@ -39,7 +39,9 @@ end)
 -- Quick Launch
 hs.hotkey.bind(hyper, 'A', function() hs.application.launchOrFocus('Asana') end)
 hs.hotkey.bind(hyper, 'B', function() hs.application.launchOrFocus('Google Chrome') end)
+hs.hotkey.bind(hyper, 'D', function() hs.application.launchOrFocus('Things3') end)
 hs.hotkey.bind(hyper, 'E', function() hs.application.launchOrFocus('Messages') end)
+hs.hotkey.bind(hyper, 'F', function() hs.application.launchOrFocus('Reminders') end)
 hs.hotkey.bind(hyper, 'G', function() hs.application.launchOrFocus('Granola') end)
 hs.hotkey.bind(hyper, 'I', function() hs.application.launchOrFocus('Mimestream') end)
 hs.hotkey.bind(hyper, 'J', function() hs.urlevent.openURL('https://app.grammarly.com/ddocs/new') end)
@@ -87,7 +89,9 @@ CHEATSHEET.register('hyper', {
       items = {
         { key = 'A', label = 'Asana' },
         { key = 'B', label = 'Chrome' },
+        { key = 'D', label = 'Things' },
         { key = 'E', label = 'Messages' },
+        { key = 'F', label = 'Reminders' },
         { key = 'G', label = 'Granola' },
         { key = 'I', label = 'Mimestream' },
         { key = 'J', label = 'Grammarly' },
