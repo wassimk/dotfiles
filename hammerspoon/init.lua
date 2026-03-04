@@ -27,7 +27,20 @@ hs.hotkey.bind(hyper, '1', function()
 end)
 
 hs.hotkey.bind(hyper, '5', function()
-  U.toggleScreencasting({ 'Asana', 'Code', 'Ghostty', 'Google Chrome', 'Notion', 'Safari' })
+  local appNames = { 'Asana', 'Code', 'Ghostty', 'Google Chrome', 'Notion', 'Safari' }
+  local chooser = hs.chooser.new(function(choice)
+    if not choice then return end
+    if choice.value == 'all' then
+      U.resizeForScreencasting(appNames)
+    elseif choice.value == 'focused' then
+      U.screencastFocusedWindow()
+    end
+  end)
+  chooser:choices({
+    { text = 'All Apps', subText = 'Move all apps to desktop 5 and resize', value = 'all' },
+    { text = 'Focused Window', subText = 'Resize the focused window to 1280x720', value = 'focused' },
+  })
+  chooser:show()
 end)
 
 hs.hotkey.bind(hyper, '6', function()
@@ -52,6 +65,7 @@ hs.hotkey.bind(hyper, 'S', function() hs.application.launchOrFocus('Snagit') end
 hs.hotkey.bind(hyper, 'T', function() hs.application.launchOrFocus('Ghostty') end)
 hs.hotkey.bind(hyper, 'U', function() hs.application.launchOrFocus('Music') end)
 hs.hotkey.bind(hyper, 'W', function() hs.application.launchOrFocus('1Password') end)
+hs.hotkey.bind(hyper, 'Q', function() hs.application.launchOrFocus('Slack') end)
 hs.hotkey.bind(hyper, 'Z', function() hs.application.launchOrFocus('zoom.us') end)
 
 --
@@ -75,11 +89,11 @@ CHEATSHEET.register('hyper', {
     {
       title = 'Quick Entry',
       items = {
-        { key = 'H', label = 'Things' },
-        { key = 'K', label = 'Raycast AI' },
         { key = 'N', label = 'Notion' },
-        { key = 'P', label = 'Trailer' },
         { key = 'R', label = 'Quick add reminder' },
+        { key = 'K', label = 'Raycast AI' },
+        { key = 'H', label = 'Things' },
+        { key = 'P', label = 'Trailer' },
         { separator = 'Clipboard' },
         { key = 'C', label = 'Pastebot' },
       },
@@ -87,21 +101,22 @@ CHEATSHEET.register('hyper', {
     {
       title = 'Quick Launch',
       items = {
-        { key = 'A', label = 'Asana' },
-        { key = 'B', label = 'Chrome' },
-        { key = 'D', label = 'Things' },
-        { key = 'E', label = 'Messages' },
-        { key = 'F', label = 'Reminders' },
-        { key = 'G', label = 'Granola' },
-        { key = 'I', label = 'Mimestream' },
-        { key = 'J', label = 'Grammarly' },
-        { key = 'L', label = 'Calendar' },
-        { key = 'M', label = 'Mail' },
-        { key = 'O', label = 'Notes' },
-        { key = 'S', label = 'Snagit' },
-        { key = 'T', label = 'Ghostty' },
-        { key = 'U', label = 'Music' },
         { key = 'W', label = '1Password' },
+        { key = 'A', label = 'Asana' },
+        { key = 'L', label = 'Calendar' },
+        { key = 'B', label = 'Chrome' },
+        { key = 'T', label = 'Ghostty' },
+        { key = 'J', label = 'Grammarly' },
+        { key = 'G', label = 'Granola' },
+        { key = 'M', label = 'Mail' },
+        { key = 'E', label = 'Messages' },
+        { key = 'I', label = 'Mimestream' },
+        { key = 'U', label = 'Music' },
+        { key = 'O', label = 'Notes' },
+        { key = 'F', label = 'Reminders' },
+        { key = 'Q', label = 'Slack' },
+        { key = 'S', label = 'Snagit' },
+        { key = 'D', label = 'Things' },
         { key = 'Z', label = 'Zoom' },
       },
     },
@@ -122,14 +137,14 @@ CHEATSHEET.register('meta', {
     {
       title = 'Docs',
       items = {
-        { key = 'A', label = 'Rails' },
         { key = 'G', label = 'Go' },
         { key = 'D', label = 'HTTP Status Codes' },
-        { key = 'I', label = 'Minitest' },
-        { key = 'R', label = 'Ruby' },
         { key = 'S', label = 'JavaScript' },
-        { key = 'T', label = 'Rust' },
         { key = 'U', label = 'Lua' },
+        { key = 'I', label = 'Minitest' },
+        { key = 'A', label = 'Rails' },
+        { key = 'R', label = 'Ruby' },
+        { key = 'T', label = 'Rust' },
         { key = 'Y', label = 'TypeScript' },
       },
     },

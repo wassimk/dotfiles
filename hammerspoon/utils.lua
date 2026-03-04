@@ -315,21 +315,8 @@ function M.startMeeting()
 end
 
 local SCREENCAST_DESKTOP = 5
-local isScreencasting = false
-
-function M.toggleScreencasting(appNames)
-  if isScreencasting then
-    isScreencasting = false
-    hs.notify.new({ title = 'Screencast', informativeText = 'Screencast mode stopped' }):send()
-  else
-    M.resizeForScreencasting(appNames)
-  end
-end
 
 function M.resizeForScreencasting(appNames)
-  if isScreencasting then return end
-  isScreencasting = true
-
   local mainScreen = hs.screen.mainScreen()
   local allWindows = {}
   local moveQueue = {}
@@ -377,6 +364,21 @@ function M.resizeForScreencasting(appNames)
       processWindowQueue(moveQueue, SCREENCAST_DESKTOP, 1.5, resizeAll)
     end)
   end
+end
+
+function M.screencastFocusedWindow()
+  local win = hs.window.focusedWindow()
+  if not win then return end
+
+  local screen = win:screen()
+  local sf = screen:frame()
+  win:setFrame({
+    x = sf.x + (sf.w - 1280) / 2,
+    y = sf.y + (sf.h - 720) / 2,
+    w = 1280,
+    h = 720,
+  })
+  hs.notify.new({ title = 'Screencast', informativeText = 'Screencast mode active' }):send()
 end
 
 function M.printRunningApps()
