@@ -374,7 +374,7 @@ function M.screencastFocusedWindow()
   local sf = screen:frame()
   win:setFrame({
     x = sf.x + (sf.w - 1280) / 2,
-    y = sf.y + (sf.h - 720) / 2,
+    y = sf.y + 25,
     w = 1280,
     h = 720,
   })
