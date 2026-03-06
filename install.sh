@@ -161,6 +161,10 @@ acceptXcodeLicense() {
   fi
 }
 
+checkMonoLisa() {
+  bin/check-monolisa
+}
+
 miscellaneous() {
   acceptXcodeLicense
   yes | "$(brew --prefix)"/opt/fzf/install >/dev/null 2>&1;
@@ -202,6 +206,7 @@ installGhExtensions
 setupOS
 setupNPM
 miscellaneous
+checkMonoLisa
 
 echo ""
 echo "Done! You'll probably need to restart your shell/SSH session..."

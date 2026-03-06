@@ -1,0 +1,36 @@
+#!/bin/bash
+#
+# Check if the installed MonoLisa font is up to date.
+# Compares the local version (via Spotlight metadata) against the latest
+# version listed on the public releases page at monolisa.dev.
+#
+# Exit 0 if up to date, exit 1 otherwise.
+
+FONT="$HOME/Library/Fonts/MonoLisaVariableNormal.ttf"
+RELEASES_URL="https://www.monolisa.dev/releases"
+
+if [[ ! -f "$FONT" ]]; then
+  echo "MonoLisa is not installed"
+  exit 1
+fi
+
+installed=$(mdls -raw -name kMDItemVersion "$FONT" 2>/dev/null | grep -oE '[0-9]+\.[0-9]+')
+latest=$(curl -sf "$RELEASES_URL" | grep -oE 'releases/[0-9]+\.[0-9]+' | head -1 | cut -d/ -f2)
+
+if [[ -z "$installed" ]]; then
+  echo "Could not determine installed MonoLisa version"
+  exit 1
+fi
+
+if [[ -z "$latest" ]]; then
+  echo "Could not fetch latest MonoLisa version"
+  exit 1
+fi
+
+if [[ "$installed" == "$latest" ]]; then
+  echo "MonoLisa $installed (latest)"
+else
+  echo "MonoLisa $installed installed, $latest available"
+  echo "  $RELEASES_URL/$latest"
+  exit 1
+fi
