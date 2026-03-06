@@ -27,6 +27,8 @@ NODEJS_VERSION="25.6.0"
 
 export GH_TOKEN=${GH_TOKEN:-$(op read "op://System/github/token")}
 
+eval "$(devbox global shellenv 2>/dev/null)"
+
 verifyPrivateFileExists() {
   if [[ ! -f "$HOME/.private" ]]; then
     echo "$HOME/.private file must be present to continue..."
