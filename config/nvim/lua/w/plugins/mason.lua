@@ -23,6 +23,7 @@ return {
         'emmet-language-server',
         'eslint-lsp',
         'gopls', -- used by ray-x/go.nvim
+        'herb-language-server',
         'html-lsp',
         'json-lsp',
         'lua-language-server',

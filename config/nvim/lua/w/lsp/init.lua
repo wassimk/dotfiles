@@ -86,6 +86,7 @@ function M.setup()
     'cssls',
     'emmet_language_server',
     'eslint',
+    'herb_ls',
     -- 'gopls', -- configured by ray-x/go.nvim
     'html',
     -- 'ts_ls', -- configured by pmizio/typescript-tools.nvim
