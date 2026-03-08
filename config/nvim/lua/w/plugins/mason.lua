@@ -31,6 +31,7 @@ return {
         'prettierd', -- used by conform.nvim
         'selene', -- used by nvim-lint
         'shellcheck', -- used by bash-language-server
+        'stimulus-language-server',
         'stylua', -- used by conform.nvim
         'tailwindcss-language-server',
         'typescript-language-server', -- used by typescript-tools.nvim

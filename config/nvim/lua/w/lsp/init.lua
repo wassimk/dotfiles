@@ -93,6 +93,7 @@ function M.setup()
     'jsonls',
     'lua_ls', -- supported by folke/lazydev.nvim
     -- 'rust_analyzer', -- configured by mrcjkb/rustaceanvim
+    'stimulus_ls',
     'tailwindcss',
     'vimls',
     'yamlls',
