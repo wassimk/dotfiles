@@ -66,6 +66,7 @@ hs.hotkey.bind(hyper, 'T', function() hs.application.launchOrFocus('Ghostty') en
 hs.hotkey.bind(hyper, 'U', function() hs.application.launchOrFocus('Music') end)
 hs.hotkey.bind(hyper, 'W', function() hs.application.launchOrFocus('1Password') end)
 hs.hotkey.bind(hyper, 'Q', function() hs.application.launchOrFocus('Slack') end)
+hs.hotkey.bind(hyper, 'X', function() hs.application.launchOrFocus('Notion') end)
 hs.hotkey.bind(hyper, 'Z', function() hs.application.launchOrFocus('zoom.us') end)
 
 --
@@ -113,6 +114,7 @@ CHEATSHEET.register('hyper', {
         { key = 'I', label = 'Mimestream' },
         { key = 'U', label = 'Music' },
         { key = 'O', label = 'Notes' },
+        { key = 'X', label = 'Notion' },
         { key = 'F', label = 'Reminders' },
         { key = 'Q', label = 'Slack' },
         { key = 'S', label = 'Snagit' },
