@@ -1,2 +1,3 @@
 brightness = 8
 temperature = 5000
+ip_address = "192.168.10.80"
