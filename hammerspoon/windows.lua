@@ -8,23 +8,18 @@ local M = {}
 -- Positioning
 --
 
--- Screens that should only ever be maximized (no halves).
--- Matched as a substring of the screen name.
-local FULLSCREEN_ONLY = { 'LG UltraFine' }
-
+-- Portrait (vertical) monitors should only ever be maximized (no halves).
+-- Detected automatically: height > width means the display is rotated.
 local function isFullscreenOnly(screen)
-  local name = screen:name() or ''
-  for _, pattern in ipairs(FULLSCREEN_ONLY) do
-    if name:find(pattern, 1, true) then return true end
-  end
-  return false
+  local f = screen:frame()
+  return f.h > f.w
 end
 
 -- For full-screen-only monitors (e.g. portrait), use full width but only
 -- the center two-thirds of the height so it's not absurdly tall.
 local function fullscreenOnlyFrame(s)
   local margin = s.h / 6
-  return { x = s.x, y = s.y + margin, w = s.w, h = s.h - 2 * margin }
+  return { x = s.x, y = s.y + margin - 225, w = s.w, h = s.h - 2 * margin }
 end
 
 -- Apply a frame to a window on a fullscreen-only monitor.
@@ -468,7 +463,9 @@ end
 
 local function findScreenByName(pattern)
   for _, screen in ipairs(hs.screen.allScreens()) do
-    if (screen:name() or ''):find(pattern, 1, true) then
+    if pattern == 'portrait' then
+      if isFullscreenOnly(screen) then return screen end
+    elseif (screen:name() or ''):find(pattern, 1, true) then
       return screen
     end
   end
@@ -481,7 +478,7 @@ end
 local AUTO_PLACE = {
   ['com.apple.reminders']        = { screen = 'Built-in', position = leftHalfFrame },
   ['com.culturedcode.ThingsMac'] = { screen = 'Built-in', position = rightHalfFrame },
-  ['com.tinyspeck.slackmacgap']  = { screen = 'LG UltraFine', position = fullscreenOnlyFrame },
+  ['com.tinyspeck.slackmacgap']  = { screen = 'portrait', position = fullscreenOnlyFrame },
   -- TODO: troubleshoot desktop move for Granola
   -- ['com.granola.app']            = { desktop = 6, position = function(s)
   --   local w = 800
