@@ -53,6 +53,7 @@ cask "zoom"
 # formulae
 brew "elgato-autolight"
 brew "mas"
+brew "pam-reattach"
 brew "pinentry-mac"
 brew "ssh-copy-id"
 brew "tmignore"
