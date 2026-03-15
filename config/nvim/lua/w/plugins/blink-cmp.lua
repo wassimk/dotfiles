@@ -121,6 +121,10 @@ return {
 
         per_filetype = {
           ruby = { inherit_defaults = true, 'flipper_complete' },
+          javascript = { inherit_defaults = true, 'flipper_complete' },
+          javascriptreact = { inherit_defaults = true, 'flipper_complete' },
+          typescript = { inherit_defaults = true, 'flipper_complete' },
+          typescriptreact = { inherit_defaults = true, 'flipper_complete' },
           gitcommit = { 'buffer', 'snippets', 'gitmoji', 'git', 'git_coauthors' },
           ['dap-repl'] = { 'dap' },
           ['dapui_watches'] = { 'dap' },
