@@ -19,15 +19,7 @@ vim.api.nvim_create_autocmd('User', {
 })
 
 return {
-  {
-    'saghen/blink.compat',
-    version = '2.*',
-    lazy = true,
-    opts = {},
-    dependencies = {
-      { 'rcarriga/cmp-dap' },
-    },
-  },
+  { 'mayromr/blink-cmp-dap', lazy = true },
   {
     'saghen/blink.cmp',
     event = { 'InsertEnter', 'CmdlineEnter' },
@@ -143,7 +135,7 @@ return {
           },
           dap = {
             name = 'dap',
-            module = 'blink.compat.source',
+            module = 'blink-cmp-dap',
           },
           git = {
             name = 'Git',
