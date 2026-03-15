@@ -46,6 +46,7 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 
 # casks
+cask "font-jetbrains-mono-nerd-font"
 cask "font-noto-color-emoji"
 cask "font-noto-emoji"
 cask "font-symbols-only-nerd-font"
