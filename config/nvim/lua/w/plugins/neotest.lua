@@ -96,7 +96,7 @@ return {
   dependencies = {
     'marilari88/neotest-vitest',
     'nvim-neotest/neotest-plenary',
-    { 'nvim-neotest/neotest-jest', dev = true },
+    'nvim-neotest/neotest-jest',
   },
   config = function()
     require('neotest').setup({
@@ -137,7 +137,27 @@ return {
       },
       adapters = {
         require('ruby-lsp.neotest'),
-        require('neotest-jest'),
+        require('neotest-jest')({
+          isTestFile = function(file_path)
+            if not file_path then
+              return false
+            end
+
+            local jest_util = require('neotest-jest.jest-util')
+
+            if jest_util.defaultIsTestFile(file_path) then
+              return true
+            end
+
+            for _, exts in ipairs(require('neotest-jest.util').getDefaultTestExtensions()) do
+              if file_path:match('[%._]' .. exts[1] .. '[%._]' .. exts[2] .. '$') then
+                return jest_util.hasJestDependency(file_path)
+              end
+            end
+
+            return false
+          end,
+        }),
         (function()
           local vitest_adapter = require('neotest-vitest')
           local original_is_test_file = vitest_adapter.is_test_file
