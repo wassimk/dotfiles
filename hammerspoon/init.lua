@@ -34,11 +34,14 @@ hs.hotkey.bind(hyper, '5', function()
       U.resizeForScreencasting(appNames)
     elseif choice.value == 'focused' then
       U.screencastFocusedWindow()
+    elseif choice.value == 'compact' then
+      U.screencastCompactWindow()
     end
   end)
   chooser:choices({
     { text = 'All Apps', subText = 'Move all apps to desktop 5 and resize', value = 'all' },
     { text = 'Focused Window', subText = 'Resize the focused window to 1280x720', value = 'focused' },
+    { text = 'Compact Window', subText = 'Resize for GIF recording (~100x28 terminal)', value = 'compact' },
   })
   chooser:show()
 end)

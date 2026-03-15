@@ -347,7 +347,7 @@ function M.resizeForScreencasting(appNames)
         local sf = screen:frame()
         win:setFrame({
           x = sf.x + (sf.w - 1280) / 2,
-          y = sf.y + 25,
+          y = sf.y + 75,
           w = 1280,
           h = 720,
         })
@@ -374,11 +374,26 @@ function M.screencastFocusedWindow()
   local sf = screen:frame()
   win:setFrame({
     x = sf.x + (sf.w - 1280) / 2,
-    y = sf.y + 25,
+    y = sf.y + 75,
     w = 1280,
     h = 720,
   })
   hs.notify.new({ title = 'Screencast', informativeText = 'Screencast mode active' }):send()
+end
+
+function M.screencastCompactWindow()
+  local win = hs.window.focusedWindow()
+  if not win then return end
+
+  local screen = win:screen()
+  local sf = screen:frame()
+  win:setFrame({
+    x = sf.x + (sf.w - 840) / 2,
+    y = sf.y + 75,
+    w = 840,
+    h = 500,
+  })
+  hs.notify.new({ title = 'Screencast', informativeText = 'Compact GIF mode active' }):send()
 end
 
 function M.printRunningApps()
