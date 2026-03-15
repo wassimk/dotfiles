@@ -143,6 +143,7 @@ setupOS() {
       brew upgrade --cask
       elgato-autolight install 2>/dev/null || true
       tmignore install 2>/dev/null || true
+      granary install 2>/dev/null || true
       setupMacOSDefaults
       ;;
     $ubuntu*)
