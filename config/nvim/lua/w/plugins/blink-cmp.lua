@@ -148,14 +148,29 @@ return {
           git = {
             name = 'Git',
             module = 'blink-cmp-git',
-            opts = {
-              commit = { triggers = { ';' } },
-              git_centers = { github = { mention = { enable = false } } },
-            },
+            -- Avoid conflicts with git-coauthors (@ on Co-Authored-By lines)
+            -- and gitmoji (: on line 1). Both sources share triggers with blink-cmp-git.
+            transform_items = function(_, items)
+              if require('git-coauthors').is_coauthor_context() then
+                return {}
+              end
+              -- When typing a gitmoji (:emoji on line 1), hide commit SHA completions
+              if vim.fn.line('.') == 1 and vim.fn.getline('.'):match('^:') then
+                local commit_kind = require('blink.cmp.types').CompletionItemKind.Commit
+                return vim.tbl_filter(function(item)
+                  return item.kind ~= commit_kind
+                end, items)
+              end
+              return items
+            end,
           },
           gitmoji = {
             name = 'gitmoji',
             module = 'gitmoji.blink',
+            -- Only offer gitmoji when : is the first char on the subject line
+            enabled = function()
+              return vim.fn.line('.') == 1 and vim.fn.getline('.'):match('^:') ~= nil
+            end,
           },
           lazydev = {
             name = 'LazyDev',
