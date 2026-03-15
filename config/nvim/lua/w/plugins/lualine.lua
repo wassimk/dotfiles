@@ -107,9 +107,9 @@ return {
     }
 
     local function dap_status()
-      local has_dap, dap = pcall(require, 'dap')
+      local dap = package.loaded['dap']
 
-      if not has_dap then
+      if not dap then
         return ''
       end
 
