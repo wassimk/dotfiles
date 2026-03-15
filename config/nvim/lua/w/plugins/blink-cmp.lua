@@ -36,7 +36,6 @@ return {
       { 'Dynge/gitmoji.nvim', ft = 'gitcommit' },
       { 'wassimk/git-coauthors.nvim', dev = true },
       { 'wassimk/flipper-complete.nvim', dev = true },
-      { 'wassimk/rails-fixture-complete.nvim', dev = true },
     },
 
     version = '1.*',
@@ -121,7 +120,7 @@ return {
         },
 
         per_filetype = {
-          ruby = { inherit_defaults = true, 'rails_fixtures', 'flipper_complete' },
+          ruby = { inherit_defaults = true, 'flipper_complete' },
           gitcommit = { 'buffer', 'snippets', 'gitmoji', 'git', 'git_coauthors' },
           ['dap-repl'] = { 'dap' },
           ['dapui_watches'] = { 'dap' },
@@ -129,10 +128,6 @@ return {
         },
 
         providers = {
-          rails_fixtures = {
-            name = 'rails_fixtures',
-            module = 'rails-fixture-complete.blink',
-          },
           flipper_complete = {
             name = 'flipper_complete',
             module = 'flipper-complete.blink',
