@@ -166,6 +166,37 @@ checkMonoLisa() {
   bin/check-monolisa
 }
 
+checkSudoTouchID() {
+  local sudo_local="/etc/pam.d/sudo_local"
+
+  if [[ ! -f "$sudo_local" ]] || ! grep -q "pam_tid.so" "$sudo_local"; then
+    echo ""
+    echo "WARNING: sudo Touch ID authentication is not configured."
+    echo ""
+    echo "  Create/edit $sudo_local (requires sudo):"
+    echo "    sudo vim $sudo_local"
+    echo ""
+    echo "  Add these lines:"
+    echo "    auth       optional       /opt/homebrew/lib/pam/pam_reattach.so"
+    echo "    auth       sufficient     pam_tid.so"
+    echo ""
+    echo "  The pam_reattach line is needed for Touch ID to work inside tmux."
+    echo "  Install it first: brew install pam-reattach"
+    echo ""
+  elif ! grep -q "pam_reattach.so" "$sudo_local"; then
+    echo ""
+    echo "WARNING: sudo Touch ID is configured but pam_reattach is missing."
+    echo "  Touch ID won't work inside tmux without it."
+    echo ""
+    echo "  Install: brew install pam-reattach"
+    echo "  Then add this line BEFORE the pam_tid.so line in $sudo_local:"
+    echo "    auth       optional       /opt/homebrew/lib/pam/pam_reattach.so"
+    echo ""
+  else
+    echo "✔ sudo Touch ID configuration exists"
+  fi
+}
+
 miscellaneous() {
   acceptXcodeLicense
   yes | "$(brew --prefix)"/opt/fzf/install >/dev/null 2>&1;
@@ -207,6 +238,7 @@ installGhExtensions
 setupOS
 setupNPM
 miscellaneous
+checkSudoTouchID
 checkMonoLisa
 
 echo ""
