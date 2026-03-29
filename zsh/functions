@@ -197,11 +197,11 @@ claude() {
 }
 
 clw() {
-  CLAUDE_CONFIG_DIR="$HOME/.claude_configs/work" command claude "$@"
+  CLAUDE_CONFIG_DIR="$HOME/.claude_configs/work" command claude --enable-auto-mode "$@"
 }
 
 clp() {
-  CLAUDE_CONFIG_DIR="$HOME/.claude_configs/personal" command claude "$@"
+  CLAUDE_CONFIG_DIR="$HOME/.claude_configs/personal" command claude --enable-auto-mode "$@"
 }
 
 #
