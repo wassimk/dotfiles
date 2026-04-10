@@ -212,6 +212,7 @@ miscellaneous() {
 setupNPM() {
   mkdir -p "$HOME/.npm-global"
   npm config set prefix "$HOME/.npm-global"
+  npm install -g npm@latest >/dev/null 2>&1;
 
   # mason.nvim should be installing this but it doesn't seem to be working
   npm install -g @commitlint/config-conventional >/dev/null 2>&1;
