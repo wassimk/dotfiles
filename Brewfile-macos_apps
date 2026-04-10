@@ -47,7 +47,7 @@ cask "tripmode"
 cask "tuple"
 cask "typora"
 cask "visual-studio-code"
-cask "yubico-yubikey-manager"
+cask "yubico-authenticator"
 cask "zoom"
 
 # formulae
