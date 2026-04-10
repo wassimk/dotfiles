@@ -69,4 +69,4 @@ tap "wassimk/tap"
 brew "elgato-light"
 
 tap "zhubert/tap"
-brew "plural"
+brew "tokencoach"
