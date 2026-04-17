@@ -34,6 +34,7 @@ return {
         'stimulus-language-server',
         'stylua', -- used by conform.nvim
         'tailwindcss-language-server',
+        'tree-sitter-cli', -- used by nvim-treesitter (main branch) to compile parsers
         'typescript-language-server', -- used by typescript-tools.nvim
         'vim-language-server',
         'yaml-language-server',

@@ -1,21 +1,15 @@
 --
--- nvim-treesitter, nvim-treesitter-endwise, vim-matchup, nvim-ts-autotag
--- https://github.com/nvim-treesitter/nvim-treesitter
--- https://github.com/andymass/vim-matchup
--- https://github.com/RRethy/nvim-treesitter-endwise
--- https://github.com/windwp/nvim-ts-autotag
+-- nvim-treesitter (main branch)
+-- https://github.com/nvim-treesitter/nvim-treesitter/tree/main
+--
+-- The main branch is a minimal rewrite: parser/query installer that
+-- delegates highlight/fold to built-in Neovim. Parsers live under
+-- stdpath('data')/site/parser. Configure via require('w.treesitter').
 --
 
 return {
   'nvim-treesitter/nvim-treesitter',
+  branch = 'main',
   lazy = false,
   build = ':TSUpdate',
-  dependencies = {
-    'RRethy/nvim-treesitter-endwise',
-    'andymass/vim-matchup',
-    'windwp/nvim-ts-autotag',
-  },
-  config = function()
-    vim.api.nvim_set_hl(0, 'MatchWord', { italic = true })
-  end,
 }
