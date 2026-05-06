@@ -63,6 +63,9 @@ esac
 # gpg signing
 export GPG_TTY=$(tty)
 
+# wt cli tool for git worktrees
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
 # Planning Center
 source $HOME/pco-box/env.sh
 source $HOME/pco-box/bin/complete.bash
@@ -81,4 +84,4 @@ if command -v direnv &> /dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
-if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+command -v cloud-agent >/dev/null 2>&1 && eval "$(cloud-agent completion print zsh)"
