@@ -22,7 +22,7 @@ esac
 #   devbox search ruby
 #   devbox search nodejs
 # ------------------------------------------------------------------------------
-RUBY_VERSION="4.0.1"
+RUBY_VERSION="4.0.2"
 NODEJS_VERSION="25.6.0"
 
 export GH_TOKEN=${GH_TOKEN:-$(op read "op://System/github/token")}
