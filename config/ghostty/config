@@ -1,7 +1,7 @@
 # Ghostty configuration
 
 # https://ghostty.org/docs/install/pre#macos
-auto-update-channel = tip
+auto-update-channel = stable
 
 # Window
 window-decoration = auto
