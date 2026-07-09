@@ -63,6 +63,7 @@ installHomebrew() {
 
 installHomebrewPackages() {
   brew bundle
+  brew upgrade
 }
 
 setupDotFiles() {
