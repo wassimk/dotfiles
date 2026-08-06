@@ -56,7 +56,6 @@ brew "mas"
 brew "pam-reattach"
 brew "pinentry-mac"
 brew "ssh-copy-id"
-brew "wassimk/tap/granary"
 brew "wassimk/tap/tmignore"
 brew "wassimk/tap/st"
 
