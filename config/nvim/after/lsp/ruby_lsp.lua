@@ -103,8 +103,6 @@ return {
     enabledFeatureFlags = { fullTestDiscovery = true },
   },
   on_attach = function(client, bufnr)
-    vim.lsp.log.set_level('trace')
-
     add_ruby_deps_command(client, bufnr)
     add_ruby_syntax_tree_command(client, bufnr)
     add_ruby_discover_tests_command(client, bufnr)

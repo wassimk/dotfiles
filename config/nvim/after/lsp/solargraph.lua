@@ -8,7 +8,6 @@ return {
   settings = {
     solargraph = {
       diagnostics = not utils.rubocop_supports_lsp(),
-      logLevel = 'debug',
     },
   },
   on_attach = function(_, bufnr)
