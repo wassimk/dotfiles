@@ -40,6 +40,7 @@ function M.setup()
     performance = {
       rtp = {
         disabled_plugins = {
+          'dir', -- builtin directory browser, snacks explorer handles directories
           'gzip',
           'matchit',
           'matchparen',
