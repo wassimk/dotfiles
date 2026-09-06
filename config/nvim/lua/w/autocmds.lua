@@ -5,10 +5,10 @@
 local api = vim.api
 local wamGrp = api.nvim_create_augroup('WamAutocmds', {})
 
--- highlight on yank
-api.nvim_create_autocmd('TextYankPost', {
+-- highlight on yank and put
+api.nvim_create_autocmd({ 'TextYankPost', 'TextPutPost' }, {
   callback = function()
-    vim.highlight.on_yank({ timeout = 500 })
+    vim.hl.hl_op({ timeout = 500 })
   end,
   group = wamGrp,
 })
