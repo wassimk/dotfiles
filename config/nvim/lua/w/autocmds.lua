@@ -71,13 +71,20 @@ api.nvim_create_autocmd('FileType', {
     'neotest-output-panel',
     'neotest-summary',
     'qf',
-    'vim', -- for the q: popup
     'query', -- :InspectTree
     'startuptime',
     'dap-float',
   },
   callback = function()
     vim.keymap.set('n', 'q', ':close<cr>', { buffer = true, silent = true })
+  end,
+  group = wamGrp,
+})
+
+-- close the command-line window with "q"
+api.nvim_create_autocmd('CmdwinEnter', {
+  callback = function()
+    vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = true, silent = true })
   end,
   group = wamGrp,
 })
