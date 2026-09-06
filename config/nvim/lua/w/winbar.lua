@@ -13,7 +13,7 @@ local winbar_filetype_exclude = {
 }
 
 local root_path = function()
-  local root_dir = vim.fs.dirname(vim.fs.find({ '.git' }, { upward = true })[1]) or ''
+  local root_dir = vim.fs.root(0, '.git') or ''
   if root_dir == '' then
     return ''
   else
