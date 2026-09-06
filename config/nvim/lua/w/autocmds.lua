@@ -53,14 +53,6 @@ api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
   group = wamGrp,
 })
 
-api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-  pattern = 'Brewfile*',
-  callback = function()
-    vim.bo.filetype = 'conf'
-  end,
-  group = wamGrp,
-})
-
 -- close certain windows with "q"
 api.nvim_create_autocmd('FileType', {
   pattern = {

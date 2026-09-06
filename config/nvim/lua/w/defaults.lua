@@ -34,6 +34,12 @@ if vim.fn.executable('rg') == 1 then
   vim.opt.grepformat = '%f:%l:%c:%m,%f'
 end
 
+-- filetypes
+vim.filetype.add({
+  filename = { Brewfile = 'conf' },
+  pattern = { ['Brewfile.*'] = 'conf' },
+})
+
 -- typo corrections
 vim.cmd.iabbrev('precense presence')
 vim.cmd.iabbrev('desparate desperate')
