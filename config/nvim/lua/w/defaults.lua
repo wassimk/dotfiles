@@ -5,11 +5,8 @@
 vim.opt.complete = vim.opt.complete + 'kspell'
 vim.opt.confirm = true -- prompt for some commands like save
 vim.opt.cursorline = true -- highlight current line
-vim.opt.hidden = true -- don't hide unmodified buffers
-vim.opt.hlsearch = true -- highlight search results
 vim.opt.ignorecase = true -- case-insensitive search
 vim.opt.smartcase = true -- case-sensitive when uppercase is used
-vim.opt.inccommand = 'nosplit' -- live highlight of substitutions
 vim.opt.number = true -- display line numbers beside buffer
 vim.opt.relativenumber = true -- show line numbers relative to cursor position
 vim.opt.scrolloff = 4 -- keep at least 4 lines below cursor
@@ -35,7 +32,6 @@ if vim.fn.executable('rg') == 1 then
   -- use rg for grep
   vim.opt.grepprg = 'rg -H --no-heading --vimgrep'
   vim.opt.grepformat = '%f:%l:%c:%m,%f'
-
 end
 
 -- typo corrections
