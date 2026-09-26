@@ -13,7 +13,7 @@ mouse-hide-while-typing
 macos-auto-secure-input
 macos-secure-input-indication
 
-# Make cursor a block outside of tmux
+# Make cursor a block outside of herdr
 shell-integration-features = no-cursor
 
 # Quit instance without confirmation
@@ -57,38 +57,38 @@ palette = 15=#e6efff
 # shell type lf<enter> to launch file finder
 keybind = super+f=text:lf\r
 
-# tmux launch copy mode
+# herdr copy mode
 keybind = super+left_bracket=text:\x13[
 
-# tmux launch the session switcher
+# herdr workspace picker
 keybind = super+k=text:\x13w
 
-# tmux new session picker (fzf: pick folder or type name)
+# herdr new workspace picker (fzf: pick folder or type name)
 keybind = super+shift+k=text:\x13K
 
-# tmux switch to last session
-keybind = super+l=text:\x13L
+# herdr goto picker (agents, tabs, workspaces)
+keybind = super+l=text:\x13g
 
 
-# tmux create a new window
+# herdr new tab
 keybind = super+t=text:\x13c
 
-# tmux split the current pane, horizontal
-keybind = super+n=text:\x13"
+# herdr split down
+keybind = super+n=text:\x13-
 
-# tmux split the current pane, vertical
-keybind = super+shift+n=text:\x13%
+# herdr split right
+keybind = super+shift+n=text:\x13v
 
-# tmux kill the current pane (and window if last pane)
+# herdr close the current pane
 keybind = super+w=text:\x13x
 
-# tmux rename the current window
+# herdr rename the current tab
 keybind = super+comma=text:\x13,
 
-# tmux rename the current session
-keybind = super+period=text:\x13$
+# herdr rename the current workspace
+keybind = super+period=text:\x13W
 
-# Disable Ghostty's default tab switching to allow tmux window switching
+# Disable Ghostty's default tab switching to allow herdr tab switching
 keybind = super+digit_1=unbind
 keybind = super+digit_2=unbind
 keybind = super+digit_3=unbind
@@ -99,7 +99,7 @@ keybind = super+digit_7=unbind
 keybind = super+digit_8=unbind
 keybind = super+digit_9=unbind
 
-# Enable tmux window switching
+# Enable herdr tab switching
 keybind = super+one=text:\x131
 keybind = super+two=text:\x132
 keybind = super+three=text:\x133
@@ -110,9 +110,13 @@ keybind = super+seven=text:\x137
 keybind = super+eight=text:\x138
 keybind = super+nine=text:\x139
 
-# tmux break the current pane out into its own window
-keybind = super+shift+t=text:\x13!
+# herdr break the current pane out into its own tab
+keybind = super+shift+t=text:\x13B
 
-# tmux toggle the zoom state of the current pane
+# herdr toggle the zoom state of the current pane
 keybind = super+z=text:\x13z
+
+# herdr previous / next tab
+keybind = super+shift+left_bracket=text:\x13p
+keybind = super+shift+right_bracket=text:\x13n
 keybind = shift+enter=text:\x1b\r
