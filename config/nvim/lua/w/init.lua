@@ -8,3 +8,5 @@ require('w.usercmds')
 require('w.lsp').setup()
 require('w.diagnostic').setup()
 require('w.winbar').setup()
+
+require('w.herdr').setup()
