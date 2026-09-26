@@ -131,10 +131,19 @@ installGhExtensions() {
 setupMacOSDefaults() {
   echo "Setting macOS defaults..."
 
-  # Ghostty: disable macOS menu shortcuts that conflict with tmux keybindings
+  # Ghostty: disable macOS menu shortcuts that conflict with herdr keybindings
   defaults write com.mitchellh.ghostty NSUserKeyEquivalents -dict-add "Settings…" '\0'
   defaults write com.mitchellh.ghostty NSUserKeyEquivalents -dict-add "Select Previous Split" '\0'
   defaults write com.mitchellh.ghostty NSUserKeyEquivalents -dict-add "Select Next Split" '\0'
+}
+
+setupHerdr() {
+  echo "Setting up herdr plugins and integrations..."
+
+  # seamless ctrl-hjkl between neovim splits and herdr panes
+  herdr plugin install paulbkim-dev/vim-herdr-navigation --yes >/dev/null 2>&1 || true
+  # lets herdr resume claude code sessions after a server restart
+  herdr integration install claude >/dev/null 2>&1 || true
 }
 
 setupOS() {
@@ -146,6 +155,7 @@ setupOS() {
       tmignore install 2>/dev/null || true
       granary install 2>/dev/null || true
       setupMacOSDefaults
+      setupHerdr
       ;;
     $ubuntu*)
       sudo timedatectl set-timezone America/Chicago
@@ -181,13 +191,14 @@ checkSudoTouchID() {
     echo "    auth       optional       /opt/homebrew/lib/pam/pam_reattach.so"
     echo "    auth       sufficient     pam_tid.so"
     echo ""
-    echo "  The pam_reattach line is needed for Touch ID to work inside tmux."
+    echo "  The pam_reattach line is needed for Touch ID to work inside herdr panes"
+    echo "  (the herdr server is a background process)."
     echo "  Install it first: brew install pam-reattach"
     echo ""
   elif ! grep -q "pam_reattach.so" "$sudo_local"; then
     echo ""
     echo "WARNING: sudo Touch ID is configured but pam_reattach is missing."
-    echo "  Touch ID won't work inside tmux without it."
+    echo "  Touch ID won't work inside herdr panes without it."
     echo ""
     echo "  Install: brew install pam-reattach"
     echo "  Then add this line BEFORE the pam_tid.so line in $sudo_local:"

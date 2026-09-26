@@ -1,6 +1,6 @@
 ## dotfiles
 
-These are config files and scripts to set up a system as I like it. They include configuration for `neovim`, `tmux`, `zsh`, `git`, and more.
+These are config files and scripts to set up a system as I like it. They include configuration for `neovim`, `herdr`, `zsh`, `git`, and more.
 
 I use macOS for most things, with an occasional stint working out of a cloud-hosted Linux machine.
 
