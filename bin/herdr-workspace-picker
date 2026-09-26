@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+#
+# Interactive workspace creator: pick a folder from ~/Personal or ~/Code,
+# or type a custom workspace name. Runs in a herdr popup (Cmd-Shift-K).
+
+set -euo pipefail
+
+selected=$({ echo ~/Personal; echo ~/Code; find ~/Personal -mindepth 1 -maxdepth 2 -not -name '.*' -type d; find ~/Code -mindepth 1 -maxdepth 1 -not -name '.*' -type d; } 2>/dev/null \
+  | sed "s|^$HOME|~|" | sort | fzf \
+  --prompt="new workspace> " \
+  --print-query \
+) || true
+
+query=$(echo "$selected" | sed -n '1p')
+match=$(echo "$selected" | sed -n '2p' | sed "s|^~|$HOME|")
+
+[ -z "$query" ] && [ -z "$match" ] && exit 0
+
+if [ -n "$match" ] && [ -d "$match" ]; then
+  name=$(basename "$match")
+  dir="$match"
+else
+  name="$query"
+  dir="$HOME"
+fi
+
+exec "$(dirname "$0")/herdr-workspace" "$name" "$dir"

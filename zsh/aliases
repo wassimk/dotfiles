@@ -38,12 +38,12 @@ if command -v nvim 2>&1 >/dev/null; then
   alias vim="nvim"
 fi
 
-# Source shell and edit zsh, vim and tmux aliases
+# Source shell and edit zsh, vim and herdr aliases
 alias sz='source ~/.zshrc'
 
-# tmux
-alias tl='tmux ls -F #S'
-alias tka='tmux kill-server'
+# herdr
+alias tl="herdr workspace list | jq -r '.result.workspaces[].label'"
+alias tka='herdr server stop'
 
 # bundler / rspec / minitest
 alias bi='bundle install'
@@ -60,7 +60,7 @@ alias cls='clear'
 
 # copy/paste
 case "$OSTYPE" in
-  darwin*) alias clip="nc localhost 8377" ;;
+  darwin*) alias clip="pbcopy" ;;
   linux*)  alias clip="nc -N localhost 8377" ;;
 esac
 

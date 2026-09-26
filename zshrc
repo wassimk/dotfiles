@@ -54,8 +54,8 @@ case "$OSTYPE" in
   linux*)  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ;;
 esac
 
-# always be in tmux, except when vscode or asciinema
-[[ "$TERM_PROGRAM" != "vscode" && "$TERM_PROGRAM" != "Apple_Terminal" && -z "$ASCIINEMA_REC" ]] && ensure_tmux_is_running
+# always be in herdr, except when vscode or asciinema
+[[ "$TERM_PROGRAM" != "vscode" && "$TERM_PROGRAM" != "Apple_Terminal" && -z "$ASCIINEMA_REC" ]] && ensure_herdr_is_running
 
 # 1password cli
 [ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
