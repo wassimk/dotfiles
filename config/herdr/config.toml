@@ -1,0 +1,97 @@
+# Herdr configuration
+# https://herdr.dev/docs/configuration/
+# Reload with prefix+shift+r or `herdr server reload-config`.
+
+[keys]
+prefix = "ctrl+s"
+
+# Cmd-, in Ghostty sends prefix+comma
+rename_tab = ["prefix+shift+t", "prefix+comma"]
+
+# Move the current tab left or right (was tmux swap-window)
+move_tab_previous = "prefix+ctrl+p"
+move_tab_next = "prefix+ctrl+n"
+
+# Fine resize without entering resize mode; prefix+r for repeated adjustments
+resize_pane_left = "shift+left"
+resize_pane_right = "shift+right"
+resize_pane_up = "shift+up"
+resize_pane_down = "shift+down"
+
+# Cmd-Shift-K in Ghostty: fzf picker over ~/Code and ~/Personal
+[[keys.command]]
+key = "prefix+shift+k"
+type = "popup"
+command = "$HOME/.bin/herdr-workspace-picker"
+description = "new workspace picker"
+width = "60%"
+height = "60%"
+
+# Cmd-Shift-T in Ghostty: break the current pane into its own tab
+[[keys.command]]
+key = "prefix+shift+b"
+type = "shell"
+command = "herdr pane move \"$HERDR_ACTIVE_PANE_ID\" --new-tab"
+description = "break pane into a new tab"
+
+# ctrl+l itself is taken by navigation, so clear the screen via the prefix
+[[keys.command]]
+key = "prefix+ctrl+l"
+type = "shell"
+command = "herdr pane send-keys \"$HERDR_ACTIVE_PANE_ID\" ctrl+l"
+description = "clear screen"
+
+# Seamless Ctrl-hjkl with Neovim (plugin: paulbkim-dev/vim-herdr-navigation,
+# installed by install.sh). Inside Vim the key is forwarded, elsewhere it
+# moves pane focus.
+[[keys.command]]
+key = "ctrl+h"
+type = "plugin_action"
+command = "vim-herdr-navigation.left"
+description = "navigate left (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "plugin_action"
+command = "vim-herdr-navigation.down"
+description = "navigate down (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "plugin_action"
+command = "vim-herdr-navigation.up"
+description = "navigate up (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "plugin_action"
+command = "vim-herdr-navigation.right"
+description = "navigate right (vim/herdr)"
+
+[ui]
+# Cmd-T should just open a tab, name it later with Cmd-,
+prompt_new_tab_name = false
+# tmux never asked before killing a window either
+confirm_close = false
+window_title = "{workspace}"
+tab_bar_right = [
+  { type = "zoom" },
+  { type = "command", command = "hostname -s | tr A-Z a-z | sed s/wassim-metallaoui-pco/macbook/", interval_seconds = 60 },
+  { type = "datetime", format = "%-I:%M" },
+]
+
+# One Dark, matching the Ghostty palette
+[theme.custom]
+sidebar_bg = "#2c323c"
+active_row_bg = "#3e4452"
+selection_bg = "#3e4452"
+panel_bg = "reset"
+accent = "#98c379"
+text = "#abb2bf"
+green = "#98c379"
+blue = "#61afef"
+red = "#e06c75"
+yellow = "#d19a66"
+peach = "#d19a66"
+mauve = "#c678dd"
+teal = "#56b6c2"
