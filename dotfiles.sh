@@ -6,7 +6,7 @@ echo ""
 echo "Installing dot files..."
 echo ""
 
-rcup -v -x "./*.sh" -x "*.md" -x "*.log" -x "iterm/com*" -x "config/karabiner" -x "config/lazygit*" -x "Library/Keybindings" -x "Library/LaunchAgents" -x "Brewfile*" -x "tags"
+rcup -v -x "./*.sh" -x "*.md" -x "*.log" -x "config/karabiner" -x "config/lazygit*" -x "Library/Keybindings" -x "Library/LaunchAgents" -x "Brewfile*" -x "tags"
 
 # vcs-jump installed by lazy plugin manager in vim
 vcs_jump_link="$HOME"/.bin/vcs-jump
@@ -19,7 +19,6 @@ fi
 
 # must symlink the directory for these apps
 ln -sf "$HOME"/.dotfiles/config/karabiner "$HOME"/.config
-ln -sf "$HOME"/.dotfiles/iterm "$HOME"/.config
 
 # copy Library files to ~/Library
 echo "Copying Library files..."
