@@ -1,6 +1,7 @@
 git:
-  pagers:
-    - externalDiffCommand: difft --color=always
+  diffRenderers:
+    - command: difft --color=always
+      type: extDiff
   overrideGpg: true
 gui:
   nerdFontsVersion: "3"
