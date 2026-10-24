@@ -1,8 +1,8 @@
- #!/bin/sh
+#!/bin/sh
 
 if [ -z "$1" ]
 then
-  git branch | fzf-tmux | xargs git switch
+  git branch --format='%(refname:short)' | fzf | xargs git switch
 else
   git switch "$@"
 fi
