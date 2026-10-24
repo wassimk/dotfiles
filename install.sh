@@ -119,10 +119,10 @@ installClaudeCode() {
 installGhExtensions() {
   gh extension install dlvhdr/gh-dash >/dev/null 2>&1;
   gh extension install dlvhdr/gh-enhance >/dev/null 2>&1;
-  gh extension install github/gh-copilot >/dev/null 2>&1;
   gh extension install mloberg/gh-view >/dev/null 2>&1;
   gh extension install seachicken/gh-poi >/dev/null 2>&1;
   gh extension install wassimk/gh-compare >/dev/null 2>&1;
+  gh extension install github/gh-stack >/dev/null 2>&1;
   gh extension install wassimk/gh-sync >/dev/null 2>&1;
   gh extension install thiagokokada/gh-gfm-preview >/dev/null 2>&1;
   gh extensions upgrade --all
@@ -230,8 +230,6 @@ setupNPM() {
   npm install -g @commitlint/config-conventional >/dev/null 2>&1;
 
   npm install -g react-devtools >/dev/null 2>&1; # react-devtools for Safari
-
-  npm install -g bugsnag-mcp-server
 }
 
 echo ""
