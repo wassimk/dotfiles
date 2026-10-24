@@ -50,7 +50,7 @@ hs.hotkey.bind(hyper, '6', function()
   U.startMeeting()
 end)
 
--- Quick Entry (bindings handled by each app: Pastebot, Things, Raycast, Notion, Trailer)
+-- Quick Entry (bindings handled by each app: Things, Raycast, Notion, Trailer)
 
 -- Quick Launch
 hs.hotkey.bind(hyper, 'A', function() hs.application.launchOrFocus('Asana') end)
@@ -99,7 +99,7 @@ CHEATSHEET.register('hyper', {
         { key = 'H', label = 'Things' },
         { key = 'P', label = 'Trailer' },
         { separator = 'Clipboard' },
-        { key = 'C', label = 'Pastebot' },
+        { key = 'C', label = 'Raycast Clipboard' },
       },
     },
     {
