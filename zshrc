@@ -70,6 +70,7 @@ if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)
 # Planning Center
 source $HOME/pco-box/env.sh
 source $HOME/pco-box/bin/complete.bash
+export PCO_BOX_WORKTREE_SERVER_DEFAULT_FLAGS="--name-from-branch"
 eval "$($HOME/Code/pco/bin/pco init -)"
 
 if command -v devbox &> /dev/null; then
