@@ -11,7 +11,7 @@ brew "circleci"
 brew "dust"
 brew "eza"
 brew "fd"
-brew "ffmpeg"
+brew "ffmpeg-full", link: true
 brew "fzf"
 brew "gh"
 brew "gifsicle"
