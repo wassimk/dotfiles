@@ -1,3 +1,4 @@
+onboarding = false
 # Herdr configuration
 # https://herdr.dev/docs/configuration/
 # Reload with prefix+shift+r or `herdr server reload-config`.
@@ -95,3 +96,7 @@ yellow = "#d19a66"
 peach = "#d19a66"
 mauve = "#c678dd"
 teal = "#56b6c2"
+
+[theme]
+name = "one-dark"
+auto_switch = false
