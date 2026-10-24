@@ -79,8 +79,43 @@ installDevboxPackages() {
   echo "Run 'devbox search ruby' or 'devbox search nodejs' to find available versions."
   echo ""
 
+  local previous_ruby
+  previous_ruby="$(ruby -v 2>/dev/null)"
+
   devbox global add "ruby@$RUBY_VERSION"
   devbox global add "nodejs@$NODEJS_VERSION"
+
+  # global gems with native extensions link against the exact ruby they were
+  # built with, and devbox removes that ruby after an upgrade
+  if [ "$(ruby -v 2>/dev/null)" != "$previous_ruby" ]; then
+    echo "Ruby changed, rebuilding global gem native extensions..."
+    rebuildGlobalGemExtensions
+  fi
+}
+
+rebuildGlobalGemExtensions() {
+  # rubygems itself loads psych and date, which are among the broken gems, so
+  # load ruby's bundled copies first or `gem` crashes before it can rebuild.
+  # -i keeps pristine out of the read-only nix store, and going one gem at a
+  # time stops a gem that can't compile (mysql2, pg) from ending the run
+  local gems
+  gems="$(ruby --disable-gems -e '
+    require "rubygems"
+    puts Dir[File.join(ARGV[0], "specifications", "*.gemspec")]
+      .filter_map { |f| Gem::Specification.load(f) }
+      .reject { |s| s.extensions.empty? }
+      .map(&:name).uniq.sort
+  ' "$GEM_HOME" 2>/dev/null)"
+
+  for gem in $gems; do
+    ruby --disable-gems -W0 -e '
+      require "date"
+      require "psych"
+      require "rubygems"
+      require "rubygems/gem_runner"
+      Gem::GemRunner.new.run(ARGV)
+    ' pristine "$gem" -i "$GEM_HOME" >/dev/null 2>&1 || echo "  could not rebuild $gem"
+  done
 }
 
 installRust() {
