@@ -6,7 +6,7 @@ echo ""
 echo "Installing dot files..."
 echo ""
 
-rcup -v -x "./*.sh" -x "*.md" -x "*.log" -x "iterm/com*" -x "config/karabiner" -x "config/lazygit*" -x "Library/Keybindings" -x "Library/LaunchAgents" -x "Brewfile*"
+rcup -v -x "./*.sh" -x "*.md" -x "*.log" -x "iterm/com*" -x "config/karabiner" -x "config/lazygit*" -x "Library/Keybindings" -x "Library/LaunchAgents" -x "Brewfile*" -x "tags"
 
 # vcs-jump installed by lazy plugin manager in vim
 vcs_jump_link="$HOME"/.bin/vcs-jump
