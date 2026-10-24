@@ -2,7 +2,7 @@
 #
 # setup-claude-configs
 #
-# Creates ~/.claude_configs/{work,personal}/ directories and symlinks shared
+# Creates ~/.claude_configs/personal/ directories and symlinks shared
 # resources from ~/.claude/ into each. Safe to re-run (idempotent).
 #
 # Usage: setup-claude-configs
@@ -11,7 +11,7 @@ set -euo pipefail
 
 SOURCE_DIR="$HOME/.claude"
 CONFIG_BASE="$HOME/.claude_configs"
-PROFILES=(work personal)
+PROFILES=(personal)
 
 # Shared resources to symlink from ~/.claude/ into each profile
 SHARED_RESOURCES=(
@@ -66,5 +66,5 @@ for profile in "${PROFILES[@]}"; do
 done
 
 echo "Done. Login to each profile:"
-echo "  clw /login   (work account)"
+echo "  claude /login   (work account, default ~/.claude)"
 echo "  clp /login   (personal account)"

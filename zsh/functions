@@ -206,21 +206,12 @@ cheat() {
 # Claude
 #
 #
-# Claude Code multi-account switching via CLAUDE_CONFIG_DIR
-# Requires: run `setup-claude-configs` first to create dirs and symlinks
-# Work: ~/.claude_configs/work/  |  Personal: ~/.claude_configs/personal/
+# Claude Code: plain `claude` uses the default ~/.claude (work).
+# clp runs the personal profile. Requires: run `setup-claude-configs` once.
 #
 
-claude() {
-  clw "$@"
-}
-
-clw() {
-  CLAUDE_CONFIG_DIR="$HOME/.claude_configs/work" command claude --enable-auto-mode "$@"
-}
-
 clp() {
-  CLAUDE_CONFIG_DIR="$HOME/.claude_configs/personal" command claude --enable-auto-mode "$@"
+  CLAUDE_CONFIG_DIR="$HOME/.claude_configs/personal" command claude "$@"
 }
 
 #
