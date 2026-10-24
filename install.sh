@@ -215,9 +215,6 @@ miscellaneous() {
   chmod 700 ~/.gnupg
   chmod 600 ~/.gnupg/*
 
-  ln -sf /opt/homebrew/bin/op /usr/local/bin/op >/dev/null 2>&1;
-  ln -sf ~/.bin/open /usr/local/bin/open >/dev/null 2>&1;
-
   gem update --system >/dev/null 2>&1;
 }
 
