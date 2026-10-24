@@ -143,7 +143,8 @@ setupHerdr() {
   # seamless ctrl-hjkl between neovim splits and herdr panes
   herdr plugin install paulbkim-dev/vim-herdr-navigation --yes >/dev/null 2>&1 || true
   # lets herdr resume claude code sessions after a server restart
-  herdr integration install claude >/dev/null 2>&1 || true
+  # target ~/.claude (shared by both profiles) even when run from a clp session
+  env -u CLAUDE_CONFIG_DIR herdr integration install claude >/dev/null 2>&1 || true
 }
 
 setupOS() {
