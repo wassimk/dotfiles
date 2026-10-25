@@ -33,11 +33,11 @@ brew "grc"
 brew "grex"
 brew "herdr"
 brew "hyperfine"
-brew "imagemagick@6"
+brew "imagemagick@6", link: true
 brew "jq"
 brew "lf"
 brew "logrotate"
-brew "mysql-client@8.0"
+brew "mysql-client@8.0", link: true
 brew "ncdu"
 brew "pandoc"
 brew "pipx"
