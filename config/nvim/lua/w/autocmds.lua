@@ -6,12 +6,21 @@ local api = vim.api
 local wamGrp = api.nvim_create_augroup('WamAutocmds', {})
 
 -- highlight on yank and put
-api.nvim_create_autocmd({ 'TextYankPost', 'TextPutPost' }, {
-  callback = function()
-    vim.hl.hl_op({ timeout = 500 })
-  end,
-  group = wamGrp,
-})
+if vim.fn.has('nvim-0.13') == 1 then
+  api.nvim_create_autocmd({ 'TextYankPost', 'TextPutPost' }, {
+    callback = function()
+      vim.hl.hl_op({ timeout = 500 })
+    end,
+    group = wamGrp,
+  })
+else
+  api.nvim_create_autocmd('TextYankPost', {
+    callback = function()
+      vim.hl.on_yank({ timeout = 500 })
+    end,
+    group = wamGrp,
+  })
+end
 
 -- show/hide diagnostics based on active window
 api.nvim_create_autocmd({ 'FocusGained', 'WinEnter' }, {
