@@ -25,7 +25,7 @@ cask "kaleidoscope"
 cask "karabiner-elements"
 cask "keybase"
 cask "keycastr"
-cask "little-snitch"
+# cask "little-snitch" # paused, overlaps with SentinelOne network monitoring
 cask "logi-options+"
 cask "mimestream"
 cask "ngrok"
