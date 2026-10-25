@@ -315,6 +315,9 @@ function M.startMeeting()
 end
 
 local SCREENCAST_DESKTOP = 5
+local SCREENCAST_W = 1600
+local SCREENCAST_H = 900
+local SCREENCAST_TOP = 10
 
 function M.resizeForScreencasting(appNames)
   local mainScreen = hs.screen.mainScreen()
@@ -346,10 +349,10 @@ function M.resizeForScreencasting(appNames)
         local screen = win:screen()
         local sf = screen:frame()
         win:setFrame({
-          x = sf.x + (sf.w - 1280) / 2,
-          y = sf.y + 75,
-          w = 1280,
-          h = 720,
+          x = sf.x + (sf.w - SCREENCAST_W) / 2,
+          y = sf.y + SCREENCAST_TOP,
+          w = SCREENCAST_W,
+          h = SCREENCAST_H,
         })
       end
     end
@@ -373,10 +376,10 @@ function M.screencastFocusedWindow()
   local screen = win:screen()
   local sf = screen:frame()
   win:setFrame({
-    x = sf.x + (sf.w - 1280) / 2,
-    y = sf.y + 75,
-    w = 1280,
-    h = 720,
+    x = sf.x + (sf.w - SCREENCAST_W) / 2,
+    y = sf.y + SCREENCAST_TOP,
+    w = SCREENCAST_W,
+    h = SCREENCAST_H,
   })
   hs.notify.new({ title = 'Screencast', informativeText = 'Screencast mode active' }):send()
 end

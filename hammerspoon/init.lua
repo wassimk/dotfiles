@@ -40,7 +40,7 @@ hs.hotkey.bind(hyper, '5', function()
   end)
   chooser:choices({
     { text = 'All Apps', subText = 'Move all apps to desktop 5 and resize', value = 'all' },
-    { text = 'Focused Window', subText = 'Resize the focused window to 1280x720', value = 'focused' },
+    { text = 'Focused Window', subText = 'Resize the focused window to 1600x900', value = 'focused' },
     { text = 'Compact Window', subText = 'Resize for GIF recording (~100x28 terminal)', value = 'compact' },
   })
   chooser:show()
