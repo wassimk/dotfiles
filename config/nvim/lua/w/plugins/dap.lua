@@ -182,6 +182,15 @@ return {
       },
     })
 
+    -- dap-ui master links its control icons to colorscheme groups, which are all one
+    -- color in onedark. Restore the distinct colors from dap-ui v4.
+    vim.api.nvim_set_hl(0, 'DapUIPlayPause', { fg = '#A9FF68' })
+    vim.api.nvim_set_hl(0, 'DapUIRestart', { fg = '#A9FF68' })
+    vim.api.nvim_set_hl(0, 'DapUIStop', { fg = '#F70067' })
+    for _, group in ipairs({ 'DapUIStepOver', 'DapUIStepInto', 'DapUIStepBack', 'DapUIStepOut' }) do
+      vim.api.nvim_set_hl(0, group, { fg = '#00f1f5' })
+    end
+
     dap.listeners.before.attach.dapui_config = function()
       dapui.open()
     end
