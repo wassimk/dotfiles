@@ -98,8 +98,8 @@ end
 
 return {
   init_options = {
-    formatter = 'rubocop',
-    linters = { 'rubocop' },
+    -- auto picks RuboCop when it's a direct dependency, and stays quiet when it isn't
+    formatter = 'auto',
     enabledFeatureFlags = { fullTestDiscovery = true },
   },
   on_attach = function(client, bufnr)
