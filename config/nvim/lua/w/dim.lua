@@ -125,7 +125,15 @@ function M.refresh()
     build()
   end
 
+  -- floats never take focus from the window behind them. nvim_open_win makes
+  -- the new float current while WinNew and BufWinEnter run, even when the
+  -- caller doesn't enter it, so completion menus would otherwise dim the
+  -- window being typed in
   local current = vim.api.nvim_get_current_win()
+  if vim.api.nvim_win_get_config(current).relative ~= '' then
+    return
+  end
+
   for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
     if should_dim(win) then
       set_ns(win, (focused and win == current) and 0 or ns)
