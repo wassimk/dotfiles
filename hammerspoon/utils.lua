@@ -384,6 +384,23 @@ function M.screencastFocusedWindow()
   hs.notify.new({ title = 'Screencast', informativeText = 'Screencast mode active' }):send()
 end
 
+-- Resize every window on the current desktop of the focused screen, without moving desktops
+function M.screencastCurrentDesktop()
+  local screen = hs.screen.mainScreen()
+  local sf = screen:frame()
+  for _, win in ipairs(hs.window.orderedWindows()) do
+    if win:isStandard() and win:screen():id() == screen:id() then
+      win:setFrame({
+        x = sf.x + (sf.w - SCREENCAST_W) / 2,
+        y = sf.y + SCREENCAST_TOP,
+        w = SCREENCAST_W,
+        h = SCREENCAST_H,
+      })
+    end
+  end
+  hs.notify.new({ title = 'Screencast', informativeText = 'Screencast mode active (current desktop)' }):send()
+end
+
 function M.screencastCompactWindow()
   local win = hs.window.focusedWindow()
   if not win then return end
