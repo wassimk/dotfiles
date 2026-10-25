@@ -100,6 +100,11 @@ return {
   },
   config = function()
     require('neotest').setup({
+      -- no sign until a test has run
+      icons = {
+        test = ' ',
+        namespace = ' ',
+      },
       summary = {
         open = 'botright vsplit | vertical resize 70',
       },
