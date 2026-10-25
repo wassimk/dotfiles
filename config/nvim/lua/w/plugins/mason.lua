@@ -173,6 +173,29 @@ local function follow_npm_proxy()
   end
 end
 
+-- Python packages (codespell) live in a venv linked to the exact python that
+-- built it. Homebrew deletes old pythons once no formula needs them, which
+-- breaks the venv, and mason only rebuilds it on a new package release.
+-- Reinstall any package whose venv python is gone.
+local function repair_python_venvs()
+  local registry = require('mason-registry')
+
+  for _, pkg in ipairs(registry.get_installed_packages()) do
+    local cfg = vim.fs.joinpath(pkg:get_install_path(), 'venv', 'pyvenv.cfg')
+    local ok, lines = pcall(vim.fn.readfile, cfg)
+    if ok then
+      local home
+      for _, line in ipairs(lines) do
+        home = home or line:match('^home%s*=%s*(.-)%s*$')
+      end
+      if home and not vim.uv.fs_stat(home) and not pkg:is_installing() then
+        vim.notify('mason: rebuilding ' .. pkg.name .. ', its python was removed', vim.log.levels.INFO)
+        pkg:install({ force = true })
+      end
+    end
+  end
+end
+
 return {
   'williamboman/mason.nvim',
   dependencies = {
@@ -192,6 +215,7 @@ return {
     })
 
     vim.defer_fn(function()
+      repair_python_venvs()
       load_proxy_versions(function()
         installer.check_install(false)
       end)
