@@ -60,7 +60,6 @@ hs.hotkey.bind(hyper, 'E', function() hs.application.launchOrFocus('Messages') e
 hs.hotkey.bind(hyper, 'F', function() hs.application.launchOrFocus('Reminders') end)
 hs.hotkey.bind(hyper, 'G', function() hs.application.launchOrFocus('Granola') end)
 hs.hotkey.bind(hyper, 'I', function() hs.application.launchOrFocus('Mimestream') end)
-hs.hotkey.bind(hyper, 'J', function() hs.urlevent.openURL('https://app.grammarly.com/ddocs/new') end)
 hs.hotkey.bind(hyper, 'L', function() hs.application.launchOrFocus('Calendar') end)
 hs.hotkey.bind(hyper, 'M', function() hs.application.launchOrFocus('Mail') end)
 hs.hotkey.bind(hyper, 'O', function() hs.application.launchOrFocus('Notes') end)
@@ -110,7 +109,6 @@ CHEATSHEET.register('hyper', {
         { key = 'L', label = 'Calendar' },
         { key = 'B', label = 'Chrome' },
         { key = 'T', label = 'Ghostty' },
-        { key = 'J', label = 'Grammarly' },
         { key = 'G', label = 'Granola' },
         { key = 'M', label = 'Mail' },
         { key = 'E', label = 'Messages' },
