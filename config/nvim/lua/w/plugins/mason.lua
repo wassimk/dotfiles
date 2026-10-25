@@ -83,34 +83,20 @@ local function proxy_version(source_id, on_done)
   end
 end
 
--- The npm proxy hides releases newer than its minimum age, but mason always
--- asks for the newest version in its registry, so npm packages fail to
--- install. Make mason's idea of "latest" the newest stable version the proxy
--- lists instead, which covers the :Mason UI, :MasonInstall and
--- mason-tool-installer alike. The proxy's `latest` tag can't be used because
--- it may point at a prerelease (yaml-language-server nightlies).
-local function follow_npm_proxy()
-  local Package = require('mason-core.package')
+-- callbacks waiting on the lookup, or nil once it has finished
+local proxy_waiting = {}
 
-  local get_latest_version = Package.get_latest_version
-  function Package:get_latest_version()
-    return proxy_versions[self.name] or get_latest_version(self)
-  end
-
-  local install = Package.install
-  function Package:install(opts, callback)
-    opts = opts or {}
-    if not opts.version then
-      proxy_versions[self.name] = proxy_versions[self.name] or proxy_version(self.spec.source.id)
-      opts.version = proxy_versions[self.name]
-    end
-    return install(self, opts, callback)
-  end
-end
-
--- look up proxy versions for configured and installed packages up front so
+-- look up proxy versions for configured and installed packages once, so
 -- update checks don't block
 local function load_proxy_versions(callback)
+  if not proxy_waiting then
+    return callback()
+  end
+  table.insert(proxy_waiting, callback)
+  if #proxy_waiting > 1 then
+    return
+  end
+
   local registry = require('mason-registry')
 
   registry.refresh(function()
@@ -118,7 +104,13 @@ local function load_proxy_versions(callback)
     local function done()
       pending = pending - 1
       if pending == 0 then
-        vim.schedule(callback)
+        vim.schedule(function()
+          local waiting = proxy_waiting
+          proxy_waiting = nil
+          for _, cb in ipairs(waiting) do
+            cb()
+          end
+        end)
       end
     end
 
@@ -143,6 +135,42 @@ local function load_proxy_versions(callback)
 
     done()
   end)
+end
+
+-- The npm proxy hides releases newer than its minimum age, but mason always
+-- asks for the newest version in its registry, so npm packages fail to
+-- install. Make mason's idea of "latest" the newest stable version the proxy
+-- lists instead, which covers the :Mason UI, :MasonInstall and
+-- mason-tool-installer alike. The proxy's `latest` tag can't be used because
+-- it may point at a prerelease (yaml-language-server nightlies).
+local function follow_npm_proxy()
+  local Package = require('mason-core.package')
+
+  local get_latest_version = Package.get_latest_version
+  function Package:get_latest_version()
+    return proxy_versions[self.name] or get_latest_version(self)
+  end
+
+  local install = Package.install
+  function Package:install(opts, callback)
+    opts = opts or {}
+    if not opts.version then
+      proxy_versions[self.name] = proxy_versions[self.name] or proxy_version(self.spec.source.id)
+      opts.version = proxy_versions[self.name]
+    end
+    return install(self, opts, callback)
+  end
+
+  -- the :Mason UI marks packages outdated as it opens, so have proxy versions
+  -- ready first rather than paying for the lookup on every startup
+  local ui = require('mason.ui')
+  local open = ui.open
+  function ui.open(...)
+    local args = { ... }
+    load_proxy_versions(function()
+      open(unpack(args))
+    end)
+  end
 end
 
 return {
