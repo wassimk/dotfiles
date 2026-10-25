@@ -62,10 +62,7 @@ esac
 [ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
 
 # gpg signing
-export GPG_TTY=$(tty)
-
-# wt cli tool for git worktrees
-if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+export GPG_TTY=$TTY
 
 # Planning Center
 source $HOME/pco-box/env.sh
