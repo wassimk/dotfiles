@@ -53,7 +53,7 @@ end)
 -- Quick Entry (bindings handled by each app: Things, Raycast, Notion, Trailer)
 
 -- Quick Launch
-hs.hotkey.bind(hyper, 'A', function() hs.application.launchOrFocus('Asana') end)
+hs.hotkey.bind(hyper, 'A', function() hs.application.launchOrFocus('Claude') end)
 hs.hotkey.bind(hyper, 'B', function() hs.application.launchOrFocus('Google Chrome') end)
 hs.hotkey.bind(hyper, 'D', function() hs.application.launchOrFocus('Things3') end)
 hs.hotkey.bind(hyper, 'E', function() hs.application.launchOrFocus('Messages') end)
@@ -105,9 +105,9 @@ CHEATSHEET.register('hyper', {
       title = 'Quick Launch',
       items = {
         { key = 'W', label = '1Password' },
-        { key = 'A', label = 'Asana' },
         { key = 'L', label = 'Calendar' },
         { key = 'B', label = 'Chrome' },
+        { key = 'A', label = 'Claude' },
         { key = 'T', label = 'Ghostty' },
         { key = 'G', label = 'Granola' },
         { key = 'M', label = 'Mail' },
