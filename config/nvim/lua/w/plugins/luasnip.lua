@@ -7,6 +7,7 @@ return {
   'L3MON4D3/LuaSnip',
   event = 'InsertEnter',
   version = '*',
+  build = 'make install_jsregexp',
   config = function()
     local luasnip = require('luasnip')
 
