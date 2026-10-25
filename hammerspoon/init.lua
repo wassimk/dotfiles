@@ -27,7 +27,7 @@ hs.hotkey.bind(hyper, '1', function()
 end)
 
 hs.hotkey.bind(hyper, '5', function()
-  local appNames = { 'Asana', 'Code', 'Ghostty', 'Google Chrome', 'Notion', 'Safari' }
+  local appNames = { 'Code', 'Ghostty', 'Google Chrome', 'Notion', 'Safari' }
   local chooser = hs.chooser.new(function(choice)
     if not choice then return end
     if choice.value == 'all' then
