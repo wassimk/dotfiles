@@ -183,13 +183,27 @@ return {
     })
 
     -- dap-ui master links its control icons to colorscheme groups, which are all one
-    -- color in onedark. Restore the distinct colors from dap-ui v4.
-    vim.api.nvim_set_hl(0, 'DapUIPlayPause', { fg = '#A9FF68' })
-    vim.api.nvim_set_hl(0, 'DapUIRestart', { fg = '#A9FF68' })
-    vim.api.nvim_set_hl(0, 'DapUIStop', { fg = '#F70067' })
-    for _, group in ipairs({ 'DapUIStepOver', 'DapUIStepInto', 'DapUIStepBack', 'DapUIStepOut' }) do
-      vim.api.nvim_set_hl(0, group, { fg = '#00f1f5' })
+    -- color in onedark. Restore the distinct colors from dap-ui v4, including the *NC
+    -- variants used when the window isn't focused, and again after colorscheme changes.
+    local function dapui_control_colors()
+      local colors = {
+        DapUIPlayPause = '#A9FF68',
+        DapUIRestart = '#A9FF68',
+        DapUIStop = '#F70067',
+        DapUIStepOver = '#00f1f5',
+        DapUIStepInto = '#00f1f5',
+        DapUIStepBack = '#00f1f5',
+        DapUIStepOut = '#00f1f5',
+      }
+      local bg = vim.api.nvim_get_hl(0, { name = 'WinBar' }).bg
+      local bg_nc = vim.api.nvim_get_hl(0, { name = 'WinBarNC' }).bg
+      for group, fg in pairs(colors) do
+        vim.api.nvim_set_hl(0, group, { fg = fg, bg = bg })
+        vim.api.nvim_set_hl(0, group .. 'NC', { fg = fg, bg = bg_nc })
+      end
     end
+    dapui_control_colors()
+    vim.api.nvim_create_autocmd('ColorScheme', { callback = dapui_control_colors })
 
     dap.listeners.before.attach.dapui_config = function()
       dapui.open()
