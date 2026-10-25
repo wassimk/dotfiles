@@ -8,10 +8,12 @@ cask "asana"
 cask "backblaze"
 cask "balenaetcher"
 cask "bambu-studio"
+cask "bartender"
 cask "carbon-copy-cloner"
 cask "charles"
 cask "claude"
 cask "cleanshot"
+cask "copilot-cli"
 cask "dash"
 # cask "discord"
 cask "elgato-control-center"
@@ -19,7 +21,6 @@ cask "firefox"
 cask "garmin-express"
 cask "gemini"
 cask "granola"
-cask "grammarly"
 cask "hammerspoon"
 cask "ia-presenter"
 cask "kaleidoscope"
@@ -29,6 +30,7 @@ cask "keycastr"
 cask "little-snitch"
 cask "logi-options+"
 cask "mimestream"
+cask "ngrok"
 cask "notion"
 cask "obsidian"
 cask "plistedit-pro"
@@ -69,6 +71,7 @@ mas "Dynamic Wallpaper", id: 1453504509
 mas "In Your Face", id: 1476964367
 mas "Keynote", id: 409183694
 mas "NordLayer", id: 1488888843
+mas "Parachute Backup", id: 6748614170
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Patterns", id: 429449079
