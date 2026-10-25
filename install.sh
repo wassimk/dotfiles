@@ -182,11 +182,27 @@ setupHerdr() {
   env -u CLAUDE_CONFIG_DIR herdr integration install claude >/dev/null 2>&1 || true
 }
 
+cleanupHomebrew() {
+  brew cleanup
+
+  # report, don't remove: anything installed by hand shows up here until it's
+  # added to a Brewfile or uninstalled
+  local undeclared
+  undeclared="$(cat "$HOME"/.dotfiles/Brewfile "$HOME"/.dotfiles/Brewfile-macos_apps | brew bundle cleanup --file=- 2>/dev/null)"
+  if [ -n "$undeclared" ]; then
+    echo ""
+    echo "WARNING: installed but not in a Brewfile:"
+    echo "$undeclared" | grep -v '^Run '
+    echo ""
+  fi
+}
+
 setupOS() {
   case $os in
     $macOS*)
       brew bundle --file="$HOME"/.dotfiles/Brewfile-macos_apps
       brew upgrade --cask
+      cleanupHomebrew
       elgato-autolight install 2>/dev/null || true
       tmignore install 2>/dev/null || true
       granary install 2>/dev/null || true
