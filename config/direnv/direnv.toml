@@ -1,0 +1,4 @@
+# Trust every .envrc under ~/Code, so new git worktrees (Claude Code desktop,
+# wt, git worktree add) load their devbox env without a manual `direnv allow`.
+[whitelist]
+prefix = ["/Users/wassim/Code"]
