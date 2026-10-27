@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# Open Google Chrome without the "Claude started debugging this browser"
+# banner, so Claude in Chrome screenshots keep a stable viewport.
+#
+# The flag only applies when Chrome launches. If Chrome is already running
+# without it, this brings Chrome forward and says to quit it first.
+#
+# Trade-off: the flag hides that banner for every extension that uses the
+# debugger API, not just Claude.
+
+FLAG="--silent-debugger-extension-api"
+CHROME_BIN="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+
+chrome_args=$(ps -axo args= | grep -F -- "$CHROME_BIN" | grep -v grep)
+
+if [[ -z "$chrome_args" ]]; then
+  open -a "Google Chrome" --args "$FLAG"
+elif [[ "$chrome_args" != *"$FLAG"* ]]; then
+  echo "Chrome is running without $FLAG. Quit it (Cmd+Q) and open it again." >&2
+  open -a "Google Chrome"
+else
+  open -a "Google Chrome"
+fi
