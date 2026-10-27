@@ -33,6 +33,7 @@
   unstage = reset
   unchange = checkout --
   upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
+  review = "!f() { git diff --no-ext-diff -w --color-moved=dimmed-zebra --color-moved-ws=allow-indentation-change \"$@\"; }; f"
 
 [push]
   default = simple
