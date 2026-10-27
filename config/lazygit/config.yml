@@ -2,6 +2,9 @@ git:
   diffRenderers:
     - command: difft --color=always
       type: extDiff
+    - name: git (moved dimmed)
+      type: rawGit
+      args: ["--color-moved=dimmed-zebra", "--color-moved-ws=allow-indentation-change"]
   overrideGpg: true
 gui:
   nerdFontsVersion: "3"
