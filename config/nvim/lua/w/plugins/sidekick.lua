@@ -2,8 +2,7 @@
 -- sidekick.nvim
 -- https://github.com/folke/sidekick.nvim
 --
--- Only the next-edit-suggestion half is used. The CLI half is replaced by
--- lua/w/herdr.lua, which runs Claude in a herdr pane instead.
+-- Only the next-edit-suggestion half is used.
 --
 
 return {
