@@ -36,6 +36,9 @@ disabled = true
 [golang]
 disabled = true
 
+[python]
+disabled = true
+
 [direnv]
 disabled = true
 
