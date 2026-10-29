@@ -38,12 +38,8 @@ if command -v nvim 2>&1 >/dev/null; then
   alias vim="nvim"
 fi
 
-# Source shell and edit zsh, vim and herdr aliases
+# Source shell
 alias sz='source ~/.zshrc'
-
-# herdr
-alias tl="herdr workspace list | jq -r '.result.workspaces[].label'"
-alias tka='herdr server stop'
 
 # bundler / rspec / minitest
 alias bi='bundle install'

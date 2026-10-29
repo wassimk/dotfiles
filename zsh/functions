@@ -21,118 +21,6 @@ function _git_sw() {
 }
 compdef _git_sw git_sw
 
-#
-# herdr
-#
-
-# labels of live herdr workspaces, hiding the claude and copilot ones
-_herdr_workspaces() {
-  herdr workspace list 2>/dev/null \
-    | jq -r '.result.workspaces[].label' \
-    | grep -Ev '^(claude|copilot)$'
-}
-
-_herdr_server_running() {
-  herdr status server 2>/dev/null | grep -q '^status: running'
-}
-
-# focus or create workspace NAME rooted at DIR; attach first when outside herdr
-_herdr_open() {
-  local name="$1" dir="$2"
-  if [[ -n "$HERDR_ENV" ]]; then
-    herdr-workspace "$name" "$dir"
-  elif _herdr_server_running; then
-    herdr-workspace "$name" "$dir" && herdr
-  else
-    (cd "$dir" && herdr)
-  fi
-}
-
-# attach, or focus/create a workspace named after the current directory
-ta() {
-  local name="${*:-${PWD:t}}"
-  _herdr_open "$name" "$PWD"
-}
-
-function _ta() {
-  local -a sessions
-  sessions=("${(@f)$(_herdr_workspaces)}")
-  _describe 'herdr workspaces' sessions
-}
-compdef _ta ta
-
-# work project under ~/Code
-WORK_DIR="$HOME"/Code
-tw() {
-  _herdr_open "$*" "$WORK_DIR/$*"
-}
-
-function _tw() {
-  local -a sessions
-  sessions=("${(@f)$(_herdr_workspaces)}")
-
-  compadd -J "active" -a sessions
-
-  _files -J "inactive" -W "$WORK_DIR" -/
-}
-compdef _tw tw
-
-# personal project under ~/Personal
-PERSONAL_DIR="$HOME"/Personal
-tp() {
-  _herdr_open "$*" "$PERSONAL_DIR/$*"
-}
-
-function _tp() {
-  local -a sessions
-  sessions=("${(@f)$(_herdr_workspaces)}")
-
-  compadd -J "active" -a sessions
-
-  _files -J "inactive" -W "$PERSONAL_DIR" -/
-}
-compdef _tp tp
-
-# close workspace
-tk() {
-  if [ "$1" != "" ]; then
-    local id
-    id=$(herdr workspace list 2>/dev/null \
-      | jq -r --arg name "$1" '.result.workspaces[] | select(.label == $name) | .workspace_id' \
-      | head -n 1)
-    if [[ -z "$id" ]]; then
-      echo "no workspace named $1"
-      return 1
-    fi
-    herdr workspace close "$id" >/dev/null
-  else
-    echo "Close which workspace?"
-    echo ""
-    _herdr_workspaces
-  fi
-}
-compdef _ta tk
-
-# Make sure we are always in herdr
-ensure_herdr_is_running() {
-  command -v herdr >/dev/null 2>&1 || return
-  if [[ -z "$HERDR_ENV" ]]; then
-    if [ -d "$DOTFILES" ]; then
-      cd "$DOTFILES"
-    fi
-    herdr
-  fi
-}
-
-# Reattach to herdr when outside of it (mirrors Cmd+K and Cmd+Shift+K)
-function _herdr_reattach() {
-  BUFFER='herdr'
-  zle accept-line
-}
-zle -N _herdr_reattach
-bindkey '\x13w' _herdr_reattach
-bindkey '\x13K' _herdr_reattach
-
 # Make CTRL-Z background and unbackground
 function fg-bg() {
   if [[ $#BUFFER -eq 0 ]]; then
@@ -183,9 +71,7 @@ _h() { _files -J "file" -W "$HOME" -/ }
 compdef _h h
 
 # dotfiles
-dots() {
-  _herdr_open dotfiles "$DOTFILES"
-}
+dots() { cd "$DOTFILES" }
 
 # Console based weather report
 weather() {

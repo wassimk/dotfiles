@@ -54,10 +54,6 @@ case "$OSTYPE" in
   linux*)  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ;;
 esac
 
-# always be in herdr, except when vscode, Apple Terminal, asciinema, or Claude Desktop
-[[ "$TERM_PROGRAM" != "vscode" && "$TERM_PROGRAM" != "Apple_Terminal" && -z "$ASCIINEMA_REC" \
-  && "$__CFBundleIdentifier" != "com.anthropic.claudefordesktop" ]] && ensure_herdr_is_running
-
 # 1password cli
 [ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
 
