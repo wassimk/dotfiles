@@ -31,7 +31,6 @@ brew "gnupg"
 brew "go"
 brew "grc"
 brew "grex"
-brew "herdr"
 brew "hyperfine"
 brew "imagemagick@6", link: true
 brew "jq"
