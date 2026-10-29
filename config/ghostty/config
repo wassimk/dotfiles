@@ -13,7 +13,7 @@ mouse-hide-while-typing
 macos-auto-secure-input
 macos-secure-input-indication
 
-# Make cursor a block outside of herdr
+# Keep the block cursor instead of shell integration's bar at the prompt
 shell-integration-features = no-cursor
 
 # Quit instance without confirmation
@@ -58,66 +58,4 @@ palette = 15=#e6efff
 # shell type lf<enter> to launch file finder
 keybind = super+f=text:lf\r
 
-# herdr copy mode
-keybind = super+left_bracket=text:\x13[
-
-# herdr workspace picker
-keybind = super+k=text:\x13w
-
-# herdr new workspace picker (fzf: pick folder or type name)
-keybind = super+shift+k=text:\x13K
-
-# herdr goto picker (agents, tabs, workspaces)
-keybind = super+l=text:\x13g
-
-
-# herdr new tab
-keybind = super+t=text:\x13c
-
-# herdr split down
-keybind = super+n=text:\x13-
-
-# herdr split right
-keybind = super+shift+n=text:\x13v
-
-# herdr close the current pane
-keybind = super+w=text:\x13x
-
-# herdr rename the current tab
-keybind = super+comma=text:\x13,
-
-# herdr rename the current workspace
-keybind = super+period=text:\x13W
-
-# Disable Ghostty's default tab switching to allow herdr tab switching
-keybind = super+digit_1=unbind
-keybind = super+digit_2=unbind
-keybind = super+digit_3=unbind
-keybind = super+digit_4=unbind
-keybind = super+digit_5=unbind
-keybind = super+digit_6=unbind
-keybind = super+digit_7=unbind
-keybind = super+digit_8=unbind
-keybind = super+digit_9=unbind
-
-# Enable herdr tab switching
-keybind = super+one=text:\x131
-keybind = super+two=text:\x132
-keybind = super+three=text:\x133
-keybind = super+four=text:\x134
-keybind = super+five=text:\x135
-keybind = super+six=text:\x136
-keybind = super+seven=text:\x137
-keybind = super+eight=text:\x138
-keybind = super+nine=text:\x139
-
-# herdr break the current pane out into its own tab
-keybind = super+shift+t=text:\x13B
-
-# herdr toggle the zoom state of the current pane
-keybind = super+z=text:\x13z
-
-# herdr previous / next tab
-keybind = super+shift+left_bracket=text:\x13p
-keybind = super+shift+right_bracket=text:\x13n
 keybind = shift+enter=text:\x1b\r
