@@ -27,7 +27,7 @@ hs.hotkey.bind(hyper, '1', function()
 end)
 
 hs.hotkey.bind(hyper, '5', function()
-  local appNames = { 'Code', 'Ghostty', 'Google Chrome', 'Notion', 'Safari' }
+  local appNames = { 'Code', 'Google Chrome', 'Notion', 'Safari', 'com.superlogical.rex' }
   local chooser = hs.chooser.new(function(choice)
     if not choice then return end
     if choice.value == 'all' then
@@ -67,7 +67,7 @@ hs.hotkey.bind(hyper, 'L', function() hs.application.launchOrFocus('Calendar') e
 hs.hotkey.bind(hyper, 'M', function() hs.application.launchOrFocus('Mail') end)
 hs.hotkey.bind(hyper, 'O', function() hs.application.launchOrFocus('Notes') end)
 hs.hotkey.bind(hyper, 'S', function() hs.application.launchOrFocus('Snagit') end)
-hs.hotkey.bind(hyper, 'T', function() hs.application.launchOrFocus('Ghostty') end)
+hs.hotkey.bind(hyper, 'T', function() hs.application.launchOrFocusByBundleID('com.superlogical.rex') end)
 hs.hotkey.bind(hyper, 'U', function() hs.application.launchOrFocus('Music') end)
 hs.hotkey.bind(hyper, 'W', function() hs.application.launchOrFocus('1Password') end)
 hs.hotkey.bind(hyper, 'Q', function() hs.application.launchOrFocus('Slack') end)
@@ -111,7 +111,6 @@ CHEATSHEET.register('hyper', {
         { key = 'L', label = 'Calendar' },
         { key = 'B', label = 'Chrome' },
         { key = 'A', label = 'Claude' },
-        { key = 'T', label = 'Ghostty' },
         { key = 'G', label = 'Granola' },
         { key = 'M', label = 'Mail' },
         { key = 'E', label = 'Messages' },
@@ -120,6 +119,7 @@ CHEATSHEET.register('hyper', {
         { key = 'O', label = 'Notes' },
         { key = 'X', label = 'Notion' },
         { key = 'F', label = 'Reminders' },
+        { key = 'T', label = 'Rex' },
         { key = 'Q', label = 'Slack' },
         { key = 'S', label = 'Snagit' },
         { key = 'D', label = 'Things' },

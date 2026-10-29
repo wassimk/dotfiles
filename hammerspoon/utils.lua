@@ -186,18 +186,20 @@ local function getWindowDesktopNumber(win)
   return nil
 end
 
+local REX_BUNDLE_ID = 'com.superlogical.rex'
+
 function M.startCoding()
-  local ghosttyRunning = hs.application.find('ghostty') ~= nil
+  local rexRunning = hs.application.get(REX_BUNDLE_ID) ~= nil
   local chromeRunning = hs.application.find('Google Chrome') ~= nil
-  if not ghosttyRunning then
-    hs.application.open('Ghostty')
+  if not rexRunning then
+    hs.application.open(REX_BUNDLE_ID)
   end
   if not chromeRunning then
     hs.application.open('Google Chrome')
   end
 
   local function positionWindows()
-    local ghostty = hs.application.find('ghostty')
+    local rex = hs.application.get(REX_BUNDLE_ID)
     local chrome = hs.application.find('Google Chrome')
     local screen = hs.screen.mainScreen()
     local sf = screen:frame()
@@ -205,8 +207,8 @@ function M.startCoding()
     local leftWidth = math.floor((sf.w - gap) * 3 / 5)
     local rightWidth = sf.w - leftWidth - gap
 
-    if ghostty then
-      local win = ghostty:mainWindow()
+    if rex then
+      local win = rex:mainWindow()
       if win then
         win:setFrame({ x = sf.x, y = sf.y, w = leftWidth, h = sf.h })
       end
@@ -221,10 +223,10 @@ function M.startCoding()
   end
 
   local function moveAndPosition()
-    local ghostty = hs.application.find('ghostty')
+    local rex = hs.application.get(REX_BUNDLE_ID)
     local moveQueue = {}
-    if ghostty then
-      local win = ghostty:mainWindow()
+    if rex then
+      local win = rex:mainWindow()
       if win and getWindowDesktopNumber(win) ~= 1 then
         table.insert(moveQueue, win)
       end
@@ -240,7 +242,7 @@ function M.startCoding()
     processWindowQueue(moveQueue, 1, 1.0, positionWindows)
   end
 
-  if ghosttyRunning and chromeRunning then
+  if rexRunning and chromeRunning then
     moveAndPosition()
   else
     hs.timer.doAfter(1.0, moveAndPosition)
