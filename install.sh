@@ -240,6 +240,16 @@ checkSudoTouchID() {
   fi
 }
 
+checkRex() {
+  # Rex is a beta with manual downloads only, so remind instead of installing
+  if [[ "$os" == "$macOS" ]] && [[ ! -d "/Applications/Rex Beta.app" ]]; then
+    echo ""
+    echo "WARNING: Rex is not installed."
+    echo "  Download the beta: https://www.superlogical.com/rex/docs/installation"
+    echo ""
+  fi
+}
+
 miscellaneous() {
   acceptXcodeLicense
   yes | "$(brew --prefix)"/opt/fzf/install >/dev/null 2>&1;
@@ -279,6 +289,7 @@ setupNPM
 miscellaneous
 checkSudoTouchID
 checkMonoLisa
+checkRex
 
 echo ""
 echo "Done! You'll probably need to restart your shell/SSH session..."
