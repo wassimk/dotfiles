@@ -2,6 +2,7 @@ require('w.globals')
 require('w.defaults')
 require('w.keymaps')
 require('w.treesitter')
+require('w.undotree')
 require('w.autocmds')
 require('w.usercmds')
 
