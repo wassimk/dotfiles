@@ -5,7 +5,11 @@
 # Creates ~/.claude_configs/personal/ directories and symlinks shared
 # resources from ~/.claude/ into each. Safe to re-run (idempotent).
 #
-# Usage: setup-claude-configs
+# Usage: setup-claude-configs [--check]
+#
+#   --check  Report shared resources that are no longer linked correctly
+#            (replaced by a real file, pointing elsewhere, or dangling)
+#            without changing anything. Exits 1 if any problem is found.
 
 set -euo pipefail
 
@@ -24,6 +28,61 @@ SHARED_RESOURCES=(
   plugins
   statusline-command.sh
 )
+
+check_links() {
+  local problems=0
+
+  for profile in "${PROFILES[@]}"; do
+    local target_dir="$CONFIG_BASE/$profile"
+    echo "$target_dir/"
+
+    for resource in "${SHARED_RESOURCES[@]}"; do
+      local source_path="$SOURCE_DIR/$resource"
+      local link_path="$target_dir/$resource"
+
+      if [[ -L "$link_path" ]]; then
+        local target
+        target="$(readlink "$link_path")"
+        if [[ "$target" != "$source_path" ]]; then
+          echo "  WRONG TARGET: $resource -> $target (expected $source_path)"
+          problems=$((problems + 1))
+        elif [[ ! -e "$source_path" ]]; then
+          echo "  DANGLING:     $resource (source missing: $source_path)"
+          problems=$((problems + 1))
+        else
+          echo "  ok:           $resource"
+        fi
+      elif [[ -e "$link_path" ]]; then
+        echo "  NOT A LINK:   $resource (real file/dir, no longer shared with $SOURCE_DIR)"
+        problems=$((problems + 1))
+      elif [[ -e "$source_path" ]]; then
+        echo "  MISSING:      $resource (run setup-claude-configs to link it)"
+        problems=$((problems + 1))
+      else
+        echo "  skip:         $resource (not present in either place)"
+      fi
+    done
+  done
+
+  echo ""
+  if ((problems > 0)); then
+    echo "$problems problem(s) found."
+    return 1
+  fi
+  echo "All shared resources linked correctly."
+}
+
+case "${1:-}" in
+  --check)
+    check_links
+    exit $?
+    ;;
+  "") ;;
+  *)
+    echo "Usage: setup-claude-configs [--check]" >&2
+    exit 2
+    ;;
+esac
 
 for profile in "${PROFILES[@]}"; do
   target_dir="$CONFIG_BASE/$profile"
