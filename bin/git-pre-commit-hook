@@ -2,7 +2,7 @@
 #
 # Installation
 #
-#   ln -s ~/.bin/git-pre-commit-hook.sh /path/to/project/.git/hooks/pre-commit
+#   ln -s ~/.bin/git-pre-commit-hook /path/to/project/.git/hooks/pre-commit
 
 # Check all staged Ruby (*.rb/haml/coffee) files
 # for Pry binding references
