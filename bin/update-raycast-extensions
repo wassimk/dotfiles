@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+#
+# update-raycast-extensions
+#
+# Pulls, installs, and loads local Raycast extensions into Raycast. These are
+# loaded with `ray develop` rather than the Store, so they only update when
+# rebuilt. `ray develop` has no build-once flag, so this starts it, waits for
+# the build, then stops it. Raycast keeps the extension after it stops.
+#
+# Usage: update-raycast-extensions [extension-dir...]
+#
+#   With no arguments, updates every Raycast extension in ~/Personal/raycast.
+
+set -euo pipefail
+
+root="$HOME/Personal/raycast"
+
+if (($# > 0)); then
+  dirs=("$@")
+else
+  dirs=()
+  for package in "$root"/*/package.json; do
+    if grep -q 'raycast.com/schemas/extension.json' "$package"; then
+      dirs+=("$(dirname "$package")")
+    fi
+  done
+fi
+
+status=0
+
+for dir in "${dirs[@]}"; do
+  name=$(basename "$dir")
+  log=$(mktemp)
+
+  if ! (cd "$dir" && git pull -q --autostash && npm install --silent); then
+    echo "$name: pull or install failed"
+    status=1
+    continue
+  fi
+
+  (cd "$dir" && exec npx ray develop -I) >"$log" 2>&1 &
+
+  for _ in $(seq 120); do
+    grep -qE "built extension successfully|error" "$log" && break
+    sleep 1
+  done
+
+  # Stops both the npm and node processes that `npx ray develop` starts
+  pkill -f "$dir/node_modules/.bin/ray develop" || true
+  pkill -f "ray develop -I" || true
+
+  if grep -q "built extension successfully" "$log"; then
+    echo "$name: built extension successfully"
+  else
+    echo "$name: build failed, see $log"
+    status=1
+  fi
+done
+
+exit "$status"
