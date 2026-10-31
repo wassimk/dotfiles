@@ -9,10 +9,7 @@ if utils.installed_via_bundler('solargraph') then
   vim.lsp.enable({ 'solargraph' })
 end
 
--- ruby-lsp
-if utils.ruby_project() and not utils.installed_via_bundler('solargraph') then
-  vim.lsp.enable({ 'ruby_lsp' })
-end
+-- ruby-lsp is started by ruby-lsp.nvim (lua/w/plugins/ruby-lsp.lua)
 
 -- syntax_tree
 if utils.installed_via_bundler('syntax_tree') then

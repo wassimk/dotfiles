@@ -6,8 +6,14 @@
 return {
   'wassimk/ruby-lsp.nvim',
   dev = true,
-  lazy = false, -- lsp/ruby_lsp.lua must be on the runtimepath before w.lsp.ruby enables the server
+  lazy = false,
   opts = {
+    lsp = {
+      -- solargraph takes over in projects that bundle it
+      auto_start = function()
+        return not require('w.utils').installed_via_bundler('solargraph')
+      end,
+    },
     user_commands = true,
     executor = 'toggleterm',
     toggleterm = {
