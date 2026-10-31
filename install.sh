@@ -250,6 +250,36 @@ checkRex() {
   fi
 }
 
+checkDevboxVersions() {
+  # warn, don't bump: upgrading ruby or node is a choice, so only report when
+  # the pins at the top of this script fall behind what devbox offers
+  local pkg pinned latest
+  for pkg in ruby nodejs; do
+    case $pkg in
+      ruby)   pinned="$RUBY_VERSION" ;;
+      nodejs) pinned="$NODEJS_VERSION" ;;
+    esac
+
+    # newest stable version, skipping prereleases such as 4.0.0-preview3
+    latest="$(devbox search "$pkg" 2>/dev/null |
+      sed -n "s/^\* $pkg  *(\(.*\))\$/\1/p" |
+      tr ',' '\n' | sed 's/^ *//; s/ *$//' |
+      grep -E '^[0-9]+(\.[0-9]+)*$' |
+      sort -V | tail -1)"
+
+    if [[ -z "$latest" ]]; then
+      echo "WARNING: could not look up the latest $pkg version with devbox search."
+    elif [[ "$pinned" != "$latest" ]]; then
+      echo ""
+      echo "WARNING: $pkg $pinned is pinned, $latest is available."
+      echo "  Update the version at the top of install.sh and re-run it."
+      echo ""
+    else
+      echo "✔ $pkg $pinned is the latest version"
+    fi
+  done
+}
+
 miscellaneous() {
   acceptXcodeLicense
   yes | "$(brew --prefix)"/opt/fzf/install >/dev/null 2>&1;
@@ -288,6 +318,7 @@ setupOS
 setupNPM
 miscellaneous
 checkSudoTouchID
+checkDevboxVersions
 checkMonoLisa
 checkRex
 
