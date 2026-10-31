@@ -108,37 +108,8 @@ return {
       summary = {
         open = 'botright vsplit | vertical resize 70',
       },
-      -- TODO: the rspec queries here are already built into neotest. Test if
-      -- watch works without this override (just using neotest's defaults).
-      -- The minitest class pattern is NOT built in and is needed for work
-      -- (minitest projects). Consider moving the minitest query into the
-      -- ruby-lsp.neotest adapter if the rspec defaults prove sufficient.
       watch = {
         enabled = true,
-        symbol_queries = {
-          ruby = [[
-                  ;query
-                  ; rspec - class name
-                  (call
-                    method: (identifier) @_ (#match? @_ "^(describe|context)")
-                    arguments: (argument_list (constant) @symbol )
-                  )
-
-                  ; rspec - namespaced class name
-                  (call
-                    method: (identifier)
-                    arguments: (argument_list
-                      (scope_resolution
-                        name: (constant) @symbol))
-                  )
-
-                  ; minitest - class being tested
-                  (class
-                    name: ((constant) @symbol)
-                    (#gsub! @symbol "(.*)Test$" "%1")
-                  )
-          ]],
-        },
       },
       adapters = {
         require('ruby-lsp.neotest'),
