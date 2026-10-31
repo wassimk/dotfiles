@@ -53,7 +53,7 @@ hs.hotkey.bind(hyper, '6', function()
   U.startMeeting()
 end)
 
--- Quick Entry (bindings handled by each app: Things, Raycast, Notion, Trailer)
+-- Quick Entry (bindings handled by each app: Things, Raycast, Notion, Pulse)
 
 -- Quick Launch
 hs.hotkey.bind(hyper, 'A', function() hs.application.launchOrFocus('Claude') end)
@@ -99,7 +99,7 @@ CHEATSHEET.register('hyper', {
         { key = 'R', label = 'Quick add reminder' },
         { key = 'K', label = 'Raycast AI' },
         { key = 'H', label = 'Things' },
-        { key = 'P', label = 'Trailer' },
+        { key = 'P', label = 'Pulse' },
         { separator = 'Clipboard' },
         { key = 'C', label = 'Raycast Clipboard' },
       },
