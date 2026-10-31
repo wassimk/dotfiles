@@ -99,7 +99,7 @@ CHEATSHEET.register('hyper', {
         { key = 'R', label = 'Quick add reminder' },
         { key = 'K', label = 'Raycast AI' },
         { key = 'H', label = 'Things' },
-        { key = 'P', label = 'Pulse' },
+        { key = 'J', label = 'Pulse' },
         { separator = 'Clipboard' },
         { key = 'C', label = 'Raycast Clipboard' },
       },
