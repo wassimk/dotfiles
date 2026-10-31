@@ -6,8 +6,9 @@
 return {
   'wassimk/ruby-lsp.nvim',
   dev = true,
-  ft = 'ruby',
+  lazy = false, -- lsp/ruby_lsp.lua must be on the runtimepath before w.lsp.ruby enables the server
   opts = {
+    user_commands = true,
     executor = 'toggleterm',
     toggleterm = {
       direction = 'horizontal',
