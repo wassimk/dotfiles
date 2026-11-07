@@ -71,6 +71,9 @@ cask "font-symbols-only-nerd-font"
 cask "ghostty"
 
 # taps
+tap "darrenburns/homebrew"
+cask "darrenburns/homebrew/posting@beta"
+
 tap "heroku/brew"
 brew "heroku"
 
