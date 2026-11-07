@@ -151,6 +151,23 @@ installClaudeCode() {
 }
 
 
+setupPostingForClaude() {
+  command -v posting >/dev/null 2>&1 || return
+
+  # the skill is versioned with posting, so rewrite it after every upgrade
+  mkdir -p "$HOME/.claude/skills/using-posting"
+  posting remote skill > "$HOME/.claude/skills/using-posting/SKILL.md"
+
+  local settings="$HOME/.claude/settings.json"
+  local rule='Bash(posting remote:*)'
+  if [[ -f "$settings" ]] && ! jq -e --arg r "$rule" '.permissions.allow | index($r)' "$settings" >/dev/null; then
+    local tmp
+    tmp="$(mktemp)"
+    jq --arg r "$rule" '.permissions.allow += [$r]' "$settings" > "$tmp" && cat "$tmp" > "$settings"
+    rm -f "$tmp"
+  fi
+}
+
 installGhExtensions() {
   gh extension install dlvhdr/gh-dash >/dev/null 2>&1;
   gh extension install dlvhdr/gh-enhance >/dev/null 2>&1;
@@ -315,6 +332,7 @@ installNeovim
 installClaudeCode
 installGhExtensions
 setupOS
+setupPostingForClaude
 setupNPM
 miscellaneous
 checkSudoTouchID
