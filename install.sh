@@ -203,6 +203,8 @@ setupOS() {
       cleanupHomebrew
       elgato-autolight install 2>/dev/null || true
       tmignore install 2>/dev/null || true
+      # --force reloads the service so a brew upgrade takes effect right away
+      calendar-autoblock install --force 2>/dev/null || true
       granary install 2>/dev/null || true
       ;;
     $ubuntu*)

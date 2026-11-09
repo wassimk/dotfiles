@@ -63,7 +63,9 @@ export GPG_TTY=$TTY
 # Planning Center
 source $HOME/pco-box/env.sh
 source $HOME/pco-box/bin/complete.bash
-eval "$($HOME/Code/pco/bin/pco init -)"
+if command -v pco &> /dev/null; then
+  eval "$(pco init -)"
+fi
 
 if command -v devbox &> /dev/null; then
   eval "$(devbox global shellenv)"
