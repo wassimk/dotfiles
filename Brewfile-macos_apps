@@ -60,6 +60,7 @@ brew "pinentry-mac"
 brew "ssh-copy-id"
 brew "wassimk/tap/tmignore"
 brew "wassimk/tap/st"
+brew "wassimk/tap/calendar-autoblock"
 
 # mac app store
 mas "1Password for Safari", id: 1569813296

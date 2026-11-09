@@ -203,6 +203,7 @@ setupOS() {
       cleanupHomebrew
       elgato-autolight install 2>/dev/null || true
       tmignore install 2>/dev/null || true
+      calendar-autoblock install 2>/dev/null || true
       granary install 2>/dev/null || true
       ;;
     $ubuntu*)
