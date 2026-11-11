@@ -4,6 +4,7 @@
 --
 
 hs.window.animationDuration = 0 -- disable animations
+require("hs.ipc") -- lets the `hs` CLI talk to this config
 
 RELOADER = require('reloader')
 LOG = require('logger')
