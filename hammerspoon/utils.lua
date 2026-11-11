@@ -252,68 +252,102 @@ end
 M.MEETING_DESKTOP = 6
 local MEETING_DESKTOP = M.MEETING_DESKTOP
 
+local WISPR_BUNDLE_ID = 'com.electron.wispr-flow'
+
+local ZOOM_BUNDLE_ID = 'us.zoom.xos'
+
+-- allWindows() only sees the current desktop, so fall back to mainWindow() for other desktops
+local function appWindows(bundleID)
+  local app = hs.application.get(bundleID)
+  if not app then return {} end
+  local result = standardVisibleWindows(app)
+  if #result == 0 then
+    local main = app:mainWindow()
+    if main and main:isStandard() then
+      table.insert(result, main)
+    end
+  end
+  return result
+end
+
+-- Skip the small floating dictation bar; only the hub window holds notes
+local function wisprHubWindows()
+  local result = {}
+  for _, win in ipairs(appWindows(WISPR_BUNDLE_ID)) do
+    local f = win:frame()
+    if f.w >= 400 and f.h >= 300 then
+      table.insert(result, win)
+    end
+  end
+  return result
+end
+
+local function zoomWindows()
+  return appWindows(ZOOM_BUNDLE_ID)
+end
+
+local arrangeMeetingWindows
+
 function M.startMeeting()
-  hs.application.open('zoom.us')
-  hs.application.open('granola')
+  hs.application.launchOrFocusByBundleID(ZOOM_BUNDLE_ID)
+  hs.application.launchOrFocusByBundleID(WISPR_BUNDLE_ID)
 
-  -- Wait for apps to launch before collecting windows
-  hs.timer.doAfter(1.0, function()
-    local zoom = hs.application.find('zoom.us')
-    local granola = hs.application.find('granola')
+  -- Wispr drops deep links until its hub window exists, so wait for it on a cold launch
+  local deadline = hs.timer.secondsSinceEpoch() + 15
+  M.meetingLaunchTimer = hs.timer.waitUntil(function()
+    return #wisprHubWindows() > 0 or hs.timer.secondsSinceEpoch() > deadline
+  end, function()
+    hs.urlevent.openURL('wispr-flow://open/notetaker')
+    hs.timer.doAfter(0.5, arrangeMeetingWindows)
+  end, 0.25)
+end
 
-    local allWindows = {}
+arrangeMeetingWindows = function()
+  local allWindows = {}
 
-    if zoom then
-      for _, win in ipairs(standardVisibleWindows(zoom)) do
-        table.insert(allWindows, { win = win, app = 'zoom' })
-      end
+  for _, win in ipairs(zoomWindows()) do
+    table.insert(allWindows, { win = win, app = 'zoom' })
+  end
+
+  for _, win in ipairs(wisprHubWindows()) do
+    table.insert(allWindows, { win = win, app = 'wispr' })
+  end
+
+  -- Build move queue for windows not already on the meeting desktop
+  local moveQueue = {}
+  for _, entry in ipairs(allWindows) do
+    if getWindowDesktopNumber(entry.win) ~= MEETING_DESKTOP then
+      table.insert(moveQueue, entry.win)
     end
+  end
 
-    if granola then
-      for _, win in ipairs(standardVisibleWindows(granola)) do
-        table.insert(allWindows, { win = win, app = 'granola' })
-      end
-    end
-
-    -- Build move queue for windows not already on the meeting desktop
-    local moveQueue = {}
+  local function resizeAll()
     for _, entry in ipairs(allWindows) do
-      if getWindowDesktopNumber(entry.win) ~= MEETING_DESKTOP then
-        table.insert(moveQueue, entry.win)
-      end
-    end
-
-    local function resizeAll()
-      for _, entry in ipairs(allWindows) do
-        local win = entry.win
-        if win:isVisible() then
-          local screen = win:screen()
-          local sf = screen:frame()
-          if entry.app == 'zoom' then
-            local newWidth = 1280
-            local newHeight = 1000
-            win:setFrame({
-              x = sf.x + (sf.w - newWidth) / 2,
-              y = sf.y + 15,
-              w = newWidth,
-              h = newHeight,
-            })
-          elseif entry.app == 'granola' then
-            local newWidth = 800
-            local newHeight = 1200
-            win:setFrame({
-              x = sf.x + sf.w - newWidth - 15,
-              y = sf.y + 15,
-              w = newWidth,
-              h = newHeight,
-            })
-          end
+      local win = entry.win
+      if win:isVisible() then
+        local screen = win:screen()
+        local sf = screen:frame()
+        if entry.app == 'zoom' then
+          -- Top edge lines up with Wispr's Meeting Recorder window, which sits 10px down
+          local newWidth = 1280
+          local newHeight = 1000
+          win:setFrame({
+            x = sf.x + (sf.w - newWidth) / 2,
+            y = sf.y + 10,
+            w = newWidth,
+            h = newHeight,
+          })
+        elseif entry.app == 'wispr' then
+          -- Wispr enforces a minimum width, so anchor to the size it actually took
+          win:setSize({ w = 800, h = math.min(1200, sf.h - 30) })
+          local actual = win:frame()
+          win:setTopLeft({ x = sf.x + sf.w - actual.w - 10, y = sf.y + 10 })
         end
       end
     end
+  end
 
-    processWindowQueue(moveQueue, MEETING_DESKTOP, 1.0, resizeAll)
-  end)
+  processWindowQueue(moveQueue, MEETING_DESKTOP, 1.0, resizeAll)
 end
 
 local SCREENCAST_DESKTOP = 5

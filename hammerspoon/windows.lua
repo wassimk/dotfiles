@@ -479,11 +479,6 @@ local AUTO_PLACE = {
   ['com.apple.reminders']        = { screen = 'Built-in', position = leftHalfFrame },
   ['com.culturedcode.ThingsMac'] = { screen = 'Built-in', position = rightHalfFrame },
   ['com.tinyspeck.slackmacgap']  = { screen = 'portrait', position = fullscreenOnlyFrame },
-  -- TODO: troubleshoot desktop move for Granola
-  -- ['com.granola.app']            = { desktop = 6, position = function(s)
-  --   local w = 800
-  --   return { x = s.x + s.w - w, y = s.y, w = w, h = s.h }
-  -- end },
   ['us.zoom.xos']                = { desktop = U.MEETING_DESKTOP, position = function(s)
     local w, h = 1200, 1000
     return { x = s.x + (s.w - w) / 2, y = s.y, w = w, h = h }
