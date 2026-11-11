@@ -61,7 +61,7 @@ hs.hotkey.bind(hyper, 'B', function() hs.application.launchOrFocus('Google Chrom
 hs.hotkey.bind(hyper, 'D', function() hs.application.launchOrFocus('Things3') end)
 hs.hotkey.bind(hyper, 'E', function() hs.application.launchOrFocus('Messages') end)
 hs.hotkey.bind(hyper, 'F', function() hs.application.launchOrFocus('Reminders') end)
-hs.hotkey.bind(hyper, 'G', function() hs.application.launchOrFocus('Granola') end)
+hs.hotkey.bind(hyper, 'G', function() hs.application.launchOrFocusByBundleID('com.electron.wispr-flow') end)
 hs.hotkey.bind(hyper, 'I', function() hs.application.launchOrFocus('Mimestream') end)
 hs.hotkey.bind(hyper, 'L', function() hs.application.launchOrFocus('Calendar') end)
 hs.hotkey.bind(hyper, 'M', function() hs.application.launchOrFocus('Mail') end)
@@ -111,7 +111,6 @@ CHEATSHEET.register('hyper', {
         { key = 'L', label = 'Calendar' },
         { key = 'B', label = 'Chrome' },
         { key = 'A', label = 'Claude' },
-        { key = 'G', label = 'Granola' },
         { key = 'M', label = 'Mail' },
         { key = 'E', label = 'Messages' },
         { key = 'I', label = 'Mimestream' },
@@ -123,6 +122,7 @@ CHEATSHEET.register('hyper', {
         { key = 'Q', label = 'Slack' },
         { key = 'S', label = 'Snagit' },
         { key = 'D', label = 'Things' },
+        { key = 'G', label = 'Wispr Flow' },
         { key = 'Z', label = 'Zoom' },
       },
     },
