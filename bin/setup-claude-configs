@@ -26,7 +26,6 @@ SHARED_RESOURCES=(
   commands
   agents
   plugins
-  statusline-command.sh
 )
 
 check_links() {
