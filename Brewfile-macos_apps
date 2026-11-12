@@ -28,6 +28,7 @@ cask "keybase"
 cask "keycastr"
 # cask "little-snitch" # paused, overlaps with SentinelOne network monitoring
 cask "logi-options+"
+cask "markdown-preview"
 cask "mimestream"
 cask "ngrok"
 cask "notion"
