@@ -29,3 +29,10 @@ package.path = table.concat({
   package.path,
 }, ";")
 require("rex-navigator").setup()
+
+-- >>> leaf >>>
+-- Managed by `leaf rex install`; `leaf rex uninstall` removes it.
+-- plugin: a55ea9689b312a41
+dofile("/Users/wassim/.config/rex/plugins/leaf/init.lua").setup({ bin = { "/Users/wassim/.local/bin/leaf" } })
+-- open: idle
+-- <<< leaf <<<
