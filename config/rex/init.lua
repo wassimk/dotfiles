@@ -36,3 +36,10 @@ require("rex-navigator").setup()
 dofile("/Users/wassim/.config/rex/plugins/leaf/init.lua").setup({ bin = { "/Users/wassim/.local/bin/leaf" } })
 -- open: idle
 -- <<< leaf <<<
+-- >>> claude-resume >>>
+-- Managed by rex-claude-resume's install.sh; uninstall.sh removes it.
+dofile("/Users/wassim/.config/rex/plugins/claude-resume/init.lua").setup({
+  profiles = { "/Users/wassim/.claude", "/Users/wassim/.claude_configs/personal", },
+  commands = { ["/Users/wassim/.claude_configs/personal"] = "clp", },
+})
+-- <<< claude-resume <<<
