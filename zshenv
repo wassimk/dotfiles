@@ -48,6 +48,7 @@ setopt NO_FLOW_CONTROL         # disable start (C-s) and stop (C-q) characters
 setopt HIST_IGNORE_ALL_DUPS    # filter non-contiguous duplicates from history
 setopt HIST_FIND_NO_DUPS       # don't show dupes when searching
 setopt HIST_IGNORE_DUPS        # do filter contiguous duplicates from history
+setopt HIST_IGNORE_SPACE       # don't record commands that start with a space
 setopt HIST_VERIFY             # confirm history expansion (!$, !!, !foo)
 setopt LIST_PACKED             # make completion lists more densely packed
 setopt MENU_COMPLETE           # auto-insert first possible ambiguous completion
