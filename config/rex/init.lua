@@ -32,9 +32,9 @@ require("rex-navigator").setup()
 
 -- >>> leaf >>>
 -- Managed by `leaf rex install`; `leaf rex uninstall` removes it.
--- plugin: a55ea9689b312a41
+-- plugin: 04365960a540f318
 dofile("/Users/wassim/.config/rex/plugins/leaf/init.lua").setup({ bin = { "/Users/wassim/.local/bin/leaf" } })
--- open: idle
+-- open: idle classic
 -- <<< leaf <<<
 -- >>> claude-resume >>>
 -- Managed by rex-claude-resume's install.sh; uninstall.sh removes it.
