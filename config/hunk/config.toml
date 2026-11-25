@@ -1,0 +1,11 @@
+# Plain look for reading a single markdown document as a diff against /dev/null:
+#   hunk diff --agent-notes --theme plan --no-line-numbers --no-hunk-headers --wrap --files /dev/null <file>
+# Not for real diffs. addedBg/addedContentBg remove the green line background;
+# addedSignColor/selectedHunk remove the green bar beside the selected hunk.
+# The faint gray + column itself can't be themed.
+[themes.plan]
+base = "github-dark-default"
+addedBg = "#0d1117"
+addedContentBg = "#0d1117"
+addedSignColor = "#0d1117"
+selectedHunk = "#0d1117"
