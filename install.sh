@@ -150,15 +150,6 @@ installClaudeCode() {
   fi
 }
 
-installLeaf() {
-  if ! command -v leaf >/dev/null 2>&1; then
-    curl -fsSL https://leaf.dipxsy.app | sh
-    command -v rex >/dev/null 2>&1 && "$HOME"/.local/bin/leaf rex install
-  else
-    leaf upgrade
-  fi
-}
-
 
 setupPostingForClaude() {
   command -v posting >/dev/null 2>&1 || return
@@ -341,7 +332,6 @@ setupDotFiles
 installRust
 installNeovim
 installClaudeCode
-installLeaf
 installGhExtensions
 setupOS
 setupPostingForClaude
